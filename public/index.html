@@ -482,77 +482,6 @@ header {
   margin-right:10px;
 }
 
-.form-container {
-  max-width:900px;
-  margin:auto;
-  background:white;
-  border:1px solid var(--border);
-  padding:35px;
-  box-shadow:0 10px 35px #1022380b;
-}
-
-.form-grid {
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:18px;
-}
-
-.field {
-  display:flex;
-  flex-direction:column;
-  gap:7px;
-}
-
-.field.full {
-  grid-column:1/-1;
-}
-
-.field label {
-  color:var(--navy);
-  font-weight:800;
-  font-size:11px;
-}
-
-.field input,
-.field select,
-.field textarea {
-  width:100%;
-  padding:12px;
-  border:1px solid var(--border);
-  border-radius:3px;
-  outline:none;
-  background:white;
-  color:var(--text);
-  font-size:13px;
-}
-
-.field input:focus,
-.field select:focus,
-.field textarea:focus {
-  border-color:var(--red);
-}
-
-.field textarea {
-  min-height:110px;
-  resize:vertical;
-}
-
-.form-note {
-  color:var(--muted);
-  font-size:11px;
-  margin:18px 0;
-}
-
-.success-message {
-  display:none;
-  padding:15px;
-  margin-bottom:20px;
-  background:#e7f5ec;
-  color:#17663b;
-  border:1px solid #b7dfc5;
-  font-size:13px;
-}
-
 .gallery {
   display:grid;
   grid-template-columns:repeat(3,1fr);
@@ -700,17 +629,8 @@ footer a:hover {
 
   .cards,
   .gallery,
-  .footer-grid,
-  .form-grid {
+  .footer-grid {
     grid-template-columns:1fr;
-  }
-
-  .field.full {
-    grid-column:auto;
-  }
-
-  .form-container {
-    padding:20px;
   }
 
   .about-image,
@@ -745,7 +665,7 @@ footer a:hover {
       </div>
     </a>
 
-    <button class="menu-toggle" onclick="toggleMenu()" aria-label="Abrir menu">☰</button>
+    <button class="menu-toggle" onclick="toggleMenu()" aria-label="Abrir menu" aria-expanded="false">☰</button>
 
     <nav class="nav" id="mainNav">
       <a href="#inicio" onclick="closeMenu()">INÍCIO</a>
@@ -754,7 +674,7 @@ footer a:hover {
       <a href="#atividade" onclick="closeMenu()">ATIVIDADE</a>
       <a href="#galeria" onclick="closeMenu()">GALERIA</a>
       <a href="#recrutamento" onclick="closeMenu()">RECRUTAMENTO</a>
-      <a class="apply-link" href="#candidatura" onclick="closeMenu()">CANDIDATAR-ME</a>
+      <a class="apply-link" href="candidatura.html">CANDIDATAR-ME</a>
     </nav>
   </div>
 </header>
@@ -831,7 +751,7 @@ footer a:hover {
         <div class="card-body">
           <h3>Comando</h3>
           <p>Responsável pela coordenação geral, organização e orientação da instituição.</p>
-          <a href="#contactos" class="card-link">SABER MAIS →</a>
+          <a href="#recrutamento" class="card-link">SABER MAIS →</a>
         </div>
       </article>
 
@@ -849,7 +769,7 @@ footer a:hover {
         <div class="card-body">
           <h3>Recursos Humanos</h3>
           <p>Área dedicada ao acompanhamento, recrutamento e organização dos elementos.</p>
-          <a href="#candidatura" class="card-link">CANDIDATURAS →</a>
+          <a href="candidatura.html" class="card-link">CANDIDATURAS →</a>
         </div>
       </article>
     </div>
@@ -904,51 +824,74 @@ footer a:hover {
         <li>Respeitar todos os elementos da instituição.</li>
       </ul>
 
-      <a href="#candidatura" class="btn btn-red">INICIAR CANDIDATURA</a>
+      <a href="candidatura.html" class="btn btn-red">INICIAR CANDIDATURA</a>
     </div>
 
-    <div class="recruit-image"></div>
+    <div class="recruit-image" role="img" aria-label="Imagem ilustrativa de equipamento de bombeiros"></div>
   </div>
 </section>
 
-<section class="section" id="candidatura">
+</main>
+
+<footer id="contactos">
   <div class="container">
-    <div class="section-head center">
-      <span class="kicker">Recrutamento BVA</span>
-      <h2>Formulário de candidatura</h2>
-      <p>Preenche todos os campos obrigatórios. A tua candidatura será enviada para análise da equipa de Recursos Humanos.</p>
+    <div class="footer-grid">
+      <div>
+        <h3>BOMBEIROS VOLUNTÁRIOS DO ALGARVE</h3>
+        <p>Comunidade fictícia de simulação e roleplay dedicada à organização, cooperação e espírito de equipa.</p>
+      </div>
+
+      <div>
+        <h3>NAVEGAÇÃO</h3>
+        <a href="#inicio">Início</a>
+        <a href="#instituicao">Instituição</a>
+        <a href="#estrutura">Estrutura</a>
+        <a href="#atividade">Atividade</a>
+        <a href="#galeria">Galeria</a>
+      </div>
+
+      <div>
+        <h3>RECRUTAMENTO</h3>
+        <a href="#recrutamento">Informações</a>
+        <a href="candidatura.html">Apresentar candidatura</a>
+      </div>
     </div>
 
-    <div class="form-container">
-      <div id="formMessage" class="success-message" role="status" aria-live="polite"></div>
+    <div class="footer-bottom">
+      © 2026 Bombeiros Voluntários do Algarve · Projeto de simulação e roleplay.
+    </div>
+  </div>
+</footer>
 
-      <form id="applicationForm">
-        <div class="form-grid">
+<script>
+function toggleMenu() {
+  const nav = document.getElementById('mainNav');
+  const button = document.querySelector('.menu-toggle');
 
-          <div class="field">
-            <label for="nome">Nome completo *</label>
-            <input type="text" id="nome" name="nome" maxlength="100" required>
-          </div>
+  nav.classList.toggle('open');
 
-          <div class="field">
-            <label for="idade">Idade *</label>
-            <input type="number" id="idade" name="idade" min="13" max="99" required>
-          </div>
+  if (button) {
+    button.setAttribute(
+      'aria-expanded',
+      nav.classList.contains('open') ? 'true' : 'false'
+    );
+  }
+}
 
-          <div class="field">
-            <label for="discord">Nome de utilizador Discord *</label>
-            <input type="text" id="discord" name="discord" maxlength="100" required>
-          </div>
+function closeMenu() {
+  const nav = document.getElementById('mainNav');
+  const button = document.querySelector('.menu-toggle');
 
-          <div class="field">
-            <label for="disponibilidade">Disponibilidade *</label>
-            <input type="text" id="disponibilidade" name="disponibilidade" maxlength="500" placeholder="Ex.: Durante a semana e fins de semana" required>
-          </div>
+  if (nav) {
+    nav.classList.remove('open');
+  }
 
-          <div class="field">
-            <label for="experiencia">Tens experiência em roleplay? *</label>
-            <select id="experiencia" name="experiencia" required>
-              <option value="">Seleciona uma opção</option>
-              <option value="Sim">Sim</option>
-              <option value="Não">Não</option>
-              
+  if (button) {
+    button.setAttribute('aria-expanded', 'false');
+  }
+}
+</script>
+
+</body>
+  </html>
+      
