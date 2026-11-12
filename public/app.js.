@@ -1,0 +1,29 @@
+
+const form = document.getElementById("applicationForm");
+const message = document.getElementById("formMessage");
+
+form.addEventListener("submit", async (event) => {
+  event.preventDefault();
+  message.textContent = "A enviar candidatura…";
+
+  const data = Object.fromEntries(new FormData(form).entries());
+
+  try {
+    const response = await fetch("/api/candidaturas", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data)
+    });
+
+    const result = await response.json();
+
+    if (!response.ok) {
+      throw new Error(result.error || "Não foi possível enviar.");
+    }
+
+    message.textContent = "Candidatura recebida com sucesso. Obrigado!";
+    form.reset();
+  } catch (error) {
+    message.textContent = "Não foi possível enviar. Confirma que o portal está ligado a um servidor e tenta novamente.";
+  }
+});
