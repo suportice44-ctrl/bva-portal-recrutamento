@@ -2,408 +2,763 @@
 <!DOCTYPE html>
 <html lang="pt-PT">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#101923">
-<meta name="description" content="Portal institucional da BVA — comunidade de simulação RP no Discord.">
-<title>BVA | Portal Institucional</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#101923">
+  <meta name="description" content="Portal de recrutamento BVA — comunidade de simulação e roleplay no Discord.">
+  <title>Recrutamento | BVA — Bombeiros Voluntários</title>
 
-<style>
-:root{
- --navy:#101923;
- --navy2:#192633;
- --red:#bd252b;
- --red-dark:#941d23;
- --white:#fff;
- --light:#f3f5f7;
- --text:#202b35;
- --muted:#6c7883;
- --line:#e0e5e9;
- --green:#16784a;
-}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:90px}
-body{margin:0;font-family:Arial,Helvetica,sans-serif;color:var(--text);line-height:1.65}
-a{color:inherit;text-decoration:none}
-button,input,textarea,select{font:inherit}
-img{max-width:100%;display:block}
-.container{width:min(1160px,92%);margin:auto}
-.notice{background:#f5e8c5;color:#66501b;text-align:center;padding:8px 12px;font-size:10px;font-weight:800;letter-spacing:.6px}
-header{background:var(--navy);color:white;position:sticky;top:0;z-index:50;box-shadow:0 3px 15px #0002}
-.navbar{min-height:78px;display:flex;align-items:center;justify-content:space-between;gap:22px}
-.brand{display:flex;align-items:center;gap:12px;font-weight:900;letter-spacing:1px}
-.brand-symbol{height:47px;width:47px;background:var(--red);display:grid;place-items:center;font-size:15px;border-radius:4px}
-.brand small{display:block;font-size:9px;letter-spacing:2px;color:#bac5ce}
-nav{display:flex;align-items:center;gap:22px;font-size:12px;font-weight:700}
-nav a:hover{color:#ff9297}
-.btn{display:inline-block;border:0;background:var(--red);color:white;padding:13px 21px;font-size:12px;font-weight:900;letter-spacing:.5px;border-radius:3px;cursor:pointer;text-align:center}
-.btn:hover{background:var(--red-dark)}
-.btn-outline{background:transparent;border:1px solid #ffffff9c}
-.btn-light{background:white;color:var(--navy)}
-.btn-light:hover{background:#e9edf0}
-.hero{min-height:590px;position:relative;display:flex;align-items:center;background:var(--navy);color:white;overflow:hidden}
-.hero-image{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.hero:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#0c141eec 0%,#0c141ebd 52%,#0c141e45 100%)}
-.hero-content{position:relative;z-index:2;padding:90px 0}
-.eyebrow{font-size:11px;font-weight:900;letter-spacing:2.2px;text-transform:uppercase;color:var(--red)}
-.hero .eyebrow{color:#ff858b}
-.hero h1{font-size:clamp(42px,6vw,70px);line-height:1.04;letter-spacing:-1.8px;max-width:760px;margin:20px 0}
-.hero p{font-size:17px;color:#e0e6eb;max-width:620px;margin:0 0 28px}
-.hero-note{font-size:11px;color:#d1d9df;margin-top:18px}
-.section{padding:82px 0}
-.section-light{background:var(--light)}
-.section-dark{background:var(--navy);color:white}
-.heading{max-width:720px;margin-bottom:35px}
-.heading h2,.about h2{font-size:clamp(29px,4vw,43px);line-height:1.13;margin:10px 0 14px;letter-spacing:-.8px}
-.heading p,.muted{color:var(--muted)}
-.section-dark .heading p{color:#c1cbd3}
-.split{display:grid;grid-template-columns:1fr 1fr;gap:52px;align-items:center}
-.split img{width:100%;height:390px;object-fit:cover;border-radius:4px}
-.about p{color:var(--muted)}
-.photo-credit{font-size:10px;color:var(--muted);margin-top:8px}
-.photo-credit a{text-decoration:underline}
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#ffffff20;margin-top:50px}
-.stat{background:var(--navy2);padding:25px;text-align:center}
-.stat strong{display:block;font-size:25px;color:white}
-.stat span{font-size:11px;color:#bdc7d0}
-.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
-.card{background:white;border:1px solid var(--line);box-shadow:0 8px 28px #1019230b;overflow:hidden}
-.card img{height:215px;width:100%;object-fit:cover}
-.card-body{padding:23px}
-.card h3{margin:0 0 8px;font-size:19px}
-.card p{margin:0;color:var(--muted);font-size:13px}
-.tag{display:inline-block;color:var(--red);font-size:10px;font-weight:900;letter-spacing:1px;text-transform:uppercase;margin-bottom:9px}
-.org-card{background:white;padding:25px;border:1px solid var(--line);border-top:3px solid var(--red)}
-.org-card h3{font-size:17px;margin:0 0 8px}
-.org-card p{font-size:13px;color:var(--muted);margin:0}
-.org-level{max-width:850px;margin:0 auto;display:grid;gap:15px}
-.org-level .org-card{text-align:center}
-.org-level .sublevels{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
-.org-note{font-size:11px;color:var(--muted);text-align:center;margin-top:18px}
-.process{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-.process-card{padding:23px;background:white;border-top:3px solid var(--red)}
-.process-card b{display:block;font-size:18px;margin:9px 0}
-.process-card p{font-size:13px;color:var(--muted);margin:0}
-.number{font-size:11px;font-weight:900;color:var(--red);letter-spacing:1px}
-.gallery{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:13px}
-.gallery figure{margin:0;background:white;border:1px solid var(--line)}
-.gallery img{width:100%;height:225px;object-fit:cover}
-.gallery figure:first-child{grid-row:span 2}
-.gallery figure:first-child img{height:100%;min-height:460px}
-.gallery figcaption{padding:11px;font-size:11px;color:var(--muted)}
-.banner{background:var(--red);color:white;padding:46px 0}
-.banner-inner{display:flex;align-items:center;justify-content:space-between;gap:25px}
-.banner h2{margin:0 0 5px;font-size:29px}
-.banner p{margin:0;color:#ffe3e4;font-size:13px}
-.form-wrap{max-width:880px;margin:auto;background:white;border:1px solid var(--line);padding:32px;box-shadow:0 10px 35px #1019230c;border-radius:4px}
-.form-top{display:flex;align-items:center;justify-content:space-between;gap:15px;margin-bottom:18px}
-.form-top h3{margin:0;font-size:23px}
-.step-label{font-size:11px;font-weight:900;color:var(--muted)}
-.progress{height:7px;background:#e8ecef;border-radius:10px;overflow:hidden;margin-bottom:30px}
-.progress-bar{height:100%;width:20%;background:var(--red);transition:width .2s}
-.step{display:none}
-.step.active{display:block}
-.step h3{font-size:23px;margin:0 0 5px}
-.step-description{font-size:13px;color:var(--muted);margin:0 0 24px}
-.field{margin-bottom:19px}
-label{display:block;font-size:13px;font-weight:800;margin-bottom:7px}
-.required{color:var(--red)}
-input,select,textarea{width:100%;padding:13px;border:1px solid #ccd4db;border-radius:3px;background:white;color:var(--text)}
-input:focus,select:focus,textarea:focus{outline:2px solid #bd252b30;border-color:var(--red)}
-textarea{min-height:115px;resize:vertical}
-.radio-option{display:flex;align-items:flex-start;gap:10px;padding:13px;border:1px solid var(--line);margin-bottom:9px;font-size:13px;font-weight:500;cursor:pointer}
-.radio-option input{width:auto;margin-top:4px;accent-color:var(--red)}
-.form-buttons{display:flex;justify-content:space-between;gap:12px;margin-top:28px;padding-top:22px;border-top:1px solid var(--line)}
-.back-button{background:#e8ecef;color:var(--navy)}
-.back-button:hover{background:#dce2e7}
-.declaration{display:flex;align-items:flex-start;gap:10px;font-size:12px;font-weight:500;margin:20px 0}
-.declaration input{width:auto;margin-top:4px}
-.success{display:none;text-align:center;padding:38px 10px}
-.success-icon{height:65px;width:65px;border-radius:50%;display:grid;place-items:center;background:#e1f4e9;color:var(--green);font-size:30px;margin:0 auto 16px}
-.success p{color:var(--muted)}
-.error-message{display:none;background:#fff0f0;color:#a91f1f;padding:13px;margin-top:15px;font-size:13px}
-.faq{max-width:850px;display:grid;gap:12px}
-details{background:white;border:1px solid var(--line);padding:18px 20px}
-summary{font-weight:800;font-size:14px;cursor:pointer}
-details p{font-size:13px;color:var(--muted);margin-bottom:0}
-footer{background:#0b1118;color:white;padding:48px 0 20px}
-.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:30px}
-footer h3{font-size:12px;letter-spacing:1px}
-footer p,footer a{font-size:12px;color:#aeb9c2}
-footer a:hover{color:white}
-.footer-bottom{border-top:1px solid #ffffff20;margin-top:27px;padding-top:18px;font-size:10px;color:#87949e}
-@media(max-width:800px){
- .navbar{padding:12px 0;flex-wrap:wrap}
- nav{width:100%;justify-content:space-between;gap:9px;flex-wrap:wrap;font-size:10px;padding-bottom:8px}
- .hero{min-height:500px}
- .hero-content{padding:65px 0}
- .split{grid-template-columns:1fr;gap:25px}
- .split img{height:280px}
- .cards{grid-template-columns:1fr 1fr}
- .process{grid-template-columns:1fr 1fr}
- .gallery{grid-template-columns:1fr 1fr}
- .gallery figure:first-child{grid-row:auto}
- .gallery img,.gallery figure:first-child img{height:210px;min-height:0}
- .stats{grid-template-columns:1fr 1fr}
- .banner-inner{display:block}
- .banner .btn{margin-top:20px}
-}
-@media(max-width:520px){
- .cards,.process,.org-level .sublevels{grid-template-columns:1fr}
- .gallery{grid-template-columns:1fr}
- .gallery img,.gallery figure:first-child img{height:230px}
- .form-wrap{padding:21px 15px}
- .form-top{align-items:flex-start;flex-direction:column}
- .footer-grid{grid-template-columns:1fr}
- .hero h1{font-size:43px}
-}
-</style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --navy: #101923;
+      --navy2: #172432;
+      --navy3: #203346;
+      --red: #c72e35;
+      --red2: #e0444b;
+      --white: #fff;
+      --muted: #aab6c2;
+      --light: #f3f5f7;
+      --border: #e1e6eb;
+      --text: #253342;
+      --radius: 14px;
+      --shadow: 0 15px 45px rgba(15, 28, 40, .10);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: "DM Sans", sans-serif;
+      color: var(--text);
+      background: #fff;
+      line-height: 1.65;
+    }
+    a { color: inherit; text-decoration: none; }
+    button, input, select, textarea { font: inherit; }
+    img { display: block; max-width: 100%; }
+
+    .container {
+      width: min(1160px, calc(100% - 40px));
+      margin: auto;
+    }
+
+    .topbar {
+      background: #0b121a;
+      color: #cbd4dc;
+      font-size: 12px;
+      padding: 9px 0;
+    }
+    .topbar-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+    .topbar strong { color: white; letter-spacing: .5px; }
+
+    header {
+      background: var(--navy);
+      color: white;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+    .nav {
+      min-height: 82px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 25px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      min-width: 220px;
+    }
+    .brand-mark {
+      width: 49px;
+      height: 49px;
+      border-radius: 12px;
+      background: var(--red);
+      display: grid;
+      place-items: center;
+      font-family: Manrope, sans-serif;
+      font-weight: 800;
+      font-size: 18px;
+      letter-spacing: -1px;
+      box-shadow: 0 5px 18px rgba(199,46,53,.25);
+    }
+    .brand-name {
+      font-family: Manrope, sans-serif;
+      font-weight: 800;
+      font-size: 18px;
+      line-height: 1.2;
+      letter-spacing: .3px;
+    }
+    .brand-name small {
+      display: block;
+      font-size: 10px;
+      color: #aab6c2;
+      font-weight: 600;
+      letter-spacing: 2px;
+      margin-top: 4px;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 27px;
+      font-size: 13px;
+      font-weight: 600;
+      color: #d2dbe3;
+    }
+    .nav-links a:hover { color: white; }
+    .nav-cta, .btn {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: 9px;
+      border: 0;
+      border-radius: 7px;
+      padding: 13px 20px;
+      background: var(--red);
+      color: white;
+      font-weight: 700;
+      cursor: pointer;
+      transition: .2s ease;
+    }
+    .nav-cta:hover, .btn:hover {
+      background: var(--red2);
+      transform: translateY(-2px);
+    }
+    .menu-toggle {
+      display: none;
+      background: transparent;
+      border: 1px solid #455361;
+      color: white;
+      border-radius: 7px;
+      padding: 8px 12px;
+      cursor: pointer;
+    }
+
+    .hero {
+      min-height: 610px;
+      color: white;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      background:
+        linear-gradient(90deg, rgba(8,17,26,.96) 0%, rgba(8,17,26,.84) 48%, rgba(8,17,26,.28) 100%),
+        url("https://commons.wikimedia.org/wiki/Special:FilePath/Associa%C3%A7%C3%A3o_Humanit%C3%A1ria_de_Bombeiros_Volunt%C3%A1rios_de_Faro_-_Cruz_Lusa_02.jpg")
+        center 48% / cover no-repeat;
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 5px;
+      background: var(--red);
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 720px;
+      padding: 95px 0 110px;
+    }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: #ff777c;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 2.2px;
+      text-transform: uppercase;
+      margin-bottom: 22px;
+    }
+    .eyebrow::before {
+      content: "";
+      height: 2px;
+      width: 32px;
+      background: var(--red);
+    }
+    h1, h2, h3 {
+      font-family: Manrope, sans-serif;
+      line-height: 1.18;
+    }
+    .hero h1 {
+      font-size: clamp(38px, 6vw, 65px);
+      font-weight: 800;
+      letter-spacing: -2px;
+      margin-bottom: 23px;
+    }
+    .hero h1 span { color: #f05a60; }
+    .hero p {
+      color: #d2dbe3;
+      font-size: 16px;
+      max-width: 610px;
+      margin-bottom: 30px;
+    }
+    .hero-actions {
+      display: flex;
+      gap: 13px;
+      flex-wrap: wrap;
+    }
+    .btn-outline {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      padding: 12px 20px;
+      border: 1px solid rgba(255,255,255,.45);
+      border-radius: 7px;
+      color: white;
+      font-weight: 700;
+    }
+    .btn-outline:hover { background: rgba(255,255,255,.1); }
+
+    .notice {
+      background: #fff5e9;
+      border-left: 4px solid #d58b35;
+      color: #6c4c23;
+      padding: 15px 18px;
+      border-radius: 7px;
+      font-size: 13px;
+      margin: 26px auto;
+    }
+
+    section { padding: 90px 0; }
+    .section-heading {
+      max-width: 690px;
+      margin-bottom: 42px;
+    }
+    .section-kicker {
+      display: block;
+      color: var(--red);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .section-heading h2 {
+      color: var(--navy);
+      font-size: clamp(29px, 4vw, 42px);
+      letter-spacing: -1.3px;
+      margin-bottom: 15px;
+    }
+    .section-heading p { color: #687684; font-size: 15px; }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+    .about-image {
+      min-height: 420px;
+      border-radius: var(--radius);
+      overflow: hidden;
+      position: relative;
+      box-shadow: var(--shadow);
+    }
+    .about-image img {
+      width: 100%;
+      height: 100%;
+      min-height: 420px;
+      object-fit: cover;
+    }
+    .image-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 28px 20px 17px;
+      color: white;
+      font-size: 11px;
+      background: linear-gradient(transparent, rgba(0,0,0,.8));
+    }
+    .about-copy h2 {
+      font-family: Manrope, sans-serif;
+      color: var(--navy);
+      font-size: 35px;
+      line-height: 1.2;
+      margin-bottom: 20px;
+    }
+    .about-copy p {
+      color: #687684;
+      margin-bottom: 15px;
+      font-size: 14px;
+    }
+    .check-list {
+      list-style: none;
+      margin-top: 23px;
+      display: grid;
+      gap: 12px;
+    }
+    .check-list li {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      font-weight: 600;
+      font-size: 14px;
+    }
+    .check {
+      background: #fcebed;
+      color: var(--red);
+      border-radius: 50%;
+      width: 23px;
+      height: 23px;
+      display: grid;
+      place-items: center;
+      flex: 0 0 23px;
+      font-size: 12px;
+    }
+
+    .dark-section {
+      background: var(--navy);
+      color: white;
+    }
+    .dark-section .section-heading h2 { color: white; }
+    .dark-section .section-heading p { color: #aab6c2; }
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+    .value-card {
+      background: #192938;
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 11px;
+      padding: 27px 22px;
+      transition: .2s;
+    }
+    .value-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(240,90,96,.55);
+    }
+    .value-number {
+      color: #f05a60;
+      font-family: Manrope, sans-serif;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 2px;
+    }
+    .value-card h3 {
+      font-size: 18px;
+      margin: 17px 0 10px;
+    }
+    .value-card p {
+      color: #aab6c2;
+      font-size: 13px;
+    }
+
+    .structure-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+    .structure-card {
+      border: 1px solid var(--border);
+      border-radius: 11px;
+      padding: 25px;
+      background: white;
+      box-shadow: 0 6px 22px rgba(15,28,40,.04);
+    }
+    .structure-card .number {
+      width: 36px;
+      height: 36px;
+      display: grid;
+      place-items: center;
+      background: #fcebed;
+      color: var(--red);
+      border-radius: 8px;
+      font-weight: 800;
+      margin-bottom: 18px;
+    }
+    .structure-card h3 {
+      color: var(--navy);
+      font-size: 18px;
+      margin-bottom: 9px;
+    }
+    .structure-card p { color: #71808d; font-size: 13px; }
+
+    .gallery-section { background: var(--light); }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr 1fr;
+      grid-template-rows: 220px 220px;
+      gap: 14px;
+    }
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 10px;
+      background: #dce2e8;
+    }
+    .gallery-item:first-child { grid-row: span 2; }
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .5s;
+    }
+    .gallery-item:hover img { transform: scale(1.05); }
+    .gallery-label {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      color: white;
+      padding: 35px 16px 14px;
+      font-size: 13px;
+      font-weight: 700;
+      background: linear-gradient(transparent, rgba(0,0,0,.8));
+    }
+
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+    .step {
+      border-top: 3px solid var(--red);
+      padding: 22px 18px;
+      background: #f7f8fa;
+      border-radius: 0 0 9px 9px;
+    }
+    .step span {
+      color: var(--red);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 1px;
+    }
+    .step h3 {
+      color: var(--navy);
+      font-size: 17px;
+      margin: 12px 0 8px;
+    }
+    .step p { color: #71808d; font-size: 13px; }
+
+    .recruitment {
+      background: #f3f5f7;
+    }
+    .form-layout {
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      gap: 28px;
+      align-items: start;
+    }
+    .form-aside {
+      background: var(--navy);
+      color: white;
+      border-radius: 12px;
+      padding: 28px;
+      position: sticky;
+      top: 105px;
+    }
+    .form-aside h3 { font-size: 21px; margin-bottom: 15px; }
+    .form-aside p {
+      color: #b5c0ca;
+      font-size: 13px;
+      margin-bottom: 20px;
+    }
+    .form-aside ul {
+      list-style: none;
+      display: grid;
+      gap: 13px;
+      font-size: 13px;
+      color: #e0e6eb;
+    }
+    .form-aside li::before {
+      content: "✓";
+      color: #ff7379;
+      font-weight: 800;
+      margin-right: 9px;
+    }
+    .application-form {
+      background: white;
+      padding: 34px;
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+    }
+    .form-heading {
+      padding-bottom: 22px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 25px;
+    }
+    .form-heading h2 {
+      color: var(--navy);
+      font-size: 26px;
+      margin-bottom: 7px;
+    }
+    .form-heading p { color: #71808d; font-size: 13px; }
+    .form-section-title {
+      color: var(--red);
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1.6px;
+      margin: 27px 0 16px;
+      padding-bottom: 9px;
+      border-bottom: 1px solid #edf0f2;
+    }
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 17px;
+    }
+    .field { display: flex; flex-direction: column; gap: 7px; }
+    .field.full { grid-column: 1 / -1; }
+    .field label {
+      font-size: 12px;
+      color: #344454;
+      font-weight: 700;
+    }
+    .field label span { color: var(--red); }
+    .field input, .field select, .field textarea {
+      width: 100%;
+      border: 1px solid #dce2e8;
+      border-radius: 7px;
+      padding: 12px 13px;
+      color: #253342;
+      background: #fff;
+      outline: none;
+      font-size: 13px;
+      transition: .2s;
+    }
+    .field input:focus, .field select:focus, .field textarea:focus {
+      border-color: var(--red);
+      box-shadow: 0 0 0 3px rgba(199,46,53,.08);
+    }
+    .field textarea { min-height: 100px; resize: vertical; }
+    .field small { color: #87939e; font-size: 11px; }
+    .declaration {
+      display: flex;
+      gap: 11px;
+      align-items: flex-start;
+      background: #f6f7f8;
+      border-radius: 8px;
+      padding: 15px;
+      margin: 22px 0;
+      font-size: 12px;
+      color: #53616e;
+    }
+    .declaration input { margin-top: 4px; accent-color: var(--red); }
+    .submit-btn {
+      width: 100%;
+      padding: 15px;
+      font-size: 14px;
+    }
+    #formMessage {
+      display: none;
+      padding: 14px;
+      border-radius: 7px;
+      margin-top: 17px;
+      font-size: 13px;
+    }
+    #formMessage.success { display: block; background: #e8f6ed; color: #21663a; }
+    #formMessage.error { display: block; background: #fcebed; color: #9b252c; }
+
+    .faq-list { max-width: 850px; }
+    details {
+      border-bottom: 1px solid var(--border);
+      padding: 19px 0;
+    }
+    summary {
+      cursor: pointer;
+      font-weight: 700;
+      color: var(--navy);
+      font-size: 15px;
+    }
+    details p {
+      color: #71808d;
+      font-size: 13px;
+      padding-top: 12px;
+      max-width: 750px;
+    }
+
+    .final-cta {
+      background:
+        linear-gradient(90deg, rgba(16,25,35,.97), rgba(16,25,35,.88)),
+        url("https://commons.wikimedia.org/wiki/Special:FilePath/12-09-2017_Bombeiros_de_Faro_Cruz-Lusa%2C_Rua_Comandante_Francisco_Manuel%2C_Faro_%282%29.JPG")
+        center / cover;
+      color: white;
+      text-align: center;
+      padding: 75px 0;
+    }
+    .final-cta h2 { font-size: 34px; margin-bottom: 13px; }
+    .final-cta p {
+      color: #c0cbd4;
+      max-width: 650px;
+      margin: 0 auto 25px;
+      font-size: 14px;
+    }
+
+    footer {
+      background: #0b121a;
+      color: #aab6c2;
+      padding: 48px 0 22px;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr;
+      gap: 40px;
+      padding-bottom: 35px;
+    }
+    footer h3 { color: white; font-size: 16px; margin-bottom: 15px; }
+    footer p, footer li { font-size: 12px; }
+    footer ul { list-style: none; display: grid; gap: 9px; }
+    footer a:hover { color: white; }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,.1);
+      padding-top: 19px;
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      flex-wrap: wrap;
+      font-size: 11px;
+    }
+    .disclaimer {
+      color: #ffb7ba;
+      background: rgba(199,46,53,.10);
+      border: 1px solid rgba(240,90,96,.25);
+      border-radius: 7px;
+      padding: 13px;
+      margin-top: 17px;
+      font-size: 11px;
+    }
+    .credits {
+      margin-top: 12px;
+      font-size: 10px;
+      color: #87939e;
+    }
+    .credits a { text-decoration: underline; }
+
+    @media (max-width: 900px) {
+      .nav-links { gap: 14px; }
+      .nav-links a { font-size: 12px; }
+      .values-grid, .steps-grid { grid-template-columns: repeat(2, 1fr); }
+      .about-grid { gap: 30px; }
+      .form-layout { grid-template-columns: 1fr; }
+      .form-aside { position: static; }
+    }
+    @media (max-width: 680px) {
+      .container { width: min(100% - 28px, 1160px); }
+      .topbar-inner { justify-content: center; text-align: center; }
+      .nav { min-height: 70px; }
+      .menu-toggle { display: block; }
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        right: 0;
+        background: var(--navy);
+        padding: 20px;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 17px;
+        border-top: 1px solid rgba(255,255,255,.1);
+      }
+      .nav-links.open { display: flex; }
+      .nav-links a { font-size: 14px; }
+      .nav-cta { text-align: center; }
+      .hero { min-height: 560px; background-position: 58% center; }
+      .hero-content { padding: 75px 0 85px; }
+      .hero h1 { letter-spacing: -1.3px; }
+      section { padding: 65px 0; }
+      .about-grid { grid-template-columns: 1fr; }
+      .about-image, .about-image img { min-height: 280px; }
+      .values-grid, .structure-grid, .steps-grid { grid-template-columns: 1fr; }
+      .gallery-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 210px 170px 170px;
+      }
+      .gallery-item:first-child { grid-column: 1 / -1; grid-row: auto; }
+      .application-form { padding: 22px 17px; }
+      .form-grid { grid-template-columns: 1fr; }
+      .field.full { grid-column: auto; }
+      .footer-grid { grid-template-columns: 1fr; gap: 25px; }
+      .final-cta h2 { font-size: 27px; }
+    }
+  </style>
 </head>
 
 <body>
 
-<div class="notice">
-  PROJETO DE SIMULAÇÃO RP NO DISCORD · NÃO É UMA CORPORAÇÃO REAL NEM UM SERVIÇO DE EMERGÊNCIA
-</div>
-
-<header>
- <div class="container navbar">
-  <a href="#inicio" class="brand">
-   <span class="brand-symbol">BVA</span>
-   <span>BVA <small>BOMBEIROS · SIMULAÇÃO RP</small></span>
-  </a>
-  <nav>
-   <a href="#inicio">Início</a>
-   <a href="#organizacao">Organização</a>
-   <a href="#estrutura">Estrutura</a>
-   <a href="#frota">Frota</a>
-   <a href="#recrutamento">Recrutamento</a>
-   <a href="#candidatura" class="btn">CANDIDATAR-ME</a>
-  </nav>
- </div>
-</header>
-
-<main>
-
-<!-- INÍCIO -->
-<section class="hero" id="inicio">
- <img class="hero-image"
- src="https://commons.wikimedia.org/wiki/Special:FilePath/12-09-2017_Fire_Tender,_Bombeiros_de_Faro_Cruz-Lusa,_Rua_Comandante_Francisco_Manuel,_Faro_(1).JPG"
- alt="Viatura dos Bombeiros de Faro, fotografia de referência">
- <div class="container hero-content">
-  <div class="eyebrow">BVA · Comunidade de simulação</div>
-  <h1>Compromisso.<br>Dedicação.<br>Espírito de equipa.</h1>
-  <p>Conhece a organização, descobre a nossa estrutura e participa numa experiência de simulação RP inspirada no universo dos bombeiros portugueses.</p>
-  <a class="btn" href="#candidatura">INICIAR CANDIDATURA →</a>
-  <a class="btn btn-outline" href="#organizacao">CONHECER A BVA</a>
-  <div class="hero-note">Identidade fictícia · Comunidade independente no Discord</div>
- </div>
-</section>
-
-<!-- ORGANIZAÇÃO -->
-<section class="section" id="organizacao">
- <div class="container split">
-  <div class="about">
-   <div class="eyebrow">A nossa organização</div>
-   <h2>Uma comunidade com organização e objetivos.</h2>
-   <p>A BVA é uma comunidade de simulação RP no Discord, inspirada na organização e no funcionamento geral dos corpos de bombeiros portugueses.</p>
-   <p>Procuramos criar uma experiência de roleplay organizada, com regras claras, comunicação, respeito e espírito de equipa.</p>
-   <p>As funções, hierarquias e atividades apresentadas neste portal pertencem exclusivamente ao universo fictício da comunidade.</p>
-   <a class="btn" href="#estrutura">EXPLORAR ESTRUTURA</a>
-  </div>
-  <div>
-   <img src="https://commons.wikimedia.org/wiki/Special:FilePath/12-09-2017_Bombeiros_de_Faro_Cruz-Lusa,_Rua_Comandante_Francisco_Manuel,_Faro_(2).JPG"
-   alt="Viaturas dos Bombeiros de Faro, imagem de referência">
-   <div class="photo-credit">Fotografia de referência: <a href="https://commons.wikimedia.org/wiki/File:12-09-2017_Bombeiros_de_Faro_Cruz-Lusa,_Rua_Comandante_Francisco_Manuel,_Faro_(2).JPG" target="_blank" rel="noopener">Bombeiros de Faro / Wikimedia Commons</a>.</div>
-  </div>
- </div>
-</section>
-
-<!-- VALORES -->
-<section class="section section-dark">
- <div class="container">
-  <div class="heading">
-   <div class="eyebrow">Os nossos princípios</div>
-   <h2>Os valores que orientam a comunidade.</h2>
-   <p>Uma boa experiência RP começa com respeito, responsabilidade e colaboração.</p>
-  </div>
-  <div class="cards">
-   <article class="org-card">
-    <span class="number">01</span>
-    <h3>Disciplina</h3>
-    <p>Respeito pelas regras, procedimentos e orientações internas da comunidade.</p>
-   </article>
-   <article class="org-card">
-    <span class="number">02</span>
-    <h3>Cooperação</h3>
-    <p>Trabalho em equipa e comunicação entre todos os participantes.</p>
-   </article>
-   <article class="org-card">
-    <span class="number">03</span>
-    <h3>Responsabilidade</h3>
-    <p>Participação consciente, respeito pelos outros e compromisso com a simulação.</p>
-   </article>
-  </div>
- </div>
-</section>
-
-<!-- ESTRUTURA -->
-<section class="section section-light" id="estrutura">
- <div class="container">
-  <div class="heading">
-   <div class="eyebrow">Organização interna</div>
-   <h2>Estrutura hierárquica.</h2>
-   <p>Uma organização fictícia, criada para distribuir responsabilidades e facilitar a gestão das atividades RP.</p>
-  </div>
-
-  <div class="org-level">
-   <div class="org-card">
-    <span class="number">NÍVEL 01</span>
-    <h3>Direção</h3>
-    <p>Gestão geral, decisões administrativas e orientação estratégica da comunidade.</p>
-   </div>
-   <div class="org-card">
-    <span class="number">NÍVEL 02</span>
-    <h3>Comando</h3>
-    <p>Coordenação das atividades RP, acompanhamento das equipas e organização interna.</p>
-   </div>
-   <div class="sublevels">
-    <div class="org-card">
-     <span class="number">DEPARTAMENTO 01</span>
-     <h3>Operações RP</h3>
-     <p>Organização das atividades e cenários de simulação.</p>
+  <div class="topbar">
+    <div class="container topbar-inner">
+      <span><strong>BVA</strong> · Portal de Recrutamento</span>
+      <span>Comunidade de simulação e roleplay no Discord</span>
     </div>
-    <div class="org-card">
-     <span class="number">DEPARTAMENTO 02</span>
-     <h3>Formação</h3>
-     <p>Integração de novos membros e explicação das regras.</p>
+  </div>
+
+  <header>
+    <div class="container nav">
+      <a href="#inicio" class="brand">
+        <div class="brand-mark">BVA</div>
+        <div class="brand-name">
+          BOMBEIROS VOLUNTÁRIOS
+          <small>COMUNIDADE RP</small>
+        </div>
+      </a>
+
+      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu">☰</button>
+
+      <nav class="nav-links" id="navLinks">
+        <a href="#inicio">Início</a>
+        <a href="#sobre">A Comunidade</a>
+        <a href="#valores">Valores</a>
+        <a href="#estrutura">Organização</a>
+        <a href="#galeria">Galeria</a>
+        <a href="#candidatura" class="nav-cta">Candidatar-me</a>
+      </nav>
     </div>
-    <div class="org-card">
-     <span class="number">DEPARTAMENTO 03</span>
-     <h3>Administração</h3>
-     <p>Gestão de membros, comunicação e apoio à comunidade.</p>
-    </div>
-   </div>
-   <div class="org-card">
-    <span class="number">NÍVEL 03</span>
-    <h3>Equipas e membros</h3>
-    <p>Participantes da comunidade, organizados de acordo com as funções atribuídas no roleplay.</p>
-   </div>
-  </div>
-  <p class="org-note">Organograma ilustrativo. Os cargos e departamentos são fictícios e podem ser ajustados pela administração da comunidade.</p>
- </div>
-</section>
+  </header>
 
-<!-- ÁREAS -->
-<section class="section" id="areas">
- <div class="container">
-  <div class="heading">
-   <div class="eyebrow">Áreas de atividade</div>
-   <h2>O que podes encontrar na BVA.</h2>
-   <p>Diferentes áreas para tornar a experiência de simulação mais completa e organizada.</p>
-  </div>
-  <div class="cards">
-   <article class="card">
-    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/12-09-2017_Fire_Tender,_Bombeiros_de_Faro_Cruz-Lusa,_Rua_Comandante_Francisco_Manuel,_Faro_(1).JPG" alt="Viatura de bombeiros de Faro">
-    <div class="card-body"><span class="tag">Área 01</span><h3>Operações RP</h3><p>Atividades de roleplay organizadas de acordo com as regras internas da comunidade.</p></div>
-   </article>
-   <article class="card">
-    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/2017-09-27_Fire_station,_Bombeiros_Volunt%C3%A1rios_de_Albufeira_(3).JPG" alt="Quartel dos Bombeiros de Albufeira">
-    <div class="card-body"><span class="tag">Área 02</span><h3>Instalações</h3><p>Espaços e ambientes representados no universo da nossa simulação.</p></div>
-   </article>
-   <article class="card">
-    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/PortimaoFireStation.jpg" alt="Quartel dos Bombeiros de Portimão">
-    <div class="card-body"><span class="tag">Área 03</span><h3>Organização</h3><p>Gestão de equipas, comunicação e coordenação dos membros.</p></div>
-   </article>
-  </div>
- </div>
-</section>
-
-<!-- FROTA -->
-<section class="section section-light" id="frota">
- <div class="container">
-  <div class="heading">
-   <div class="eyebrow">Frota e instalações</div>
-   <h2>Meios e referências visuais.</h2>
-   <p>Uma galeria de referência inspirada em viaturas e quartéis de corporações do Algarve. As imagens não representam meios pertencentes à BVA.</p>
-  </div>
-  <div class="gallery">
-   <figure>
-    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/12-09-2017_Bombeiros_de_Faro_Cruz-Lusa,_Rua_Comandante_Francisco_Manuel,_Faro_(2).JPG" alt="Bombeiros de Faro">
-    <figcaption>Viaturas dos Bombeiros de Faro — Algarve</figcaption>
-   </figure>
-   <figure>
-    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/2017-09-27_Fire_station,_Bombeiros_Volunt%C3%A1rios_de_Albufeira_(3).JPG" alt="Quartel de Albufeira">
-    <figcaption>Quartel de Albufeira</figcaption>
-   </figure>
-   <figure>
-    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/PortimaoFireStation.jpg" alt="Quartel de Portimão">
-    <figcaption>Quartel de Portimão</figcaption>
-   </figure>
-   <figure>
-    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/12-09-2017_Fire_Tender,_Bombeiros_de_Faro_Cruz-Lusa,_Rua_Comandante_Francisco_Manuel,_Faro_(1).JPG" alt="Viatura de Faro">
-    <figcaption>Viatura dos Bombeiros de Faro</figcaption>
-   </figure>
-   <figure>
-    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/2017-09-27_Fire_station,_Bombeiros_Volunt%C3%A1rios_de_Albufeira_(4).JPG" alt="Instalações de Albufeira">
-    <figcaption>Instalações dos Bombeiros de Albufeira</figcaption>
-   </figure>
-  </div>
-  <p class="photo-credit">Fotografias de referência obtidas através do Wikimedia Commons. Consulta as páginas de cada ficheiro para informações de autoria e licença.</p>
- </div>
-</section>
-
-<!-- FORMAÇÃO -->
-<section class="section" id="formacao">
- <div class="container">
-  <div class="heading">
-   <div class="eyebrow">Integração</div>
-   <h2>O percurso de um novo membro.</h2>
-   <p>Um processo interno pensado para ajudar cada participante a conhecer a comunidade.</p>
-  </div>
-  <div class="process">
-   <article class="process-card"><span class="number">01</span><b>Candidatura</b><p>Preenchimento e envio do formulário de recrutamento.</p></article>
-   <article class="process-card"><span class="number">02</span><b>Avaliação</b><p>Análise das respostas pela equipa responsável.</p></article>
-   <article class="process-card"><span class="number">03</span><b>Integração</b><p>Apresentação das regras, canais e organização interna.</p></article>
-   <article class="process-card"><span class="number">04</span><b>Participação</b><p>Entrada nas atividades RP, de acordo com as regras.</p></article>
-  </div>
- </div>
-</section>
-
-<!-- RECRUTAMENTO -->
-<section class="banner" id="recrutamento">
- <div class="container banner-inner">
-  <div>
-   <h2>Faz parte da comunidade BVA.</h2>
-   <p>Conhece o processo de recrutamento e envia a tua candidatura.</p>
-  </div>
-  <a class="btn btn-light" href="#candidatura">COMEÇAR CANDIDATURA →</a>
- </div>
-</section>
-
-<!-- FORMULÁRIO -->
-<section class="section section-light" id="candidatura">
- <div class="container">
-  <div class="heading">
-   <div class="eyebrow">Recrutamento BVA</div>
-   <h2>Formulário de candidatura.</h2>
-   <p>Responde às perguntas com atenção. O formulário está dividido em cinco etapas.</p>
-  </div>
-
-  <div class="form-wrap">
-   <form id="applicationForm">
-    <div id="formContent">
-     <div class="form-top">
-      <h3>Nova candidatura</h3>
-      <span class="step-label" id="stepLabel">ETAPA 1 DE 5</span>
-     </div>
-     <div class="progress"><div class="progress-bar" id="progressBar"></div></div>
-
-     <div class="step active">
-      <h3>01. Identificação</h3>
-      <p class="step-description">Indica os dados necessários para a tua candidatura à comunidade.</p>
-      <div class="field">
-       <label for="nome">Nome / Identificação RP <span class="required">*</span></label>
-       <input id="nome" name="nome" maxlength="100" required placeholder="A tua identificação na simulação">
+  <main>
+    <section class="hero" id="inicio">
+      <div class="container">
+        <div class="hero-content">
+          <span class="eyebrow">Recrutamento aberto · BVA RP</span>
+          <h1>O compromisso começa com <span>uma escolha.</span></h1>
+          <p>
+            Junta-te à nossa comunidade de roleplay, participa em operações
+            simuladas, desenvolve competências de equipa e constrói a tua
+            experiência dentro do universo BVA.
+          </p>
+          <div class="hero-actions">
+            <a href="#candidatura" class="btn">Iniciar candidatura →</a>
+            <a href="#sobre" class="btn-outline">Conhecer a comunidade</a>
+          </div>
+        </div>
       </div>
-      <div class="fiel
+    </section>
+
+    <div class="container">
+      <div class="notice">
+        <strong>Nota importante:</strong> O BVA é uma comunidade fictícia de
+        simulação/roleplay no Discord. Não é uma corporação real, não presta
+        serviços de emergência e não representa oficialmente qualquer corpo
+        de bombeiros ou entidade pública.
+      </div>
+    </div>
+
+    <section id="sobre">
+      <div class="container about-grid">
+        <div class="about-image">
+          <img
+            src="https://commons.wikimedia.org/wiki/Special:FilePath/Associa%C3%A7%C3%A3o_Humanit%C3%A1ria_de_Bombeiros_Volunt%C3%A1rios_de_Faro_-_Cruz_Lusa_02.jpg"
+            alt="Viaturas dos Bombeiros Voluntários de Faro"
+            loading="lazy">
+          <div class="image-caption">
+            Imagem de referência: Bombeiros Voluntários de Faro — Cruz Lusa.
+          </div>
+        <
