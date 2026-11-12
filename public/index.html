@@ -5,8 +5,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#101923">
-  <meta name="description" content="Portal de recrutamento BVA — comunidade de simulação e roleplay no Discord.">
-  <title>BVA | Portal de Recrutamento</title>
+  <meta name="description" content="Bombeiros Voluntários do Algarve — Portal institucional e recrutamento da comunidade de simulação BVA.">
+  <title>BVA | Bombeiros Voluntários do Algarve</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,66 +15,79 @@
   <style>
     :root {
       --navy: #101923;
-      --navy2: #172737;
-      --navy3: #24394d;
-      --red: #c72e35;
-      --red2: #e0444b;
+      --navy-2: #172432;
+      --navy-3: #223447;
+      --red: #c62832;
+      --red-dark: #a51e29;
+      --gold: #d9ad64;
       --white: #fff;
-      --light: #f3f5f7;
-      --text: #263746;
-      --muted: #71808d;
-      --border: #e2e7ec;
-      --radius: 13px;
-      --shadow: 0 15px 45px rgba(15,28,40,.09);
+      --light: #f4f6f8;
+      --text: #263445;
+      --muted: #738091;
+      --border: #e4e8ed;
+      --container: 1180px;
+      --shadow: 0 18px 50px rgba(16,25,35,.10);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
-    html {
-      scroll-behavior: smooth;
-      scroll-padding-top: 95px;
-    }
+    html { scroll-behavior: smooth; scroll-padding-top: 90px; }
 
     body {
       font-family: "DM Sans", sans-serif;
       color: var(--text);
-      background: white;
+      background: #fff;
       line-height: 1.7;
     }
 
     a { color: inherit; text-decoration: none; }
-    img { display: block; max-width: 100%; }
     button, input, select, textarea { font: inherit; }
+    img { max-width: 100%; display: block; }
 
     .container {
-      width: min(1160px, calc(100% - 40px));
-      margin: auto;
+      width: min(var(--container), calc(100% - 44px));
+      margin-inline: auto;
     }
 
     .topbar {
-      background: #090f16;
-      color: #b9c4ce;
-      padding: 9px 0;
-      font-size: 11px;
+      background: #0b121a;
+      color: #d8e0e8;
+      font-size: 12px;
+      letter-spacing: .5px;
     }
 
     .topbar-inner {
+      min-height: 38px;
       display: flex;
       justify-content: space-between;
-      gap: 15px;
-      flex-wrap: wrap;
+      align-items: center;
+      gap: 20px;
     }
 
-    .topbar strong { color: white; letter-spacing: 1px; }
+    .topbar strong { color: #fff; font-weight: 700; }
 
-    header {
+    .topbar-right {
+      display: flex;
+      gap: 22px;
+      align-items: center;
+    }
+
+    .topbar-dot {
+      display: inline-block;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #57bd83;
+      margin-right: 7px;
+    }
+
+    .header {
       position: sticky;
       top: 0;
       z-index: 100;
-      background: rgba(16,25,35,.98);
-      color: white;
+      background: rgba(16,25,35,.97);
+      backdrop-filter: blur(14px);
       border-bottom: 1px solid rgba(255,255,255,.08);
-      backdrop-filter: blur(12px);
     }
 
     .nav {
@@ -82,157 +95,147 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 25px;
+      gap: 30px;
     }
 
     .brand {
       display: flex;
       align-items: center;
       gap: 13px;
-      min-width: 230px;
+      color: #fff;
+      flex-shrink: 0;
     }
 
     .brand-mark {
-      width: 49px;
-      height: 49px;
+      width: 48px;
+      height: 48px;
       display: grid;
       place-items: center;
-      border-radius: 11px;
-      background: var(--red);
-      color: white;
-      font-family: Manrope, sans-serif;
-      font-weight: 800;
+      border: 2px solid rgba(255,255,255,.75);
+      border-radius: 50%;
+      font-family: "Manrope", sans-serif;
       font-size: 17px;
+      font-weight: 800;
       letter-spacing: -1px;
-      box-shadow: 0 5px 20px rgba(199,46,53,.25);
+      position: relative;
+    }
+
+    .brand-mark::after {
+      content: "";
+      position: absolute;
+      inset: 5px;
+      border: 1px solid var(--red);
+      border-radius: 50%;
     }
 
     .brand-name {
-      font-family: Manrope, sans-serif;
-      font-weight: 800;
-      font-size: 16px;
+      font-family: "Manrope", sans-serif;
+      font-size: 15px;
       line-height: 1.2;
-      letter-spacing: .3px;
+      font-weight: 800;
+      letter-spacing: .4px;
     }
 
     .brand-name small {
       display: block;
-      color: #aab6c2;
+      margin-top: 5px;
+      color: #aeb9c5;
       font-size: 9px;
       letter-spacing: 2px;
-      margin-top: 5px;
+      font-weight: 600;
     }
 
     .nav-links {
       display: flex;
       align-items: center;
       gap: 25px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: #d4dce4;
       font-size: 12px;
       font-weight: 700;
-      color: #d5dce3;
+      transition: color .2s;
     }
 
-    .nav-links a:not(.nav-cta):hover { color: #ff777c; }
+    .nav-links a:hover { color: #fff; }
 
-    .nav-cta, .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 9px;
-      padding: 13px 21px;
-      border: 0;
-      border-radius: 7px;
+    .nav-cta {
       background: var(--red);
-      color: white;
-      font-weight: 800;
-      font-size: 13px;
-      cursor: pointer;
-      transition: .2s ease;
+      color: #fff !important;
+      padding: 12px 19px;
+      border-radius: 3px;
+      transition: background .2s;
     }
 
-    .nav-cta:hover, .btn:hover {
-      background: var(--red2);
-      transform: translateY(-2px);
-    }
+    .nav-cta:hover { background: var(--red-dark); }
 
     .menu-toggle {
       display: none;
-      border: 1px solid #455361;
       background: transparent;
-      color: white;
-      padding: 9px 13px;
-      border-radius: 7px;
+      border: 1px solid rgba(255,255,255,.3);
+      color: #fff;
+      border-radius: 4px;
+      padding: 8px 12px;
       cursor: pointer;
     }
 
     .hero {
-      min-height: 630px;
+      min-height: 650px;
       display: flex;
       align-items: center;
       position: relative;
-      overflow: hidden;
-      color: white;
+      color: #fff;
       background:
-        linear-gradient(90deg, rgba(7,15,23,.96) 0%, rgba(7,15,23,.83) 48%, rgba(7,15,23,.32) 100%),
-        url("https://commons.wikimedia.org/wiki/Special:FilePath/Associa%C3%A7%C3%A3o_Humanit%C3%A1ria_de_Bombeiros_Volunt%C3%A1rios_de_Faro_-_Cruz_Lusa_02.jpg")
-        center 48% / cover no-repeat;
-    }
-
-    .hero::after {
-      content: "";
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 5px;
-      background: var(--red);
+        linear-gradient(90deg, rgba(8,15,23,.94) 0%, rgba(8,15,23,.78) 48%, rgba(8,15,23,.25) 100%),
+        linear-gradient(0deg, rgba(8,15,23,.48), transparent 50%),
+        url("https://commons.wikimedia.org/wiki/Special:FilePath/12-09-2017%20Bombeiros%20de%20Faro%20Cruz-Lusa%2C%20Rua%20Comandante%20Francisco%20Manuel%2C%20Faro%20%282%29.JPG")
+        center 55% / cover no-repeat;
     }
 
     .hero-content {
       max-width: 760px;
-      position: relative;
-      z-index: 2;
       padding: 100px 0 115px;
     }
 
     .eyebrow {
       display: inline-flex;
       align-items: center;
-      gap: 10px;
-      color: #ff777c;
+      gap: 11px;
+      color: var(--gold);
       font-size: 11px;
       font-weight: 800;
-      letter-spacing: 2px;
+      letter-spacing: 2.5px;
       text-transform: uppercase;
       margin-bottom: 23px;
     }
 
     .eyebrow::before {
       content: "";
-      width: 32px;
+      width: 35px;
       height: 2px;
       background: var(--red);
     }
 
-    h1, h2, h3 {
-      font-family: Manrope, sans-serif;
-      line-height: 1.2;
-    }
-
     .hero h1 {
-      font-size: clamp(40px, 6vw, 68px);
+      font-family: "Manrope", sans-serif;
+      font-size: clamp(42px, 6vw, 76px);
+      line-height: 1.08;
+      letter-spacing: -2.8px;
       font-weight: 800;
-      letter-spacing: -2.5px;
-      margin-bottom: 22px;
+      max-width: 760px;
+      margin-bottom: 25px;
     }
 
-    .hero h1 span { color: #f05a60; }
+    .hero h1 span { color: #e6b86f; }
 
-    .hero p {
-      color: #d0d9e1;
+    .hero-description {
+      max-width: 590px;
+      color: #d2d9e0;
       font-size: 16px;
-      max-width: 620px;
-      margin-bottom: 30px;
+      line-height: 1.9;
+      margin-bottom: 35px;
     }
 
     .hero-actions {
@@ -241,162 +244,171 @@
       gap: 13px;
     }
 
-    .btn-outline {
+    .btn {
+      min-height: 51px;
+      padding: 14px 23px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 12px 20px;
-      border: 1px solid rgba(255,255,255,.45);
-      border-radius: 7px;
-      color: white;
-      font-size: 13px;
-      font-weight: 700;
+      gap: 10px;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .6px;
+      text-transform: uppercase;
+      border-radius: 3px;
       transition: .2s;
     }
 
-    .btn-outline:hover { background: rgba(255,255,255,.12); }
+    .btn-primary { background: var(--red); color: #fff; }
+    .btn-primary:hover { background: var(--red-dark); transform: translateY(-2px); }
 
-    .hero-bottom {
-      display: flex;
-      gap: 35px;
-      flex-wrap: wrap;
-      margin-top: 50px;
-      padding-top: 23px;
-      border-top: 1px solid rgba(255,255,255,.18);
+    .btn-outline {
+      color: #fff;
+      border: 1px solid rgba(255,255,255,.55);
     }
 
-    .hero-stat strong {
-      display: block;
-      font-family: Manrope, sans-serif;
-      font-size: 18px;
-      color: white;
-    }
+    .btn-outline:hover { background: #fff; color: var(--navy); }
 
-    .hero-stat span {
-      color: #aab6c2;
+    .hero-note {
+      position: absolute;
+      bottom: 25px;
+      right: max(22px, calc((100% - var(--container)) / 2));
+      color: rgba(255,255,255,.7);
       font-size: 10px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
+      letter-spacing: .5px;
     }
 
-    .notice {
-      margin: 27px auto;
-      padding: 16px 19px;
-      border-left: 4px solid #d58b35;
-      border-radius: 7px;
-      background: #fff6eb;
-      color: #765127;
-      font-size: 12px;
+    .intro-strip {
+      background: var(--red);
+      color: #fff;
     }
 
-    section { padding: 90px 0; }
+    .intro-strip-inner {
+      min-height: 95px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+    }
+
+    .intro-strip strong {
+      font-family: "Manrope", sans-serif;
+      font-size: 18px;
+    }
+
+    .intro-strip p {
+      color: rgba(255,255,255,.85);
+      font-size: 13px;
+      max-width: 600px;
+    }
+
+    .section { padding: 105px 0; }
 
     .section-heading {
-      max-width: 710px;
-      margin-bottom: 42px;
+      max-width: 720px;
+      margin-bottom: 48px;
     }
 
-    .section-kicker {
-      display: block;
+    .section-label {
       color: var(--red);
-      font-size: 10px;
+      font-size: 11px;
       font-weight: 800;
-      letter-spacing: 2.2px;
+      letter-spacing: 2px;
       text-transform: uppercase;
-      margin-bottom: 12px;
+      margin-bottom: 13px;
     }
 
     .section-heading h2 {
+      font-family: "Manrope", sans-serif;
       color: var(--navy);
-      font-size: clamp(29px, 4vw, 43px);
+      font-size: clamp(30px, 4vw, 45px);
+      line-height: 1.2;
       letter-spacing: -1.5px;
-      margin-bottom: 14px;
+      margin-bottom: 17px;
     }
 
     .section-heading p {
       color: var(--muted);
-      font-size: 14px;
+      font-size: 15px;
     }
 
     .about-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 60px;
+      gap: 75px;
       align-items: center;
     }
 
     .about-image {
-      min-height: 440px;
-      border-radius: var(--radius);
-      overflow: hidden;
+      min-height: 470px;
       position: relative;
+      background:
+        linear-gradient(0deg, rgba(10,18,26,.22), transparent),
+        url("https://commons.wikimedia.org/wiki/Special:FilePath/Associa%C3%A7%C3%A3o%20Humanit%C3%A1ria%20de%20Bombeiros%20Volunt%C3%A1rios%20de%20Faro%20-%20Cruz%20Lusa%2002.jpg")
+        center / cover no-repeat;
+      border-radius: 4px;
       box-shadow: var(--shadow);
-      background: var(--navy2);
     }
 
-    .about-image img {
-      width: 100%;
-      height: 440px;
-      object-fit: cover;
-    }
-
-    .image-caption {
+    .about-image-caption {
       position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      padding: 35px 20px 17px;
-      color: white;
-      font-size: 11px;
-      background: linear-gradient(transparent, rgba(0,0,0,.8));
+      bottom: 18px;
+      left: 18px;
+      background: rgba(16,25,35,.88);
+      color: #fff;
+      padding: 10px 14px;
+      font-size: 10px;
+      letter-spacing: .5px;
     }
+
+    .about-copy .section-label { margin-bottom: 12px; }
 
     .about-copy h2 {
+      font-family: "Manrope", sans-serif;
+      font-size: 39px;
+      line-height: 1.2;
+      letter-spacing: -1.5px;
       color: var(--navy);
-      font-size: 35px;
-      letter-spacing: -1px;
-      margin-bottom: 20px;
+      margin-bottom: 23px;
     }
 
     .about-copy p {
       color: var(--muted);
       font-size: 14px;
-      margin-bottom: 15px;
+      margin-bottom: 17px;
     }
 
-    .check-list {
-      list-style: none;
+    .about-points {
       display: grid;
-      gap: 13px;
-      margin-top: 23px;
+      grid-template-columns: 1fr 1fr;
+      gap: 17px;
+      margin-top: 30px;
     }
 
-    .check-list li {
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
+    .about-point {
+      border-left: 3px solid var(--red);
+      padding: 4px 0 4px 13px;
+    }
+
+    .about-point strong {
+      display: block;
+      color: var(--navy);
       font-size: 13px;
-      font-weight: 700;
     }
 
-    .check {
-      display: grid;
-      place-items: center;
-      flex: 0 0 24px;
-      height: 24px;
-      border-radius: 50%;
-      color: var(--red);
-      background: #fcebed;
-      font-size: 12px;
+    .about-point span {
+      color: var(--muted);
+      font-size: 11px;
     }
 
     .dark-section {
       background: var(--navy);
-      color: white;
+      color: #fff;
     }
 
-    .dark-section .section-heading h2 { color: white; }
-    .dark-section .section-heading p { color: #aab6c2; }
+    .dark-section .section-heading h2 { color: #fff; }
+    .dark-section .section-heading p { color: #aebbc8; }
+    .dark-section .section-label { color: var(--gold); }
 
     .values-grid {
       display: grid;
@@ -405,93 +417,158 @@
     }
 
     .value-card {
-      padding: 28px 22px;
-      background: #192a39;
-      border: 1px solid rgba(255,255,255,.08);
-      border-radius: 11px;
+      padding: 30px 25px;
+      min-height: 230px;
+      border: 1px solid rgba(255,255,255,.13);
+      background: rgba(255,255,255,.035);
       transition: .25s;
     }
 
     .value-card:hover {
+      background: rgba(255,255,255,.08);
       transform: translateY(-5px);
-      border-color: rgba(240,90,96,.55);
+      border-color: rgba(217,173,100,.5);
     }
 
     .value-number {
-      color: #f05a60;
-      font-family: Manrope, sans-serif;
-      font-size: 12px;
+      color: var(--gold);
+      font-family: "Manrope", sans-serif;
+      font-size: 13px;
       font-weight: 800;
-      letter-spacing: 2px;
+      margin-bottom: 28px;
     }
 
     .value-card h3 {
+      font-family: "Manrope", sans-serif;
       font-size: 18px;
-      margin: 17px 0 10px;
+      margin-bottom: 12px;
     }
 
     .value-card p {
-      color: #aab6c2;
+      color: #aebbc8;
       font-size: 12px;
+      line-height: 1.8;
     }
 
-    .structure-grid {
+    .areas-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
+      gap: 20px;
     }
 
-    .structure-card {
-      padding: 27px;
+    .area-card {
+      background: #fff;
       border: 1px solid var(--border);
-      border-radius: 11px;
-      background: white;
-      box-shadow: 0 6px 22px rgba(15,28,40,.04);
+      padding: 31px;
+      border-radius: 4px;
       transition: .2s;
     }
 
-    .structure-card:hover {
+    .area-card:hover {
+      box-shadow: var(--shadow);
       transform: translateY(-4px);
+    }
+
+    .area-icon {
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      background: #fff0f0;
+      color: var(--red);
+      font-size: 21px;
+      border-radius: 4px;
+      margin-bottom: 22px;
+    }
+
+    .area-card h3 {
+      font-family: "Manrope", sans-serif;
+      color: var(--navy);
+      font-size: 17px;
+      margin-bottom: 11px;
+    }
+
+    .area-card p {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .structure-section { background: var(--light); }
+
+    .structure-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 55px;
+      align-items: center;
+    }
+
+    .structure-visual {
+      background: var(--navy);
+      color: #fff;
+      padding: 42px;
+      border-radius: 4px;
       box-shadow: var(--shadow);
     }
 
-    .structure-card .number {
-      display: grid;
-      place-items: center;
-      width: 38px;
-      height: 38px;
-      margin-bottom: 19px;
-      border-radius: 8px;
-      color: var(--red);
-      background: #fcebed;
+    .structure-visual small {
+      color: var(--gold);
+      font-size: 10px;
+      letter-spacing: 2px;
       font-weight: 800;
+      text-transform: uppercase;
     }
 
-    .structure-card h3 {
+    .structure-visual h3 {
+      font-family: "Manrope", sans-serif;
+      font-size: 27px;
+      margin: 10px 0 28px;
+    }
+
+    .structure-level {
+      padding: 15px 17px;
+      margin-top: 10px;
+      background: rgba(255,255,255,.07);
+      border-left: 3px solid var(--red);
+    }
+
+    .structure-level strong {
+      display: block;
+      font-size: 13px;
+    }
+
+    .structure-level span {
+      color: #aebbc8;
+      font-size: 11px;
+    }
+
+    .structure-copy h2 {
       color: var(--navy);
-      font-size: 18px;
-      margin-bottom: 9px;
+      font-family: "Manrope", sans-serif;
+      font-size: 36px;
+      line-height: 1.2;
+      margin-bottom: 20px;
     }
 
-    .structure-card p {
+    .structure-copy p {
       color: var(--muted);
-      font-size: 12px;
+      font-size: 14px;
+      margin-bottom: 16px;
     }
 
-    .gallery-section { background: var(--light); }
+    .structure-copy .btn { margin-top: 15px; }
 
     .gallery-grid {
       display: grid;
-      grid-template-columns: 1.2fr 1fr 1fr;
-      grid-template-rows: 225px 225px;
-      gap: 14px;
+      grid-template-columns: 1.4fr 1fr 1fr;
+      grid-template-rows: 210px 210px;
+      gap: 13px;
     }
 
     .gallery-item {
       position: relative;
       overflow: hidden;
-      border-radius: 10px;
-      background: #dce2e8;
+      border-radius: 3px;
+      background: var(--navy-3);
     }
 
     .gallery-item:first-child { grid-row: span 2; }
@@ -503,447 +580,343 @@
       transition: transform .5s;
     }
 
-    .gallery-item:hover img { transform: scale(1.05); }
+    .gallery-item:hover img { transform: scale(1.06); }
 
-    .gallery-label {
+    .gallery-item span {
       position: absolute;
       bottom: 0;
       left: 0;
       right: 0;
-      padding: 35px 16px 14px;
-      color: white;
+      padding: 30px 17px 15px;
+      color: #fff;
       font-size: 12px;
       font-weight: 700;
-      background: linear-gradient(transparent, rgba(0,0,0,.8));
+      background: linear-gradient(transparent, rgba(0,0,0,.75));
     }
 
-    .gallery-note {
-      margin-top: 16px;
-      color: var(--muted);
-      font-size: 11px;
+    .recruitment {
+      background:
+        linear-gradient(90deg, rgba(12,20,29,.96), rgba(12,20,29,.83)),
+        url("https://commons.wikimedia.org/wiki/Special:FilePath/12-09-2017%20Fire%20Tender%2C%20Bombeiros%20de%20Faro%20Cruz-Lusa%2C%20Rua%20Comandante%20Francisco%20Manuel%2C%20Faro%20%281%29.JPG")
+        center / cover no-repeat;
+      color: #fff;
     }
+
+    .recruitment .section-heading h2 { color: #fff; }
+    .recruitment .section-heading p { color: #c0cad4; }
+    .recruitment .section-label { color: var(--gold); }
 
     .steps-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 18px;
+      gap: 15px;
+      margin-bottom: 45px;
     }
 
     .step {
-      padding: 23px 19px;
-      border-top: 3px solid var(--red);
-      border-radius: 0 0 9px 9px;
-      background: #f7f8fa;
+      padding: 25px 20px;
+      border-top: 2px solid var(--red);
+      background: rgba(255,255,255,.07);
     }
 
-    .step span {
-      color: var(--red);
-      font-size: 11px;
+    .step-number {
+      color: var(--gold);
+      font-family: "Manrope", sans-serif;
+      font-size: 28px;
       font-weight: 800;
-      letter-spacing: 1px;
+      margin-bottom: 16px;
     }
 
-    .step h3 {
-      color: var(--navy);
-      font-size: 17px;
-      margin: 12px 0 8px;
-    }
+    .step h3 { font-size: 15px; margin-bottom: 9px; }
+    .step p { color: #b8c3ce; font-size: 12px; }
 
-    .step p {
-      color: var(--muted);
-      font-size: 12px;
-    }
-
-    .recruitment { background: #f1f3f6; }
-
-    .form-layout {
-      display: grid;
-      grid-template-columns: 300px 1fr;
-      gap: 27px;
-      align-items: start;
-    }
-
-    .form-aside {
-      position: sticky;
-      top: 105px;
-      padding: 29px;
-      border-radius: 12px;
-      background: var(--navy);
-      color: white;
-    }
-
-    .form-aside h3 {
-      font-size: 22px;
-      margin-bottom: 14px;
-    }
-
-    .form-aside p {
-      color: #b5c0ca;
-      font-size: 12px;
-      margin-bottom: 21px;
-    }
-
-    .form-aside ul {
-      list-style: none;
-      display: grid;
-      gap: 14px;
-      color: #e0e6eb;
-      font-size: 12px;
-    }
-
-    .form-aside li::before {
-      content: "✓";
-      color: #ff7379;
-      font-weight: 800;
-      margin-right: 9px;
-    }
-
-    .aside-divider {
-      height: 1px;
-      background: rgba(255,255,255,.13);
-      margin: 23px 0;
-    }
-
-    .aside-small {
-      color: #aab6c2;
-      font-size: 11px;
-    }
-
-    .application-form {
-      padding: 35px;
-      border-radius: 12px;
-      background: white;
-      box-shadow: var(--shadow);
-    }
-
-    .form-heading {
-      padding-bottom: 22px;
-      border-bottom: 1px solid var(--border);
-      margin-bottom: 25px;
-    }
-
-    .form-heading h2 {
-      color: var(--navy);
-      font-size: 25px;
-      margin-bottom: 7px;
-    }
-
-    .form-heading p {
-      color: var(--muted);
-      font-size: 12px;
-    }
-
-    .form-section-title {
-      color: var(--red);
-      font-size: 10px;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 1.7px;
-      margin: 27px 0 16px;
-      padding-bottom: 9px;
-      border-bottom: 1px solid #edf0f2;
-    }
-
-    .form-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 17px;
-    }
-
-    .field {
+    .recruitment-action {
       display: flex;
-      flex-direction: column;
-      gap: 7px;
+      align-items: center;
+      justify-content: space-between;
+      gap: 25px;
+      padding: 27px 30px;
+      border: 1px solid rgba(255,255,255,.2);
     }
 
-    .field.full { grid-column: 1 / -1; }
+    .recruitment-action strong {
+      display: block;
+      font-family: "Manrope", sans-serif;
+      font-size: 19px;
+    }
 
-    .field label {
-      color: #344454;
+    .recruitment-action span {
+      color: #b8c3ce;
       font-size: 12px;
-      font-weight: 700;
     }
 
-    .field label span { color: var(--red); }
-
-    .field input,
-    .field select,
-    .field textarea {
-      width: 100%;
-      padding: 12px 13px;
-      border: 1px solid #dce2e8;
-      border-radius: 7px;
-      background: white;
-      color: var(--text);
-      outline: none;
-      font-size: 13px;
-      transition: .2s;
-    }
-
-    .field input:focus,
-    .field select:focus,
-    .field textarea:focus {
-      border-color: var(--red);
-      box-shadow: 0 0 0 3px rgba(199,46,53,.08);
-    }
-
-    .field textarea {
-      min-height: 115px;
-      resize: vertical;
-    }
-
-    .field small {
-      color: #87939e;
-      font-size: 10px;
-    }
-
-    .declaration {
-      display: flex;
+    .faq-list {
+      max-width: 850px;
+      display: grid;
       gap: 11px;
-      align-items: flex-start;
-      padding: 15px;
-      margin: 22px 0;
-      border-radius: 8px;
-      background: #f6f7f8;
-      color: #53616e;
-      font-size: 11px;
     }
-
-    .declaration input {
-      margin-top: 4px;
-      accent-color: var(--red);
-    }
-
-    .submit-btn {
-      width: 100%;
-      padding: 15px;
-      font-size: 13px;
-    }
-
-    #formMessage {
-      display: none;
-      padding: 14px;
-      border-radius: 7px;
-      margin-top: 17px;
-      font-size: 12px;
-    }
-
-    #formMessage:not(:empty) { display: block; }
-
-    .faq-list { max-width: 850px; }
 
     details {
-      padding: 19px 0;
-      border-bottom: 1px solid var(--border);
+      border: 1px solid var(--border);
+      background: #fff;
+      padding: 19px 22px;
+      border-radius: 3px;
     }
 
     summary {
       color: var(--navy);
       font-size: 14px;
-      font-weight: 700;
+      font-weight: 800;
       cursor: pointer;
     }
 
     details p {
-      max-width: 750px;
-      padding-top: 12px;
+      color: var(--muted);
+      font-size: 13px;
+      padding-top: 13px;
+    }
+
+    .application-section { background: var(--light); }
+
+    .application-layout {
+      display: grid;
+      grid-template-columns: .8fr 1.2fr;
+      gap: 50px;
+      align-items: start;
+    }
+
+    .application-info {
+      background: var(--navy);
+      color: #fff;
+      padding: 35px;
+      border-radius: 4px;
+      position: sticky;
+      top: 110px;
+    }
+
+    .application-info .section-label { color: var(--gold); }
+
+    .application-info h2 {
+      font-family: "Manrope", sans-serif;
+      font-size: 31px;
+      line-height: 1.2;
+      margin-bottom: 17px;
+    }
+
+    .application-info p {
+      color: #b8c3ce;
+      font-size: 13px;
+      margin-bottom: 23px;
+    }
+
+    .application-info ul {
+      list-style: none;
+      display: grid;
+      gap: 13px;
+    }
+
+    .application-info li {
+      font-size: 12px;
+      color: #e1e6eb;
+      padding-left: 19px;
+      position: relative;
+    }
+
+    .application-info li::before {
+      content: "✓";
+      color: var(--gold);
+      position: absolute;
+      left: 0;
+      font-weight: 800;
+    }
+
+    .application-form {
+      background: #fff;
+      border: 1px solid var(--border);
+      padding: 37px;
+      border-radius: 4px;
+      box-shadow: 0 12px 35px rgba(16,25,35,.05);
+    }
+
+    .form-heading {
+      margin-bottom: 27px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .form-heading h3 {
+      color: var(--navy);
+      font-family: "Manrope", sans-serif;
+      font-size: 22px;
+    }
+
+    .form-heading p {
       color: var(--muted);
       font-size: 12px;
+      margin-top: 5px;
     }
 
-    .final-cta {
-      padding: 80px 0;
-      color: white;
-      text-align: center;
-      background:
-        linear-gradient(rgba(12,21,31,.94), rgba(12,21,31,.94)),
-        url("https://commons.wikimedia.org/wiki/Special:FilePath/12-09-2017_Bombeiros_de_Faro_Cruz-Lusa%2C_Rua_Comandante_Francisco_Manuel%2C_Faro_%282%29.JPG")
-        center / cover no-repeat;
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
     }
 
-    .final-cta h2 {
-      font-size: clamp(27px, 4vw, 37px);
-      margin-bottom: 13px;
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      margin-bottom: 17px;
     }
 
-    .final-cta p {
-      max-width: 650px;
-      margin: 0 auto 25px;
-      color: #c0cbd4;
+    .form-group.full { grid-column: 1 / -1; }
+
+    .form-group label {
+      color: var(--navy);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      min-height: 47px;
+      padding: 12px 14px;
+      border: 1px solid #dce2e8;
+      border-radius: 3px;
+      background: #fbfcfd;
+      color: var(--text);
+      outline: none;
       font-size: 13px;
+      transition: border .2s;
     }
 
-    footer {
-      padding: 50px 0 22px;
-      background: #090f16;
-      color: #aab6c2;
+    .form-group textarea {
+      min-height: 125px;
+      resize: vertical;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--red);
+    }
+
+    .consent {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      color: var(--muted);
+      font-size: 11px;
+      margin: 4px 0 20px;
+    }
+
+    .consent input { margin-top: 4px; }
+
+    .submit-btn {
+      width: 100%;
+      min-height: 51px;
+      border: 0;
+      border-radius: 3px;
+      background: var(--red);
+      color: #fff;
+      font-weight: 800;
+      font-size: 12px;
+      letter-spacing: .8px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: .2s;
+    }
+
+    .submit-btn:hover { background: var(--red-dark); }
+
+    #formMessage {
+      margin-top: 15px;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    #formMessage:not(:empty) {
+      padding: 12px;
+      background: #f0f5f2;
+      border-left: 3px solid #3c9566;
+    }
+
+    .disclaimer {
+      margin-top: 22px;
+      padding: 13px 15px;
+      background: #fff8e9;
+      border-left: 3px solid var(--gold);
+      color: #78613a;
+      font-size: 11px;
+    }
+
+    .footer {
+      background: #0b121a;
+      color: #fff;
+      padding: 65px 0 25px;
     }
 
     .footer-grid {
       display: grid;
-      grid-template-columns: 1.5fr 1fr 1fr;
-      gap: 40px;
-      padding-bottom: 35px;
+      grid-template-columns: 1.4fr 1fr 1fr;
+      gap: 55px;
+      padding-bottom: 45px;
     }
 
-    footer h3 {
-      color: white;
-      font-size: 15px;
-      margin-bottom: 15px;
+    .footer-about p {
+      max-width: 350px;
+      color: #9eabb8;
+      font-size: 12px;
+      margin-top: 19px;
     }
 
-    footer p, footer li { font-size: 11px; }
+    .footer h4 {
+      font-size: 12px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
 
-    footer ul {
+    .footer-links {
       list-style: none;
       display: grid;
-      gap: 9px;
+      gap: 10px;
     }
 
-    footer a:hover { color: white; }
-
-    .disclaimer {
-      padding: 13px;
-      margin-top: 17px;
-      border: 1px solid rgba(240,90,96,.25);
-      border-radius: 7px;
-      background: rgba(199,46,53,.10);
-      color: #ffb7ba;
-      font-size: 10px;
+    .footer-links a {
+      color: #9eabb8;
+      font-size: 12px;
+      transition: color .2s;
     }
 
-    .credits {
-      margin-top: 12px;
-      color: #87939e;
-      font-size: 10px;
-    }
-
-    .credits a { text-decoration: underline; }
+    .footer-links a:hover { color: #fff; }
 
     .footer-bottom {
+      padding-top: 22px;
+      border-top: 1px solid rgba(255,255,255,.1);
       display: flex;
       justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 15px;
-      padding-top: 19px;
-      border-top: 1px solid rgba(255,255,255,.1);
+      gap: 20px;
+      color: #7f8c99;
       font-size: 10px;
     }
 
+    .footer-bottom a { color: #c6d0d9; }
+
     @media (max-width: 950px) {
-      .nav-links { gap: 13px; }
+      .nav-links { gap: 14px; }
       .nav-links a { font-size: 11px; }
-      .values-grid, .steps-grid { grid-template-columns: repeat(2,1fr); }
-      .about-grid { gap: 30px; }
-      .form-layout { grid-template-columns: 1fr; }
-      .form-aside { position: static; }
+      .about-grid, .structure-grid { gap: 35px; }
+      .values-grid { grid-template-columns: repeat(2, 1fr); }
+      .application-layout { gap: 25px; }
     }
 
-    @media (max-width: 680px) {
-      .container { width: min(100% - 28px,1160px); }
-
-      .topbar-inner {
-        justify-content: center;
-        text-align: center;
-      }
-
-      .nav { min-height: 70px; }
+    @media (max-width: 760px) {
+      .topbar-right { display: none; }
+      .nav { min-height: 72px; }
       .menu-toggle { display: block; }
-
       .nav-links {
         display: none;
-        position: absolute;
-        top: 70px;
-        left: 0;
-        right: 0;
-        padding: 20px;
-        background: var(--navy);
-        border-top: 1px solid rgba(255,255,255,.1);
-        flex-direction: column;
-        align-items: stretch;
-        gap: 17px;
-      }
-
-      .nav-links.open { display: flex; }
-      .nav-links a { font-size: 13px; }
-      .nav-cta { text-align: center; }
-
-      .hero {
-        min-height: 580px;
-        background-position: 58% center;
-      }
-
-      .hero-content { padding: 75px 0 90px; }
-      .hero h1 { letter-spacing: -1.4px; }
-      .hero p { font-size: 14px; }
-      .hero-bottom { gap: 22px; }
-
-      section { padding: 65px 0; }
-
-      .about-grid { grid-template-columns: 1fr; }
-      .about-image, .about-image img { min-height: 280px; height: 280px; }
-
-      .values-grid,
-      .structure-grid,
-      .steps-grid { grid-template-columns: 1fr; }
-
-      .gallery-grid {
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: 210px 165px 165px;
-      }
-
-      .gallery-item:first-child {
-        grid-column: 1 / -1;
-        grid-row: auto;
-      }
-
-      .application-form { padding: 23px 17px; }
-      .form-grid { grid-template-columns: 1fr; }
-      .field.full { grid-column: auto; }
-      .footer-grid { grid-template-columns: 1fr; gap: 25px; }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
-      *, *::before, *::after {
-        transition-duration: .01ms !important;
-      }
-    }
-  </style>
-</head>
-
-<body>
-
-  <div class="topbar">
-    <div class="container topbar-inner">
-      <span><strong>BVA</strong> · PORTAL DE RECRUTAMENTO</span>
-      <span>Comunidade de simulação e roleplay no Discord</span>
-    </div>
-  </div>
-
-  <header>
-    <div class="container nav">
-      <a href="#inicio" class="brand">
-        <div class="brand-mark">BVA</div>
-        <div class="brand-name">
-          BOMBEIROS VOLUNTÁRIOS
-          <small>COMUNIDADE RP</small>
-        </div>
-      </a>
-
-      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu" aria-expanded="false">☰</button>
-
-      <nav class="nav-links" id="navLinks">
-        <a href="#inicio">Início</a>
-        <a href="#sobre">A Comunidade</a>
-        <a href="#valores">Valores</a>
-        <a href="#estrutura">Organização</a>
-        <a href="#galeria">Galeria</a>
-        <a href="#candidatura" class="nav-cta">Candidatar-me →</a>
-      </nav>
-    </div>
-  </header>
-
-  <main>
-
-    <section class
+ 
