@@ -96,6 +96,7 @@ header {
   align-items:center;
   justify-content:space-between;
   gap:20px;
+  position:relative;
 }
 
 .identity {
@@ -181,8 +182,8 @@ header {
   align-items:center;
   color:white;
   background:
-    linear-gradient(90deg,rgba(8,20,34,.94),rgba(8,20,34,.72) 55%,rgba(8,20,34,.22)),
-    url('https://images.unsplash.com/photo-1599708153386-62bf2f03b025?auto=format&fit=crop&w=2000&q=85') center/cover;
+    linear-gradient(90deg,rgba(8,20,34,.94),rgba(8,20,34,.72) 55%,rgba(8,20,34,.35)),
+    url('https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=2000&q=85') center/cover;
 }
 
 .hero-content {
@@ -308,7 +309,12 @@ header {
 
 .about-image {
   height:410px;
-  background:url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1100&q=85') center/cover;
+  background:
+    linear-gradient(135deg,#1b344e,#102238);
+  background-image:
+    url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1100&q=85');
+  background-position:center;
+  background-size:cover;
   border-radius:4px;
   position:relative;
 }
@@ -402,6 +408,7 @@ header {
   height:190px;
   background-size:cover;
   background-position:center;
+  background-color:#1b344e;
 }
 
 .card-body {
@@ -432,7 +439,7 @@ header {
   color:white;
   background:
     linear-gradient(90deg,rgba(10,24,40,.94),rgba(10,24,40,.76)),
-    url('https://images.unsplash.com/photo-1518709594023-6eab9bab7b23?auto=format&fit=crop&w=1800&q=80') center/cover;
+    url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1800&q=85') center/cover;
   padding:75px 0;
 }
 
@@ -461,7 +468,12 @@ header {
 
 .recruit-image {
   min-height:410px;
-  background:url('https://images.unsplash.com/photo-1584467735871-8e85353a8413?auto=format&fit=crop&w=1100&q=85') center/cover;
+  background:
+    linear-gradient(135deg,#1b344e,#102238);
+  background-image:
+    url('https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=1100&q=85');
+  background-position:center;
+  background-size:cover;
 }
 
 .requirements {
@@ -489,10 +501,12 @@ header {
 }
 
 .gallery img {
+  display:block;
   width:100%;
-  height:220px;
+  height:240px;
   object-fit:cover;
   border-radius:3px;
+  background:#1b344e;
 }
 
 footer {
@@ -640,7 +654,7 @@ footer a:hover {
   }
 
   .gallery img {
-    height:210px;
+    height:220px;
   }
 }
 </style>
@@ -665,15 +679,15 @@ footer a:hover {
       </div>
     </a>
 
-    <button class="menu-toggle" onclick="toggleMenu()" aria-label="Abrir menu" aria-expanded="false">☰</button>
+    <button class="menu-toggle" id="menuToggle" type="button" aria-label="Abrir menu" aria-expanded="false">☰</button>
 
     <nav class="nav" id="mainNav">
-      <a href="#inicio" onclick="closeMenu()">INÍCIO</a>
-      <a href="#instituicao" onclick="closeMenu()">INSTITUIÇÃO</a>
-      <a href="#estrutura" onclick="closeMenu()">ESTRUTURA</a>
-      <a href="#atividade" onclick="closeMenu()">ATIVIDADE</a>
-      <a href="#galeria" onclick="closeMenu()">GALERIA</a>
-      <a href="#recrutamento" onclick="closeMenu()">RECRUTAMENTO</a>
+      <a href="#inicio">INÍCIO</a>
+      <a href="#instituicao">INSTITUIÇÃO</a>
+      <a href="#estrutura">ESTRUTURA</a>
+      <a href="#atividade">ATIVIDADE</a>
+      <a href="#galeria">GALERIA</a>
+      <a href="#recrutamento">RECRUTAMENTO</a>
       <a class="apply-link" href="candidatura.html">CANDIDATAR-ME</a>
     </nav>
   </div>
@@ -747,7 +761,7 @@ footer a:hover {
 
     <div class="cards">
       <article class="card">
-        <div class="card-image" style="background-image:url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=80')"></div>
+        <div class="card-image" style="background-image:url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=85')"></div>
         <div class="card-body">
           <h3>Comando</h3>
           <p>Responsável pela coordenação geral, organização e orientação da instituição.</p>
@@ -756,7 +770,7 @@ footer a:hover {
       </article>
 
       <article class="card">
-        <div class="card-image" style="background-image:url('https://images.unsplash.com/photo-1584467735871-8e85353a8413?auto=format&fit=crop&w=900&q=80')"></div>
+        <div class="card-image" style="background-image:url('https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=900&q=85')"></div>
         <div class="card-body">
           <h3>Corpo Ativo</h3>
           <p>Elementos participantes nas atividades e operações de simulação da comunidade.</p>
@@ -765,7 +779,7 @@ footer a:hover {
       </article>
 
       <article class="card">
-        <div class="card-image" style="background-image:url('https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=900&q=80')"></div>
+        <div class="card-image" style="background-image:url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=900&q=85')"></div>
         <div class="card-body">
           <h3>Recursos Humanos</h3>
           <p>Área dedicada ao acompanhamento, recrutamento e organização dos elementos.</p>
@@ -800,9 +814,23 @@ footer a:hover {
     </div>
 
     <div class="gallery">
-      <img src="https://images.unsplash.com/photo-1599708153386-62bf2f03b025?auto=format&fit=crop&w=900&q=80" alt="Imagem ilustrativa de bombeiros">
-      <img src="https://images.unsplash.com/photo-1584467735871-8e85353a8413?auto=format&fit=crop&w=900&q=80" alt="Imagem ilustrativa de equipamento">
-      <img src="https://images.unsplash.com/photo-1518709594023-6eab9bab7b23?auto=format&fit=crop&w=900&q=80" alt="Imagem ilustrativa de atividade">
+      <img
+        src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=900&q=85"
+        alt="Imagem ilustrativa de uma equipa reunida"
+        loading="lazy"
+        onerror="this.style.display='none'">
+
+      <img
+        src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=900&q=85"
+        alt="Imagem ilustrativa de trabalho em equipa"
+        loading="lazy"
+        onerror="this.style.display='none'">
+
+      <img
+        src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=85"
+        alt="Imagem ilustrativa de organização e comunicação"
+        loading="lazy"
+        onerror="this.style.display='none'">
     </div>
   </div>
 </section>
@@ -827,7 +855,7 @@ footer a:hover {
       <a href="candidatura.html" class="btn btn-red">INICIAR CANDIDATURA</a>
     </div>
 
-    <div class="recruit-image" role="img" aria-label="Imagem ilustrativa de equipamento de bombeiros"></div>
+    <div class="recruit-image" role="img" aria-label="Imagem ilustrativa de uma equipa de trabalho"></div>
   </div>
 </section>
 
@@ -864,34 +892,39 @@ footer a:hover {
 </footer>
 
 <script>
-function toggleMenu() {
-  const nav = document.getElementById('mainNav');
-  const button = document.querySelector('.menu-toggle');
+(function() {
+  const nav = document.getElementById("mainNav");
+  const button = document.getElementById("menuToggle");
 
-  nav.classList.toggle('open');
+  if (!nav || !button) return;
 
-  if (button) {
-    button.setAttribute(
-      'aria-expanded',
-      nav.classList.contains('open') ? 'true' : 'false'
-    );
-  }
-}
+  button.addEventListener("click", function() {
+    const isOpen = nav.classList.toggle("open");
 
-function closeMenu() {
-  const nav = document.getElementById('mainNav');
-  const button = document.querySelector('.menu-toggle');
+    button.setAttribute("aria-expanded", isOpen ? "true" : "false");
+    button.setAttribute("aria-label", isOpen ? "Fechar menu" : "Abrir menu");
+    button.textContent = isOpen ? "✕" : "☰";
+  });
 
-  if (nav) {
-    nav.classList.remove('open');
-  }
+  nav.querySelectorAll("a").forEach(function(link) {
+    link.addEventListener("click", function() {
+      nav.classList.remove("open");
+      button.setAttribute("aria-expanded", "false");
+      button.setAttribute("aria-label", "Abrir menu");
+      button.textContent = "☰";
+    });
+  });
 
-  if (button) {
-    button.setAttribute('aria-expanded', 'false');
-  }
-}
+  window.addEventListener("resize", function() {
+    if (window.innerWidth > 950) {
+      nav.classList.remove("open");
+      button.setAttribute("aria-expanded", "false");
+      button.textContent = "☰";
+    }
+  });
+})();
 </script>
 
 </body>
-  </html>
-      
+      </html>
+  
