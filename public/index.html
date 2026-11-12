@@ -3,507 +3,683 @@
 <html lang="pt-PT">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#101c2c">
-<meta name="description" content="Bombeiros Voluntários do Algarve — Portal institucional e recrutamento da comunidade de simulação BVA.">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#102238">
+<meta name="description" content="Portal institucional dos Bombeiros Voluntários do Algarve. Comunidade de simulação e roleplay.">
 <title>BVA | Bombeiros Voluntários do Algarve</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 
 <style>
 :root {
-  --navy: #101c2c;
-  --navy2: #17283d;
-  --red: #c62828;
-  --red-dark: #a51e25;
-  --white: #fff;
-  --light: #f3f5f8;
-  --text: #263445;
-  --muted: #697586;
-  --border: #e2e7ed;
-  --green: #198754;
-  --shadow: 0 12px 35px rgba(16,28,44,.10);
+  --navy:#102238;
+  --navy2:#1b344e;
+  --red:#c5222c;
+  --red2:#a91822;
+  --white:#fff;
+  --light:#f4f6f8;
+  --text:#293747;
+  --muted:#687787;
+  --border:#dfe5eb;
+  --gold:#c8a45d;
+  --green:#247b4b;
 }
-* { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
+* { box-sizing:border-box; margin:0; padding:0; }
+html { scroll-behavior:smooth; }
 body {
-  font-family: Arial, Helvetica, sans-serif;
-  background: var(--white);
-  color: var(--text);
-  line-height: 1.6;
+  font-family:'Roboto',Arial,sans-serif;
+  color:var(--text);
+  line-height:1.65;
+  background:white;
 }
-a { color: inherit; text-decoration: none; }
-button, input, select, textarea { font: inherit; }
-button { cursor: pointer; }
-.container { width: min(1150px, 92%); margin: auto; }
-.topbar {
-  background: #0a1421;
-  color: #dce4ed;
-  font-size: 12px;
-  padding: 9px 0;
+a { text-decoration:none; color:inherit; }
+button,input,select,textarea { font:inherit; }
+button { cursor:pointer; }
+.container { width:min(1200px,92%); margin:auto; }
+.topline {
+  background:#0a1726;
+  color:#dce4ec;
+  font-size:11px;
+  letter-spacing:.6px;
+  padding:8px 0;
 }
-.topbar .container {
-  display: flex;
-  justify-content: space-between;
-  gap: 15px;
-  flex-wrap: wrap;
+.topline .container {
+  display:flex;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  gap:10px;
 }
+.topline strong { color:white; }
 header {
-  background: var(--navy);
-  color: white;
-  position: sticky;
-  top: 0;
-  z-index: 50;
-  box-shadow: 0 4px 18px #0002;
+  position:sticky;
+  top:0;
+  z-index:100;
+  background:white;
+  box-shadow:0 3px 15px #10223816;
 }
-.nav {
-  min-height: 82px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px;
+.header-main {
+  min-height:100px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
 }
-.brand { display: flex; align-items: center; gap: 13px; }
-.brand-logo {
-  width: 51px; height: 51px;
-  border: 2px solid #ffffff55;
-  border-radius: 50%;
-  display: grid; place-items: center;
-  background: var(--red);
-  font-weight: 900; font-size: 17px;
+.identity { display:flex; align-items:center; gap:15px; }
+.crest {
+  height:68px;
+  width:62px;
+  background:var(--red);
+  color:white;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-family:'Montserrat',sans-serif;
+  font-size:19px;
+  font-weight:800;
+  clip-path:polygon(0 0,100% 0,100% 73%,50% 100%,0 73%);
+  border:3px solid var(--gold);
 }
-.brand strong { display: block; font-size: 16px; letter-spacing: .5px; }
-.brand small { color: #c3ceda; font-size: 10px; letter-spacing: 1.5px; }
-.nav-links { display: flex; gap: 23px; align-items: center; }
-.nav-links a {
-  color: #e3eaf1;
-  font-size: 13px;
-  font-weight: 700;
-  transition: .2s;
+.identity h1 {
+  font-family:'Montserrat',sans-serif;
+  font-size:17px;
+  line-height:1.3;
+  color:var(--navy);
+  font-weight:800;
 }
-.nav-links a:hover { color: #ff7777; }
-.nav-links .nav-cta {
-  background: var(--red);
-  padding: 11px 17px;
-  border-radius: 4px;
-  color: white;
+.identity p {
+  color:var(--muted);
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:1.6px;
+  margin-top:4px;
 }
-.menu-btn {
-  display: none;
-  background: transparent;
-  color: white;
-  border: 1px solid #ffffff55;
-  border-radius: 5px;
-  padding: 8px 12px;
+.nav { display:flex; align-items:center; gap:22px; }
+.nav a {
+  font-size:12px;
+  font-weight:700;
+  color:var(--navy);
+  transition:.2s;
+}
+.nav a:hover { color:var(--red); }
+.nav .apply-link {
+  background:var(--red);
+  color:white;
+  padding:12px 17px;
+  border-radius:3px;
+}
+.nav .apply-link:hover { background:var(--red2); color:white; }
+.menu-toggle {
+  display:none;
+  border:1px solid var(--border);
+  padding:9px 13px;
+  background:white;
+  color:var(--navy);
+  border-radius:3px;
+  font-size:20px;
 }
 .hero {
-  min-height: 590px;
-  display: flex;
-  align-items: center;
-  color: white;
+  min-height:620px;
+  position:relative;
+  display:flex;
+  align-items:center;
+  color:white;
   background:
-    linear-gradient(90deg,rgba(7,17,29,.94),rgba(7,17,29,.65),rgba(7,17,29,.25)),
-    url("https://images.unsplash.com/photo-1599708153386-62bf2f03b025?auto=format&fit=crop&w=1900&q=85") center/cover;
+    linear-gradient(90deg,rgba(8,20,34,.94),rgba(8,20,34,.72) 55%,rgba(8,20,34,.22)),
+    url('https://images.unsplash.com/photo-1599708153386-62bf2f03b025?auto=format&fit=crop&w=2000&q=85') center/cover;
 }
-.hero-content { max-width: 720px; padding: 100px 0; }
-.eyebrow {
-  color: #ff8585;
-  font-size: 12px;
-  font-weight: 800;
-  letter-spacing: 2.5px;
-  text-transform: uppercase;
+.hero-content { padding:100px 0; max-width:750px; }
+.hero-label {
+  display:inline-block;
+  color:#ffd2d2;
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:2.5px;
+  border-left:4px solid var(--red);
+  padding-left:12px;
+  text-transform:uppercase;
 }
-.hero h1 {
-  font-size: clamp(37px,6vw,65px);
-  line-height: 1.08;
-  margin: 17px 0 22px;
-  letter-spacing: -1.5px;
+.hero h2 {
+  font-family:'Montserrat',sans-serif;
+  font-size:clamp(37px,6vw,67px);
+  line-height:1.12;
+  margin:22px 0;
+  font-weight:800;
 }
-.hero p { max-width: 600px; color: #e0e6ed; font-size: 17px; }
-.actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 30px; }
+.hero h2 span { color:#ff777e; }
+.hero p { max-width:610px; color:#e1e7ee; font-size:16px; }
+.hero-buttons { display:flex; gap:12px; flex-wrap:wrap; margin-top:30px; }
 .btn {
-  display: inline-flex; align-items: center; justify-content: center;
-  padding: 13px 21px; border: 0; border-radius: 4px;
-  font-weight: 800; font-size: 13px; transition: .2s;
+  display:inline-flex;
+  justify-content:center;
+  align-items:center;
+  padding:13px 21px;
+  border:0;
+  border-radius:3px;
+  font-weight:800;
+  font-size:12px;
+  letter-spacing:.4px;
+  transition:.2s;
 }
-.btn-red { background: var(--red); color: white; }
-.btn-red:hover { background: var(--red-dark); transform: translateY(-2px); }
-.btn-outline { border: 1px solid #ffffff99; color: white; background: transparent; }
-.btn-outline:hover { background: white; color: var(--navy); }
-.btn-dark { background: var(--navy); color: white; }
-.btn-light { background: #edf1f5; color: var(--navy); }
-section { padding: 85px 0; }
-.section-head { max-width: 680px; margin-bottom: 38px; }
-.section-head.center { text-align: center; margin-left: auto; margin-right: auto; }
-.section-head span {
-  color: var(--red); font-size: 11px; font-weight: 900;
-  letter-spacing: 2px; text-transform: uppercase;
+.btn-red { background:var(--red); color:white; }
+.btn-red:hover { background:var(--red2); transform:translateY(-2px); }
+.btn-outline { border:1px solid #ffffff99; color:white; }
+.btn-outline:hover { background:white; color:var(--navy); }
+.btn-dark { background:var(--navy); color:white; }
+.btn-light { background:#edf1f5; color:var(--navy); }
+.section { padding:85px 0; }
+.section.grey { background:var(--light); }
+.section-head { max-width:720px; margin-bottom:38px; }
+.section-head.center { text-align:center; margin-left:auto; margin-right:auto; }
+.kicker {
+  color:var(--red);
+  text-transform:uppercase;
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:2px;
 }
-.section-head h2 { color: var(--navy); font-size: clamp(28px,4vw,39px); margin: 9px 0 12px; line-height: 1.2; }
-.section-head p { color: var(--muted); }
+.section-head h2 {
+  font-family:'Montserrat',sans-serif;
+  font-size:clamp(27px,4vw,39px);
+  line-height:1.2;
+  color:var(--navy);
+  margin:10px 0 14px;
+}
+.section-head p { color:var(--muted); font-size:14px; }
 .about-grid {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 55px; align-items: center;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:55px;
+  align-items:center;
 }
-.about-photo {
-  min-height: 390px; border-radius: 8px;
-  background: url("https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1000&q=80") center/cover;
-  box-shadow: var(--shadow);
+.about-image {
+  height:410px;
+  background:url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1100&q=85') center/cover;
+  border-radius:4px;
+  position:relative;
 }
-.about-copy h3 { color: var(--navy); font-size: 25px; margin-bottom: 16px; }
-.about-copy p { color: var(--muted); margin-bottom: 15px; }
-.values { background: var(--light); }
-.card-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
-.info-card {
-  padding: 28px; background: white; border: 1px solid var(--border);
-  border-radius: 7px; box-shadow: 0 5px 20px #101c2c08;
+.image-caption {
+  position:absolute;
+  bottom:0;
+  left:0;
+  background:var(--red);
+  color:white;
+  padding:14px 19px;
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:.7px;
 }
-.card-icon {
-  width: 48px; height: 48px; border-radius: 7px;
-  display: grid; place-items: center; background: #fff0f0;
-  color: var(--red); font-size: 23px; margin-bottom: 18px;
+.about-text h3 {
+  color:var(--navy);
+  font-family:'Montserrat',sans-serif;
+  font-size:23px;
+  margin-bottom:14px;
 }
-.info-card h3 { color: var(--navy); margin-bottom: 9px; font-size: 18px; }
-.info-card p { color: var(--muted); font-size: 14px; }
-.stats { background: var(--navy); color: white; padding: 48px 0; }
-.stats-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; text-align: center; }
-.stat strong { display: block; font-size: 30px; color: #ff7777; }
-.stat span { color: #d4dce5; font-size: 13px; }
-.recruitment { background: white; }
-.recruit-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 45px; align-items: center; }
+.about-text p { color:var(--muted); font-size:14px; margin-bottom:15px; }
+.read-more {
+  display:inline-block;
+  margin-top:12px;
+  color:var(--red);
+  font-size:12px;
+  font-weight:800;
+}
+.read-more:hover { text-decoration:underline; }
+.quick-info {
+  background:var(--navy);
+  color:white;
+  padding:36px 0;
+}
+.quick-grid {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  text-align:center;
+  gap:20px;
+}
+.quick-item { border-right:1px solid #ffffff25; }
+.quick-item:last-child { border:0; }
+.quick-item strong {
+  display:block;
+  font-family:'Montserrat',sans-serif;
+  font-size:17px;
+  margin-bottom:5px;
+}
+.quick-item span { font-size:11px; color:#bdc9d6; }
+.cards {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:22px;
+}
+.card {
+  background:white;
+  border:1px solid var(--border);
+  border-radius:4px;
+  overflow:hidden;
+  transition:.2s;
+}
+.card:hover { transform:translateY(-5px); box-shadow:0 12px 25px #10223813; }
+.card-image { height:190px; background-size:cover; background-position:center; }
+.card-body { padding:23px; }
+.card-body h3 {
+  font-family:'Montserrat',sans-serif;
+  color:var(--navy);
+  font-size:17px;
+  margin-bottom:9px;
+}
+.card-body p { font-size:13px; color:var(--muted); }
+.card-link {
+  display:inline-block;
+  margin-top:15px;
+  font-size:11px;
+  color:var(--red);
+  font-weight:800;
+}
+.command-banner {
+  color:white;
+  background:
+    linear-gradient(90deg,rgba(10,24,40,.94),rgba(10,24,40,.76)),
+    url('https://images.unsplash.com/photo-1518709594023-6eab9bab7b23?auto=format&fit=crop&w=1800&q=80') center/cover;
+  padding:75px 0;
+}
+.command-banner .content { max-width:680px; }
+.command-banner h2 {
+  font-family:'Montserrat',sans-serif;
+  font-size:clamp(28px,4vw,42px);
+  line-height:1.2;
+  margin:12px 0;
+}
+.command-banner p { color:#d9e0e8; font-size:14px; }
+.recruit-grid {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:45px;
+  align-items:center;
+}
 .recruit-image {
-  min-height: 390px; border-radius: 8px;
-  background: url("https://images.unsplash.com/photo-1584467735871-8e85353a8413?auto=format&fit=crop&w=1000&q=80") center/cover;
+  min-height:410px;
+  background:url('https://images.unsplash.com/photo-1584467735871-8e85353a8413?auto=format&fit=crop&w=1100&q=85') center/cover;
 }
-.check-list { list-style: none; margin: 20px 0 27px; }
-.check-list li { margin: 11px 0; color: var(--muted); }
-.check-list li::before { content: "✓"; color: var(--green); font-weight: 900; margin-right: 10px; }
-.application-section { background: var(--light); }
-.form-wrap {
-  max-width: 850px; margin: auto; background: white;
-  padding: 35px; border-radius: 8px; box-shadow: var(--shadow);
+.requirements { list-style:none; margin:20px 0; }
+.requirements li {
+  font-size:13px;
+  color:var(--muted);
+  margin:11px 0;
 }
-.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
-.field { display: flex; flex-direction: column; gap: 7px; }
-.field.full { grid-column: 1/-1; }
-.field label { font-size: 12px; font-weight: 800; color: var(--navy); }
-.field input, .field select, .field textarea {
-  border: 1px solid var(--border); border-radius: 4px;
-  padding: 12px; background: #fff; color: var(--text); outline: none;
+.requirements li:before {
+  content:"✓";
+  color:var(--green);
+  font-weight:bold;
+  margin-right:10px;
 }
-.field input:focus, .field select:focus, .field textarea:focus { border-color: var(--red); }
-.field textarea { min-height: 115px; resize: vertical; }
-.form-note { color: var(--muted); font-size: 12px; margin: 17px 0; }
-.success {
-  display: none; background: #e7f6ed; border: 1px solid #b9e3c9;
-  color: #17683b; padding: 14px; border-radius: 5px; margin-bottom: 18px;
+.form-container {
+  max-width:900px;
+  margin:auto;
+  background:white;
+  border:1px solid var(--border);
+  padding:35px;
+  box-shadow:0 10px 35px #1022380b;
 }
-footer { background: #091421; color: #d7e0e9; padding: 45px 0 20px; }
-.footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 30px; }
-footer h3 { color: white; margin-bottom: 13px; font-size: 15px; }
-footer p, footer a { color: #aebdca; font-size: 13px; }
-footer a { display: block; margin: 7px 0; }
-.footer-bottom { border-top: 1px solid #ffffff20; margin-top: 30px; padding-top: 18px; font-size: 11px; color: #91a1b1; text-align: center; }
+.form-grid {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:18px;
+}
+.field { display:flex; flex-direction:column; gap:7px; }
+.field.full { grid-column:1/-1; }
+.field label {
+  color:var(--navy);
+  font-weight:800;
+  font-size:11px;
+}
+.field input,.field select,.field textarea {
+  width:100%;
+  padding:12px;
+  border:1px solid var(--border);
+  border-radius:3px;
+  outline:none;
+  background:white;
+  color:var(--text);
+  font-size:13px;
+}
+.field input:focus,.field select:focus,.field textarea:focus { border-color:var(--red); }
+.field textarea { min-height:110px; resize:vertical; }
+.form-note { color:var(--muted); font-size:11px; margin:18px 0; }
+.success-message {
+  display:none;
+  padding:15px;
+  margin-bottom:20px;
+  background:#e7f5ec;
+  color:#17663b;
+  border:1px solid #b7dfc5;
+  font-size:13px;
+}
+.gallery {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+}
+.gallery img {
+  width:100%;
+  height:220px;
+  object-fit:cover;
+  border-radius:3px;
+}
+footer {
+  background:#0a1726;
+  color:#dbe3eb;
+  padding:55px 0 20px;
+}
+.footer-grid {
+  display:grid;
+  grid-template-columns:1.5fr 1fr 1fr;
+  gap:35px;
+}
+footer h3 { color:white; font-size:14px; margin-bottom:15px; }
+footer p,footer a { color:#aab8c6; font-size:12px; }
+footer a { display:block; margin:8px 0; }
+footer a:hover { color:white; }
+.footer-bottom {
+  border-top:1px solid #ffffff20;
+  margin-top:35px;
+  padding-top:18px;
+  text-align:center;
+  color:#8292a3;
+  font-size:10px;
+}
 
-/* Administração */
-.admin-area { background: #f0f2f5; padding: 75px 0; }
-.admin-login, .admin-panel {
-  max-width: 1050px; margin: auto; background: white;
-  padding: 28px; border-radius: 8px; box-shadow: var(--shadow);
+/* Área de Recursos Humanos */
+.admin-section { background:#eef1f4; padding:75px 0; }
+.admin-box {
+  background:white;
+  max-width:1100px;
+  margin:auto;
+  padding:30px;
+  border:1px solid var(--border);
 }
-.admin-login { max-width: 440px; }
-.admin-login h2, .admin-panel h2 { color: var(--navy); margin-bottom: 8px; }
-.admin-login p { color: var(--muted); font-size: 13px; margin-bottom: 20px; }
-.admin-login .field { margin-bottom: 15px; }
-.admin-toolbar { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin: 20px 0; }
-.admin-toolbar input { padding: 10px; border: 1px solid var(--border); border-radius: 4px; }
-.table-wrap { overflow-x: auto; }
-table { width: 100%; border-collapse: collapse; min-width: 650px; }
-th, td { padding: 12px 10px; border-bottom: 1px solid var(--border); text-align: left; font-size: 12px; }
-th { color: var(--navy); background: #f5f7fa; }
-.status { padding: 5px 8px; border-radius: 20px; font-size: 10px; font-weight: 800; }
-.status-Recebida { background: #e8eef9; color: #31578a; }
-.status-Em-análise { background: #fff2d6; color: #8a5a00; }
-.status-Aceite { background: #dff4e7; color: #17683b; }
-.status-Recusada { background: #fde5e5; color: #a21d1d; }
-.admin-actions { display: flex; gap: 6px; flex-wrap: wrap; }
-.small-btn { padding: 6px 9px; border: 0; border-radius: 3px; font-size: 11px; font-weight: 700; background: #edf1f5; }
-.hidden { display: none !important; }
+.admin-box h2 { color:var(--navy); font-family:'Montserrat',sans-serif; }
+.admin-login { max-width:430px; margin:auto; }
+.admin-login p { color:var(--muted); font-size:12px; margin:8px 0 20px; }
+.admin-login .field { margin-bottom:15px; }
+.admin-warning {
+  background:#fff5dd;
+  color:#805b13;
+  padding:12px;
+  font-size:11px;
+  margin-top:15px;
+}
+.admin-tools {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:12px;
+  margin:20px 0;
+}
+.admin-tools input {
+  border:1px solid var(--border);
+  padding:11px;
+  border-radius:3px;
+  min-width:220px;
+}
+.table-wrap { overflow-x:auto; }
+table { width:100%; border-collapse:collapse; min-width:700px; }
+th,td {
+  padding:12px 10px;
+  text-align:left;
+  border-bottom:1px solid var(--border);
+  font-size:11px;
+}
+th { background:#f4f6f8; color:var(--navy); }
+.status {
+  padding:5px 8px;
+  border-radius:20px;
+  font-weight:800;
+  font-size:10px;
+}
+.status-Recebida { background:#e6eefb; color:#315b91; }
+.status-Em-análise { background:#fff0d1; color:#8b5d00; }
+.status-Aceite { background:#def3e5; color:#17683b; }
+.status-Recusada { background:#fbe3e3; color:#a51e25; }
+.small-btn {
+  border:0;
+  padding:7px 9px;
+  background:#eaf0f5;
+  color:var(--navy);
+  border-radius:3px;
+  font-size:10px;
+  font-weight:800;
+}
+.small-btn.delete { background:#fbe6e6; color:#a51e25; }
+.hidden { display:none!important; }
 .modal {
-  display: none; position: fixed; inset: 0; z-index: 100;
-  background: #0009; align-items: center; justify-content: center; padding: 20px;
+  display:none;
+  position:fixed;
+  inset:0;
+  z-index:200;
+  background:#0009;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
 }
-.modal-box { background: white; max-width: 600px; width: 100%; padding: 27px; border-radius: 8px; max-height: 85vh; overflow: auto; }
-.modal-box h3 { color: var(--navy); margin-bottom: 15px; }
-.modal-box p { font-size: 13px; margin: 8px 0; overflow-wrap: anywhere; }
-.admin-warning { font-size: 11px; color: #946200; background: #fff6df; padding: 10px; margin: 14px 0; border-radius: 4px; }
-
-@media(max-width:850px) {
-  .menu-btn { display: block; }
-  .nav-links {
-    display: none; position: absolute; top: 82px; left: 0; right: 0;
-    background: var(--navy); padding: 20px; flex-direction: column; align-items: stretch;
+.modal-content {
+  background:white;
+  width:min(620px,100%);
+  max-height:85vh;
+  overflow:auto;
+  padding:28px;
+}
+.modal-content h3 { color:var(--navy); margin-bottom:15px; }
+.modal-content p { font-size:12px; margin:9px 0; overflow-wrap:anywhere; }
+@media(max-width:950px) {
+  .menu-toggle { display:block; }
+  .nav {
+    display:none;
+    position:absolute;
+    top:100%;
+    left:0;
+    right:0;
+    background:white;
+    padding:20px 4%;
+    flex-direction:column;
+    align-items:stretch;
+    gap:0;
+    box-shadow:0 10px 15px #0001;
   }
-  .nav-links.open { display: flex; }
-  .about-grid, .recruit-grid { grid-template-columns: 1fr; gap: 28px; }
-  .card-grid { grid-template-columns: 1fr 1fr; }
+  .nav.open { display:flex; }
+  .nav a { padding:12px 0; border-bottom:1px solid var(--border); }
+  .nav .apply-link { padding:12px; text-align:center; margin-top:10px; }
+  .about-grid,.recruit-grid { grid-template-columns:1fr; }
+  .cards { grid-template-columns:1fr 1fr; }
 }
-@media(max-width:560px) {
-  section { padding: 60px 0; }
-  .hero { min-height: 540px; }
-  .hero-content { padding: 70px 0; }
-  .card-grid, .stats-grid, .footer-grid, .form-grid { grid-template-columns: 1fr; }
-  .field.full { grid-column: auto; }
-  .form-wrap { padding: 22px; }
-  .about-photo, .recruit-image { min-height: 270px; }
+@media(max-width:600px) {
+  .topline .container { justify-content:center; text-align:center; }
+  .header-main { min-height:82px; }
+  .crest { width:48px; height:55px; font-size:15px; }
+  .identity h1 { font-size:12px; }
+  .identity p { font-size:8px; }
+  .hero { min-height:540px; }
+  .hero-content { padding:75px 0; }
+  .section { padding:60px 0; }
+  .quick-grid { grid-template-columns:1fr; }
+  .quick-item { border-right:0; border-bottom:1px solid #ffffff25; padding:12px; }
+  .cards,.gallery,.footer-grid,.form-grid { grid-template-columns:1fr; }
+  .field.full { grid-column:auto; }
+  .form-container { padding:20px; }
+  .about-image,.recruit-image { height:280px; min-height:280px; }
+  .gallery img { height:210px; }
 }
 </style>
 </head>
 
 <body>
-<div class="topbar">
+
+<div class="topline">
   <div class="container">
-    <span>PORTAL INSTITUCIONAL · BVA</span>
-    <span>Comunidade de simulação e roleplay</span>
+    <span><strong>BVA</strong> · BOMBEIROS VOLUNTÁRIOS DO ALGARVE</span>
+    <span>PORTAL INSTITUCIONAL · COMUNIDADE DE SIMULAÇÃO</span>
   </div>
 </div>
 
 <header>
-  <div class="container nav">
-    <a href="#inicio" class="brand">
-      <div class="brand-logo">BVA</div>
+  <div class="container header-main">
+    <a href="#inicio" class="identity">
+      <div class="crest">BVA</div>
       <div>
-        <strong>BOMBEIROS VOLUNTÁRIOS</strong>
-        <small>DO ALGARVE</small>
+        <h1>BOMBEIROS VOLUNTÁRIOS<br>DO ALGARVE</h1>
+        <p>ASSOCIAÇÃO · SIMULAÇÃO E ROLEPLAY</p>
       </div>
     </a>
-    <button class="menu-btn" onclick="toggleMenu()" aria-label="Abrir menu">☰</button>
-    <nav class="nav-links" id="navLinks">
-      <a href="#inicio" onclick="closeMenu()">Início</a>
-      <a href="#instituicao" onclick="closeMenu()">Instituição</a>
-      <a href="#valores" onclick="closeMenu()">Valores</a>
-      <a href="#recrutamento" onclick="closeMenu()">Recrutamento</a>
-      <a href="#candidatura" class="nav-cta" onclick="closeMenu()">Candidatar-me</a>
+
+    <button class="menu-toggle" onclick="toggleMenu()" aria-label="Abrir menu">☰</button>
+
+    <nav class="nav" id="mainNav">
+      <a href="#inicio" onclick="closeMenu()">INÍCIO</a>
+      <a href="#instituicao" onclick="closeMenu()">INSTITUIÇÃO</a>
+      <a href="#estrutura" onclick="closeMenu()">ESTRUTURA</a>
+      <a href="#atividade" onclick="closeMenu()">ATIVIDADE</a>
+      <a href="#galeria" onclick="closeMenu()">GALERIA</a>
+      <a href="#recrutamento" onclick="closeMenu()">RECRUTAMENTO</a>
+      <a class="apply-link" href="#candidatura" onclick="closeMenu()">CANDIDATAR-ME</a>
     </nav>
   </div>
 </header>
 
 <main>
+
 <section class="hero" id="inicio">
   <div class="container">
     <div class="hero-content">
-      <span class="eyebrow">Bombeiros Voluntários do Algarve</span>
-      <h1>Servir a comunidade.<br>Fazer a diferença.</h1>
-      <p>Uma comunidade dedicada ao espírito de equipa, à responsabilidade e à simulação de operações de proteção e socorro.</p>
-      <div class="actions">
-        <a href="#instituicao" class="btn btn-red">Conhecer a instituição</a>
-        <a href="#candidatura" class="btn btn-outline">Juntar-me à equipa</a>
+      <span class="hero-label">Bombeiros Voluntários do Algarve</span>
+      <h2>AO SERVIÇO DA<br><span>COMUNIDADE.</span></h2>
+      <p>Dedicação, disciplina e espírito de equipa. Uma comunidade de simulação que procura proporcionar uma experiência organizada, responsável e imersiva.</p>
+      <div class="hero-buttons">
+        <a href="#instituicao" class="btn btn-red">CONHECER A INSTITUIÇÃO</a>
+        <a href="#recrutamento" class="btn btn-outline">JUNTAR-ME À EQUIPA</a>
       </div>
     </div>
   </div>
 </section>
 
-<section id="instituicao">
+<section class="section" id="instituicao">
   <div class="container about-grid">
-    <div class="about-photo" role="img" aria-label="Imagem ilustrativa de equipa"></div>
-    <div class="about-copy">
+    <div class="about-image">
+      <div class="image-caption">BOMBEIROS VOLUNTÁRIOS DO ALGARVE</div>
+    </div>
+    <div class="about-text">
       <div class="section-head">
-        <span>Quem somos</span>
-        <h2>Uma instituição unida por um propósito.</h2>
+        <span class="kicker">A nossa instituição</span>
+        <h2>Uma missão construída em equipa.</h2>
       </div>
-      <h3>Compromisso, dedicação e espírito de equipa.</h3>
-      <p>Os Bombeiros Voluntários do Algarve são uma comunidade fictícia de simulação e roleplay, criada para proporcionar experiências organizadas e imersivas.</p>
-      <p>Promovemos a cooperação, a disciplina, a aprendizagem e o respeito entre todos os membros.</p>
-      <a href="#recrutamento" class="btn btn-dark">Fazer parte da equipa</a>
+      <h3>Dedicação. União. Responsabilidade.</h3>
+      <p>Os Bombeiros Voluntários do Algarve são uma comunidade fictícia de simulação e roleplay, criada para reunir participantes com interesse no universo dos bombeiros e da proteção e socorro.</p>
+      <p>A nossa organização assenta no respeito, na disciplina, na cooperação e na vontade de proporcionar experiências de simulação de qualidade.</p>
+      <p>Procuramos desenvolver uma comunidade organizada, onde cada elemento tem responsabilidades e oportunidades para evoluir.</p>
+      <a href="#recrutamento" class="read-more">FAZER PARTE DA NOSSA EQUIPA →</a>
     </div>
   </div>
 </section>
 
-<section class="values" id="valores">
-  <div class="container">
-    <div class="section-head center">
-      <span>O que nos representa</span>
-      <h2>Os nossos valores</h2>
-      <p>Princípios que orientam a nossa comunidade e a forma como trabalhamos em conjunto.</p>
+<div class="quick-info">
+  <div class="container quick-grid">
+    <div class="quick-item">
+      <strong>ESPÍRITO DE EQUIPA</strong>
+      <span>Cooperação e entreajuda</span>
     </div>
-    <div class="card-grid">
-      <article class="info-card">
-        <div class="card-icon">★</div>
-        <h3>Dedicação</h3>
-        <p>Participação ativa e compromisso com as atividades da comunidade.</p>
-      </article>
-      <article class="info-card">
-        <div class="card-icon">◆</div>
-        <h3>Disciplina</h3>
-        <p>Respeito pelas regras, pela organização e pelas responsabilidades assumidas.</p>
-      </article>
-      <article class="info-card">
-        <div class="card-icon">✚</div>
-        <h3>Espírito de equipa</h3>
-        <p>Cooperação, entreajuda e respeito por todos os elementos.</p>
-      </article>
+    <div class="quick-item">
+      <strong>FORMAÇÃO</strong>
+      <span>Aprendizagem e evolução</span>
     </div>
-  </div>
-</section>
-
-<div class="stats">
-  <div class="container stats-grid">
-    <div class="stat"><strong>União</strong><span>Trabalhar em conjunto</span></div>
-    <div class="stat"><strong>Respeito</strong><span>Uma comunidade para todos</span></div>
-    <div class="stat"><strong>Compromisso</strong><span>Dedicação à simulação</span></div>
+    <div class="quick-item">
+      <strong>COMPROMISSO</strong>
+      <span>Responsabilidade e dedicação</span>
+    </div>
   </div>
 </div>
 
-<section class="recruitment" id="recrutamento">
+<section class="section grey" id="estrutura">
+  <div class="container">
+    <div class="section-head center">
+      <span class="kicker">Organização</span>
+      <h2>A estrutura da instituição</h2>
+      <p>Uma organização assente em diferentes áreas de responsabilidade e coordenação.</p>
+    </div>
+    <div class="cards">
+      <article class="card">
+        <div class="card-image" style="background-image:url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=80')"></div>
+        <div class="card-body">
+          <h3>Comando</h3>
+          <p>Responsável pela coordenação geral, organização e orientação da instituição.</p>
+          <a href="#contactos" class="card-link">SABER MAIS →</a>
+        </div>
+      </article>
+      <article class="card">
+        <div class="card-image" style="background-image:url('https://images.unsplash.com/photo-1584467735871-8e85353a8413?auto=format&fit=crop&w=900&q=80')"></div>
+        <div class="card-body">
+          <h3>Corpo Ativo</h3>
+          <p>Elementos participantes nas atividades e operações de simulação da comunidade.</p>
+          <a href="#recrutamento" class="card-link">INTEGRAR O CORPO ATIVO →</a>
+        </div>
+      </article>
+      <article class="card">
+        <div class="card-image" style="background-image:url('https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=900&q=80')"></div>
+        <div class="card-body">
+          <h3>Recursos Humanos</h3>
+          <p>Área dedicada ao acompanhamento, recrutamento e organização dos elementos.</p>
+          <a href="#candidatura" class="card-link">CANDIDATURAS →</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="command-banner" id="atividade">
+  <div class="container">
+    <div class="content">
+      <span class="kicker" style="color:#ff9298">A nossa atividade</span>
+      <h2>Preparação, organização e trabalho em equipa.</h2>
+      <p>As atividades da comunidade são desenvolvidas num contexto de simulação e roleplay, com foco na cooperação, na aprendizagem e no cumprimento dos procedimentos internos definidos para o projeto.</p>
+      <div class="hero-buttons">
+        <a href="#galeria" class="btn btn-red">VER GALERIA</a>
+        <a href="#recrutamento" class="btn btn-outline">RECRUTAMENTO</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="galeria">
+  <div class="container">
+    <div class="section-head center">
+      <span class="kicker">Multimédia</span>
+      <h2>Galeria institucional</h2>
+      <p>Imagens ilustrativas do universo dos bombeiros e da nossa comunidade de simulação.</p>
+    </div>
+    <div class="gallery">
+      <img src="https://images.unsplash.com/photo-1599708153386-62bf2f03b025?auto=format&fit=crop&w=900&q=80" alt="Imagem ilustrativa de bombeiros">
+      <img src="https://images.unsplash.com/photo-1584467735871-8e85353a8413?auto=format&fit=crop&w=900&q=80" alt="Imagem ilustrativa de equipamento">
+      <img src="https://images.unsplash.com/photo-1518709594023-6eab9bab7b23?auto=format&fit=crop&w=900&q=80" alt="Imagem ilustrativa de atividade">
+    </div>
+  </div>
+</section>
+
+<section class="section grey" id="recrutamento">
   <div class="container recruit-grid">
     <div>
       <div class="section-head">
-        <span>Recrutamento</span>
-        <h2>O próximo elemento podes ser tu.</h2>
-        <p>Estamos à procura de pessoas motivadas para integrar a nossa comunidade de simulação.</p>
+        <span class="kicker">Recrutamento</span>
+        <h2>Faça parte dos Bombeiros Voluntários do Algarve.</h2>
+        <p>Procuramos participantes responsáveis, motivados e com vontade de integrar uma comunidade organizada.</p>
       </div>
-      <ul class="check-list">
-        <li>Vontade de aprender e participar.</li>
-        <li>Respeito pelas regras e pelos restantes membros.</li>
-        <li>Disponibilidade para atividades e formações.</li>
-        <li>Espírito de equipa e responsabilidade.</li>
+      <ul class="requirements">
+        <li>Respeitar as regras e orientações da comunidade.</li>
+        <li>Demonstrar responsabilidade e maturidade.</li>
+        <li>Ter disponibilidade para participar nas atividades.</li>
+        <li>Ter espírito de equipa e vontade de aprender.</li>
+        <li>Respeitar todos os elementos da instituição.</li>
       </ul>
-      <a href="#candidatura" class="btn btn-red">Iniciar candidatura</a>
+      <a href="#candidatura" class="btn btn-red">INICIAR CANDIDATURA</a>
     </div>
-    <div class="recruit-image" role="img" aria-label="Imagem ilustrativa de recrutamento"></div>
+    <div class="recruit-image"></div>
   </div>
 </section>
 
-<section class="application-section" id="candidatura">
-  <div class="container">
-    <div class="section-head center">
-      <span>Inscrições abertas</span>
-      <h2>Formulário de candidatura</h2>
-      <p>Preenche os campos seguintes com informação correta. A candidatura ficará registada neste navegador.</p>
-    </div>
-
-    <div class="form-wrap">
-      <div class="success" id="successMessage"></div>
-      <form id="applicationForm">
-        <div class="form-grid">
-          <div class="field">
-            <label for="nome">Nome *</label>
-            <input id="nome" name="nome" required maxlength="70" placeholder="O teu nome">
-          </div>
-          <div class="field">
-            <label for="idade">Idade *</label>
-            <input id="idade" name="idade" type="number" min="13" max="99" required placeholder="A tua idade">
-          </div>
-          <div class="field">
-            <label for="discord">Utilizador Discord *</label>
-            <input id="discord" name="discord" required maxlength="80" placeholder="exemplo">
-          </div>
-          <div class="field">
-            <label for="roblox">Utilizador Roblox *</label>
-            <input id="roblox" name="roblox" required maxlength="80" placeholder="Utilizador Roblox">
-          </div>
-          <div class="field">
-            <label for="disponibilidade">Disponibilidade *</label>
-            <select id="disponibilidade" name="disponibilidade" required>
-              <option value="">Selecionar</option>
-              <option>Durante a semana</option>
-              <option>Fins de semana</option>
-              <option>Todos os dias</option>
-              <option>Horário variável</option>
-            </select>
-          </div>
-          <div class="field">
-            <label for="area">Área pretendida *</label>
-            <select id="area" name="area" required>
-              <option value="">Selecionar</option>
-              <option>Operacional</option>
-              <option>Comando</option>
-              <option>Formação</option>
-              <option>Administrativa</option>
-              <option>Outra</option>
-            </select>
-          </div>
-          <div class="field full">
-            <label for="experiencia">Experiência anterior</label>
-            <textarea id="experiencia" name="experiencia" maxlength="1200" placeholder="Conta-nos se já participaste noutras comunidades..."></textarea>
-          </div>
-          <div class="field full">
-            <label for="motivacao">Porque queres integrar os BVA? *</label>
-            <textarea id="motivacao" name="motivacao" required maxlength="1500" placeholder="Explica a tua motivação..."></textarea>
-          </div>
-        </div>
-        <p class="form-note">* Campos obrigatórios. Não introduzas palavras-passe nem dados pessoais sensíveis.</p>
-        <button class="btn btn-red" type="submit">Enviar candidatura</button>
-      </form>
-    </div>
-  </div>
-</section>
-</main>
-
-<footer>
-  <div class="container">
-    <div class="footer-grid">
-      <div>
-        <h3>Bombeiros Voluntários do Algarve</h3>
-        <p>Comunidade fictícia dedicada à simulação, ao roleplay e ao espírito de equipa.</p>
-      </div>
-      <div>
-        <h3>Navegação</h3>
-        <a href="#inicio">Início</a>
-        <a href="#instituicao">Instituição</a>
-        <a href="#valores">Valores</a>
-        <a href="#recrutamento">Recrutamento</a>
-      </div>
-      <div>
-        <h3>Recrutamento</h3>
-        <a href="#candidatura">Formulário de candidatura</a>
-        <a href="#admin">Área administrativa</a>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      © <span id="year"></span> Bombeiros Voluntários do Algarve. Comunidade de simulação e roleplay. Não representa uma corporação real.
-    </div>
-  </div>
-</footer>
-
-<section class="admin-area" id="admin">
-  <div class="container">
-    <div class="section-head center">
-      <span>Área reservada</span>
-      <h2>Recursos Humanos</h2>
-      <p>Gestão demonstrativa das candidaturas registadas neste navegador.</p>
-    </div>
-
-    <div class="admin-login" id="adminLogin">
-      <h2>Acesso administrativo</h2>
-      <p>Introduz a palavra-passe local configurada no código.</p>
-      <div class="field">
-        <label for="adminPassword">Palavra-passe</label>
-        <input type="password" id="adminPassword" placeholder="Palavra-passe">
-      </div>
-      <button class="btn btn-dark" onclick="loginAdmin()">Entrar</button>
-      <p id="loginError" style="color:#c62828;margin-top:12px"></p>
-      <div class="admin-warning">Demonstração local: esta palavra-passe não constitui segurança real para um painel publicado na Internet.</div>
-    </div>
-
-    <div class="admin-panel hidden" id="adminPanel">
-      <h2>Painel de candidaturas</h2>
-      <p id="applicationCount" style="color:#697586;font-size:13px"></p>
-      <div class="admin-toolbar">
-        <input type="search" id="searchApplications" placeholder="Pesquisar candidaturas..." oninput="renderApplications()">
-        <div class="admin-actions">
-          <button class="btn btn-dark" onclick="exportCSV()">Exportar CSV</button>
-          <button class="btn btn-light" onclick="logoutAdmin()">Terminar sessão</button>
-        </div>
-      </div>
-      <div class="table-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th>Referência</th>
-              <th>Nome</th>
-              <th>Área</th>
-              <th>Data</th>
-              <th>Estado</th>
-              <th>Ações</th>
-            </tr>
-          </thead>
-          <tbody id="applicationsTable"></tbody>
-        <
+<section class="section" id="candidatu
