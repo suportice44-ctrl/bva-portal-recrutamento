@@ -26,18 +26,43 @@
   --gold:#c8a45d;
   --green:#247b4b;
 }
-* { box-sizing:border-box; margin:0; padding:0; }
-html { scroll-behavior:smooth; }
+
+* {
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+html {
+  scroll-behavior:smooth;
+  scroll-padding-top:110px;
+}
+
 body {
   font-family:'Roboto',Arial,sans-serif;
   color:var(--text);
   line-height:1.65;
   background:white;
 }
-a { text-decoration:none; color:inherit; }
-button,input,select,textarea { font:inherit; }
-button { cursor:pointer; }
-.container { width:min(1200px,92%); margin:auto; }
+
+a {
+  text-decoration:none;
+  color:inherit;
+}
+
+button,input,select,textarea {
+  font:inherit;
+}
+
+button {
+  cursor:pointer;
+}
+
+.container {
+  width:min(1200px,92%);
+  margin:auto;
+}
+
 .topline {
   background:#0a1726;
   color:#dce4ec;
@@ -45,13 +70,18 @@ button { cursor:pointer; }
   letter-spacing:.6px;
   padding:8px 0;
 }
+
 .topline .container {
   display:flex;
   justify-content:space-between;
   flex-wrap:wrap;
   gap:10px;
 }
-.topline strong { color:white; }
+
+.topline strong {
+  color:white;
+}
+
 header {
   position:sticky;
   top:0;
@@ -59,6 +89,7 @@ header {
   background:white;
   box-shadow:0 3px 15px #10223816;
 }
+
 .header-main {
   min-height:100px;
   display:flex;
@@ -66,7 +97,13 @@ header {
   justify-content:space-between;
   gap:20px;
 }
-.identity { display:flex; align-items:center; gap:15px; }
+
+.identity {
+  display:flex;
+  align-items:center;
+  gap:15px;
+}
+
 .crest {
   height:68px;
   width:62px;
@@ -81,6 +118,7 @@ header {
   clip-path:polygon(0 0,100% 0,100% 73%,50% 100%,0 73%);
   border:3px solid var(--gold);
 }
+
 .identity h1 {
   font-family:'Montserrat',sans-serif;
   font-size:17px;
@@ -88,6 +126,7 @@ header {
   color:var(--navy);
   font-weight:800;
 }
+
 .identity p {
   color:var(--muted);
   font-size:10px;
@@ -95,21 +134,36 @@ header {
   letter-spacing:1.6px;
   margin-top:4px;
 }
-.nav { display:flex; align-items:center; gap:22px; }
+
+.nav {
+  display:flex;
+  align-items:center;
+  gap:22px;
+}
+
 .nav a {
   font-size:12px;
   font-weight:700;
   color:var(--navy);
   transition:.2s;
 }
-.nav a:hover { color:var(--red); }
+
+.nav a:hover {
+  color:var(--red);
+}
+
 .nav .apply-link {
   background:var(--red);
   color:white;
   padding:12px 17px;
   border-radius:3px;
 }
-.nav .apply-link:hover { background:var(--red2); color:white; }
+
+.nav .apply-link:hover {
+  background:var(--red2);
+  color:white;
+}
+
 .menu-toggle {
   display:none;
   border:1px solid var(--border);
@@ -119,6 +173,7 @@ header {
   border-radius:3px;
   font-size:20px;
 }
+
 .hero {
   min-height:620px;
   position:relative;
@@ -129,7 +184,12 @@ header {
     linear-gradient(90deg,rgba(8,20,34,.94),rgba(8,20,34,.72) 55%,rgba(8,20,34,.22)),
     url('https://images.unsplash.com/photo-1599708153386-62bf2f03b025?auto=format&fit=crop&w=2000&q=85') center/cover;
 }
-.hero-content { padding:100px 0; max-width:750px; }
+
+.hero-content {
+  padding:100px 0;
+  max-width:750px;
+}
+
 .hero-label {
   display:inline-block;
   color:#ffd2d2;
@@ -140,6 +200,7 @@ header {
   padding-left:12px;
   text-transform:uppercase;
 }
+
 .hero h2 {
   font-family:'Montserrat',sans-serif;
   font-size:clamp(37px,6vw,67px);
@@ -147,9 +208,24 @@ header {
   margin:22px 0;
   font-weight:800;
 }
-.hero h2 span { color:#ff777e; }
-.hero p { max-width:610px; color:#e1e7ee; font-size:16px; }
-.hero-buttons { display:flex; gap:12px; flex-wrap:wrap; margin-top:30px; }
+
+.hero h2 span {
+  color:#ff777e;
+}
+
+.hero p {
+  max-width:610px;
+  color:#e1e7ee;
+  font-size:16px;
+}
+
+.hero-buttons {
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+  margin-top:30px;
+}
+
 .btn {
   display:inline-flex;
   justify-content:center;
@@ -162,16 +238,46 @@ header {
   letter-spacing:.4px;
   transition:.2s;
 }
-.btn-red { background:var(--red); color:white; }
-.btn-red:hover { background:var(--red2); transform:translateY(-2px); }
-.btn-outline { border:1px solid #ffffff99; color:white; }
-.btn-outline:hover { background:white; color:var(--navy); }
-.btn-dark { background:var(--navy); color:white; }
-.btn-light { background:#edf1f5; color:var(--navy); }
-.section { padding:85px 0; }
-.section.grey { background:var(--light); }
-.section-head { max-width:720px; margin-bottom:38px; }
-.section-head.center { text-align:center; margin-left:auto; margin-right:auto; }
+
+.btn-red {
+  background:var(--red);
+  color:white;
+}
+
+.btn-red:hover {
+  background:var(--red2);
+  transform:translateY(-2px);
+}
+
+.btn-outline {
+  border:1px solid #ffffff99;
+  color:white;
+}
+
+.btn-outline:hover {
+  background:white;
+  color:var(--navy);
+}
+
+.section {
+  padding:85px 0;
+}
+
+.section.grey {
+  background:var(--light);
+}
+
+.section-head {
+  max-width:720px;
+  margin-bottom:38px;
+}
+
+.section-head.center {
+  text-align:center;
+  margin-left:auto;
+  margin-right:auto;
+}
+
 .kicker {
   color:var(--red);
   text-transform:uppercase;
@@ -179,6 +285,7 @@ header {
   font-weight:800;
   letter-spacing:2px;
 }
+
 .section-head h2 {
   font-family:'Montserrat',sans-serif;
   font-size:clamp(27px,4vw,39px);
@@ -186,19 +293,26 @@ header {
   color:var(--navy);
   margin:10px 0 14px;
 }
-.section-head p { color:var(--muted); font-size:14px; }
+
+.section-head p {
+  color:var(--muted);
+  font-size:14px;
+}
+
 .about-grid {
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:55px;
   align-items:center;
 }
+
 .about-image {
   height:410px;
   background:url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1100&q=85') center/cover;
   border-radius:4px;
   position:relative;
 }
+
 .image-caption {
   position:absolute;
   bottom:0;
@@ -210,13 +324,20 @@ header {
   font-weight:800;
   letter-spacing:.7px;
 }
+
 .about-text h3 {
   color:var(--navy);
   font-family:'Montserrat',sans-serif;
   font-size:23px;
   margin-bottom:14px;
 }
-.about-text p { color:var(--muted); font-size:14px; margin-bottom:15px; }
+
+.about-text p {
+  color:var(--muted);
+  font-size:14px;
+  margin-bottom:15px;
+}
+
 .read-more {
   display:inline-block;
   margin-top:12px;
@@ -224,32 +345,46 @@ header {
   font-size:12px;
   font-weight:800;
 }
-.read-more:hover { text-decoration:underline; }
+
 .quick-info {
   background:var(--navy);
   color:white;
   padding:36px 0;
 }
+
 .quick-grid {
   display:grid;
   grid-template-columns:repeat(3,1fr);
   text-align:center;
   gap:20px;
 }
-.quick-item { border-right:1px solid #ffffff25; }
-.quick-item:last-child { border:0; }
+
+.quick-item {
+  border-right:1px solid #ffffff25;
+}
+
+.quick-item:last-child {
+  border:0;
+}
+
 .quick-item strong {
   display:block;
   font-family:'Montserrat',sans-serif;
   font-size:17px;
   margin-bottom:5px;
 }
-.quick-item span { font-size:11px; color:#bdc9d6; }
+
+.quick-item span {
+  font-size:11px;
+  color:#bdc9d6;
+}
+
 .cards {
   display:grid;
   grid-template-columns:repeat(3,1fr);
   gap:22px;
 }
+
 .card {
   background:white;
   border:1px solid var(--border);
@@ -257,16 +392,34 @@ header {
   overflow:hidden;
   transition:.2s;
 }
-.card:hover { transform:translateY(-5px); box-shadow:0 12px 25px #10223813; }
-.card-image { height:190px; background-size:cover; background-position:center; }
-.card-body { padding:23px; }
+
+.card:hover {
+  transform:translateY(-5px);
+  box-shadow:0 12px 25px #10223813;
+}
+
+.card-image {
+  height:190px;
+  background-size:cover;
+  background-position:center;
+}
+
+.card-body {
+  padding:23px;
+}
+
 .card-body h3 {
   font-family:'Montserrat',sans-serif;
   color:var(--navy);
   font-size:17px;
   margin-bottom:9px;
 }
-.card-body p { font-size:13px; color:var(--muted); }
+
+.card-body p {
+  font-size:13px;
+  color:var(--muted);
+}
+
 .card-link {
   display:inline-block;
   margin-top:15px;
@@ -274,6 +427,7 @@ header {
   color:var(--red);
   font-weight:800;
 }
+
 .command-banner {
   color:white;
   background:
@@ -281,36 +435,53 @@ header {
     url('https://images.unsplash.com/photo-1518709594023-6eab9bab7b23?auto=format&fit=crop&w=1800&q=80') center/cover;
   padding:75px 0;
 }
-.command-banner .content { max-width:680px; }
+
+.command-banner .content {
+  max-width:680px;
+}
+
 .command-banner h2 {
   font-family:'Montserrat',sans-serif;
   font-size:clamp(28px,4vw,42px);
   line-height:1.2;
   margin:12px 0;
 }
-.command-banner p { color:#d9e0e8; font-size:14px; }
+
+.command-banner p {
+  color:#d9e0e8;
+  font-size:14px;
+}
+
 .recruit-grid {
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:45px;
   align-items:center;
 }
+
 .recruit-image {
   min-height:410px;
   background:url('https://images.unsplash.com/photo-1584467735871-8e85353a8413?auto=format&fit=crop&w=1100&q=85') center/cover;
 }
-.requirements { list-style:none; margin:20px 0; }
+
+.requirements {
+  list-style:none;
+  margin:20px 0;
+}
+
 .requirements li {
   font-size:13px;
   color:var(--muted);
   margin:11px 0;
 }
+
 .requirements li:before {
   content:"✓";
   color:var(--green);
   font-weight:bold;
   margin-right:10px;
 }
+
 .form-container {
   max-width:900px;
   margin:auto;
@@ -319,19 +490,32 @@ header {
   padding:35px;
   box-shadow:0 10px 35px #1022380b;
 }
+
 .form-grid {
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:18px;
 }
-.field { display:flex; flex-direction:column; gap:7px; }
-.field.full { grid-column:1/-1; }
+
+.field {
+  display:flex;
+  flex-direction:column;
+  gap:7px;
+}
+
+.field.full {
+  grid-column:1/-1;
+}
+
 .field label {
   color:var(--navy);
   font-weight:800;
   font-size:11px;
 }
-.field input,.field select,.field textarea {
+
+.field input,
+.field select,
+.field textarea {
   width:100%;
   padding:12px;
   border:1px solid var(--border);
@@ -341,9 +525,24 @@ header {
   color:var(--text);
   font-size:13px;
 }
-.field input:focus,.field select:focus,.field textarea:focus { border-color:var(--red); }
-.field textarea { min-height:110px; resize:vertical; }
-.form-note { color:var(--muted); font-size:11px; margin:18px 0; }
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  border-color:var(--red);
+}
+
+.field textarea {
+  min-height:110px;
+  resize:vertical;
+}
+
+.form-note {
+  color:var(--muted);
+  font-size:11px;
+  margin:18px 0;
+}
+
 .success-message {
   display:none;
   padding:15px;
@@ -353,31 +552,53 @@ header {
   border:1px solid #b7dfc5;
   font-size:13px;
 }
+
 .gallery {
   display:grid;
   grid-template-columns:repeat(3,1fr);
   gap:12px;
 }
+
 .gallery img {
   width:100%;
   height:220px;
   object-fit:cover;
   border-radius:3px;
 }
+
 footer {
   background:#0a1726;
   color:#dbe3eb;
   padding:55px 0 20px;
 }
+
 .footer-grid {
   display:grid;
   grid-template-columns:1.5fr 1fr 1fr;
   gap:35px;
 }
-footer h3 { color:white; font-size:14px; margin-bottom:15px; }
-footer p,footer a { color:#aab8c6; font-size:12px; }
-footer a { display:block; margin:8px 0; }
-footer a:hover { color:white; }
+
+footer h3 {
+  color:white;
+  font-size:14px;
+  margin-bottom:15px;
+}
+
+footer p,
+footer a {
+  color:#aab8c6;
+  font-size:12px;
+}
+
+footer a {
+  display:block;
+  margin:8px 0;
+}
+
+footer a:hover {
+  color:white;
+}
+
 .footer-bottom {
   border-top:1px solid #ffffff20;
   margin-top:35px;
@@ -387,91 +608,11 @@ footer a:hover { color:white; }
   font-size:10px;
 }
 
-/* Área de Recursos Humanos */
-.admin-section { background:#eef1f4; padding:75px 0; }
-.admin-box {
-  background:white;
-  max-width:1100px;
-  margin:auto;
-  padding:30px;
-  border:1px solid var(--border);
-}
-.admin-box h2 { color:var(--navy); font-family:'Montserrat',sans-serif; }
-.admin-login { max-width:430px; margin:auto; }
-.admin-login p { color:var(--muted); font-size:12px; margin:8px 0 20px; }
-.admin-login .field { margin-bottom:15px; }
-.admin-warning {
-  background:#fff5dd;
-  color:#805b13;
-  padding:12px;
-  font-size:11px;
-  margin-top:15px;
-}
-.admin-tools {
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  flex-wrap:wrap;
-  gap:12px;
-  margin:20px 0;
-}
-.admin-tools input {
-  border:1px solid var(--border);
-  padding:11px;
-  border-radius:3px;
-  min-width:220px;
-}
-.table-wrap { overflow-x:auto; }
-table { width:100%; border-collapse:collapse; min-width:700px; }
-th,td {
-  padding:12px 10px;
-  text-align:left;
-  border-bottom:1px solid var(--border);
-  font-size:11px;
-}
-th { background:#f4f6f8; color:var(--navy); }
-.status {
-  padding:5px 8px;
-  border-radius:20px;
-  font-weight:800;
-  font-size:10px;
-}
-.status-Recebida { background:#e6eefb; color:#315b91; }
-.status-Em-análise { background:#fff0d1; color:#8b5d00; }
-.status-Aceite { background:#def3e5; color:#17683b; }
-.status-Recusada { background:#fbe3e3; color:#a51e25; }
-.small-btn {
-  border:0;
-  padding:7px 9px;
-  background:#eaf0f5;
-  color:var(--navy);
-  border-radius:3px;
-  font-size:10px;
-  font-weight:800;
-}
-.small-btn.delete { background:#fbe6e6; color:#a51e25; }
-.hidden { display:none!important; }
-.modal {
-  display:none;
-  position:fixed;
-  inset:0;
-  z-index:200;
-  background:#0009;
-  align-items:center;
-  justify-content:center;
-  padding:20px;
-}
-.modal-content {
-  background:white;
-  width:min(620px,100%);
-  max-height:85vh;
-  overflow:auto;
-  padding:28px;
-}
-.modal-content h3 { color:var(--navy); margin-bottom:15px; }
-.modal-content p { font-size:12px; margin:9px 0; overflow-wrap:anywhere; }
 @media(max-width:950px) {
-  .menu-toggle { display:block; }
+  .menu-toggle {
+    display:block;
+  }
+
   .nav {
     display:none;
     position:absolute;
@@ -485,28 +626,102 @@ th { background:#f4f6f8; color:var(--navy); }
     gap:0;
     box-shadow:0 10px 15px #0001;
   }
-  .nav.open { display:flex; }
-  .nav a { padding:12px 0; border-bottom:1px solid var(--border); }
-  .nav .apply-link { padding:12px; text-align:center; margin-top:10px; }
-  .about-grid,.recruit-grid { grid-template-columns:1fr; }
-  .cards { grid-template-columns:1fr 1fr; }
+
+  .nav.open {
+    display:flex;
+  }
+
+  .nav a {
+    padding:12px 0;
+    border-bottom:1px solid var(--border);
+  }
+
+  .nav .apply-link {
+    padding:12px;
+    text-align:center;
+    margin-top:10px;
+  }
+
+  .about-grid,
+  .recruit-grid {
+    grid-template-columns:1fr;
+  }
+
+  .cards {
+    grid-template-columns:1fr 1fr;
+  }
 }
+
 @media(max-width:600px) {
-  .topline .container { justify-content:center; text-align:center; }
-  .header-main { min-height:82px; }
-  .crest { width:48px; height:55px; font-size:15px; }
-  .identity h1 { font-size:12px; }
-  .identity p { font-size:8px; }
-  .hero { min-height:540px; }
-  .hero-content { padding:75px 0; }
-  .section { padding:60px 0; }
-  .quick-grid { grid-template-columns:1fr; }
-  .quick-item { border-right:0; border-bottom:1px solid #ffffff25; padding:12px; }
-  .cards,.gallery,.footer-grid,.form-grid { grid-template-columns:1fr; }
-  .field.full { grid-column:auto; }
-  .form-container { padding:20px; }
-  .about-image,.recruit-image { height:280px; min-height:280px; }
-  .gallery img { height:210px; }
+  .topline .container {
+    justify-content:center;
+    text-align:center;
+  }
+
+  .header-main {
+    min-height:82px;
+  }
+
+  .crest {
+    width:48px;
+    height:55px;
+    font-size:15px;
+  }
+
+  .identity h1 {
+    font-size:12px;
+  }
+
+  .identity p {
+    font-size:8px;
+  }
+
+  .hero {
+    min-height:540px;
+  }
+
+  .hero-content {
+    padding:75px 0;
+  }
+
+  .section {
+    padding:60px 0;
+  }
+
+  .quick-grid {
+    grid-template-columns:1fr;
+  }
+
+  .quick-item {
+    border-right:0;
+    border-bottom:1px solid #ffffff25;
+    padding:12px;
+  }
+
+  .cards,
+  .gallery,
+  .footer-grid,
+  .form-grid {
+    grid-template-columns:1fr;
+  }
+
+  .field.full {
+    grid-column:auto;
+  }
+
+  .form-container {
+    padding:20px;
+  }
+
+  .about-image,
+  .recruit-image {
+    height:280px;
+    min-height:280px;
+  }
+
+  .gallery img {
+    height:210px;
+  }
 }
 </style>
 </head>
@@ -552,6 +767,7 @@ th { background:#f4f6f8; color:var(--navy); }
       <span class="hero-label">Bombeiros Voluntários do Algarve</span>
       <h2>AO SERVIÇO DA<br><span>COMUNIDADE.</span></h2>
       <p>Dedicação, disciplina e espírito de equipa. Uma comunidade de simulação que procura proporcionar uma experiência organizada, responsável e imersiva.</p>
+
       <div class="hero-buttons">
         <a href="#instituicao" class="btn btn-red">CONHECER A INSTITUIÇÃO</a>
         <a href="#recrutamento" class="btn btn-outline">JUNTAR-ME À EQUIPA</a>
@@ -565,15 +781,18 @@ th { background:#f4f6f8; color:var(--navy); }
     <div class="about-image">
       <div class="image-caption">BOMBEIROS VOLUNTÁRIOS DO ALGARVE</div>
     </div>
+
     <div class="about-text">
       <div class="section-head">
         <span class="kicker">A nossa instituição</span>
         <h2>Uma missão construída em equipa.</h2>
       </div>
+
       <h3>Dedicação. União. Responsabilidade.</h3>
       <p>Os Bombeiros Voluntários do Algarve são uma comunidade fictícia de simulação e roleplay, criada para reunir participantes com interesse no universo dos bombeiros e da proteção e socorro.</p>
       <p>A nossa organização assenta no respeito, na disciplina, na cooperação e na vontade de proporcionar experiências de simulação de qualidade.</p>
       <p>Procuramos desenvolver uma comunidade organizada, onde cada elemento tem responsabilidades e oportunidades para evoluir.</p>
+
       <a href="#recrutamento" class="read-more">FAZER PARTE DA NOSSA EQUIPA →</a>
     </div>
   </div>
@@ -585,10 +804,12 @@ th { background:#f4f6f8; color:var(--navy); }
       <strong>ESPÍRITO DE EQUIPA</strong>
       <span>Cooperação e entreajuda</span>
     </div>
+
     <div class="quick-item">
       <strong>FORMAÇÃO</strong>
       <span>Aprendizagem e evolução</span>
     </div>
+
     <div class="quick-item">
       <strong>COMPROMISSO</strong>
       <span>Responsabilidade e dedicação</span>
@@ -603,6 +824,7 @@ th { background:#f4f6f8; color:var(--navy); }
       <h2>A estrutura da instituição</h2>
       <p>Uma organização assente em diferentes áreas de responsabilidade e coordenação.</p>
     </div>
+
     <div class="cards">
       <article class="card">
         <div class="card-image" style="background-image:url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=80')"></div>
@@ -612,6 +834,7 @@ th { background:#f4f6f8; color:var(--navy); }
           <a href="#contactos" class="card-link">SABER MAIS →</a>
         </div>
       </article>
+
       <article class="card">
         <div class="card-image" style="background-image:url('https://images.unsplash.com/photo-1584467735871-8e85353a8413?auto=format&fit=crop&w=900&q=80')"></div>
         <div class="card-body">
@@ -620,6 +843,7 @@ th { background:#f4f6f8; color:var(--navy); }
           <a href="#recrutamento" class="card-link">INTEGRAR O CORPO ATIVO →</a>
         </div>
       </article>
+
       <article class="card">
         <div class="card-image" style="background-image:url('https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=900&q=80')"></div>
         <div class="card-body">
@@ -638,6 +862,7 @@ th { background:#f4f6f8; color:var(--navy); }
       <span class="kicker" style="color:#ff9298">A nossa atividade</span>
       <h2>Preparação, organização e trabalho em equipa.</h2>
       <p>As atividades da comunidade são desenvolvidas num contexto de simulação e roleplay, com foco na cooperação, na aprendizagem e no cumprimento dos procedimentos internos definidos para o projeto.</p>
+
       <div class="hero-buttons">
         <a href="#galeria" class="btn btn-red">VER GALERIA</a>
         <a href="#recrutamento" class="btn btn-outline">RECRUTAMENTO</a>
@@ -653,6 +878,7 @@ th { background:#f4f6f8; color:var(--navy); }
       <h2>Galeria institucional</h2>
       <p>Imagens ilustrativas do universo dos bombeiros e da nossa comunidade de simulação.</p>
     </div>
+
     <div class="gallery">
       <img src="https://images.unsplash.com/photo-1599708153386-62bf2f03b025?auto=format&fit=crop&w=900&q=80" alt="Imagem ilustrativa de bombeiros">
       <img src="https://images.unsplash.com/photo-1584467735871-8e85353a8413?auto=format&fit=crop&w=900&q=80" alt="Imagem ilustrativa de equipamento">
@@ -669,6 +895,7 @@ th { background:#f4f6f8; color:var(--navy); }
         <h2>Faça parte dos Bombeiros Voluntários do Algarve.</h2>
         <p>Procuramos participantes responsáveis, motivados e com vontade de integrar uma comunidade organizada.</p>
       </div>
+
       <ul class="requirements">
         <li>Respeitar as regras e orientações da comunidade.</li>
         <li>Demonstrar responsabilidade e maturidade.</li>
@@ -676,10 +903,52 @@ th { background:#f4f6f8; color:var(--navy); }
         <li>Ter espírito de equipa e vontade de aprender.</li>
         <li>Respeitar todos os elementos da instituição.</li>
       </ul>
+
       <a href="#candidatura" class="btn btn-red">INICIAR CANDIDATURA</a>
     </div>
+
     <div class="recruit-image"></div>
   </div>
 </section>
 
-<section class="section" id="candidatu
+<section class="section" id="candidatura">
+  <div class="container">
+    <div class="section-head center">
+      <span class="kicker">Recrutamento BVA</span>
+      <h2>Formulário de candidatura</h2>
+      <p>Preenche todos os campos obrigatórios. A tua candidatura será enviada para análise da equipa de Recursos Humanos.</p>
+    </div>
+
+    <div class="form-container">
+      <div id="formMessage" class="success-message" role="status" aria-live="polite"></div>
+
+      <form id="applicationForm">
+        <div class="form-grid">
+
+          <div class="field">
+            <label for="nome">Nome completo *</label>
+            <input type="text" id="nome" name="nome" maxlength="100" required>
+          </div>
+
+          <div class="field">
+            <label for="idade">Idade *</label>
+            <input type="number" id="idade" name="idade" min="13" max="99" required>
+          </div>
+
+          <div class="field">
+            <label for="discord">Nome de utilizador Discord *</label>
+            <input type="text" id="discord" name="discord" maxlength="100" required>
+          </div>
+
+          <div class="field">
+            <label for="disponibilidade">Disponibilidade *</label>
+            <input type="text" id="disponibilidade" name="disponibilidade" maxlength="500" placeholder="Ex.: Durante a semana e fins de semana" required>
+          </div>
+
+          <div class="field">
+            <label for="experiencia">Tens experiência em roleplay? *</label>
+            <select id="experiencia" name="experiencia" required>
+              <option value="">Seleciona uma opção</option>
+              <option value="Sim">Sim</option>
+              <option value="Não">Não</option>
+              
