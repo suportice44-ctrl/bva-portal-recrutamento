@@ -10,11 +10,15 @@ const SUPABASE_URL = (process.env.SUPABASE_URL || "").replace(/\/$/, "");
 const SUPABASE_SECRET_KEY = process.env.SUPABASE_SECRET_KEY || "";
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || "";
 
-app.use(express.json({ limit: "20kb" }));
+app.use(express.json({ limit: "30kb" }));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 
 async function supabaseRequest(endpoint, options = {}) {
+  if (!SUPABASE_URL || !SUPABASE_SECRET_KEY) {
+    throw new Error("Configuração do Supabase em falta.");
+  }
+
   return fetch(`${SUPABASE_URL}/rest/v1/${endpoint}`, {
     ...options,
     headers: {
@@ -27,11 +31,11 @@ async function supabaseRequest(endpoint, options = {}) {
 }
 
 function adminAuth(req, res, next) {
+  res.setHeader("Cache-Control", "no-store");
+
   if (!ADMIN_PASSWORD) {
     return res.status(503).send("Admin não configurado.");
   }
-
-  res.setHeader("Cache-Control", "no-store");
 
   const header = req.headers.authorization || "";
 
@@ -60,13 +64,53 @@ function adminAuth(req, res, next) {
   next();
 }
 
-app.post("/api/candidaturas", async (req, res) => {
-  const { nome, idade, discord, disponibilidade, motivacao } = req.body || {};
+function clean(value, maxLength) {
+  if (typeof value !== "string") return "";
+  return value.trim().slice(0, maxLength);
+}
 
-  if (![nome, idade, discord, disponibilidade, motivacao].every(
-    value => typeof value === "string" && value.trim()
-  )) {
-    return res.status(400).json({ error: "Preenche todos os campos." });
+app.post("/api/candidaturas", async (req, res) => {
+  const body = req.body || {};
+
+  const campos = {
+    nome: clean(body.nome, 100),
+    idade: clean(body.idade, 20),
+    discord: clean(body.discord, 100),
+    disponibilidade: clean(body.disponibilidade, 500),
+    experiencia: clean(body.experiencia, 100),
+    funcao_pretendida: clean(body.funcao_pretendida, 100),
+    experiencia_detalhe: clean(body.experiencia_detalhe, 2000),
+    motivacao: clean(body.motivacao, 2000),
+    qualidades: clean(body.qualidades, 1500),
+    compromisso: clean(body.compromisso, 1500),
+    q1: clean(body.q1, 300),
+    q2: clean(body.q2, 300),
+    q3: clean(body.q3, 300),
+    situacao_pratica: clean(body.situacao_pratica, 2000),
+    conflito: clean(body.conflito, 2000)
+  };
+
+  const obrigatorios = [
+    "nome",
+    "idade",
+    "discord",
+    "disponibilidade",
+    "experiencia",
+    "funcao_pretendida",
+    "motivacao",
+    "qualidades",
+    "compromisso",
+    "q1",
+    "q2",
+    "q3",
+    "situacao_pratica",
+    "conflito"
+  ];
+
+  if (obrigatorios.some(campo => !campos[campo])) {
+    return res.status(400).json({
+      error: "Preenche todos os campos obrigatórios."
+    });
   }
 
   try {
@@ -74,24 +118,27 @@ app.post("/api/candidaturas", async (req, res) => {
       method: "POST",
       headers: { Prefer: "return=minimal" },
       body: JSON.stringify({
-        nome: nome.trim().slice(0, 100),
-        idade: idade.trim().slice(0, 3),
-        discord: discord.trim().slice(0, 100),
-        disponibilidade: disponibilidade.trim().slice(0, 500),
-        motivacao: motivacao.trim().slice(0, 2000),
+        ...campos,
         estado: "Recebida"
       })
     });
 
     if (!response.ok) {
-      console.error(await response.text());
-      return res.status(500).json({ error: "Erro ao guardar candidatura." });
+      console.error("Erro Supabase:", response.status);
+      return res.status(500).json({
+        error: "Não foi possível guardar a candidatura."
+      });
     }
 
-    res.json({ ok: true, message: "Candidatura recebida com sucesso." });
+    res.json({
+      ok: true,
+      message: "Candidatura recebida com sucesso."
+    });
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "Erro ao guardar candidatura." });
+    console.error("Erro ao guardar candidatura:", error.message);
+    res.status(500).json({
+      error: "Erro de ligação à base de dados."
+    });
   }
 });
 
@@ -105,16 +152,20 @@ app.get("/api/admin/candidaturas", adminAuth, async (req, res) => {
       "candidaturas?select=*&order=data_criacao.desc"
     );
 
-    const data = await response.json();
-
     if (!response.ok) {
-      return res.status(500).json({ error: "Erro ao consultar candidaturas." });
+      console.error("Erro ao consultar candidaturas:", response.status);
+      return res.status(500).json({
+        error: "Erro ao consultar candidaturas."
+      });
     }
 
+    const data = await response.json();
     res.json(data);
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "Erro ao consultar candidaturas." });
+    console.error(error.message);
+    res.status(500).json({
+      error: "Erro ao consultar candidaturas."
+    });
   }
 });
 
@@ -123,6 +174,10 @@ app.patch("/api/admin/candidaturas/:id", adminAuth, async (req, res) => {
 
   if (!estados.includes(req.body?.estado)) {
     return res.status(400).json({ error: "Estado inválido." });
+  }
+
+  if (!/^\d+$/.test(req.params.id)) {
+    return res.status(400).json({ error: "Identificador inválido." });
   }
 
   try {
@@ -136,13 +191,17 @@ app.patch("/api/admin/candidaturas/:id", adminAuth, async (req, res) => {
     );
 
     if (!response.ok) {
-      return res.status(500).json({ error: "Erro ao atualizar candidatura." });
+      return res.status(500).json({
+        error: "Erro ao atualizar candidatura."
+      });
     }
 
     res.json({ ok: true });
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "Erro ao atualizar candidatura." });
+    console.error(error.message);
+    res.status(500).json({
+      error: "Erro ao atualizar candidatura."
+    });
   }
 });
 
