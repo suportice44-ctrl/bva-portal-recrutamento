@@ -1,56 +1,42 @@
 
+
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="pt-PT">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Administração | BVA</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Administração | BVA Recrutamento</title>
   <style>
     * { box-sizing: border-box; }
-
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background: #101827;
-      color: #f5f7fb;
+      background: #0b1220;
+      color: #e8edf5;
     }
-
     header {
-      background: #172338;
-      padding: 24px;
-      border-bottom: 3px solid #c62828;
+      padding: 28px 6%;
+      background: #111c30;
+      border-bottom: 1px solid #26364f;
     }
-
-    header h1 { margin: 0 0 8px; font-size: 24px; }
-    header p { margin: 0; color: #bdc9d9; }
-
-    main {
-      max-width: 1100px;
-      margin: auto;
-      padding: 24px;
-    }
-
+    header small { color: #ef6464; letter-spacing: 2px; }
+    header h1 { margin: 10px 0 5px; }
+    header p { color: #9eabc0; margin: 0; }
+    main { width: min(1100px, 92%); margin: 30px auto; }
     .stats {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-      gap: 14px;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 12px;
       margin-bottom: 25px;
     }
-
     .stat, .application {
-      background: #1b2940;
-      border: 1px solid #34445e;
+      background: #121e32;
+      border: 1px solid #26364f;
       border-radius: 12px;
       padding: 18px;
     }
-
-    .stat span { color: #bdc9d9; }
-    .stat strong {
-      display: block;
-      font-size: 28px;
-      margin-top: 8px;
-    }
-
+    .stat span { color: #9eabc0; font-size: 13px; }
+    .stat strong { display: block; font-size: 27px; margin-top: 8px; }
     .toolbar {
       display: flex;
       justify-content: space-between;
@@ -59,227 +45,285 @@
       flex-wrap: wrap;
       margin-bottom: 18px;
     }
-
     button, select {
-      padding: 11px 14px;
-      border-radius: 7px;
-      border: 1px solid #52637d;
-      background: #263954;
+      background: #d94747;
       color: white;
+      border: 0;
+      padding: 11px 16px;
+      border-radius: 8px;
       cursor: pointer;
+      font-size: 14px;
     }
-
-    button:hover { background: #354d70; }
-    button:disabled { opacity: .5; cursor: wait; }
-
-    .application { margin-bottom: 14px; }
-    .application h3 { margin-top: 0; }
-
-    .application p {
-      color: #d3dceb;
-      line-height: 1.5;
-      overflow-wrap: anywhere;
-      white-space: pre-wrap;
+    select {
+      background: #1c2b43;
+      border: 1px solid #344963;
     }
-
-    .status {
-      color: #ffcf70;
-      font-weight: bold;
-    }
-
-    .actions {
+    .application { margin-bottom: 18px; }
+    .app-head {
       display: flex;
-      gap: 9px;
+      justify-content: space-between;
+      gap: 12px;
       flex-wrap: wrap;
-      margin-top: 14px;
+      align-items: center;
+      border-bottom: 1px solid #26364f;
+      padding-bottom: 13px;
+      margin-bottom: 15px;
     }
-
-    .message {
-      color: #cbd5e1;
-      margin: 14px 0;
+    .app-head h2 { margin: 0; font-size: 19px; }
+    .date { color: #9eabc0; font-size: 12px; }
+    .section { margin-top: 20px; }
+    .section h3 {
+      color: #ef7777;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      border-bottom: 1px solid #26364f;
+      padding-bottom: 8px;
     }
-
-    .empty {
-      text-align: center;
-      padding: 40px;
-      color: #bdc9d9;
+    .answer {
+      background: #0c1729;
+      border-radius: 8px;
+      padding: 12px;
+      margin: 9px 0;
+      overflow-wrap: anywhere;
     }
-
-    @media (max-width: 600px) {
-      main { padding: 14px; }
-      header { padding: 20px 14px; }
+    .answer b {
+      display: block;
+      color: #9eabc0;
+      font-size: 12px;
+      margin-bottom: 6px;
+    }
+    .answer p { margin: 0; white-space: pre-wrap; line-height: 1.5; }
+    .status { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+    .status label { color: #9eabc0; font-size: 13px; }
+    #message { color: #efaaaa; margin: 12px 0; }
+    .empty { text-align: center; color: #9eabc0; padding: 35px; }
+    @media(max-width:600px) {
+      header { padding: 22px 5%; }
+      main { width: 94%; }
+      .application { padding: 14px; }
     }
   </style>
 </head>
-
 <body>
-  <header>
-    <h1>Centro de Administração</h1>
-    <p>Bombeiros Voluntários do Algarve · Gestão de candidaturas</p>
-  </header>
+<header>
+  <small>BVA · SIMULAÇÃO DISCORD</small>
+  <h1>Painel de Recrutamento</h1>
+  <p>Gestão interna das candidaturas recebidas</p>
+</header>
 
-  <main>
-    <div class="stats">
-      <div class="stat"><span>Total</span><strong id="total">0</strong></div>
-      <div class="stat"><span>Recebidas</span><strong id="recebidas">0</strong></div>
-      <div class="stat"><span>Em análise</span><strong id="analise">0</strong></div>
-      <div class="stat"><span>Aceites</span><strong id="aceites">0</strong></div>
-      <div class="stat"><span>Recusadas</span><strong id="recusadas">0</strong></div>
-    </div>
+<main>
+  <div class="stats">
+    <div class="stat"><span>Total</span><strong id="total">0</strong></div>
+    <div class="stat"><span>Recebidas</span><strong id="recebidas">0</strong></div>
+    <div class="stat"><span>Em análise</span><strong id="analise">0</strong></div>
+    <div class="stat"><span>Aceites</span><strong id="aceites">0</strong></div>
+    <div class="stat"><span>Recusadas</span><strong id="recusadas">0</strong></div>
+  </div>
 
-    <div class="toolbar">
-      <h2>Candidaturas</h2>
-      <button id="refreshButton">Atualizar lista</button>
-    </div>
+  <div class="toolbar">
+    <h2>Candidaturas</h2>
+    <button id="refresh">Atualizar lista</button>
+  </div>
 
-    <p id="message" class="message">A carregar candidaturas...</p>
-    <section id="applications"></section>
+  <p id="message" role="status"></p>
+  <div id="applications">
+    <div class="empty">A carregar candidaturas...</div>
+  </div>
+</main>
 
-    <p class="message">
-      Portal destinado exclusivamente a uma simulação de recrutamento
-      numa comunidade Discord. Não representa um serviço real de bombeiros.
-    </p>
-  </main>
+<script>
+const container = document.getElementById("applications");
+const message = document.getElementById("message");
 
-  <script>
-    const applications = document.getElementById("applications");
-    const message = document.getElementById("message");
-    const refreshButton = document.getElementById("refreshButton");
+function addAnswer(parent, label, value) {
+  if (value === null || value === undefined || value === "") return;
 
-    const statuses = ["Recebida", "Em análise", "Aceite", "Recusada"];
+  const box = document.createElement("div");
+  box.className = "answer";
 
-    function addText(parent, tag, text, className) {
-      const element = document.createElement(tag);
-      element.textContent = text ?? "";
-      if (className) element.className = className;
-      parent.appendChild(element);
-      return element;
+  const title = document.createElement("b");
+  title.textContent = label;
+
+  const content = document.createElement("p");
+  content.textContent = value;
+
+  box.append(title, content);
+  parent.appendChild(box);
+}
+
+function addSection(parent, title, fields, item) {
+  const section = document.createElement("section");
+  section.className = "section";
+
+  const heading = document.createElement("h3");
+  heading.textContent = title;
+  section.appendChild(heading);
+
+  let count = 0;
+
+  for (const [key, label] of fields) {
+    if (item[key] !== null && item[key] !== undefined && item[key] !== "") {
+      addAnswer(section, label, item[key]);
+      count++;
     }
+  }
 
-    function updateStats(data) {
-      document.getElementById("total").textContent = data.length;
-      document.getElementById("recebidas").textContent =
-        data.filter(x => x.estado === "Recebida").length;
-      document.getElementById("analise").textContent =
-        data.filter(x => x.estado === "Em análise").length;
-      document.getElementById("aceites").textContent =
-        data.filter(x => x.estado === "Aceite").length;
-      document.getElementById("recusadas").textContent =
-        data.filter(x => x.estado === "Recusada").length;
-    }
+  if (count) parent.appendChild(section);
+}
 
-    function formatDate(date) {
-      if (!date) return "Data indisponível";
-      const parsed = new Date(date);
-      return Number.isNaN(parsed.getTime())
-        ? "Data indisponível"
-        : parsed.toLocaleString("pt-PT");
-    }
+function updateStats(items) {
+  document.getElementById("total").textContent = items.length;
+  document.getElementById("recebidas").textContent =
+    items.filter(x => x.estado === "Recebida").length;
+  document.getElementById("analise").textContent =
+    items.filter(x => x.estado === "Em análise").length;
+  document.getElementById("aceites").textContent =
+    items.filter(x => x.estado === "Aceite").length;
+  document.getElementById("recusadas").textContent =
+    items.filter(x => x.estado === "Recusada").length;
+}
 
-    async function changeStatus(id, estado, button) {
-      button.disabled = true;
+function createApplication(item) {
+  const card = document.createElement("article");
+  card.className = "application";
 
-      try {
-        const response = await fetch(
-          "/api/admin/candidaturas/" + encodeURIComponent(id),
-          {
-            method: "PATCH",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ estado })
-          }
-        );
+  const head = document.createElement("div");
+  head.className = "app-head";
 
-        if (!response.ok) {
-          throw new Error("Não foi possível atualizar o estado.");
+  const title = document.createElement("h2");
+  title.textContent = item.nome || "Candidato sem nome";
+
+  const date = document.createElement("span");
+  date.className = "date";
+
+  const parsedDate = item.data_criacao
+    ? new Date(item.data_criacao)
+    : null;
+
+  date.textContent = parsedDate && !Number.isNaN(parsedDate.getTime())
+    ? parsedDate.toLocaleString("pt-PT")
+    : "Data indisponível";
+
+  head.append(title, date);
+  card.appendChild(head);
+
+  addSection(card, "01 · Identificação", [
+    ["nome", "Nome"],
+    ["idade", "Faixa etária"],
+    ["discord", "Discord"],
+    ["disponibilidade", "Disponibilidade"]
+  ], item);
+
+  addSection(card, "02 · Perfil e experiência", [
+    ["experiencia", "Experiência anterior"],
+    ["funcao_pretendida", "Função pretendida"],
+    ["experiencia_detalhe", "Detalhes da experiência"]
+  ], item);
+
+  addSection(card, "03 · Motivação e compromisso", [
+    ["motivacao", "Motivação"],
+    ["qualidades", "Qualidades"],
+    ["compromisso", "Compromisso"]
+  ], item);
+
+  addSection(card, "04 · Conhecimentos", [
+    ["q1", "Pergunta 1"],
+    ["q2", "Pergunta 2"],
+    ["q3", "Pergunta 3"]
+  ], item);
+
+  addSection(card, "05 · Situações práticas", [
+    ["situacao_pratica", "Situação prática"],
+    ["conflito", "Gestão de conflitos"]
+  ], item);
+
+  const footer = document.createElement("div");
+  footer.className = "section status";
+
+  const label = document.createElement("label");
+  label.textContent = "Estado da candidatura:";
+
+  const select = document.createElement("select");
+
+  ["Recebida", "Em análise", "Aceite", "Recusada"].forEach(state => {
+    const option = document.createElement("option");
+    option.value = state;
+    option.textContent = state;
+    select.appendChild(option);
+  });
+
+  select.value = item.estado || "Recebida";
+
+  select.addEventListener("change", async () => {
+    select.disabled = true;
+    message.textContent = "A atualizar estado...";
+
+    try {
+      const response = await fetch(
+        "/api/admin/candidaturas/" + encodeURIComponent(item.id),
+        {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ estado: select.value })
         }
+      );
 
-        message.textContent = "Estado atualizado com sucesso.";
-        await loadApplications();
-      } catch (error) {
-        message.textContent = error.message;
-        button.disabled = false;
-      }
+      if (!response.ok) throw new Error();
+
+      item.estado = select.value;
+      message.textContent = "Estado atualizado com sucesso.";
+      updateStats(window.currentApplications || []);
+    } catch {
+      message.textContent = "Não foi possível atualizar o estado.";
+      select.value = item.estado || "Recebida";
+    } finally {
+      select.disabled = false;
     }
+  });
 
-    function renderApplications(data) {
-      applications.replaceChildren();
+  footer.append(label, select);
+  card.appendChild(footer);
 
-      if (!data.length) {
-        addText(applications, "div",
-          "Ainda não existem candidaturas.", "empty");
-        return;
-      }
+  return card;
+}
 
-      data.forEach(item => {
-        const card = document.createElement("article");
-        card.className = "application";
+async function loadApplications() {
+  message.textContent = "A carregar...";
+  container.replaceChildren();
 
-        addText(card, "h3", item.nome);
-        addText(card, "p", "Idade: " + item.idade);
-        addText(card, "p", "Discord: " + item.discord);
-        addText(card, "p", "Disponibilidade: " + item.disponibilidade);
-        addText(card, "p", "Motivação: " + item.motivacao);
-        addText(card, "p", "Recebida em: " + formatDate(item.data_criacao));
-        addText(card, "p", "Estado atual: " + item.estado, "status");
+  try {
+    const response = await fetch("/api/admin/candidaturas", {
+      cache: "no-store"
+    });
 
-        const actions = document.createElement("div");
-        actions.className = "actions";
+    if (!response.ok) throw new Error();
 
-        const select = document.createElement("select");
+    const items = await response.json();
+    window.currentApplications = items;
 
-        statuses.forEach(status => {
-          const option = document.createElement("option");
-          option.value = status;
-          option.textContent = status;
-          option.selected = status === item.estado;
-          select.appendChild(option);
-        });
+    updateStats(items);
 
-        const save = document.createElement("button");
-        save.textContent = "Guardar estado";
-
-        save.addEventListener("click", () => {
-          changeStatus(item.id, select.value, save);
-        });
-
-        actions.appendChild(select);
-        actions.appendChild(save);
-        card.appendChild(actions);
-        applications.appendChild(card);
+    if (!items.length) {
+      const empty = document.createElement("div");
+      empty.className = "empty";
+      empty.textContent = "Ainda não existem candidaturas.";
+      container.appendChild(empty);
+    } else {
+      items.forEach(item => {
+        container.appendChild(createApplication(item));
       });
     }
 
-    async function loadApplications() {
-      refreshButton.disabled = true;
-      message.textContent = "A carregar candidaturas...";
+    message.textContent = "";
+  } catch {
+    message.textContent =
+      "Erro ao carregar candidaturas. Atualiza a página ou tenta novamente.";
+  }
+}
 
-      try {
-        const response = await fetch("/api/admin/candidaturas", {
-          cache: "no-store"
-        });
-
-        if (!response.ok) {
-          throw new Error("Erro ao consultar candidaturas.");
-        }
-
-        const data = await response.json();
-
-        if (!Array.isArray(data)) {
-          throw new Error("Resposta inválida do servidor.");
-        }
-
-        updateStats(data);
-        renderApplications(data);
-        message.textContent = "Candidaturas atualizadas.";
-      } catch (error) {
-        message.textContent = error.message;
-      } finally {
-        refreshButton.disabled = false;
-      }
-    }
-
-    refreshButton.addEventListener("click", loadApplications);
-    loadApplications();
-  </script>
+document.getElementById("refresh").addEventListener("click", loadApplications);
+loadApplications();
+</script>
 </body>
 </html>
