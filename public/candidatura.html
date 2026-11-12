@@ -7,6 +7,7 @@
 <meta name="theme-color" content="#102238">
 <meta name="description" content="Formulário de recrutamento dos Bombeiros Voluntários do Algarve.">
 <title>Recrutamento | Bombeiros Voluntários do Algarve</title>
+
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 
 <style>
@@ -333,7 +334,8 @@ main {
 .choice input {
   position:absolute;
   opacity:0;
-  pointer-events:none;
+  width:1px;
+  height:1px;
 }
 
 .choice label {
@@ -547,7 +549,7 @@ footer {
 
 <section class="hero">
   <div class="container">
-    <span class="kicker">RECRUTAMENTO OFICIAL · BVA</span>
+    <span class="kicker">RECRUTAMENTO · BVA</span>
     <h2>Junta-te à nossa equipa.</h2>
     <p>Preenche a candidatura com atenção. O processo está dividido em quatro etapas para tornar a tua inscrição simples e organizada.</p>
   </div>
@@ -579,6 +581,7 @@ footer {
 
     <form id="applicationForm" novalidate>
 
+      <!-- ETAPA 1 -->
       <section class="form-step active">
         <div class="section-title">
           <span>ETAPA 01</span>
@@ -604,6 +607,7 @@ footer {
         </div>
       </section>
 
+      <!-- ETAPA 2 -->
       <section class="form-step">
         <div class="section-title">
           <span>ETAPA 02</span>
@@ -660,6 +664,7 @@ footer {
         </div>
       </section>
 
+      <!-- ETAPA 3 -->
       <section class="form-step">
         <div class="section-title">
           <span>ETAPA 03</span>
@@ -690,6 +695,7 @@ footer {
         </div>
       </section>
 
+      <!-- ETAPA 4 -->
       <section class="form-step">
         <div class="section-title">
           <span>ETAPA 04</span>
@@ -700,17 +706,17 @@ footer {
         <div class="grid">
           <div class="field full">
             <label for="q1">1. O que significa para ti trabalhar em equipa? <span class="required">*</span></label>
-            <textarea id="q1" name="q1" maxlength="2000" required></textarea>
+            <textarea id="q1" name="q1" maxlength="300" required></textarea>
           </div>
 
           <div class="field full">
             <label for="q2">2. Como reagirias a uma orientação de um superior? <span class="required">*</span></label>
-            <textarea id="q2" name="q2" maxlength="2000" required></textarea>
+            <textarea id="q2" name="q2" maxlength="300" required></textarea>
           </div>
 
           <div class="field full">
             <label for="q3">3. Porque devemos escolher a tua candidatura? <span class="required">*</span></label>
-            <textarea id="q3" name="q3" maxlength="2000" required></textarea>
+            <textarea id="q3" name="q3" maxlength="300" required></textarea>
           </div>
 
           <div class="field full">
@@ -759,7 +765,7 @@ footer {
   "use strict";
 
   const form = document.getElementById("applicationForm");
-  const steps = Array.from(document.querySelectorAll(".form-step"));
+  const formSteps = Array.from(document.querySelectorAll(".form-step"));
   const progressSteps = Array.from(document.querySelectorAll(".steps .step"));
 
   const progressFill = document.getElementById("progressFill");
@@ -771,11 +777,11 @@ footer {
   const submitButton = document.getElementById("submitButton");
 
   const formError = document.getElementById("formError");
-  const formCard = document.getElementById("formCard");
   const progressCard = document.getElementById("progressCard");
+  const formCard = document.getElementById("formCard");
   const successScreen = document.getElementById("successScreen");
 
-  const titles = [
+  const stepTitles = [
     "Dados pessoais",
     "Disponibilidade e atividade",
     "Perfil e motivação",
@@ -785,24 +791,28 @@ footer {
   let currentStep = 0;
   let submitting = false;
 
+  function showError(message) {
+    formError.textContent = message;
+    formError.style.display = "block";
+    formError.scrollIntoView({
+      behavior: "smooth",
+      block: "center"
+    });
+  }
+
   function clearError() {
     formError.textContent = "";
     formError.style.display = "none";
   }
 
-  function showError(message) {
-    formError.textContent = message;
-    formError.style.display = "block";
-    formError.scrollIntoView({ behavior: "smooth", block: "center" });
-  }
-
   function showStep(index) {
-    if (index < 0 || index >= steps.length) return;
+    if (index < 0 || index >= formSteps.length) {
+      return;
+    }
 
     currentStep = index;
-    clearError();
 
-    steps.forEach(function (step, i) {
+    formSteps.forEach(function (step, i) {
       step.classList.toggle("active", i === index);
     });
 
@@ -812,9 +822,8 @@ footer {
     });
 
     progressFill.style.width = ((index + 1) * 25) + "%";
-    progressTitle.textContent = titles[index];
+    progressTitle.textContent = stepTitles[index];
     progressText.textContent = "Etapa " + (index + 1) + " de 4";
 
-    previousButton.style.visibility = index === 0 ? "hidden" : "visible";
-    nextButton.style.display = index === steps.length - 1 ? "none" : "inline-block";
-    submitButton.style.display = 
+    previousButton.style.visibility =
+      index === 0 ? "hidden" : "visi
