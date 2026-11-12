@@ -580,6 +580,7 @@ footer {
 
     <form id="applicationForm" novalidate>
 
+      <!-- ETAPA 1 -->
       <section class="form-step active">
         <div class="section-title">
           <span>ETAPA 01</span>
@@ -605,6 +606,7 @@ footer {
         </div>
       </section>
 
+      <!-- ETAPA 2 -->
       <section class="form-step">
         <div class="section-title">
           <span>ETAPA 02</span>
@@ -661,6 +663,7 @@ footer {
         </div>
       </section>
 
+      <!-- ETAPA 3 -->
       <section class="form-step">
         <div class="section-title">
           <span>ETAPA 03</span>
@@ -691,6 +694,7 @@ footer {
         </div>
       </section>
 
+      <!-- ETAPA 4 -->
       <section class="form-step">
         <div class="section-title">
           <span>ETAPA 04</span>
@@ -701,17 +705,17 @@ footer {
         <div class="grid">
           <div class="field full">
             <label for="q1">1. O que significa para ti trabalhar em equipa? <span class="required">*</span></label>
-            <textarea id="q1" name="q1" maxlength="2000" required></textarea>
+            <textarea id="q1" name="q1" maxlength="300" required></textarea>
           </div>
 
           <div class="field full">
             <label for="q2">2. Como reagirias a uma orientação de um superior? <span class="required">*</span></label>
-            <textarea id="q2" name="q2" maxlength="2000" required></textarea>
+            <textarea id="q2" name="q2" maxlength="300" required></textarea>
           </div>
 
           <div class="field full">
             <label for="q3">3. Porque devemos escolher a tua candidatura? <span class="required">*</span></label>
-            <textarea id="q3" name="q3" maxlength="2000" required></textarea>
+            <textarea id="q3" name="q3" maxlength="300" required></textarea>
           </div>
 
           <div class="field full">
@@ -785,11 +789,19 @@ footer {
     ];
 
     if (
-      !form || steps.length !== 4 ||
+      !form ||
+      steps.length !== 4 ||
       progressSteps.length !== 4 ||
-      !progressFill || !progressTitle || !progressText ||
-      !previousButton || !nextButton || !submitButton ||
-      !formError || !formCard || !progressCard || !successScreen
+      !progressFill ||
+      !progressTitle ||
+      !progressText ||
+      !previousButton ||
+      !nextButton ||
+      !submitButton ||
+      !formError ||
+      !formCard ||
+      !progressCard ||
+      !successScreen
     ) {
       console.error("Erro: elementos necessários do formulário em falta.");
       return;
@@ -816,10 +828,4 @@ footer {
       if (index < 0 || index >= steps.length) return;
 
       currentStep = index;
-      clearError();
-
-      steps.forEach(function (step, i) {
-        step.classList.toggle("active", i === index);
-      });
-
-      progressSteps.forEac
+      clearError
