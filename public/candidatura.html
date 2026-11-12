@@ -233,14 +233,8 @@ main {
 }
 
 @keyframes appear {
-  from {
-    opacity:0;
-    transform:translateY(5px);
-  }
-  to {
-    opacity:1;
-    transform:translateY(0);
-  }
+  from { opacity:0; transform:translateY(5px); }
+  to { opacity:1; transform:translateY(0); }
 }
 
 .section-title {
@@ -416,6 +410,9 @@ main {
   font-weight:800;
   letter-spacing:.5px;
   cursor:pointer;
+  text-decoration:none;
+  display:inline-block;
+  text-align:center;
 }
 
 .btn-secondary {
@@ -486,42 +483,19 @@ footer {
 }
 
 @media(max-width:650px) {
-  .header-content {
-    align-items:flex-start;
-  }
-
-  .brand h1 {
-    font-size:11px;
-  }
-
-  .back-link {
-    font-size:9px;
-    padding:9px;
-  }
-
+  .header-content { align-items:flex-start; }
+  .brand h1 { font-size:11px; }
+  .back-link { font-size:9px; padding:9px; }
   .grid,
-  .choice-group {
-    grid-template-columns:1fr;
-  }
-
-  .field.full {
-    grid-column:auto;
-  }
-
-  .form-card {
-    padding:21px;
-  }
-
-  .steps {
-    gap:5px;
-  }
-
+  .choice-group { grid-template-columns:1fr; }
+  .field.full { grid-column:auto; }
+  .form-card { padding:21px; }
+  .steps { gap:5px; }
   .step {
     flex-direction:column;
     text-align:center;
     font-size:9px;
   }
-
   .navigation .btn {
     flex:1;
     padding:12px 8px;
@@ -575,10 +549,11 @@ footer {
   </div>
 
   <div class="form-card" id="formCard">
-    <div id="formError" class="form-error" role="alert"></div>
+    <div id="formError" class="form-error" role="alert" aria-live="polite"></div>
 
     <form id="applicationForm" novalidate>
 
+      <!-- ETAPA 1 -->
       <section class="form-step active">
         <div class="section-title">
           <span>ETAPA 01</span>
@@ -604,6 +579,7 @@ footer {
         </div>
       </section>
 
+      <!-- ETAPA 2 -->
       <section class="form-step">
         <div class="section-title">
           <span>ETAPA 02</span>
@@ -660,6 +636,7 @@ footer {
         </div>
       </section>
 
+      <!-- ETAPA 3 -->
       <section class="form-step">
         <div class="section-title">
           <span>ETAPA 03</span>
@@ -690,6 +667,7 @@ footer {
         </div>
       </section>
 
+      <!-- ETAPA 4 -->
       <section class="form-step">
         <div class="section-title">
           <span>ETAPA 04</span>
@@ -755,10 +733,10 @@ footer {
 </footer>
 
 <script>
-(function() {
+(function () {
   "use strict";
 
-  function iniciarFormulario() {
+  document.addEventListener("DOMContentLoaded", function () {
     const form = document.getElementById("applicationForm");
     const formSteps = Array.from(document.querySelectorAll(".form-step"));
     const progressSteps = Array.from(document.querySelectorAll(".steps .step"));
@@ -776,11 +754,6 @@ footer {
     const formCard = document.getElementById("formCard");
     const successScreen = document.getElementById("successScreen");
 
-    if (!form || !nextButton || !previousButton || !submitButton) {
-      console.error("Não foi possível encontrar os elementos do formulário.");
-      return;
-    }
-
     const stepTitles = [
       "Dados pessoais",
       "Disponibilidade e atividade",
@@ -791,9 +764,25 @@ footer {
     let currentStep = 0;
     let submitting = false;
 
+    if (
+      !form ||
+      !progressFill ||
+      !progressTitle ||
+      !progressText ||
+      !previousButton ||
+      !nextButton ||
+      !submitButton ||
+      !formError ||
+      formSteps.length !== 4
+    ) {
+      console.error("Erro: não foi possível encontrar todos os elementos do formulário.");
+      return;
+    }
+
     function showError(message) {
       formError.textContent = message;
       formError.style.display = "block";
+
       formError.scrollIntoView({
         behavior: "smooth",
         block: "center"
@@ -810,15 +799,8 @@ footer {
 
       currentStep = index;
 
-      formSteps.forEach(function(step, i) {
+      formSteps.forEach(function (step, i) {
         step.classList.toggle("active", i === index);
       });
 
-      progressSteps.forEach(function(step, i) {
-        step.classList.toggle("active", i === index);
-        step.classList.toggle("completed", i < index);
-      });
-
-      progressFill.style.width = ((index + 1) * 25) + "%";
-      progressTitle.textContent = stepTitles[index];
-      progressText.textContent = "Etapa " + (index +
+      progressSteps.forEach(fu
