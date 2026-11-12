@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#101923">
   <meta name="description" content="Portal de recrutamento BVA — comunidade de simulação e roleplay no Discord.">
-  <title>Recrutamento | BVA — Bombeiros Voluntários</title>
+  <title>BVA | Portal de Recrutamento</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,30 +15,36 @@
   <style>
     :root {
       --navy: #101923;
-      --navy2: #172432;
-      --navy3: #203346;
+      --navy2: #172737;
+      --navy3: #24394d;
       --red: #c72e35;
       --red2: #e0444b;
       --white: #fff;
-      --muted: #aab6c2;
       --light: #f3f5f7;
-      --border: #e1e6eb;
-      --text: #253342;
-      --radius: 14px;
-      --shadow: 0 15px 45px rgba(15, 28, 40, .10);
+      --text: #263746;
+      --muted: #71808d;
+      --border: #e2e7ec;
+      --radius: 13px;
+      --shadow: 0 15px 45px rgba(15,28,40,.09);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 95px;
+    }
+
     body {
       font-family: "DM Sans", sans-serif;
       color: var(--text);
-      background: #fff;
-      line-height: 1.65;
+      background: white;
+      line-height: 1.7;
     }
+
     a { color: inherit; text-decoration: none; }
-    button, input, select, textarea { font: inherit; }
     img { display: block; max-width: 100%; }
+    button, input, select, textarea { font: inherit; }
 
     .container {
       width: min(1160px, calc(100% - 40px));
@@ -46,27 +52,31 @@
     }
 
     .topbar {
-      background: #0b121a;
-      color: #cbd4dc;
-      font-size: 12px;
+      background: #090f16;
+      color: #b9c4ce;
       padding: 9px 0;
+      font-size: 11px;
     }
+
     .topbar-inner {
       display: flex;
       justify-content: space-between;
       gap: 15px;
       flex-wrap: wrap;
     }
-    .topbar strong { color: white; letter-spacing: .5px; }
+
+    .topbar strong { color: white; letter-spacing: 1px; }
 
     header {
-      background: var(--navy);
-      color: white;
       position: sticky;
       top: 0;
       z-index: 100;
+      background: rgba(16,25,35,.98);
+      color: white;
       border-bottom: 1px solid rgba(255,255,255,.08);
+      backdrop-filter: blur(12px);
     }
+
     .nav {
       min-height: 82px;
       display: flex;
@@ -74,89 +84,100 @@
       justify-content: space-between;
       gap: 25px;
     }
+
     .brand {
       display: flex;
       align-items: center;
       gap: 13px;
-      min-width: 220px;
+      min-width: 230px;
     }
+
     .brand-mark {
       width: 49px;
       height: 49px;
-      border-radius: 12px;
-      background: var(--red);
       display: grid;
       place-items: center;
+      border-radius: 11px;
+      background: var(--red);
+      color: white;
       font-family: Manrope, sans-serif;
       font-weight: 800;
-      font-size: 18px;
+      font-size: 17px;
       letter-spacing: -1px;
-      box-shadow: 0 5px 18px rgba(199,46,53,.25);
+      box-shadow: 0 5px 20px rgba(199,46,53,.25);
     }
+
     .brand-name {
       font-family: Manrope, sans-serif;
       font-weight: 800;
-      font-size: 18px;
+      font-size: 16px;
       line-height: 1.2;
       letter-spacing: .3px;
     }
+
     .brand-name small {
       display: block;
-      font-size: 10px;
       color: #aab6c2;
-      font-weight: 600;
+      font-size: 9px;
       letter-spacing: 2px;
-      margin-top: 4px;
+      margin-top: 5px;
     }
+
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 27px;
-      font-size: 13px;
-      font-weight: 600;
-      color: #d2dbe3;
+      gap: 25px;
+      font-size: 12px;
+      font-weight: 700;
+      color: #d5dce3;
     }
-    .nav-links a:hover { color: white; }
+
+    .nav-links a:not(.nav-cta):hover { color: #ff777c; }
+
     .nav-cta, .btn {
       display: inline-flex;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
       gap: 9px;
+      padding: 13px 21px;
       border: 0;
       border-radius: 7px;
-      padding: 13px 20px;
       background: var(--red);
       color: white;
-      font-weight: 700;
+      font-weight: 800;
+      font-size: 13px;
       cursor: pointer;
       transition: .2s ease;
     }
+
     .nav-cta:hover, .btn:hover {
       background: var(--red2);
       transform: translateY(-2px);
     }
+
     .menu-toggle {
       display: none;
-      background: transparent;
       border: 1px solid #455361;
+      background: transparent;
       color: white;
+      padding: 9px 13px;
       border-radius: 7px;
-      padding: 8px 12px;
       cursor: pointer;
     }
 
     .hero {
-      min-height: 610px;
-      color: white;
+      min-height: 630px;
       display: flex;
       align-items: center;
       position: relative;
       overflow: hidden;
+      color: white;
       background:
-        linear-gradient(90deg, rgba(8,17,26,.96) 0%, rgba(8,17,26,.84) 48%, rgba(8,17,26,.28) 100%),
+        linear-gradient(90deg, rgba(7,15,23,.96) 0%, rgba(7,15,23,.83) 48%, rgba(7,15,23,.32) 100%),
         url("https://commons.wikimedia.org/wiki/Special:FilePath/Associa%C3%A7%C3%A3o_Humanit%C3%A1ria_de_Bombeiros_Volunt%C3%A1rios_de_Faro_-_Cruz_Lusa_02.jpg")
         center 48% / cover no-repeat;
     }
+
     .hero::after {
       content: "";
       position: absolute;
@@ -166,12 +187,14 @@
       height: 5px;
       background: var(--red);
     }
+
     .hero-content {
+      max-width: 760px;
       position: relative;
       z-index: 2;
-      max-width: 720px;
-      padding: 95px 0 110px;
+      padding: 100px 0 115px;
     }
+
     .eyebrow {
       display: inline-flex;
       align-items: center;
@@ -179,81 +202,121 @@
       color: #ff777c;
       font-size: 11px;
       font-weight: 800;
-      letter-spacing: 2.2px;
+      letter-spacing: 2px;
       text-transform: uppercase;
-      margin-bottom: 22px;
-    }
-    .eyebrow::before {
-      content: "";
-      height: 2px;
-      width: 32px;
-      background: var(--red);
-    }
-    h1, h2, h3 {
-      font-family: Manrope, sans-serif;
-      line-height: 1.18;
-    }
-    .hero h1 {
-      font-size: clamp(38px, 6vw, 65px);
-      font-weight: 800;
-      letter-spacing: -2px;
       margin-bottom: 23px;
     }
+
+    .eyebrow::before {
+      content: "";
+      width: 32px;
+      height: 2px;
+      background: var(--red);
+    }
+
+    h1, h2, h3 {
+      font-family: Manrope, sans-serif;
+      line-height: 1.2;
+    }
+
+    .hero h1 {
+      font-size: clamp(40px, 6vw, 68px);
+      font-weight: 800;
+      letter-spacing: -2.5px;
+      margin-bottom: 22px;
+    }
+
     .hero h1 span { color: #f05a60; }
+
     .hero p {
-      color: #d2dbe3;
+      color: #d0d9e1;
       font-size: 16px;
-      max-width: 610px;
+      max-width: 620px;
       margin-bottom: 30px;
     }
+
     .hero-actions {
       display: flex;
-      gap: 13px;
       flex-wrap: wrap;
+      gap: 13px;
     }
+
     .btn-outline {
       display: inline-flex;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
       padding: 12px 20px;
       border: 1px solid rgba(255,255,255,.45);
       border-radius: 7px;
       color: white;
+      font-size: 13px;
       font-weight: 700;
+      transition: .2s;
     }
-    .btn-outline:hover { background: rgba(255,255,255,.1); }
+
+    .btn-outline:hover { background: rgba(255,255,255,.12); }
+
+    .hero-bottom {
+      display: flex;
+      gap: 35px;
+      flex-wrap: wrap;
+      margin-top: 50px;
+      padding-top: 23px;
+      border-top: 1px solid rgba(255,255,255,.18);
+    }
+
+    .hero-stat strong {
+      display: block;
+      font-family: Manrope, sans-serif;
+      font-size: 18px;
+      color: white;
+    }
+
+    .hero-stat span {
+      color: #aab6c2;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
 
     .notice {
-      background: #fff5e9;
+      margin: 27px auto;
+      padding: 16px 19px;
       border-left: 4px solid #d58b35;
-      color: #6c4c23;
-      padding: 15px 18px;
       border-radius: 7px;
-      font-size: 13px;
-      margin: 26px auto;
+      background: #fff6eb;
+      color: #765127;
+      font-size: 12px;
     }
 
     section { padding: 90px 0; }
+
     .section-heading {
-      max-width: 690px;
+      max-width: 710px;
       margin-bottom: 42px;
     }
+
     .section-kicker {
       display: block;
       color: var(--red);
-      font-size: 11px;
+      font-size: 10px;
       font-weight: 800;
-      letter-spacing: 2px;
+      letter-spacing: 2.2px;
       text-transform: uppercase;
       margin-bottom: 12px;
     }
+
     .section-heading h2 {
       color: var(--navy);
-      font-size: clamp(29px, 4vw, 42px);
-      letter-spacing: -1.3px;
-      margin-bottom: 15px;
+      font-size: clamp(29px, 4vw, 43px);
+      letter-spacing: -1.5px;
+      margin-bottom: 14px;
     }
-    .section-heading p { color: #687684; font-size: 15px; }
+
+    .section-heading p {
+      color: var(--muted);
+      font-size: 14px;
+    }
 
     .about-grid {
       display: grid;
@@ -261,63 +324,69 @@
       gap: 60px;
       align-items: center;
     }
+
     .about-image {
-      min-height: 420px;
+      min-height: 440px;
       border-radius: var(--radius);
       overflow: hidden;
       position: relative;
       box-shadow: var(--shadow);
+      background: var(--navy2);
     }
+
     .about-image img {
       width: 100%;
-      height: 100%;
-      min-height: 420px;
+      height: 440px;
       object-fit: cover;
     }
+
     .image-caption {
       position: absolute;
       bottom: 0;
       left: 0;
       right: 0;
-      padding: 28px 20px 17px;
+      padding: 35px 20px 17px;
       color: white;
       font-size: 11px;
       background: linear-gradient(transparent, rgba(0,0,0,.8));
     }
+
     .about-copy h2 {
-      font-family: Manrope, sans-serif;
       color: var(--navy);
       font-size: 35px;
-      line-height: 1.2;
+      letter-spacing: -1px;
       margin-bottom: 20px;
     }
+
     .about-copy p {
-      color: #687684;
-      margin-bottom: 15px;
+      color: var(--muted);
       font-size: 14px;
+      margin-bottom: 15px;
     }
+
     .check-list {
       list-style: none;
-      margin-top: 23px;
       display: grid;
-      gap: 12px;
+      gap: 13px;
+      margin-top: 23px;
     }
+
     .check-list li {
       display: flex;
-      gap: 12px;
       align-items: flex-start;
-      font-weight: 600;
-      font-size: 14px;
+      gap: 12px;
+      font-size: 13px;
+      font-weight: 700;
     }
+
     .check {
-      background: #fcebed;
-      color: var(--red);
-      border-radius: 50%;
-      width: 23px;
-      height: 23px;
       display: grid;
       place-items: center;
-      flex: 0 0 23px;
+      flex: 0 0 24px;
+      height: 24px;
+      border-radius: 50%;
+      color: var(--red);
+      background: #fcebed;
       font-size: 12px;
     }
 
@@ -325,24 +394,29 @@
       background: var(--navy);
       color: white;
     }
+
     .dark-section .section-heading h2 { color: white; }
     .dark-section .section-heading p { color: #aab6c2; }
+
     .values-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 18px;
+      gap: 17px;
     }
+
     .value-card {
-      background: #192938;
+      padding: 28px 22px;
+      background: #192a39;
       border: 1px solid rgba(255,255,255,.08);
       border-radius: 11px;
-      padding: 27px 22px;
-      transition: .2s;
+      transition: .25s;
     }
+
     .value-card:hover {
       transform: translateY(-5px);
       border-color: rgba(240,90,96,.55);
     }
+
     .value-number {
       color: #f05a60;
       font-family: Manrope, sans-serif;
@@ -350,13 +424,15 @@
       font-weight: 800;
       letter-spacing: 2px;
     }
+
     .value-card h3 {
       font-size: 18px;
       margin: 17px 0 10px;
     }
+
     .value-card p {
       color: #aab6c2;
-      font-size: 13px;
+      font-size: 12px;
     }
 
     .structure-grid {
@@ -364,329 +440,474 @@
       grid-template-columns: repeat(3, 1fr);
       gap: 18px;
     }
+
     .structure-card {
+      padding: 27px;
       border: 1px solid var(--border);
       border-radius: 11px;
-      padding: 25px;
       background: white;
       box-shadow: 0 6px 22px rgba(15,28,40,.04);
+      transition: .2s;
     }
+
+    .structure-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow);
+    }
+
     .structure-card .number {
-      width: 36px;
-      height: 36px;
       display: grid;
       place-items: center;
-      background: #fcebed;
-      color: var(--red);
+      width: 38px;
+      height: 38px;
+      margin-bottom: 19px;
       border-radius: 8px;
+      color: var(--red);
+      background: #fcebed;
       font-weight: 800;
-      margin-bottom: 18px;
     }
+
     .structure-card h3 {
       color: var(--navy);
       font-size: 18px;
       margin-bottom: 9px;
     }
-    .structure-card p { color: #71808d; font-size: 13px; }
+
+    .structure-card p {
+      color: var(--muted);
+      font-size: 12px;
+    }
 
     .gallery-section { background: var(--light); }
+
     .gallery-grid {
       display: grid;
       grid-template-columns: 1.2fr 1fr 1fr;
-      grid-template-rows: 220px 220px;
+      grid-template-rows: 225px 225px;
       gap: 14px;
     }
+
     .gallery-item {
       position: relative;
       overflow: hidden;
       border-radius: 10px;
       background: #dce2e8;
     }
+
     .gallery-item:first-child { grid-row: span 2; }
+
     .gallery-item img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       transition: transform .5s;
     }
+
     .gallery-item:hover img { transform: scale(1.05); }
+
     .gallery-label {
       position: absolute;
       bottom: 0;
       left: 0;
       right: 0;
-      color: white;
       padding: 35px 16px 14px;
-      font-size: 13px;
+      color: white;
+      font-size: 12px;
       font-weight: 700;
       background: linear-gradient(transparent, rgba(0,0,0,.8));
+    }
+
+    .gallery-note {
+      margin-top: 16px;
+      color: var(--muted);
+      font-size: 11px;
     }
 
     .steps-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
+      gap: 18px;
     }
+
     .step {
+      padding: 23px 19px;
       border-top: 3px solid var(--red);
-      padding: 22px 18px;
-      background: #f7f8fa;
       border-radius: 0 0 9px 9px;
+      background: #f7f8fa;
     }
+
     .step span {
       color: var(--red);
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 800;
       letter-spacing: 1px;
     }
+
     .step h3 {
       color: var(--navy);
       font-size: 17px;
       margin: 12px 0 8px;
     }
-    .step p { color: #71808d; font-size: 13px; }
 
-    .recruitment {
-      background: #f3f5f7;
+    .step p {
+      color: var(--muted);
+      font-size: 12px;
     }
+
+    .recruitment { background: #f1f3f6; }
+
     .form-layout {
       display: grid;
       grid-template-columns: 300px 1fr;
-      gap: 28px;
+      gap: 27px;
       align-items: start;
     }
+
     .form-aside {
-      background: var(--navy);
-      color: white;
-      border-radius: 12px;
-      padding: 28px;
       position: sticky;
       top: 105px;
+      padding: 29px;
+      border-radius: 12px;
+      background: var(--navy);
+      color: white;
     }
-    .form-aside h3 { font-size: 21px; margin-bottom: 15px; }
+
+    .form-aside h3 {
+      font-size: 22px;
+      margin-bottom: 14px;
+    }
+
     .form-aside p {
       color: #b5c0ca;
-      font-size: 13px;
-      margin-bottom: 20px;
+      font-size: 12px;
+      margin-bottom: 21px;
     }
+
     .form-aside ul {
       list-style: none;
       display: grid;
-      gap: 13px;
-      font-size: 13px;
+      gap: 14px;
       color: #e0e6eb;
+      font-size: 12px;
     }
+
     .form-aside li::before {
       content: "✓";
       color: #ff7379;
       font-weight: 800;
       margin-right: 9px;
     }
+
+    .aside-divider {
+      height: 1px;
+      background: rgba(255,255,255,.13);
+      margin: 23px 0;
+    }
+
+    .aside-small {
+      color: #aab6c2;
+      font-size: 11px;
+    }
+
     .application-form {
-      background: white;
-      padding: 34px;
+      padding: 35px;
       border-radius: 12px;
+      background: white;
       box-shadow: var(--shadow);
     }
+
     .form-heading {
       padding-bottom: 22px;
       border-bottom: 1px solid var(--border);
       margin-bottom: 25px;
     }
+
     .form-heading h2 {
       color: var(--navy);
-      font-size: 26px;
+      font-size: 25px;
       margin-bottom: 7px;
     }
-    .form-heading p { color: #71808d; font-size: 13px; }
+
+    .form-heading p {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
     .form-section-title {
       color: var(--red);
-      font-size: 11px;
+      font-size: 10px;
       font-weight: 800;
       text-transform: uppercase;
-      letter-spacing: 1.6px;
+      letter-spacing: 1.7px;
       margin: 27px 0 16px;
       padding-bottom: 9px;
       border-bottom: 1px solid #edf0f2;
     }
+
     .form-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 17px;
     }
-    .field { display: flex; flex-direction: column; gap: 7px; }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
     .field.full { grid-column: 1 / -1; }
+
     .field label {
-      font-size: 12px;
       color: #344454;
+      font-size: 12px;
       font-weight: 700;
     }
+
     .field label span { color: var(--red); }
-    .field input, .field select, .field textarea {
+
+    .field input,
+    .field select,
+    .field textarea {
       width: 100%;
+      padding: 12px 13px;
       border: 1px solid #dce2e8;
       border-radius: 7px;
-      padding: 12px 13px;
-      color: #253342;
-      background: #fff;
+      background: white;
+      color: var(--text);
       outline: none;
       font-size: 13px;
       transition: .2s;
     }
-    .field input:focus, .field select:focus, .field textarea:focus {
+
+    .field input:focus,
+    .field select:focus,
+    .field textarea:focus {
       border-color: var(--red);
       box-shadow: 0 0 0 3px rgba(199,46,53,.08);
     }
-    .field textarea { min-height: 100px; resize: vertical; }
-    .field small { color: #87939e; font-size: 11px; }
+
+    .field textarea {
+      min-height: 115px;
+      resize: vertical;
+    }
+
+    .field small {
+      color: #87939e;
+      font-size: 10px;
+    }
+
     .declaration {
       display: flex;
       gap: 11px;
       align-items: flex-start;
-      background: #f6f7f8;
-      border-radius: 8px;
       padding: 15px;
       margin: 22px 0;
-      font-size: 12px;
+      border-radius: 8px;
+      background: #f6f7f8;
       color: #53616e;
+      font-size: 11px;
     }
-    .declaration input { margin-top: 4px; accent-color: var(--red); }
+
+    .declaration input {
+      margin-top: 4px;
+      accent-color: var(--red);
+    }
+
     .submit-btn {
       width: 100%;
       padding: 15px;
-      font-size: 14px;
+      font-size: 13px;
     }
+
     #formMessage {
       display: none;
       padding: 14px;
       border-radius: 7px;
       margin-top: 17px;
-      font-size: 13px;
+      font-size: 12px;
     }
-    #formMessage.success { display: block; background: #e8f6ed; color: #21663a; }
-    #formMessage.error { display: block; background: #fcebed; color: #9b252c; }
+
+    #formMessage:not(:empty) { display: block; }
 
     .faq-list { max-width: 850px; }
+
     details {
-      border-bottom: 1px solid var(--border);
       padding: 19px 0;
+      border-bottom: 1px solid var(--border);
     }
+
     summary {
-      cursor: pointer;
-      font-weight: 700;
       color: var(--navy);
-      font-size: 15px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
     }
+
     details p {
-      color: #71808d;
-      font-size: 13px;
-      padding-top: 12px;
       max-width: 750px;
+      padding-top: 12px;
+      color: var(--muted);
+      font-size: 12px;
     }
 
     .final-cta {
-      background:
-        linear-gradient(90deg, rgba(16,25,35,.97), rgba(16,25,35,.88)),
-        url("https://commons.wikimedia.org/wiki/Special:FilePath/12-09-2017_Bombeiros_de_Faro_Cruz-Lusa%2C_Rua_Comandante_Francisco_Manuel%2C_Faro_%282%29.JPG")
-        center / cover;
+      padding: 80px 0;
       color: white;
       text-align: center;
-      padding: 75px 0;
+      background:
+        linear-gradient(rgba(12,21,31,.94), rgba(12,21,31,.94)),
+        url("https://commons.wikimedia.org/wiki/Special:FilePath/12-09-2017_Bombeiros_de_Faro_Cruz-Lusa%2C_Rua_Comandante_Francisco_Manuel%2C_Faro_%282%29.JPG")
+        center / cover no-repeat;
     }
-    .final-cta h2 { font-size: 34px; margin-bottom: 13px; }
+
+    .final-cta h2 {
+      font-size: clamp(27px, 4vw, 37px);
+      margin-bottom: 13px;
+    }
+
     .final-cta p {
-      color: #c0cbd4;
       max-width: 650px;
       margin: 0 auto 25px;
-      font-size: 14px;
+      color: #c0cbd4;
+      font-size: 13px;
     }
 
     footer {
-      background: #0b121a;
+      padding: 50px 0 22px;
+      background: #090f16;
       color: #aab6c2;
-      padding: 48px 0 22px;
     }
+
     .footer-grid {
       display: grid;
       grid-template-columns: 1.5fr 1fr 1fr;
       gap: 40px;
       padding-bottom: 35px;
     }
-    footer h3 { color: white; font-size: 16px; margin-bottom: 15px; }
-    footer p, footer li { font-size: 12px; }
-    footer ul { list-style: none; display: grid; gap: 9px; }
-    footer a:hover { color: white; }
-    .footer-bottom {
-      border-top: 1px solid rgba(255,255,255,.1);
-      padding-top: 19px;
-      display: flex;
-      justify-content: space-between;
-      gap: 15px;
-      flex-wrap: wrap;
-      font-size: 11px;
+
+    footer h3 {
+      color: white;
+      font-size: 15px;
+      margin-bottom: 15px;
     }
+
+    footer p, footer li { font-size: 11px; }
+
+    footer ul {
+      list-style: none;
+      display: grid;
+      gap: 9px;
+    }
+
+    footer a:hover { color: white; }
+
     .disclaimer {
-      color: #ffb7ba;
-      background: rgba(199,46,53,.10);
-      border: 1px solid rgba(240,90,96,.25);
-      border-radius: 7px;
       padding: 13px;
       margin-top: 17px;
-      font-size: 11px;
+      border: 1px solid rgba(240,90,96,.25);
+      border-radius: 7px;
+      background: rgba(199,46,53,.10);
+      color: #ffb7ba;
+      font-size: 10px;
     }
+
     .credits {
       margin-top: 12px;
-      font-size: 10px;
       color: #87939e;
+      font-size: 10px;
     }
+
     .credits a { text-decoration: underline; }
 
-    @media (max-width: 900px) {
-      .nav-links { gap: 14px; }
-      .nav-links a { font-size: 12px; }
-      .values-grid, .steps-grid { grid-template-columns: repeat(2, 1fr); }
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 15px;
+      padding-top: 19px;
+      border-top: 1px solid rgba(255,255,255,.1);
+      font-size: 10px;
+    }
+
+    @media (max-width: 950px) {
+      .nav-links { gap: 13px; }
+      .nav-links a { font-size: 11px; }
+      .values-grid, .steps-grid { grid-template-columns: repeat(2,1fr); }
       .about-grid { gap: 30px; }
       .form-layout { grid-template-columns: 1fr; }
       .form-aside { position: static; }
     }
+
     @media (max-width: 680px) {
-      .container { width: min(100% - 28px, 1160px); }
-      .topbar-inner { justify-content: center; text-align: center; }
+      .container { width: min(100% - 28px,1160px); }
+
+      .topbar-inner {
+        justify-content: center;
+        text-align: center;
+      }
+
       .nav { min-height: 70px; }
       .menu-toggle { display: block; }
+
       .nav-links {
         display: none;
         position: absolute;
         top: 70px;
         left: 0;
         right: 0;
-        background: var(--navy);
         padding: 20px;
+        background: var(--navy);
+        border-top: 1px solid rgba(255,255,255,.1);
         flex-direction: column;
         align-items: stretch;
         gap: 17px;
-        border-top: 1px solid rgba(255,255,255,.1);
       }
+
       .nav-links.open { display: flex; }
-      .nav-links a { font-size: 14px; }
+      .nav-links a { font-size: 13px; }
       .nav-cta { text-align: center; }
-      .hero { min-height: 560px; background-position: 58% center; }
-      .hero-content { padding: 75px 0 85px; }
-      .hero h1 { letter-spacing: -1.3px; }
+
+      .hero {
+        min-height: 580px;
+        background-position: 58% center;
+      }
+
+      .hero-content { padding: 75px 0 90px; }
+      .hero h1 { letter-spacing: -1.4px; }
+      .hero p { font-size: 14px; }
+      .hero-bottom { gap: 22px; }
+
       section { padding: 65px 0; }
+
       .about-grid { grid-template-columns: 1fr; }
-      .about-image, .about-image img { min-height: 280px; }
-      .values-grid, .structure-grid, .steps-grid { grid-template-columns: 1fr; }
+      .about-image, .about-image img { min-height: 280px; height: 280px; }
+
+      .values-grid,
+      .structure-grid,
+      .steps-grid { grid-template-columns: 1fr; }
+
       .gallery-grid {
         grid-template-columns: 1fr 1fr;
-        grid-template-rows: 210px 170px 170px;
+        grid-template-rows: 210px 165px 165px;
       }
-      .gallery-item:first-child { grid-column: 1 / -1; grid-row: auto; }
-      .application-form { padding: 22px 17px; }
+
+      .gallery-item:first-child {
+        grid-column: 1 / -1;
+        grid-row: auto;
+      }
+
+      .application-form { padding: 23px 17px; }
       .form-grid { grid-template-columns: 1fr; }
       .field.full { grid-column: auto; }
       .footer-grid { grid-template-columns: 1fr; gap: 25px; }
-      .final-cta h2 { font-size: 27px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        transition-duration: .01ms !important;
+      }
     }
   </style>
 </head>
@@ -695,7 +916,7 @@
 
   <div class="topbar">
     <div class="container topbar-inner">
-      <span><strong>BVA</strong> · Portal de Recrutamento</span>
+      <span><strong>BVA</strong> · PORTAL DE RECRUTAMENTO</span>
       <span>Comunidade de simulação e roleplay no Discord</span>
     </div>
   </div>
@@ -710,7 +931,7 @@
         </div>
       </a>
 
-      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu">☰</button>
+      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu" aria-expanded="false">☰</button>
 
       <nav class="nav-links" id="navLinks">
         <a href="#inicio">Início</a>
@@ -718,47 +939,11 @@
         <a href="#valores">Valores</a>
         <a href="#estrutura">Organização</a>
         <a href="#galeria">Galeria</a>
-        <a href="#candidatura" class="nav-cta">Candidatar-me</a>
+        <a href="#candidatura" class="nav-cta">Candidatar-me →</a>
       </nav>
     </div>
   </header>
 
   <main>
-    <section class="hero" id="inicio">
-      <div class="container">
-        <div class="hero-content">
-          <span class="eyebrow">Recrutamento aberto · BVA RP</span>
-          <h1>O compromisso começa com <span>uma escolha.</span></h1>
-          <p>
-            Junta-te à nossa comunidade de roleplay, participa em operações
-            simuladas, desenvolve competências de equipa e constrói a tua
-            experiência dentro do universo BVA.
-          </p>
-          <div class="hero-actions">
-            <a href="#candidatura" class="btn">Iniciar candidatura →</a>
-            <a href="#sobre" class="btn-outline">Conhecer a comunidade</a>
-          </div>
-        </div>
-      </div>
-    </section>
 
-    <div class="container">
-      <div class="notice">
-        <strong>Nota importante:</strong> O BVA é uma comunidade fictícia de
-        simulação/roleplay no Discord. Não é uma corporação real, não presta
-        serviços de emergência e não representa oficialmente qualquer corpo
-        de bombeiros ou entidade pública.
-      </div>
-    </div>
-
-    <section id="sobre">
-      <div class="container about-grid">
-        <div class="about-image">
-          <img
-            src="https://commons.wikimedia.org/wiki/Special:FilePath/Associa%C3%A7%C3%A3o_Humanit%C3%A1ria_de_Bombeiros_Volunt%C3%A1rios_de_Faro_-_Cruz_Lusa_02.jpg"
-            alt="Viaturas dos Bombeiros Voluntários de Faro"
-            loading="lazy">
-          <div class="image-caption">
-            Imagem de referência: Bombeiros Voluntários de Faro — Cruz Lusa.
-          </div>
-        <
+    <section class
