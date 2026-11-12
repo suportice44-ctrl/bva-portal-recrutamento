@@ -1,0 +1,285 @@
+
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Administração | BVA</title>
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #101827;
+      color: #f5f7fb;
+    }
+
+    header {
+      background: #172338;
+      padding: 24px;
+      border-bottom: 3px solid #c62828;
+    }
+
+    header h1 { margin: 0 0 8px; font-size: 24px; }
+    header p { margin: 0; color: #bdc9d9; }
+
+    main {
+      max-width: 1100px;
+      margin: auto;
+      padding: 24px;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 14px;
+      margin-bottom: 25px;
+    }
+
+    .stat, .application {
+      background: #1b2940;
+      border: 1px solid #34445e;
+      border-radius: 12px;
+      padding: 18px;
+    }
+
+    .stat span { color: #bdc9d9; }
+    .stat strong {
+      display: block;
+      font-size: 28px;
+      margin-top: 8px;
+    }
+
+    .toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+    }
+
+    button, select {
+      padding: 11px 14px;
+      border-radius: 7px;
+      border: 1px solid #52637d;
+      background: #263954;
+      color: white;
+      cursor: pointer;
+    }
+
+    button:hover { background: #354d70; }
+    button:disabled { opacity: .5; cursor: wait; }
+
+    .application { margin-bottom: 14px; }
+    .application h3 { margin-top: 0; }
+
+    .application p {
+      color: #d3dceb;
+      line-height: 1.5;
+      overflow-wrap: anywhere;
+      white-space: pre-wrap;
+    }
+
+    .status {
+      color: #ffcf70;
+      font-weight: bold;
+    }
+
+    .actions {
+      display: flex;
+      gap: 9px;
+      flex-wrap: wrap;
+      margin-top: 14px;
+    }
+
+    .message {
+      color: #cbd5e1;
+      margin: 14px 0;
+    }
+
+    .empty {
+      text-align: center;
+      padding: 40px;
+      color: #bdc9d9;
+    }
+
+    @media (max-width: 600px) {
+      main { padding: 14px; }
+      header { padding: 20px 14px; }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>Centro de Administração</h1>
+    <p>Bombeiros Voluntários do Algarve · Gestão de candidaturas</p>
+  </header>
+
+  <main>
+    <div class="stats">
+      <div class="stat"><span>Total</span><strong id="total">0</strong></div>
+      <div class="stat"><span>Recebidas</span><strong id="recebidas">0</strong></div>
+      <div class="stat"><span>Em análise</span><strong id="analise">0</strong></div>
+      <div class="stat"><span>Aceites</span><strong id="aceites">0</strong></div>
+      <div class="stat"><span>Recusadas</span><strong id="recusadas">0</strong></div>
+    </div>
+
+    <div class="toolbar">
+      <h2>Candidaturas</h2>
+      <button id="refreshButton">Atualizar lista</button>
+    </div>
+
+    <p id="message" class="message">A carregar candidaturas...</p>
+    <section id="applications"></section>
+
+    <p class="message">
+      Portal destinado exclusivamente a uma simulação de recrutamento
+      numa comunidade Discord. Não representa um serviço real de bombeiros.
+    </p>
+  </main>
+
+  <script>
+    const applications = document.getElementById("applications");
+    const message = document.getElementById("message");
+    const refreshButton = document.getElementById("refreshButton");
+
+    const statuses = ["Recebida", "Em análise", "Aceite", "Recusada"];
+
+    function addText(parent, tag, text, className) {
+      const element = document.createElement(tag);
+      element.textContent = text ?? "";
+      if (className) element.className = className;
+      parent.appendChild(element);
+      return element;
+    }
+
+    function updateStats(data) {
+      document.getElementById("total").textContent = data.length;
+      document.getElementById("recebidas").textContent =
+        data.filter(x => x.estado === "Recebida").length;
+      document.getElementById("analise").textContent =
+        data.filter(x => x.estado === "Em análise").length;
+      document.getElementById("aceites").textContent =
+        data.filter(x => x.estado === "Aceite").length;
+      document.getElementById("recusadas").textContent =
+        data.filter(x => x.estado === "Recusada").length;
+    }
+
+    function formatDate(date) {
+      if (!date) return "Data indisponível";
+      const parsed = new Date(date);
+      return Number.isNaN(parsed.getTime())
+        ? "Data indisponível"
+        : parsed.toLocaleString("pt-PT");
+    }
+
+    async function changeStatus(id, estado, button) {
+      button.disabled = true;
+
+      try {
+        const response = await fetch(
+          "/api/admin/candidaturas/" + encodeURIComponent(id),
+          {
+            method: "PATCH",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ estado })
+          }
+        );
+
+        if (!response.ok) {
+          throw new Error("Não foi possível atualizar o estado.");
+        }
+
+        message.textContent = "Estado atualizado com sucesso.";
+        await loadApplications();
+      } catch (error) {
+        message.textContent = error.message;
+        button.disabled = false;
+      }
+    }
+
+    function renderApplications(data) {
+      applications.replaceChildren();
+
+      if (!data.length) {
+        addText(applications, "div",
+          "Ainda não existem candidaturas.", "empty");
+        return;
+      }
+
+      data.forEach(item => {
+        const card = document.createElement("article");
+        card.className = "application";
+
+        addText(card, "h3", item.nome);
+        addText(card, "p", "Idade: " + item.idade);
+        addText(card, "p", "Discord: " + item.discord);
+        addText(card, "p", "Disponibilidade: " + item.disponibilidade);
+        addText(card, "p", "Motivação: " + item.motivacao);
+        addText(card, "p", "Recebida em: " + formatDate(item.data_criacao));
+        addText(card, "p", "Estado atual: " + item.estado, "status");
+
+        const actions = document.createElement("div");
+        actions.className = "actions";
+
+        const select = document.createElement("select");
+
+        statuses.forEach(status => {
+          const option = document.createElement("option");
+          option.value = status;
+          option.textContent = status;
+          option.selected = status === item.estado;
+          select.appendChild(option);
+        });
+
+        const save = document.createElement("button");
+        save.textContent = "Guardar estado";
+
+        save.addEventListener("click", () => {
+          changeStatus(item.id, select.value, save);
+        });
+
+        actions.appendChild(select);
+        actions.appendChild(save);
+        card.appendChild(actions);
+        applications.appendChild(card);
+      });
+    }
+
+    async function loadApplications() {
+      refreshButton.disabled = true;
+      message.textContent = "A carregar candidaturas...";
+
+      try {
+        const response = await fetch("/api/admin/candidaturas", {
+          cache: "no-store"
+        });
+
+        if (!response.ok) {
+          throw new Error("Erro ao consultar candidaturas.");
+        }
+
+        const data = await response.json();
+
+        if (!Array.isArray(data)) {
+          throw new Error("Resposta inválida do servidor.");
+        }
+
+        updateStats(data);
+        renderApplications(data);
+        message.textContent = "Candidaturas atualizadas.";
+      } catch (error) {
+        message.textContent = error.message;
+      } finally {
+        refreshButton.disabled = false;
+      }
+    }
+
+    refreshButton.addEventListener("click", loadApplications);
+    loadApplications();
+  </script>
+</body>
+</html>
