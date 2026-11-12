@@ -10,6 +10,8 @@ const SUPABASE_URL = (process.env.SUPABASE_URL || "").replace(/\/$/, "");
 const SUPABASE_SECRET_KEY = process.env.SUPABASE_SECRET_KEY || "";
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || "";
 
+const ESTADOS = ["Recebida", "Em análise", "Aceite", "Recusada"];
+
 app.use(express.json({ limit: "30kb" }));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
@@ -40,24 +42,36 @@ function adminAuth(req, res, next) {
   const header = req.headers.authorization || "";
 
   if (!header.startsWith("Basic ")) {
-    res.setHeader("WWW-Authenticate", 'Basic realm="BVA Administração"');
+    res.setHeader(
+      "WWW-Authenticate",
+      'Basic realm="BVA Administração"'
+    );
     return res.status(401).send("Autenticação necessária.");
   }
 
-  let supplied;
+  let decoded;
 
   try {
-    const decoded = Buffer.from(header.slice(6), "base64").toString("utf8");
-    supplied = decoded.slice(decoded.indexOf(":") + 1);
+    decoded = Buffer.from(header.slice(6), "base64").toString("utf8");
   } catch {
     return res.status(401).send("Acesso não autorizado.");
   }
 
+  const separator = decoded.indexOf(":");
+
+  if (separator === -1) {
+    return res.status(401).send("Acesso não autorizado.");
+  }
+
+  const supplied = decoded.slice(separator + 1);
   const a = Buffer.from(supplied);
   const b = Buffer.from(ADMIN_PASSWORD);
 
   if (a.length !== b.length || !crypto.timingSafeEqual(a, b)) {
-    res.setHeader("WWW-Authenticate", 'Basic realm="BVA Administração"');
+    res.setHeader(
+      "WWW-Authenticate",
+      'Basic realm="BVA Administração"'
+    );
     return res.status(401).send("Palavra-passe incorreta.");
   }
 
@@ -69,6 +83,7 @@ function clean(value, maxLength) {
   return value.trim().slice(0, maxLength);
 }
 
+// NOVA CANDIDATURA
 app.post("/api/candidaturas", async (req, res) => {
   const body = req.body || {};
 
@@ -124,28 +139,34 @@ app.post("/api/candidaturas", async (req, res) => {
     });
 
     if (!response.ok) {
-      console.error("Erro Supabase:", response.status);
+      const details = await response.text();
+      console.error("Erro Supabase:", response.status, details);
+
       return res.status(500).json({
         error: "Não foi possível guardar a candidatura."
       });
     }
 
-    res.json({
+    return res.json({
       ok: true,
       message: "Candidatura recebida com sucesso."
     });
+
   } catch (error) {
     console.error("Erro ao guardar candidatura:", error.message);
-    res.status(500).json({
+
+    return res.status(500).json({
       error: "Erro de ligação à base de dados."
     });
   }
 });
 
+// PÁGINA DE ADMINISTRAÇÃO
 app.get("/admin", adminAuth, (req, res) => {
   res.sendFile(path.join(__dirname, "admin.html"));
 });
 
+// CONSULTAR TODAS AS CANDIDATURAS
 app.get("/api/admin/candidaturas", adminAuth, async (req, res) => {
   try {
     const response = await supabaseRequest(
@@ -153,63 +174,125 @@ app.get("/api/admin/candidaturas", adminAuth, async (req, res) => {
     );
 
     if (!response.ok) {
-      console.error("Erro ao consultar candidaturas:", response.status);
+      const details = await response.text();
+      console.error("Erro ao consultar candidaturas:", details);
+
       return res.status(500).json({
         error: "Erro ao consultar candidaturas."
       });
     }
 
     const data = await response.json();
-    res.json(data);
+
+    return res.json(data);
+
   } catch (error) {
     console.error(error.message);
-    res.status(500).json({
+
+    return res.status(500).json({
       error: "Erro ao consultar candidaturas."
     });
   }
 });
 
-app.patch("/api/admin/candidaturas/:id", adminAuth, async (req, res) => {
-  const estados = ["Recebida", "Em análise", "Aceite", "Recusada"];
+// ATUALIZAR ESTADO E/OU NOTAS INTERNAS
+app.patch(
+  "/api/admin/candidaturas/:id",
+  adminAuth,
+  async (req, res) => {
+    const id = req.params.id;
+    const body = req.body || {};
 
-  if (!estados.includes(req.body?.estado)) {
-    return res.status(400).json({ error: "Estado inválido." });
-  }
+    if (!/^\d+$/.test(id)) {
+      return res.status(400).json({
+        error: "Identificador inválido."
+      });
+    }
 
-  if (!/^\d+$/.test(req.params.id)) {
-    return res.status(400).json({ error: "Identificador inválido." });
-  }
+    const updates = {};
 
-  try {
-    const response = await supabaseRequest(
-      `candidaturas?id=eq.${encodeURIComponent(req.params.id)}`,
-      {
-        method: "PATCH",
-        headers: { Prefer: "return=minimal" },
-        body: JSON.stringify({ estado: req.body.estado })
+    if (Object.prototype.hasOwnProperty.call(body, "estado")) {
+      if (!ESTADOS.includes(body.estado)) {
+        return res.status(400).json({
+          error: "Estado inválido."
+        });
       }
-    );
 
-    if (!response.ok) {
+      updates.estado = body.estado;
+    }
+
+    if (
+      Object.prototype.hasOwnProperty.call(body, "notas_internas")
+    ) {
+      if (typeof body.notas_internas !== "string") {
+        return res.status(400).json({
+          error: "Notas inválidas."
+        });
+      }
+
+      updates.notas_internas = body.notas_internas.trim().slice(0, 5000);
+    }
+
+    if (Object.keys(updates).length === 0) {
+      return res.status(400).json({
+        error: "Não existem alterações para guardar."
+      });
+    }
+
+    try {
+      const response = await supabaseRequest(
+        `candidaturas?id=eq.${encodeURIComponent(id)}`,
+        {
+          method: "PATCH",
+          headers: {
+            Prefer: "return=representation"
+          },
+          body: JSON.stringify(updates)
+        }
+      );
+
+      if (!response.ok) {
+        const details = await response.text();
+        console.error("Erro ao atualizar candidatura:", details);
+
+        return res.status(500).json({
+          error: "Erro ao atualizar candidatura."
+        });
+      }
+
+      const updated = await response.json();
+
+      if (!Array.isArray(updated) || updated.length === 0) {
+        return res.status(404).json({
+          error: "Candidatura não encontrada."
+        });
+      }
+
+      return res.json({
+        ok: true,
+        message: "Candidatura atualizada com sucesso."
+      });
+
+    } catch (error) {
+      console.error(error.message);
+
       return res.status(500).json({
         error: "Erro ao atualizar candidatura."
       });
     }
-
-    res.json({ ok: true });
-  } catch (error) {
-    console.error(error.message);
-    res.status(500).json({
-      error: "Erro ao atualizar candidatura."
-    });
   }
-});
+);
 
+// VERIFICAR ESTADO DO SERVIDOR
 app.get("/api/health", (req, res) => {
-  res.json({ ok: true });
+  res.json({
+    ok: true,
+    service: "BVA Recrutamento"
+  });
 });
 
+// INICIAR SERVIDOR
 app.listen(PORT, () => {
-  console.log(`Portal ativo na porta ${PORT}`);
+  console.log(`Portal BVA ativo na porta ${PORT}`);
 });
     
