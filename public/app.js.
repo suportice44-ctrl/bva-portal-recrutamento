@@ -1,29 +1,80 @@
 
-const form = document.getElementById("applicationForm");
-const message = document.getElementById("formMessage");
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("applicationForm");
+  const message = document.getElementById("formMessage");
 
-form.addEventListener("submit", async (event) => {
-  event.preventDefault();
-  message.textContent = "A enviar candidatura…";
+  // Verificar se o formulário existe
+  if (!form) {
+    console.error("Erro: formulário applicationForm não encontrado.");
+    return;
+  }
 
-  const data = Object.fromEntries(new FormData(form).entries());
+  if (!message) {
+    console.error("Erro: elemento formMessage não encontrado.");
+    return;
+  }
 
-  try {
-    const response = await fetch("/api/candidaturas", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data)
-    });
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
 
-    const result = await response.json();
+    if (!form.reportValidity()) return;
 
-    if (!response.ok) {
-      throw new Error(result.error || "Não foi possível enviar.");
+    const submitButton = form.querySelector(
+      'button[type="submit"], input[type="submit"]'
+    );
+
+    const originalText = submitButton
+      ? submitButton.textContent
+      : "";
+
+    message.textContent = "A enviar candidatura...";
+    message.style.color = "#2563eb";
+
+    if (submitButton) {
+      submitButton.disabled = true;
+      submitButton.textContent = "A enviar...";
     }
 
-    message.textContent = "Candidatura recebida com sucesso. Obrigado!";
-    form.reset();
-  } catch (error) {
-    message.textContent = "Não foi possível enviar. Confirma que o portal está ligado a um servidor e tenta novamente.";
-  }
+    const data = Object.fromEntries(
+      new FormData(form).entries()
+    );
+
+    try {
+      const response = await fetch("/api/candidaturas", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+      });
+
+      const result = await response.json().catch(() => ({}));
+
+      if (!response.ok) {
+        throw new Error(
+          result.error || `Erro do servidor (${response.status})`
+        );
+      }
+
+      message.textContent =
+        "Candidatura enviada com sucesso! Obrigado pelo teu interesse nos BVA.";
+
+      message.style.color = "#15803d";
+      form.reset();
+
+    } catch (error) {
+      console.error("Erro ao enviar candidatura:", error);
+
+      message.textContent =
+        "Não foi possível enviar a candidatura. Tenta novamente mais tarde.";
+
+      message.style.color = "#dc2626";
+
+    } finally {
+      if (submitButton) {
+        submitButton.disabled = false;
+        submitButton.textContent = originalText || "Enviar candidatura";
+      }
+    }
+  });
 });
