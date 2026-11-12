@@ -7,7 +7,6 @@
 <meta name="theme-color" content="#102238">
 <meta name="description" content="Formulário de recrutamento dos Bombeiros Voluntários do Algarve.">
 <title>Recrutamento | Bombeiros Voluntários do Algarve</title>
-
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 
 <style>
@@ -580,7 +579,6 @@ footer {
 
     <form id="applicationForm" novalidate>
 
-      <!-- ETAPA 1 -->
       <section class="form-step active">
         <div class="section-title">
           <span>ETAPA 01</span>
@@ -606,7 +604,6 @@ footer {
         </div>
       </section>
 
-      <!-- ETAPA 2 -->
       <section class="form-step">
         <div class="section-title">
           <span>ETAPA 02</span>
@@ -663,7 +660,6 @@ footer {
         </div>
       </section>
 
-      <!-- ETAPA 3 -->
       <section class="form-step">
         <div class="section-title">
           <span>ETAPA 03</span>
@@ -694,7 +690,6 @@ footer {
         </div>
       </section>
 
-      <!-- ETAPA 4 -->
       <section class="form-step">
         <div class="section-title">
           <span>ETAPA 04</span>
@@ -705,17 +700,17 @@ footer {
         <div class="grid">
           <div class="field full">
             <label for="q1">1. O que significa para ti trabalhar em equipa? <span class="required">*</span></label>
-            <textarea id="q1" name="q1" maxlength="300" required></textarea>
+            <textarea id="q1" name="q1" maxlength="2000" required></textarea>
           </div>
 
           <div class="field full">
             <label for="q2">2. Como reagirias a uma orientação de um superior? <span class="required">*</span></label>
-            <textarea id="q2" name="q2" maxlength="300" required></textarea>
+            <textarea id="q2" name="q2" maxlength="2000" required></textarea>
           </div>
 
           <div class="field full">
             <label for="q3">3. Porque devemos escolher a tua candidatura? <span class="required">*</span></label>
-            <textarea id="q3" name="q3" maxlength="300" required></textarea>
+            <textarea id="q3" name="q3" maxlength="2000" required></textarea>
           </div>
 
           <div class="field full">
@@ -763,69 +758,63 @@ footer {
 (function () {
   "use strict";
 
-  function iniciarFormulario() {
-    const form = document.getElementById("applicationForm");
-    const steps = Array.from(document.querySelectorAll(".form-step"));
-    const progressSteps = Array.from(document.querySelectorAll(".steps .step"));
+  const form = document.getElementById("applicationForm");
+  const steps = Array.from(document.querySelectorAll(".form-step"));
+  const progressSteps = Array.from(document.querySelectorAll(".steps .step"));
 
-    const progressFill = document.getElementById("progressFill");
-    const progressTitle = document.getElementById("progressTitle");
-    const progressText = document.getElementById("progressText");
+  const progressFill = document.getElementById("progressFill");
+  const progressTitle = document.getElementById("progressTitle");
+  const progressText = document.getElementById("progressText");
 
-    const previousButton = document.getElementById("previousButton");
-    const nextButton = document.getElementById("nextButton");
-    const submitButton = document.getElementById("submitButton");
+  const previousButton = document.getElementById("previousButton");
+  const nextButton = document.getElementById("nextButton");
+  const submitButton = document.getElementById("submitButton");
 
-    const formError = document.getElementById("formError");
-    const formCard = document.getElementById("formCard");
-    const progressCard = document.getElementById("progressCard");
-    const successScreen = document.getElementById("successScreen");
+  const formError = document.getElementById("formError");
+  const formCard = document.getElementById("formCard");
+  const progressCard = document.getElementById("progressCard");
+  const successScreen = document.getElementById("successScreen");
 
-    const titles = [
-      "Dados pessoais",
-      "Disponibilidade e atividade",
-      "Perfil e motivação",
-      "Questionário final"
-    ];
+  const titles = [
+    "Dados pessoais",
+    "Disponibilidade e atividade",
+    "Perfil e motivação",
+    "Questionário final"
+  ];
 
-    if (
-      !form ||
-      steps.length !== 4 ||
-      progressSteps.length !== 4 ||
-      !progressFill ||
-      !progressTitle ||
-      !progressText ||
-      !previousButton ||
-      !nextButton ||
-      !submitButton ||
-      !formError ||
-      !formCard ||
-      !progressCard ||
-      !successScreen
-    ) {
-      console.error("Erro: elementos necessários do formulário em falta.");
-      return;
-    }
+  let currentStep = 0;
+  let submitting = false;
 
-    let currentStep = 0;
-    let submitting = false;
+  function clearError() {
+    formError.textContent = "";
+    formError.style.display = "none";
+  }
 
-    function clearError() {
-      formError.textContent = "";
-      formError.style.display = "none";
-    }
+  function showError(message) {
+    formError.textContent = message;
+    formError.style.display = "block";
+    formError.scrollIntoView({ behavior: "smooth", block: "center" });
+  }
 
-    function showError(message) {
-      formError.textContent = message;
-      formError.style.display = "block";
-      formError.scrollIntoView({
-        behavior: "smooth",
-        block: "center"
-      });
-    }
+  function showStep(index) {
+    if (index < 0 || index >= steps.length) return;
 
-    function showStep(index) {
-      if (index < 0 || index >= steps.length) return;
+    currentStep = index;
+    clearError();
 
-      currentStep = index;
-      clearError
+    steps.forEach(function (step, i) {
+      step.classList.toggle("active", i === index);
+    });
+
+    progressSteps.forEach(function (step, i) {
+      step.classList.toggle("active", i === index);
+      step.classList.toggle("completed", i < index);
+    });
+
+    progressFill.style.width = ((index + 1) * 25) + "%";
+    progressTitle.textContent = titles[index];
+    progressText.textContent = "Etapa " + (index + 1) + " de 4";
+
+    previousButton.style.visibility = index === 0 ? "hidden" : "visible";
+    nextButton.style.display = index === steps.length - 1 ? "none" : "inline-block";
+    submitButton.style.display = 
