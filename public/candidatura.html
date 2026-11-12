@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-PT">
 <head>
@@ -19,7 +20,11 @@
   --green:#247b4b;
 }
 
-*{box-sizing:border-box;margin:0;padding:0}
+* {
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
 
 body {
   font-family:Roboto,Arial,sans-serif;
@@ -28,7 +33,10 @@ body {
   line-height:1.6;
 }
 
-.container{width:min(950px,92%);margin:auto}
+.container {
+  width:min(950px,92%);
+  margin:auto;
+}
 
 header {
   background:var(--navy);
@@ -86,7 +94,10 @@ header {
   text-decoration:none;
 }
 
-.back-link:hover{background:white;color:var(--navy)}
+.back-link:hover {
+  background:white;
+  color:var(--navy);
+}
 
 .hero {
   background:linear-gradient(110deg,#102238,#1c3a57);
@@ -114,9 +125,13 @@ header {
   font-size:14px;
 }
 
-main{padding:45px 0 75px}
+main {
+  padding:45px 0 75px;
+}
 
-.progress-card,.form-card,.success-screen {
+.progress-card,
+.form-card,
+.success-screen {
   background:white;
   border:1px solid var(--border);
   border-radius:5px;
@@ -186,19 +201,46 @@ main{padding:45px 0 75px}
   flex-shrink:0;
 }
 
-.step.active{color:var(--red)}
-.step.active .step-number{background:var(--red);color:white}
-.step.completed{color:var(--green)}
-.step.completed .step-number{background:#e4f2e9;color:var(--green)}
+.step.active {
+  color:var(--red);
+}
 
-.form-card{padding:35px}
+.step.active .step-number {
+  background:var(--red);
+  color:white;
+}
 
-.form-step{display:none}
-.form-step.active{display:block;animation:appear .25s ease}
+.step.completed {
+  color:var(--green);
+}
+
+.step.completed .step-number {
+  background:#e4f2e9;
+  color:var(--green);
+}
+
+.form-card {
+  padding:35px;
+}
+
+.form-step {
+  display:none;
+}
+
+.form-step.active {
+  display:block;
+  animation:appear .25s ease;
+}
 
 @keyframes appear {
-  from{opacity:0;transform:translateY(5px)}
-  to{opacity:1;transform:translateY(0)}
+  from {
+    opacity:0;
+    transform:translateY(5px);
+  }
+  to {
+    opacity:1;
+    transform:translateY(0);
+  }
 }
 
 .section-title {
@@ -221,7 +263,10 @@ main{padding:45px 0 75px}
   margin:5px 0;
 }
 
-.section-title p{color:var(--muted);font-size:12px}
+.section-title p {
+  color:var(--muted);
+  font-size:12px;
+}
 
 .grid {
   display:grid;
@@ -235,17 +280,24 @@ main{padding:45px 0 75px}
   gap:7px;
 }
 
-.field.full{grid-column:1/-1}
+.field.full {
+  grid-column:1/-1;
+}
 
-.field label,.group-label {
+.field label,
+.group-label {
   color:var(--navy);
   font-size:12px;
   font-weight:800;
 }
 
-.required{color:var(--red)}
+.required {
+  color:var(--red);
+}
 
-.field input,.field select,.field textarea {
+.field input,
+.field select,
+.field textarea {
   width:100%;
   padding:13px;
   border:1px solid var(--border);
@@ -256,12 +308,17 @@ main{padding:45px 0 75px}
   color:var(--text);
 }
 
-.field input:focus,.field select:focus,.field textarea:focus {
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
   border-color:var(--red);
   box-shadow:0 0 0 2px #c5222c15;
 }
 
-.field textarea{min-height:115px;resize:vertical}
+.field textarea {
+  min-height:115px;
+  resize:vertical;
+}
 
 .choice-group {
   display:grid;
@@ -269,7 +326,9 @@ main{padding:45px 0 75px}
   gap:10px;
 }
 
-.choice{position:relative}
+.choice {
+  position:relative;
+}
 
 .choice input {
   position:absolute;
@@ -325,7 +384,10 @@ main{padding:45px 0 75px}
   margin-bottom:22px;
 }
 
-.help{color:var(--muted);font-size:11px}
+.help {
+  color:var(--muted);
+  font-size:11px;
+}
 
 .form-error {
   display:none;
@@ -356,10 +418,24 @@ main{padding:45px 0 75px}
   cursor:pointer;
 }
 
-.btn-secondary{background:#e9edf1;color:var(--navy)}
-.btn-primary{background:var(--red);color:white}
-.btn-primary:hover{background:var(--red-dark)}
-.btn:disabled{opacity:.6;cursor:not-allowed}
+.btn-secondary {
+  background:#e9edf1;
+  color:var(--navy);
+}
+
+.btn-primary {
+  background:var(--red);
+  color:white;
+}
+
+.btn-primary:hover {
+  background:var(--red-dark);
+}
+
+.btn:disabled {
+  opacity:.6;
+  cursor:not-allowed;
+}
 
 .notice {
   background:#f4f6f8;
@@ -410,15 +486,46 @@ footer {
 }
 
 @media(max-width:650px) {
-  .header-content{align-items:flex-start}
-  .brand h1{font-size:11px}
-  .back-link{font-size:9px;padding:9px}
-  .grid,.choice-group{grid-template-columns:1fr}
-  .field.full{grid-column:auto}
-  .form-card{padding:21px}
-  .steps{gap:5px}
-  .step{flex-direction:column;text-align:center;font-size:9px}
-  .navigation .btn{flex:1;padding:12px 8px}
+  .header-content {
+    align-items:flex-start;
+  }
+
+  .brand h1 {
+    font-size:11px;
+  }
+
+  .back-link {
+    font-size:9px;
+    padding:9px;
+  }
+
+  .grid,
+  .choice-group {
+    grid-template-columns:1fr;
+  }
+
+  .field.full {
+    grid-column:auto;
+  }
+
+  .form-card {
+    padding:21px;
+  }
+
+  .steps {
+    gap:5px;
+  }
+
+  .step {
+    flex-direction:column;
+    text-align:center;
+    font-size:9px;
+  }
+
+  .navigation .btn {
+    flex:1;
+    padding:12px 8px;
+  }
 }
 </style>
 </head>
@@ -454,9 +561,11 @@ footer {
       <strong id="progressTitle">Dados pessoais</strong>
       <span id="progressText">Etapa 1 de 4</span>
     </div>
+
     <div class="progress-track">
       <div class="progress-fill" id="progressFill"></div>
     </div>
+
     <div class="steps">
       <div class="step active"><span class="step-number">1</span><span>Dados pessoais</span></div>
       <div class="step"><span class="step-number">2</span><span>Disponibilidade</span></div>
@@ -468,8 +577,9 @@ footer {
   <div class="form-card" id="formCard">
     <div id="formError" class="form-error" role="alert"></div>
 
-    <form id="applicationForm">
+    <form id="applicationForm" novalidate>
 
+      <!-- ETAPA 1 -->
       <section class="form-step active">
         <div class="section-title">
           <span>ETAPA 01</span>
@@ -495,6 +605,7 @@ footer {
         </div>
       </section>
 
+      <!-- ETAPA 2 -->
       <section class="form-step">
         <div class="section-title">
           <span>ETAPA 02</span>
@@ -551,6 +662,7 @@ footer {
         </div>
       </section>
 
+      <!-- ETAPA 3 -->
       <section class="form-step">
         <div class="section-title">
           <span>ETAPA 03</span>
@@ -581,6 +693,7 @@ footer {
         </div>
       </section>
 
+      <!-- ETAPA 4 -->
       <section class="form-step">
         <div class="section-title">
           <span>ETAPA 04</span>
@@ -646,86 +759,73 @@ footer {
 </footer>
 
 <script>
-const form = document.getElementById("applicationForm");
-const formSteps = Array.from(document.querySelectorAll(".form-step"));
-const progressSteps = Array.from(document.querySelectorAll(".step"));
+(function() {
+  "use strict";
 
-const progressFill = document.getElementById("progressFill");
-const progressTitle = document.getElementById("progressTitle");
-const progressText = document.getElementById("progressText");
+  const form = document.getElementById("applicationForm");
+  const formSteps = Array.from(document.querySelectorAll(".form-step"));
+  const progressSteps = Array.from(document.querySelectorAll(".steps .step"));
 
-const previousButton = document.getElementById("previousButton");
-const nextButton = document.getElementById("nextButton");
-const submitButton = document.getElementById("submitButton");
-const formError = document.getElementById("formError");
+  const progressFill = document.getElementById("progressFill");
+  const progressTitle = document.getElementById("progressTitle");
+  const progressText = document.getElementById("progressText");
 
-const stepTitles = [
-  "Dados pessoais",
-  "Disponibilidade e atividade",
-  "Perfil e motivação",
-  "Questionário final"
-];
+  const previousButton = document.getElementById("previousButton");
+  const nextButton = document.getElementById("nextButton");
+  const submitButton = document.getElementById("submitButton");
+  const formError = document.getElementById("formError");
 
-let currentStep = 0;
+  const progressCard = document.getElementById("progressCard");
+  const formCard = document.getElementById("formCard");
+  const successScreen = document.getElementById("successScreen");
 
-function showError(message) {
-  formError.textContent = message;
-  formError.style.display = "block";
-}
+  const stepTitles = [
+    "Dados pessoais",
+    "Disponibilidade e atividade",
+    "Perfil e motivação",
+    "Questionário final"
+  ];
 
-function showStep(index) {
-  if (index < 0 || index >= formSteps.length) return;
+  let currentStep = 0;
+  let submitting = false;
 
-  currentStep = index;
+  function showError(message) {
+    formError.textContent = message;
+    formError.style.display = "block";
 
-  formSteps.forEach((step, i) => {
-    step.classList.toggle("active", i === index);
-  });
-
-  progressSteps.forEach((step, i) => {
-    step.classList.toggle("active", i === index);
-    step.classList.toggle("completed", i < index);
-  });
-
-  progressFill.style.width = ((index + 1) * 25) + "%";
-  progressTitle.textContent = stepTitles[index];
-  progressText.textContent = "Etapa " + (index + 1) + " de 4";
-
-  previousButton.style.visibility = index === 0 ? "hidden" : "visible";
-  nextButton.style.display = index === 3 ? "none" : "inline-block";
-  submitButton.style.display = index === 3 ? "inline-block" : "none";
-
-  formError.style.display = "none";
-
-  window.scrollTo({
-    top: document.getElementById("progressCard").offsetTop - 20,
-    behavior: "smooth"
-  });
-}
-
-function validateCurrentStep() {
-  const fields = formSteps[currentStep].querySelectorAll("input, select, textarea");
-
-  for (const field of fields) {
-    if (field.type === "checkbox" || field.type === "radio" || field.type === "hidden") {
-      continue;
-    }
-
-    if (!field.checkValidity()) {
-      field.reportValidity();
-      return false;
-    }
+    formError.scrollIntoView({
+      behavior: "smooth",
+      block: "center"
+    });
   }
 
-  if (currentStep === 1) {
-    const availability = form.querySelector('input[name="disponibilidade"]:checked');
-    const areas = form.querySelectorAll('input[name="areas_atividade"]:checked');
+  function clearError() {
+    formError.textContent = "";
+    formError.style.display = "none";
+  }
 
-    if (!availability) {
-      showError("Seleciona a tua disponibilidade.");
-      return false;
-    }
+  function showStep(index) {
+    if (index < 0 || index >= formSteps.length) return;
 
-    if (areas.length === 0) {
-      showError("Seleciona pelo menos uma área de atividade.");
-      return false;
+    currentStep = index;
+
+    formSteps.forEach(function(step, i) {
+      step.classList.toggle("active", i === index);
+    });
+
+    progressSteps.forEach(function(step, i) {
+      step.classList.toggle("active", i === index);
+      step.classList.toggle("completed", i < index);
+    });
+
+    progressFill.style.width = ((index + 1) * 25) + "%";
+    progressTitle.textContent = stepTitles[index];
+    progressText.textContent = "Etapa " + (index + 1) + " de 4";
+
+    previousButton.style.visibility =
+      index === 0 ? "hidden" : "visible";
+
+    nextButton.style.display =
+      index === formSteps.length - 1 ? "none" : "inline-block";
+
+    sub
