@@ -1,83 +1,156 @@
 
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("applicationForm");
+  if (!form) return;
+
   const message = document.getElementById("formMessage");
-
-  if (!form || !message) {
-    console.error("Formulário ou mensagem não encontrados.");
-    return;
-  }
-
-  const submitButton = form.querySelector(
-    'button[type="submit"], input[type="submit"]'
+  const steps = Array.from(
+    form.querySelectorAll(".form-step, [data-step]")
   );
 
-  let sending = false;
+  const nextButtons = form.querySelectorAll(
+    "[data-next], .next-step"
+  );
+  const prevButtons = form.querySelectorAll(
+    "[data-prev], .prev-step"
+  );
+
+  let currentStep = 0;
+  let submitting = false;
 
   function showMessage(text, type) {
+    if (!message) return;
     message.textContent = text;
-
-    const colors = {
-      success: "#15803d",
-      error: "#dc2626",
-      info: "#2563eb"
-    };
-
-    message.style.color = colors[type] || colors.info;
-    message.setAttribute("role", "status");
-    message.setAttribute("aria-live", "polite");
+    message.className = "form-message " + type;
+    message.style.display = "block";
   }
 
-  function getFormData() {
-    const data = {};
+  function showStep(index) {
+    if (!steps.length) return;
 
-    for (const [key, value] of new FormData(form).entries()) {
-      if (typeof value === "string") {
-        data[key] = value.trim();
+    currentStep = Math.max(0, Math.min(index, steps.length - 1));
+
+    steps.forEach((step, i) => {
+      step.hidden = i !== currentStep;
+      step.style.display = i === currentStep ? "" : "none";
+      step.classList.toggle("active", i === currentStep);
+    });
+
+    document.querySelectorAll(
+      "[data-step-indicator], .step-indicator"
+    ).forEach((indicator, i) => {
+      indicator.classList.toggle("active", i === currentStep);
+      indicator.classList.toggle("completed", i < currentStep);
+    });
+
+    const progress = document.querySelector(
+      "[data-progress], .progress-bar"
+    );
+
+    if (progress) {
+      progress.style.width =
+        ((currentStep + 1) / steps.length) * 100 + "%";
+    }
+
+    if (message) message.style.display = "none";
+
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  function validateStep(index) {
+    const fields = steps[index].querySelectorAll(
+      "input, select, textarea"
+    );
+
+    for (const field of fields) {
+      if (field.disabled || field.type === "hidden") continue;
+
+      if (!field.checkValidity()) {
+        field.reportValidity();
+        field.focus();
+        return false;
       }
     }
 
-    return data;
+    return true;
+  }
+
+  nextButtons.forEach(button => {
+    button.addEventListener("click", event => {
+      event.preventDefault();
+
+      if (!validateStep(currentStep)) return;
+
+      if (currentStep < steps.length - 1) {
+        showStep(currentStep + 1);
+      }
+    });
+  });
+
+  prevButtons.forEach(button => {
+    button.addEventListener("click", event => {
+      event.preventDefault();
+
+      if (currentStep > 0) {
+        showStep(currentStep - 1);
+      }
+    });
+  });
+
+  function validateAllSteps() {
+    for (let i = 0; i < steps.length; i++) {
+      if (!validateStep(i)) {
+        showStep(i);
+        return false;
+      }
+    }
+
+    return true;
   }
 
   form.addEventListener("submit", async event => {
     event.preventDefault();
 
-    if (sending) return;
+    if (submitting) return;
 
-    if (!form.reportValidity()) {
-      showMessage(
-        "Verifica os campos obrigatórios antes de enviar.",
-        "error"
-      );
-      return;
-    }
+    if (!validateAllSteps()) return;
 
-    const data = getFormData();
+    submitting = true;
 
-    sending = true;
-
-    const originalText = submitButton
-      ? (
-          submitButton.tagName === "INPUT"
-            ? submitButton.value
-            : submitButton.textContent
-        )
-      : "";
+    const submitButton = form.querySelector(
+      'button[type="submit"], input[type="submit"]'
+    );
 
     if (submitButton) {
       submitButton.disabled = true;
-
-      if (submitButton.tagName === "INPUT") {
-        submitButton.value = "A enviar...";
-      } else {
-        submitButton.textContent = "A enviar...";
-      }
+      submitButton.textContent = "A enviar candidatura...";
     }
 
     showMessage("A enviar a tua candidatura...", "info");
 
     try {
+      const formData = new FormData(form);
+      const data = {};
+
+      formData.forEach((value, key) => {
+        if (data[key] !== undefined) {
+          if (!Array.isArray(data[key])) {
+            data[key] = [data[key]];
+          }
+          data[key].push(value);
+        } else {
+          data[key] = value;
+        }
+      });
+
+      const areas = form.querySelectorAll(
+        'input[name="areas_atividade"]:checked'
+      );
+
+      data.areas_atividade = Array.from(areas)
+        .map(input => input.value)
+        .join(", ");
+
       const response = await fetch("/api/candidaturas", {
         method: "POST",
         headers: {
@@ -91,39 +164,43 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!response.ok) {
         throw new Error(
           result.error ||
-          `Não foi possível enviar a candidatura (${response.status}).`
+          result.message ||
+          "Não foi possível enviar a candidatura."
         );
       }
 
       form.reset();
 
+      steps.forEach(step => {
+        step.hidden = false;
+        step.style.display = "";
+      });
+
+      showStep(0);
+
+      form.style.display = "none";
+
       showMessage(
-        "Candidatura enviada com sucesso! Obrigado pelo teu interesse nos BVA.",
+        "Candidatura enviada com sucesso! A equipa de recrutamento irá analisar os teus dados. Obrigado pelo teu interesse nos Bombeiros Voluntários do Algarve.",
         "success"
       );
 
     } catch (error) {
-      console.error("Erro ao enviar candidatura:", error);
-
       showMessage(
-        error.message ||
-        "Não foi possível enviar a candidatura. Tenta novamente mais tarde.",
+        error.message || "Ocorreu um erro ao enviar a candidatura. Tenta novamente.",
         "error"
       );
-
     } finally {
-      sending = false;
+      submitting = false;
 
       if (submitButton) {
         submitButton.disabled = false;
-
-        if (submitButton.tagName === "INPUT") {
-          submitButton.value = originalText || "Enviar candidatura";
-        } else {
-          submitButton.textContent =
-            originalText || "Enviar candidatura";
-        }
+        submitButton.textContent = "Enviar candidatura";
       }
     }
   });
+
+  if (steps.length) {
+    showStep(0);
+  }
 });
