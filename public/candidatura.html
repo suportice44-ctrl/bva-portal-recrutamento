@@ -5,12 +5,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#102238">
+<meta name="description" content="Formulário de recrutamento dos Bombeiros Voluntários do Algarve.">
 <title>Recrutamento | Bombeiros Voluntários do Algarve</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 
 <style>
 :root {
   --navy:#102238;
+  --navy-light:#1c3a57;
   --red:#c5222c;
   --red-dark:#a91822;
   --text:#293747;
@@ -18,26 +23,39 @@
   --border:#dfe5eb;
   --green:#247b4b;
 }
-* { box-sizing:border-box; margin:0; padding:0; }
+
+* {
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
 body {
   font-family:Roboto,Arial,sans-serif;
   color:var(--text);
   background:#f3f5f8;
   line-height:1.6;
 }
-.container { width:min(950px,92%); margin:auto; }
+
+.container {
+  width:min(950px,92%);
+  margin:auto;
+}
+
 header {
   background:var(--navy);
   color:white;
   padding:20px 0;
   border-bottom:4px solid var(--red);
 }
+
 .header-content {
   display:flex;
   justify-content:space-between;
   align-items:center;
   gap:15px;
 }
+
 .brand {
   display:flex;
   align-items:center;
@@ -45,26 +63,31 @@ header {
   color:white;
   text-decoration:none;
 }
+
 .crest {
   width:53px;
   height:60px;
   background:var(--red);
+  color:white;
   display:grid;
   place-items:center;
   font-weight:800;
   clip-path:polygon(0 0,100% 0,100% 75%,50% 100%,0 75%);
 }
+
 .brand h1 {
   font-family:Montserrat,sans-serif;
   font-size:14px;
   line-height:1.3;
 }
+
 .brand p {
   font-size:9px;
   letter-spacing:1.5px;
   color:#bdc9d6;
   margin-top:4px;
 }
+
 .back-link {
   color:white;
   border:1px solid #ffffff55;
@@ -74,61 +97,95 @@ header {
   font-weight:700;
   text-decoration:none;
 }
+
+.back-link:hover {
+  background:white;
+  color:var(--navy);
+}
+
 .hero {
-  background:linear-gradient(110deg,#102238,#1c3a57);
+  background:linear-gradient(110deg,var(--navy),var(--navy-light));
   color:white;
   padding:55px 0 65px;
 }
+
 .kicker {
   color:#ff9298;
   font-size:10px;
   font-weight:800;
   letter-spacing:2px;
 }
+
 .hero h2 {
   font-family:Montserrat,sans-serif;
   font-size:clamp(28px,5vw,43px);
   line-height:1.2;
   margin:12px 0;
 }
-.hero p { max-width:650px; color:#d1dce7; font-size:14px; }
-main { padding:45px 0 75px; }
-.progress-card,.form-card,.success-screen {
+
+.hero p {
+  max-width:650px;
+  color:#d1dce7;
+  font-size:14px;
+}
+
+main {
+  padding:45px 0 75px;
+}
+
+.progress-card,
+.form-card,
+.success-screen {
   background:white;
   border:1px solid var(--border);
   border-radius:5px;
 }
-.progress-card { padding:25px; margin-bottom:22px; }
+
+.progress-card {
+  padding:25px;
+  margin-bottom:22px;
+}
+
 .progress-top {
   display:flex;
   justify-content:space-between;
+  align-items:center;
   gap:10px;
   margin-bottom:14px;
 }
+
 .progress-top strong {
   font-family:Montserrat,sans-serif;
   color:var(--navy);
   font-size:13px;
 }
-.progress-top span { font-size:11px; color:var(--muted); }
+
+.progress-top span {
+  font-size:11px;
+  color:var(--muted);
+}
+
 .progress-track {
   height:7px;
   background:#e9edf1;
   border-radius:20px;
   overflow:hidden;
 }
+
 .progress-fill {
   width:25%;
   height:100%;
   background:var(--red);
-  transition:width .25s;
+  transition:width .3s;
 }
+
 .steps {
   display:grid;
   grid-template-columns:repeat(4,1fr);
   gap:10px;
   margin-top:20px;
 }
+
 .step {
   display:flex;
   align-items:center;
@@ -137,6 +194,7 @@ main { padding:45px 0 75px; }
   font-weight:700;
   color:#8793a0;
 }
+
 .step-number {
   width:27px;
   height:27px;
@@ -146,45 +204,104 @@ main { padding:45px 0 75px; }
   place-items:center;
   flex-shrink:0;
 }
-.step.active { color:var(--red); }
-.step.active .step-number { background:var(--red); color:white; }
-.step.completed { color:var(--green); }
-.step.completed .step-number { background:#e4f2e9; color:var(--green); }
-.form-card { padding:35px; }
-.form-step { display:none; }
-.form-step.active { display:block; }
+
+.step.active {
+  color:var(--red);
+}
+
+.step.active .step-number {
+  background:var(--red);
+  color:white;
+}
+
+.step.completed {
+  color:var(--green);
+}
+
+.step.completed .step-number {
+  background:#e4f2e9;
+  color:var(--green);
+}
+
+.form-card {
+  padding:35px;
+}
+
+.form-step {
+  display:none;
+}
+
+.form-step.active {
+  display:block;
+  animation:appear .25s ease;
+}
+
+@keyframes appear {
+  from {
+    opacity:0;
+    transform:translateY(5px);
+  }
+  to {
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
 .section-title {
   margin-bottom:25px;
   padding-bottom:17px;
   border-bottom:1px solid var(--border);
 }
+
 .section-title span {
   color:var(--red);
   font-size:10px;
   font-weight:800;
   letter-spacing:1.5px;
 }
+
 .section-title h3 {
   font-family:Montserrat,sans-serif;
   color:var(--navy);
   font-size:24px;
   margin:5px 0;
 }
-.section-title p { color:var(--muted); font-size:12px; }
+
+.section-title p {
+  color:var(--muted);
+  font-size:12px;
+}
+
 .grid {
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:20px;
 }
-.field { display:flex; flex-direction:column; gap:7px; }
-.field.full { grid-column:1/-1; }
-.field label,.group-label {
+
+.field {
+  display:flex;
+  flex-direction:column;
+  gap:7px;
+}
+
+.field.full {
+  grid-column:1/-1;
+}
+
+.field label,
+.group-label {
   color:var(--navy);
   font-size:12px;
   font-weight:800;
 }
-.required { color:var(--red); }
-.field input,.field select,.field textarea {
+
+.required {
+  color:var(--red);
+}
+
+.field input,
+.field select,
+.field textarea {
   width:100%;
   padding:13px;
   border:1px solid var(--border);
@@ -194,29 +311,36 @@ main { padding:45px 0 75px; }
   background:white;
   color:var(--text);
 }
-.field input:focus,.field select:focus,.field textarea:focus {
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
   border-color:var(--red);
   box-shadow:0 0 0 2px #c5222c15;
 }
-.field textarea { min-height:115px; resize:vertical; }
-.field-group {
-  display:flex;
-  flex-direction:column;
-  gap:11px;
-  margin-bottom:22px;
+
+.field textarea {
+  min-height:115px;
+  resize:vertical;
 }
+
 .choice-group {
   display:grid;
   grid-template-columns:repeat(2,1fr);
   gap:10px;
 }
-.choice { position:relative; }
+
+.choice {
+  position:relative;
+}
+
 .choice input {
   position:absolute;
   opacity:0;
   width:1px;
   height:1px;
 }
+
 .choice label {
   display:flex;
   align-items:center;
@@ -227,7 +351,10 @@ main { padding:45px 0 75px; }
   border-radius:3px;
   cursor:pointer;
   font-size:12px;
+  color:var(--text);
+  transition:.2s;
 }
+
 .choice label:before {
   content:"";
   width:16px;
@@ -236,22 +363,37 @@ main { padding:45px 0 75px; }
   border:1px solid #b8c3ce;
   border-radius:3px;
 }
+
 .choice input:checked+label {
   border-color:var(--red);
   background:#fff5f5;
   color:var(--red-dark);
   font-weight:700;
 }
+
 .choice input:checked+label:before {
   background:var(--red);
   border-color:var(--red);
   box-shadow:inset 0 0 0 3px white;
 }
+
 .choice input:focus-visible+label {
   outline:2px solid var(--red);
   outline-offset:2px;
 }
-.help { color:var(--muted); font-size:11px; }
+
+.field-group {
+  display:flex;
+  flex-direction:column;
+  gap:11px;
+  margin-bottom:22px;
+}
+
+.help {
+  color:var(--muted);
+  font-size:11px;
+}
+
 .form-error {
   display:none;
   background:#fff0f0;
@@ -261,6 +403,7 @@ main { padding:45px 0 75px; }
   font-size:12px;
   margin-bottom:18px;
 }
+
 .navigation {
   display:flex;
   justify-content:space-between;
@@ -269,6 +412,7 @@ main { padding:45px 0 75px; }
   padding-top:22px;
   border-top:1px solid var(--border);
 }
+
 .btn {
   padding:13px 22px;
   border:0;
@@ -277,11 +421,30 @@ main { padding:45px 0 75px; }
   font-weight:800;
   letter-spacing:.5px;
   cursor:pointer;
+  text-decoration:none;
+  display:inline-block;
+  text-align:center;
 }
-.btn-secondary { background:#e9edf1; color:var(--navy); }
-.btn-primary { background:var(--red); color:white; }
-.btn-primary:hover { background:var(--red-dark); }
-.btn:disabled { opacity:.6; cursor:not-allowed; }
+
+.btn-secondary {
+  background:#e9edf1;
+  color:var(--navy);
+}
+
+.btn-primary {
+  background:var(--red);
+  color:white;
+}
+
+.btn-primary:hover {
+  background:var(--red-dark);
+}
+
+.btn:disabled {
+  opacity:.6;
+  cursor:not-allowed;
+}
+
 .notice {
   background:#f4f6f8;
   padding:15px;
@@ -290,11 +453,13 @@ main { padding:45px 0 75px; }
   margin-top:20px;
   border-left:3px solid var(--red);
 }
+
 .success-screen {
   display:none;
   padding:45px 25px;
   text-align:center;
 }
+
 .success-icon {
   width:65px;
   height:65px;
@@ -306,17 +471,20 @@ main { padding:45px 0 75px; }
   font-size:30px;
   margin:0 auto 20px;
 }
+
 .success-screen h3 {
   font-family:Montserrat,sans-serif;
   color:var(--navy);
   font-size:25px;
   margin-bottom:10px;
 }
+
 .success-screen p {
   color:var(--muted);
   font-size:13px;
   margin-bottom:25px;
 }
+
 footer {
   background:#0a1726;
   color:#aab8c6;
@@ -324,21 +492,54 @@ footer {
   text-align:center;
   font-size:10px;
 }
+
 @media(max-width:650px) {
-  .header-content { align-items:flex-start; }
-  .brand h1 { font-size:11px; }
-  .back-link { font-size:9px; padding:9px; }
-  .grid,.choice-group { grid-template-columns:1fr; }
-  .field.full { grid-column:auto; }
-  .form-card { padding:21px; }
-  .steps { gap:5px; }
-  .step { flex-direction:column; text-align:center; font-size:9px; }
-  .navigation .btn { flex:1; padding:12px 8px; }
+  .header-content {
+    align-items:flex-start;
+  }
+
+  .brand h1 {
+    font-size:11px;
+  }
+
+  .back-link {
+    font-size:9px;
+    padding:9px;
+  }
+
+  .grid,
+  .choice-group {
+    grid-template-columns:1fr;
+  }
+
+  .field.full {
+    grid-column:auto;
+  }
+
+  .form-card {
+    padding:21px;
+  }
+
+  .steps {
+    gap:5px;
+  }
+
+  .step {
+    flex-direction:column;
+    text-align:center;
+    font-size:9px;
+  }
+
+  .navigation .btn {
+    flex:1;
+    padding:12px 8px;
+  }
 }
 </style>
 </head>
 
 <body>
+
 <header>
   <div class="container header-content">
     <a href="/" class="brand">
@@ -348,6 +549,7 @@ footer {
         <p>PORTAL DE RECRUTAMENTO</p>
       </div>
     </a>
+
     <a href="/" class="back-link">← VOLTAR AO SITE</a>
   </div>
 </header>
@@ -368,47 +570,69 @@ footer {
       <strong id="progressTitle">Dados pessoais</strong>
       <span id="progressText">Etapa 1 de 4</span>
     </div>
+
     <div class="progress-track">
       <div class="progress-fill" id="progressFill"></div>
     </div>
+
     <div class="steps">
-      <div class="step active"><span class="step-number">1</span><span>Dados pessoais</span></div>
-      <div class="step"><span class="step-number">2</span><span>Disponibilidade</span></div>
-      <div class="step"><span class="step-number">3</span><span>Perfil</span></div>
-      <div class="step"><span class="step-number">4</span><span>Questionário</span></div>
+      <div class="step active">
+        <span class="step-number">1</span>
+        <span>Dados pessoais</span>
+      </div>
+      <div class="step">
+        <span class="step-number">2</span>
+        <span>Disponibilidade</span>
+      </div>
+      <div class="step">
+        <span class="step-number">3</span>
+        <span>Perfil</span>
+      </div>
+      <div class="step">
+        <span class="step-number">4</span>
+        <span>Questionário</span>
+      </div>
     </div>
   </div>
 
   <div class="form-card" id="formCard">
+
     <div id="formError" class="form-error" role="alert"></div>
 
     <form id="applicationForm" novalidate>
 
       <!-- ETAPA 1 -->
       <section class="form-step active">
+
         <div class="section-title">
           <span>ETAPA 01</span>
           <h3>Dados pessoais</h3>
           <p>Começa por preencher os teus dados de identificação.</p>
         </div>
+
         <div class="grid">
+
           <div class="field">
             <label for="nome">Nome completo <span class="required">*</span></label>
-            <input id="nome" name="nome" type="text" maxlength="100" required>
+            <input id="nome" name="nome" type="text" maxlength="100" autocomplete="name" required>
           </div>
+
           <div class="field">
             <label for="idade">Idade <span class="required">*</span></label>
             <input id="idade" name="idade" type="number" min="13" max="99" required>
           </div>
+
           <div class="field full">
             <label for="discord">Nome de utilizador Discord <span class="required">*</span></label>
-            <input id="discord" name="discord" type="text" maxlength="100" required>
+            <input id="discord" name="discord" type="text" maxlength="100" placeholder="Ex.: utilizador" required>
           </div>
+
         </div>
       </section>
 
       <!-- ETAPA 2 -->
       <section class="form-step">
+
         <div class="section-title">
           <span>ETAPA 02</span>
           <h3>Disponibilidade e atividade</h3>
@@ -416,29 +640,81 @@ footer {
         </div>
 
         <div class="field-group">
-          <span class="group-label">Qual é a tua disponibilidade? <span class="required">*</span></span>
+
+          <span class="group-label">
+            Qual é a tua disponibilidade? <span class="required">*</span>
+          </span>
+
           <div class="choice-group">
-            <div class="choice"><input type="radio" id="disp1" name="disponibilidade" value="Durante a semana"><label for="disp1">Durante a semana</label></div>
-            <div class="choice"><input type="radio" id="disp2" name="disponibilidade" value="Fins de semana"><label for="disp2">Fins de semana</label></div>
-            <div class="choice"><input type="radio" id="disp3" name="disponibilidade" value="Todos os dias"><label for="disp3">Todos os dias</label></div>
-            <div class="choice"><input type="radio" id="disp4" name="disponibilidade" value="Disponibilidade variável"><label for="disp4">Disponibilidade variável</label></div>
+
+            <div class="choice">
+              <input type="radio" id="disp1" name="disponibilidade" value="Durante a semana">
+              <label for="disp1">Durante a semana</label>
+            </div>
+
+            <div class="choice">
+              <input type="radio" id="disp2" name="disponibilidade" value="Fins de semana">
+              <label for="disp2">Fins de semana</label>
+            </div>
+
+            <div class="choice">
+              <input type="radio" id="disp3" name="disponibilidade" value="Todos os dias">
+              <label for="disp3">Todos os dias</label>
+            </div>
+
+            <div class="choice">
+              <input type="radio" id="disp4" name="disponibilidade" value="Disponibilidade variável">
+              <label for="disp4">Disponibilidade variável</label>
+            </div>
+
           </div>
         </div>
 
         <div class="field-group">
-          <span class="group-label">Que áreas de atividade te interessam? <span class="required">*</span></span>
+
+          <span class="group-label">
+            Que áreas de atividade te interessam? <span class="required">*</span>
+          </span>
+
           <p class="help">Podes selecionar várias opções.</p>
+
           <div class="choice-group">
-            <div class="choice"><input type="checkbox" id="area1" name="areas_atividade" value="Incêndios urbanos"><label for="area1">Incêndios urbanos</label></div>
-            <div class="choice"><input type="checkbox" id="area2" name="areas_atividade" value="Incêndios rurais"><label for="area2">Incêndios rurais</label></div>
-            <div class="choice"><input type="checkbox" id="area3" name="areas_atividade" value="Emergência pré-hospitalar"><label for="area3">Emergência pré-hospitalar</label></div>
-            <div class="choice"><input type="checkbox" id="area4" name="areas_atividade" value="Acidentes e salvamento"><label for="area4">Acidentes e salvamento</label></div>
-            <div class="choice"><input type="checkbox" id="area5" name="areas_atividade" value="Prevenção e formação"><label for="area5">Prevenção e formação</label></div>
-            <div class="choice"><input type="checkbox" id="area6" name="areas_atividade" value="Comando e coordenação"><label for="area6">Comando e coordenação</label></div>
+
+            <div class="choice">
+              <input type="checkbox" id="area1" name="areas_atividade" value="Incêndios urbanos">
+              <label for="area1">Incêndios urbanos</label>
+            </div>
+
+            <div class="choice">
+              <input type="checkbox" id="area2" name="areas_atividade" value="Incêndios rurais">
+              <label for="area2">Incêndios rurais</label>
+            </div>
+
+            <div class="choice">
+              <input type="checkbox" id="area3" name="areas_atividade" value="Emergência pré-hospitalar">
+              <label for="area3">Emergência pré-hospitalar</label>
+            </div>
+
+            <div class="choice">
+              <input type="checkbox" id="area4" name="areas_atividade" value="Acidentes e salvamento">
+              <label for="area4">Acidentes e salvamento</label>
+            </div>
+
+            <div class="choice">
+              <input type="checkbox" id="area5" name="areas_atividade" value="Prevenção e formação">
+              <label for="area5">Prevenção e formação</label>
+            </div>
+
+            <div class="choice">
+              <input type="checkbox" id="area6" name="areas_atividade" value="Comando e coordenação">
+              <label for="area6">Comando e coordenação</label>
+            </div>
+
           </div>
         </div>
 
         <div class="grid">
+
           <div class="field">
             <label for="experiencia">Tens experiência em roleplay? <span class="required">*</span></label>
             <select id="experiencia" name="experiencia" required>
@@ -448,6 +724,7 @@ footer {
               <option value="Alguma experiência">Alguma experiência</option>
             </select>
           </div>
+
           <div class="field">
             <label for="funcao_pretendida">Função pretendida <span class="required">*</span></label>
             <select id="funcao_pretendida" name="funcao_pretendida" required>
@@ -458,75 +735,104 @@ footer {
               <option value="Outra">Outra</option>
             </select>
           </div>
+
         </div>
       </section>
 
       <!-- ETAPA 3 -->
       <section class="form-step">
+
         <div class="section-title">
           <span>ETAPA 03</span>
           <h3>Perfil e motivação</h3>
           <p>Queremos conhecer melhor o teu percurso e a tua motivação.</p>
         </div>
+
         <div class="grid">
+
           <div class="field full">
             <label for="experiencia_detalhe">Descreve a tua experiência em roleplay</label>
-            <textarea id="experiencia_detalhe" name="experiencia_detalhe" maxlength="2000"></textarea>
+            <textarea id="experiencia_detalhe" name="experiencia_detalhe" maxlength="2000" placeholder="Podes indicar comunidades, funções ou experiências anteriores."></textarea>
           </div>
+
           <div class="field full">
             <label for="motivacao">Porque queres entrar nos BVA? <span class="required">*</span></label>
             <textarea id="motivacao" name="motivacao" maxlength="2000" required></textarea>
           </div>
+
           <div class="field full">
             <label for="qualidades">Quais são as tuas principais qualidades? <span class="required">*</span></label>
             <textarea id="qualidades" name="qualidades" maxlength="1500" required></textarea>
           </div>
+
           <div class="field full">
             <label for="compromisso">Como demonstras responsabilidade e compromisso? <span class="required">*</span></label>
             <textarea id="compromisso" name="compromisso" maxlength="1500" required></textarea>
           </div>
+
         </div>
       </section>
 
       <!-- ETAPA 4 -->
       <section class="form-step">
+
         <div class="section-title">
           <span>ETAPA 04</span>
           <h3>Questionário final</h3>
           <p>Responde às últimas questões antes de submeteres a candidatura.</p>
         </div>
+
         <div class="grid">
+
           <div class="field full">
             <label for="q1">1. O que significa para ti trabalhar em equipa? <span class="required">*</span></label>
             <textarea id="q1" name="q1" maxlength="300" required></textarea>
           </div>
+
           <div class="field full">
             <label for="q2">2. Como reagirias a uma orientação de um superior? <span class="required">*</span></label>
             <textarea id="q2" name="q2" maxlength="300" required></textarea>
           </div>
+
           <div class="field full">
             <label for="q3">3. Porque devemos escolher a tua candidatura? <span class="required">*</span></label>
             <textarea id="q3" name="q3" maxlength="300" required></textarea>
           </div>
+
           <div class="field full">
             <label for="situacao_pratica">4. Como agias perante uma situação inesperada durante uma atividade de simulação? <span class="required">*</span></label>
             <textarea id="situacao_pratica" name="situacao_pratica" maxlength="2000" required></textarea>
           </div>
+
           <div class="field full">
             <label for="conflito">5. Como resolverias um conflito com outro elemento da instituição? <span class="required">*</span></label>
             <textarea id="conflito" name="conflito" maxlength="2000" required></textarea>
           </div>
+
         </div>
+
         <div class="notice">
           Ao submeteres esta candidatura, confirmas que as informações fornecidas são verdadeiras e que aceitas as regras da comunidade de simulação BVA.
         </div>
+
       </section>
 
       <div class="navigation">
-        <button type="button" id="previousButton" class="btn btn-secondary" style="visibility:hidden">← ANTERIOR</button>
-        <button type="button" id="nextButton" class="btn btn-primary">SEGUINTE →</button>
-        <button type="submit" id="submitButton" class="btn btn-primary" style="display:none">SUBMETER CANDIDATURA</button>
+
+        <button type="button" id="previousButton" class="btn btn-secondary" style="visibility:hidden">
+          ← ANTERIOR
+        </button>
+
+        <button type="button" id="nextButton" class="btn btn-primary">
+          SEGUINTE →
+        </button>
+
+        <button type="submit" id="submitButton" class="btn btn-primary" style="display:none">
+          SUBMETER CANDIDATURA
+        </button>
+
       </div>
+
     </form>
   </div>
 
@@ -551,8 +857,8 @@ footer {
   "use strict";
 
   const form = document.getElementById("applicationForm");
-  const panels = Array.from(document.querySelectorAll(".form-step"));
-  const indicators = Array.from(document.querySelectorAll(".steps .step"));
+  const formSteps = Array.from(document.querySelectorAll(".form-step"));
+  const progressSteps = Array.from(document.querySelectorAll(".steps .step"));
 
   const progressFill = document.getElementById("progressFill");
   const progressTitle = document.getElementById("progressTitle");
@@ -563,11 +869,11 @@ footer {
   const submitButton = document.getElementById("submitButton");
 
   const formError = document.getElementById("formError");
-  const formCard = document.getElementById("formCard");
   const progressCard = document.getElementById("progressCard");
+  const formCard = document.getElementById("formCard");
   const successScreen = document.getElementById("successScreen");
 
-  const titles = [
+  const stepTitles = [
     "Dados pessoais",
     "Disponibilidade e atividade",
     "Perfil e motivação",
@@ -575,57 +881,7 @@ footer {
   ];
 
   let currentStep = 0;
-  let sending = false;
-
-  function showStep(index) {
-    if (index < 0 || index >= panels.length) return;
-
-    currentStep = index;
-
-    panels.forEach(function(panel, position) {
-      panel.classList.toggle("active", position === index);
-    });
-
-    indicators.forEach(function(indicator, position) {
-      indicator.classList.toggle("active", position === index);
-      indicator.classList.toggle("completed", position < index);
-    });
-
-    progressFill.style.width = ((index + 1) * 25) + "%";
-    progressTitle.textContent = titles[index];
-    progressText.textContent = "Etapa " + (index + 1) + " de 4";
-
-    previousButton.style.visibility = index === 0 ? "hidden" : "visible";
-    nextButton.style.display = index === panels.length - 1 ? "none" : "inline-block";
-    submitButton.style.display = index === panels.length - 1 ? "inline-block" : "none";
-
-    formError.style.display = "none";
-    formError.textContent = "";
-
-    window.scrollTo(0, 0);
-  }
-
-  // Navegação entre etapas: não exige preencher campos.
-  nextButton.addEventListener("click", function(event) {
-    event.preventDefault();
-    showStep(currentStep + 1);
-  });
-
-  previousButton.addEventListener("click", function(event) {
-    event.preventDefault();
-    showStep(currentStep - 1);
-  });
+  let submitting = false;
 
   function showError(message) {
-    formError.textContent = message;
-    formError.style.display = "block";
-    formError.scrollIntoView({behavior:"smooth", block:"center"});
-  }
-
-  function validateForm() {
-    const requiredFields = Array.from(form.querySelectorAll("[required]"));
-
-    for (const field of requiredFields) {
-      if (!String(field.value || "").trim() || !field.checkValidity()) {
-        const panel = field.closest(".form-step");
-        const position = panels.indexOf(panel);
+              
