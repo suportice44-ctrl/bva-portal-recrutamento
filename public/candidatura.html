@@ -761,7 +761,7 @@ footer {
 
   function iniciarFormulario() {
     const form = document.getElementById("applicationForm");
-    const formSteps = Array.from(document.querySelectorAll(".form-step"));
+    const steps = Array.from(document.querySelectorAll(".form-step"));
     const progressSteps = Array.from(document.querySelectorAll(".steps .step"));
 
     const progressFill = document.getElementById("progressFill");
@@ -773,30 +773,30 @@ footer {
     const submitButton = document.getElementById("submitButton");
 
     const formError = document.getElementById("formError");
-    const progressCard = document.getElementById("progressCard");
     const formCard = document.getElementById("formCard");
+    const progressCard = document.getElementById("progressCard");
     const successScreen = document.getElementById("successScreen");
 
-    const stepTitles = [
+    const titles = [
       "Dados pessoais",
       "Disponibilidade e atividade",
       "Perfil e motivação",
       "Questionário final"
     ];
 
-    let currentStep = 0;
-    let submitting = false;
-
     if (
-      !form || formSteps.length !== 4 ||
+      !form || steps.length !== 4 ||
       progressSteps.length !== 4 ||
       !progressFill || !progressTitle || !progressText ||
       !previousButton || !nextButton || !submitButton ||
-      !formError || !progressCard || !formCard || !successScreen
+      !formError || !formCard || !progressCard || !successScreen
     ) {
-      console.error("Erro: elementos do formulário em falta.");
+      console.error("Erro: elementos necessários do formulário em falta.");
       return;
     }
+
+    let currentStep = 0;
+    let submitting = false;
 
     function clearError() {
       formError.textContent = "";
@@ -813,13 +813,13 @@ footer {
     }
 
     function showStep(index) {
-      if (index < 0 || index >= formSteps.length) return;
+      if (index < 0 || index >= steps.length) return;
 
       currentStep = index;
       clearError();
 
-      formSteps.forEach(function (step, i) {
+      steps.forEach(function (step, i) {
         step.classList.toggle("active", i === index);
       });
 
-      progressStep
+      progressSteps.forEac
