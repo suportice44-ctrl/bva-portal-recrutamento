@@ -2,801 +2,508 @@
 <!DOCTYPE html>
 <html lang="pt-PT">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#101419">
-  <meta name="description" content="Bombeiros Voluntários do Algarve — Proteção, coragem e dedicação.">
-  <title>Bombeiros Voluntários do Algarve</title>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
-  <style>
-    :root {
-      --bg: #101419;
-      --panel: #1d252d;
-      --red: #c92332;
-      --gold: #d8ad65;
-      --white: #fff;
-      --muted: #aab3bc;
-      --border: rgba(255,255,255,.1);
-    }
-
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    html { scroll-behavior: smooth; scroll-padding-top: 90px; }
-
-    body {
-      font-family: Inter, Arial, sans-serif;
-      background: var(--bg);
-      color: var(--white);
-      overflow-x: hidden;
-    }
-
-    a { color: inherit; text-decoration: none; }
-    button, input, textarea, select { font: inherit; }
-
-    .container {
-      width: min(1180px, calc(100% - 40px));
-      margin: auto;
-    }
-
-    .topbar {
-      background: #090d11;
-      border-bottom: 1px solid var(--border);
-      padding: 10px 0;
-      color: var(--muted);
-      font-size: 11px;
-    }
-
-    .topbar .container {
-      display: flex;
-      justify-content: space-between;
-      gap: 15px;
-    }
-
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: rgba(16,20,25,.96);
-      backdrop-filter: blur(15px);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .navbar {
-      height: 82px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 20px;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .brand-logo {
-      width: 53px;
-      height: 53px;
-      display: grid;
-      place-items: center;
-      border: 2px solid var(--gold);
-      border-radius: 50%;
-      background: #202830;
-      color: var(--gold);
-      font-family: "Barlow Condensed", sans-serif;
-      font-weight: 800;
-      font-size: 23px;
-    }
-
-    .brand-name strong {
-      display: block;
-      font-family: "Barlow Condensed", sans-serif;
-      font-size: 21px;
-    }
-
-    .brand-name small {
-      display: block;
-      color: var(--gold);
-      font-size: 9px;
-      letter-spacing: 2px;
-      margin-top: 3px;
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 27px;
-    }
-
-    .nav-links a {
-      font-size: 12px;
-      font-weight: 600;
-      color: #d3d9df;
-      transition: .2s;
-    }
-
-    .nav-links a:hover { color: var(--gold); }
-
-    .btn {
-      display: inline-flex;
-      justify-content: center;
-      align-items: center;
-      background: var(--red);
-      color: white;
-      border: 1px solid var(--red);
-      border-radius: 3px;
-      padding: 14px 22px;
-      font-size: 12px;
-      font-weight: 800;
-      cursor: pointer;
-      transition: .25s;
-    }
-
-    .btn:hover {
-      background: #ed3544;
-      transform: translateY(-2px);
-    }
-
-    .btn-outline {
-      background: transparent;
-      border-color: rgba(255,255,255,.5);
-    }
-
-    .btn-outline:hover {
-      background: white;
-      color: #111;
-    }
-
-    .menu-toggle {
-      display: none;
-      background: transparent;
-      border: 1px solid var(--border);
-      color: white;
-      padding: 9px 13px;
-      font-size: 22px;
-      cursor: pointer;
-    }
-
-    .hero {
-      min-height: 680px;
-      display: flex;
-      align-items: center;
-      position: relative;
-      background:
-        linear-gradient(90deg,rgba(7,11,15,.96),rgba(7,11,15,.72),rgba(7,11,15,.2)),
-        url("https://images.unsplash.com/photo-1519501025264-65ba15a82390?auto=format&fit=crop&w=2000&q=85") center/cover;
-    }
-
-    .hero:after {
-      content: "";
-      position: absolute;
-      bottom: 0;
-      width: 100%;
-      height: 5px;
-      background: linear-gradient(90deg,var(--red) 0 35%,var(--gold) 35% 65%,transparent 65%);
-    }
-
-    .hero-content {
-      max-width: 720px;
-      padding: 100px 0;
-      position: relative;
-      z-index: 1;
-    }
-
-    .eyebrow {
-      color: var(--gold);
-      font-size: 11px;
-      font-weight: 800;
-      letter-spacing: 3px;
-      margin-bottom: 25px;
-    }
-
-    .hero h1 {
-      font-family: "Barlow Condensed", sans-serif;
-      font-size: clamp(55px,8vw,100px);
-      line-height: .92;
-      text-transform: uppercase;
-    }
-
-    .hero h1 span { color: #ed3544; }
-
-    .hero p {
-      color: #c2c9d0;
-      font-size: 14px;
-      line-height: 1.9;
-      max-width: 520px;
-      margin: 27px 0 32px;
-    }
-
-    .hero-actions { display: flex; flex-wrap: wrap; gap: 13px; }
-
-    .stats {
-      background: #171e25;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(3,1fr);
-    }
-
-    .stat {
-      text-align: center;
-      padding: 30px 15px;
-      border-right: 1px solid var(--border);
-    }
-
-    .stat:last-child { border: 0; }
-
-    .stat strong {
-      display: block;
-      color: var(--gold);
-      font-family: "Barlow Condensed", sans-serif;
-      font-size: 35px;
-    }
-
-    .stat span {
-      color: var(--muted);
-      font-size: 10px;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-    }
-
-    section { padding: 100px 0; }
-
-    .section-label {
-      color: #ed3544;
-      font-size: 10px;
-      font-weight: 800;
-      letter-spacing: 3px;
-      margin-bottom: 15px;
-    }
-
-    .section-title {
-      font-family: "Barlow Condensed", sans-serif;
-      font-size: clamp(38px,5vw,58px);
-      line-height: 1;
-      text-transform: uppercase;
-      margin-bottom: 20px;
-    }
-
-    .section-title span { color: var(--gold); }
-
-    .section-text {
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.9;
-    }
-
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      align-items: center;
-      gap: 60px;
-    }
-
-    .about-image {
-      min-height: 430px;
-      background:
-        linear-gradient(0deg,rgba(0,0,0,.35),transparent),
-        url("https://images.unsplash.com/photo-1583468982228-19f19164aee5?auto=format&fit=crop&w=1100&q=85") center/cover;
-      border: 1px solid var(--border);
-    }
-
-    .about-highlight {
-      margin-top: 25px;
-      padding: 18px;
-      border-left: 3px solid var(--red);
-      background: var(--panel);
-      color: #d7dde3;
-      font-size: 12px;
-      line-height: 1.8;
-    }
-
-    .values { background: #171e25; }
-
-    .values-grid {
-      display: grid;
-      grid-template-columns: repeat(3,1fr);
-      gap: 18px;
-      margin-top: 45px;
-    }
-
-    .value-card {
-      padding: 30px;
-      background: #202a33;
-      border: 1px solid var(--border);
-      transition: .3s;
-    }
-
-    .value-card:hover {
-      transform: translateY(-6px);
-      border-color: var(--gold);
-    }
-
-    .value-icon {
-      width: 48px;
-      height: 48px;
-      display: grid;
-      place-items: center;
-      background: rgba(201,35,50,.15);
-      color: #ed3544;
-      font-size: 23px;
-      margin-bottom: 22px;
-    }
-
-    .value-card h3 {
-      font-family: "Barlow Condensed", sans-serif;
-      font-size: 25px;
-      text-transform: uppercase;
-      margin-bottom: 12px;
-    }
-
-    .value-card p {
-      color: var(--muted);
-      font-size: 12px;
-      line-height: 1.8;
-    }
-
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: 1.2fr 1fr 1fr;
-      grid-template-rows: 220px 220px;
-      gap: 12px;
-      margin-top: 40px;
-    }
-
-    .gallery-item {
-      position: relative;
-      overflow: hidden;
-      background: #252d35;
-    }
-
-    .gallery-item:first-child { grid-row: span 2; }
-
-    .gallery-item img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform .5s;
-    }
-
-    .gallery-item:hover img { transform: scale(1.06); }
-
-    .gallery-caption {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      padding: 22px;
-      background: linear-gradient(transparent,rgba(0,0,0,.85));
-      font-size: 11px;
-      font-weight: 700;
-    }
-
-    .recruitment {
-      background:
-        linear-gradient(90deg,rgba(10,14,18,.97),rgba(10,14,18,.85)),
-        url("https://images.unsplash.com/photo-1516937941344-00b4e0337589?auto=format&fit=crop&w=1800&q=85") center/cover;
-    }
-
-    .recruitment-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 55px;
-      align-items: start;
-    }
-
-    .requirements {
-      display: grid;
-      gap: 17px;
-      margin-top: 30px;
-    }
-
-    .requirement {
-      display: flex;
-      gap: 13px;
-      color: #d4dbe0;
-      font-size: 12px;
-      line-height: 1.7;
-    }
-
-    .requirement b { color: var(--gold); }
-
-    .form-card {
-      background: #f7f8f9;
-      color: #151b21;
-      padding: 35px;
-      border-radius: 4px;
-      box-shadow: 0 25px 80px rgba(0,0,0,.3);
-    }
-
-    .form-card h3 {
-      font-family: "Barlow Condensed", sans-serif;
-      font-size: 34px;
-      text-transform: uppercase;
-    }
-
-    .form-card > p {
-      font-size: 11px;
-      color: #69737c;
-      margin: 8px 0 25px;
-      line-height: 1.7;
-    }
-
-    .form-group { margin-bottom: 16px; }
-
-    .form-group label {
-      display: block;
-      font-size: 10px;
-      font-weight: 800;
-      margin-bottom: 8px;
-      color: #333c44;
-    }
-
-    .form-group input,
-    .form-group textarea,
-    .form-group select {
-      width: 100%;
-      padding: 13px 14px;
-      background: white;
-      border: 1px solid #dce1e5;
-      border-radius: 3px;
-      outline: none;
-      color: #151b21;
-      font-size: 12px;
-    }
-
-    .form-group input:focus,
-    .form-group textarea:focus,
-    .form-group select:focus {
-      border-color: var(--red);
-      box-shadow: 0 0 0 3px rgba(201,35,50,.08);
-    }
-
-    .form-group textarea { min-height: 85px; resize: vertical; }
-
-    .form-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 13px;
-    }
-
-    .form-submit { width: 100%; border: 0; margin-top: 5px; }
-
-    .form-message {
-      display: none;
-      padding: 13px;
-      margin-top: 15px;
-      font-size: 12px;
-      line-height: 1.6;
-      border-radius: 3px;
-    }
-
-    .form-message.success {
-      display: block;
-      background: #e1f5e9;
-      color: #176b3a;
-    }
-
-    .form-message.error {
-      display: block;
-      background: #ffe5e5;
-      color: #a31919;
-    }
-
-    .form-note {
-      font-size: 10px;
-      color: #78818a;
-      line-height: 1.7;
-      margin-top: 13px;
-    }
-
-    .contact { background: #171e25; }
-
-    .contact-grid {
-      display: grid;
-      grid-template-columns: repeat(3,1fr);
-      gap: 18px;
-      margin-top: 40px;
-    }
-
-    .contact-card {
-      padding: 28px;
-      background: #202a33;
-      border: 1px solid var(--border);
-    }
-
-    .contact-card span { color: var(--gold); font-size: 22px; }
-
-    .contact-card h3 {
-      font-family: "Barlow Condensed", sans-serif;
-      font-size: 23px;
-      margin: 17px 0 8px;
-      text-transform: uppercase;
-    }
-
-    .contact-card p {
-      color: var(--muted);
-      font-size: 12px;
-      line-height: 1.8;
-      overflow-wrap: anywhere;
-    }
-
-    footer {
-      background: #090d11;
-      padding: 45px 0 22px;
-    }
-
-    .footer-main {
-      display: flex;
-      justify-content: space-between;
-      gap: 35px;
-      padding-bottom: 30px;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .footer-description {
-      max-width: 350px;
-      color: var(--muted);
-      font-size: 11px;
-      line-height: 1.9;
-      margin-top: 15px;
-    }
-
-    .footer-links h4 {
-      font-size: 11px;
-      margin-bottom: 15px;
-    }
-
-    .footer-links a {
-      display: block;
-      color: var(--muted);
-      font-size: 11px;
-      margin-bottom: 11px;
-    }
-
-    .footer-links a:hover { color: var(--gold); }
-
-    .footer-bottom {
-      display: flex;
-      justify-content: space-between;
-      gap: 15px;
-      padding-top: 22px;
-      color: #69727a;
-      font-size: 10px;
-    }
-
-    .reveal {
-      opacity: 0;
-      transform: translateY(22px);
-      transition: opacity .7s ease, transform .7s ease;
-    }
-
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    @media(max-width: 850px) {
-      .nav-links { gap: 14px; }
-      .nav-links a { font-size: 10px; }
-      .about-grid, .recruitment-grid { gap: 30px; }
-    }
-
-    @media(max-width: 700px) {
-      .topbar { display: none; }
-      .navbar { height: 72px; }
-      .menu-toggle { display: block; }
-
-      .nav-links {
-        display: none;
-        position: absolute;
-        top: 72px;
-        left: 0;
-        right: 0;
-        padding: 20px;
-        background: #11171d;
-        border-bottom: 1px solid var(--border);
-        flex-direction: column;
-        align-items: stretch;
-        gap: 0;
-      }
-
-      .nav-links.open { display: flex; }
-
-      .nav-links a {
-        padding: 14px 5px;
-        font-size: 13px;
-        border-bottom: 1px solid var(--border);
-      }
-
-      .nav-links .nav-cta {
-        margin-top: 14px;
-        text-align: center;
-      }
-
-      .hero { min-height: 590px; }
-
-      .hero h1 { font-size: 65px; }
-      .hero p { font-size: 13px; }
-
-      section { padding: 70px 0; }
-
-      .stats-grid { grid-template-columns: 1fr; }
-      .stat { border-right: 0; border-bottom: 1px solid var(--border); }
-
-      .about-grid, .recruitment-grid { grid-template-columns: 1fr; }
-      .about-image { min-height: 300px; }
-
-      .values-grid, .contact-grid { grid-template-columns: 1fr; }
-
-      .gallery-grid {
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: 200px 160px 160px;
-      }
-
-      .gallery-item:first-child { grid-column: span 2; grid-row: auto; }
-
-      .form-card { padding: 23px; }
-      .form-row { grid-template-columns: 1fr; }
-
-      .footer-main { flex-direction: column; }
-      .footer-bottom { flex-direction: column; }
-    }
-
-    @media(prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
-      *, *::before, *::after { transition-duration: .01ms !important; }
-      .reveal { opacity: 1; transform: none; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#101c2c">
+<meta name="description" content="Bombeiros Voluntários do Algarve — Portal institucional e recrutamento da comunidade de simulação BVA.">
+<title>BVA | Bombeiros Voluntários do Algarve</title>
+
+<style>
+:root {
+  --navy: #101c2c;
+  --navy2: #17283d;
+  --red: #c62828;
+  --red-dark: #a51e25;
+  --white: #fff;
+  --light: #f3f5f8;
+  --text: #263445;
+  --muted: #697586;
+  --border: #e2e7ed;
+  --green: #198754;
+  --shadow: 0 12px 35px rgba(16,28,44,.10);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: var(--white);
+  color: var(--text);
+  line-height: 1.6;
+}
+a { color: inherit; text-decoration: none; }
+button, input, select, textarea { font: inherit; }
+button { cursor: pointer; }
+.container { width: min(1150px, 92%); margin: auto; }
+.topbar {
+  background: #0a1421;
+  color: #dce4ed;
+  font-size: 12px;
+  padding: 9px 0;
+}
+.topbar .container {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+header {
+  background: var(--navy);
+  color: white;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  box-shadow: 0 4px 18px #0002;
+}
+.nav {
+  min-height: 82px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+.brand { display: flex; align-items: center; gap: 13px; }
+.brand-logo {
+  width: 51px; height: 51px;
+  border: 2px solid #ffffff55;
+  border-radius: 50%;
+  display: grid; place-items: center;
+  background: var(--red);
+  font-weight: 900; font-size: 17px;
+}
+.brand strong { display: block; font-size: 16px; letter-spacing: .5px; }
+.brand small { color: #c3ceda; font-size: 10px; letter-spacing: 1.5px; }
+.nav-links { display: flex; gap: 23px; align-items: center; }
+.nav-links a {
+  color: #e3eaf1;
+  font-size: 13px;
+  font-weight: 700;
+  transition: .2s;
+}
+.nav-links a:hover { color: #ff7777; }
+.nav-links .nav-cta {
+  background: var(--red);
+  padding: 11px 17px;
+  border-radius: 4px;
+  color: white;
+}
+.menu-btn {
+  display: none;
+  background: transparent;
+  color: white;
+  border: 1px solid #ffffff55;
+  border-radius: 5px;
+  padding: 8px 12px;
+}
+.hero {
+  min-height: 590px;
+  display: flex;
+  align-items: center;
+  color: white;
+  background:
+    linear-gradient(90deg,rgba(7,17,29,.94),rgba(7,17,29,.65),rgba(7,17,29,.25)),
+    url("https://images.unsplash.com/photo-1599708153386-62bf2f03b025?auto=format&fit=crop&w=1900&q=85") center/cover;
+}
+.hero-content { max-width: 720px; padding: 100px 0; }
+.eyebrow {
+  color: #ff8585;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+}
+.hero h1 {
+  font-size: clamp(37px,6vw,65px);
+  line-height: 1.08;
+  margin: 17px 0 22px;
+  letter-spacing: -1.5px;
+}
+.hero p { max-width: 600px; color: #e0e6ed; font-size: 17px; }
+.actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 30px; }
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: 13px 21px; border: 0; border-radius: 4px;
+  font-weight: 800; font-size: 13px; transition: .2s;
+}
+.btn-red { background: var(--red); color: white; }
+.btn-red:hover { background: var(--red-dark); transform: translateY(-2px); }
+.btn-outline { border: 1px solid #ffffff99; color: white; background: transparent; }
+.btn-outline:hover { background: white; color: var(--navy); }
+.btn-dark { background: var(--navy); color: white; }
+.btn-light { background: #edf1f5; color: var(--navy); }
+section { padding: 85px 0; }
+.section-head { max-width: 680px; margin-bottom: 38px; }
+.section-head.center { text-align: center; margin-left: auto; margin-right: auto; }
+.section-head span {
+  color: var(--red); font-size: 11px; font-weight: 900;
+  letter-spacing: 2px; text-transform: uppercase;
+}
+.section-head h2 { color: var(--navy); font-size: clamp(28px,4vw,39px); margin: 9px 0 12px; line-height: 1.2; }
+.section-head p { color: var(--muted); }
+.about-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 55px; align-items: center;
+}
+.about-photo {
+  min-height: 390px; border-radius: 8px;
+  background: url("https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1000&q=80") center/cover;
+  box-shadow: var(--shadow);
+}
+.about-copy h3 { color: var(--navy); font-size: 25px; margin-bottom: 16px; }
+.about-copy p { color: var(--muted); margin-bottom: 15px; }
+.values { background: var(--light); }
+.card-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
+.info-card {
+  padding: 28px; background: white; border: 1px solid var(--border);
+  border-radius: 7px; box-shadow: 0 5px 20px #101c2c08;
+}
+.card-icon {
+  width: 48px; height: 48px; border-radius: 7px;
+  display: grid; place-items: center; background: #fff0f0;
+  color: var(--red); font-size: 23px; margin-bottom: 18px;
+}
+.info-card h3 { color: var(--navy); margin-bottom: 9px; font-size: 18px; }
+.info-card p { color: var(--muted); font-size: 14px; }
+.stats { background: var(--navy); color: white; padding: 48px 0; }
+.stats-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; text-align: center; }
+.stat strong { display: block; font-size: 30px; color: #ff7777; }
+.stat span { color: #d4dce5; font-size: 13px; }
+.recruitment { background: white; }
+.recruit-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 45px; align-items: center; }
+.recruit-image {
+  min-height: 390px; border-radius: 8px;
+  background: url("https://images.unsplash.com/photo-1584467735871-8e85353a8413?auto=format&fit=crop&w=1000&q=80") center/cover;
+}
+.check-list { list-style: none; margin: 20px 0 27px; }
+.check-list li { margin: 11px 0; color: var(--muted); }
+.check-list li::before { content: "✓"; color: var(--green); font-weight: 900; margin-right: 10px; }
+.application-section { background: var(--light); }
+.form-wrap {
+  max-width: 850px; margin: auto; background: white;
+  padding: 35px; border-radius: 8px; box-shadow: var(--shadow);
+}
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.field { display: flex; flex-direction: column; gap: 7px; }
+.field.full { grid-column: 1/-1; }
+.field label { font-size: 12px; font-weight: 800; color: var(--navy); }
+.field input, .field select, .field textarea {
+  border: 1px solid var(--border); border-radius: 4px;
+  padding: 12px; background: #fff; color: var(--text); outline: none;
+}
+.field input:focus, .field select:focus, .field textarea:focus { border-color: var(--red); }
+.field textarea { min-height: 115px; resize: vertical; }
+.form-note { color: var(--muted); font-size: 12px; margin: 17px 0; }
+.success {
+  display: none; background: #e7f6ed; border: 1px solid #b9e3c9;
+  color: #17683b; padding: 14px; border-radius: 5px; margin-bottom: 18px;
+}
+footer { background: #091421; color: #d7e0e9; padding: 45px 0 20px; }
+.footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 30px; }
+footer h3 { color: white; margin-bottom: 13px; font-size: 15px; }
+footer p, footer a { color: #aebdca; font-size: 13px; }
+footer a { display: block; margin: 7px 0; }
+.footer-bottom { border-top: 1px solid #ffffff20; margin-top: 30px; padding-top: 18px; font-size: 11px; color: #91a1b1; text-align: center; }
+
+/* Administração */
+.admin-area { background: #f0f2f5; padding: 75px 0; }
+.admin-login, .admin-panel {
+  max-width: 1050px; margin: auto; background: white;
+  padding: 28px; border-radius: 8px; box-shadow: var(--shadow);
+}
+.admin-login { max-width: 440px; }
+.admin-login h2, .admin-panel h2 { color: var(--navy); margin-bottom: 8px; }
+.admin-login p { color: var(--muted); font-size: 13px; margin-bottom: 20px; }
+.admin-login .field { margin-bottom: 15px; }
+.admin-toolbar { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin: 20px 0; }
+.admin-toolbar input { padding: 10px; border: 1px solid var(--border); border-radius: 4px; }
+.table-wrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; min-width: 650px; }
+th, td { padding: 12px 10px; border-bottom: 1px solid var(--border); text-align: left; font-size: 12px; }
+th { color: var(--navy); background: #f5f7fa; }
+.status { padding: 5px 8px; border-radius: 20px; font-size: 10px; font-weight: 800; }
+.status-Recebida { background: #e8eef9; color: #31578a; }
+.status-Em-análise { background: #fff2d6; color: #8a5a00; }
+.status-Aceite { background: #dff4e7; color: #17683b; }
+.status-Recusada { background: #fde5e5; color: #a21d1d; }
+.admin-actions { display: flex; gap: 6px; flex-wrap: wrap; }
+.small-btn { padding: 6px 9px; border: 0; border-radius: 3px; font-size: 11px; font-weight: 700; background: #edf1f5; }
+.hidden { display: none !important; }
+.modal {
+  display: none; position: fixed; inset: 0; z-index: 100;
+  background: #0009; align-items: center; justify-content: center; padding: 20px;
+}
+.modal-box { background: white; max-width: 600px; width: 100%; padding: 27px; border-radius: 8px; max-height: 85vh; overflow: auto; }
+.modal-box h3 { color: var(--navy); margin-bottom: 15px; }
+.modal-box p { font-size: 13px; margin: 8px 0; overflow-wrap: anywhere; }
+.admin-warning { font-size: 11px; color: #946200; background: #fff6df; padding: 10px; margin: 14px 0; border-radius: 4px; }
+
+@media(max-width:850px) {
+  .menu-btn { display: block; }
+  .nav-links {
+    display: none; position: absolute; top: 82px; left: 0; right: 0;
+    background: var(--navy); padding: 20px; flex-direction: column; align-items: stretch;
+  }
+  .nav-links.open { display: flex; }
+  .about-grid, .recruit-grid { grid-template-columns: 1fr; gap: 28px; }
+  .card-grid { grid-template-columns: 1fr 1fr; }
+}
+@media(max-width:560px) {
+  section { padding: 60px 0; }
+  .hero { min-height: 540px; }
+  .hero-content { padding: 70px 0; }
+  .card-grid, .stats-grid, .footer-grid, .form-grid { grid-template-columns: 1fr; }
+  .field.full { grid-column: auto; }
+  .form-wrap { padding: 22px; }
+  .about-photo, .recruit-image { min-height: 270px; }
+}
+</style>
 </head>
 
 <body>
-  <div class="topbar">
-    <div class="container">
-      <span>BOMBEIROS VOLUNTÁRIOS DO ALGARVE</span>
-      <span>PROTEÇÃO · CORAGEM · DEDICAÇÃO</span>
+<div class="topbar">
+  <div class="container">
+    <span>PORTAL INSTITUCIONAL · BVA</span>
+    <span>Comunidade de simulação e roleplay</span>
+  </div>
+</div>
+
+<header>
+  <div class="container nav">
+    <a href="#inicio" class="brand">
+      <div class="brand-logo">BVA</div>
+      <div>
+        <strong>BOMBEIROS VOLUNTÁRIOS</strong>
+        <small>DO ALGARVE</small>
+      </div>
+    </a>
+    <button class="menu-btn" onclick="toggleMenu()" aria-label="Abrir menu">☰</button>
+    <nav class="nav-links" id="navLinks">
+      <a href="#inicio" onclick="closeMenu()">Início</a>
+      <a href="#instituicao" onclick="closeMenu()">Instituição</a>
+      <a href="#valores" onclick="closeMenu()">Valores</a>
+      <a href="#recrutamento" onclick="closeMenu()">Recrutamento</a>
+      <a href="#candidatura" class="nav-cta" onclick="closeMenu()">Candidatar-me</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="hero" id="inicio">
+  <div class="container">
+    <div class="hero-content">
+      <span class="eyebrow">Bombeiros Voluntários do Algarve</span>
+      <h1>Servir a comunidade.<br>Fazer a diferença.</h1>
+      <p>Uma comunidade dedicada ao espírito de equipa, à responsabilidade e à simulação de operações de proteção e socorro.</p>
+      <div class="actions">
+        <a href="#instituicao" class="btn btn-red">Conhecer a instituição</a>
+        <a href="#candidatura" class="btn btn-outline">Juntar-me à equipa</a>
+      </div>
     </div>
   </div>
+</section>
 
-  <header>
-    <div class="container navbar">
-      <a class="brand" href="#inicio" aria-label="Página inicial">
-        <div class="brand-logo">BVA</div>
-        <div class="brand-name">
-          <strong>BOMBEIROS VOLUNTÁRIOS</strong>
-          <small>DO ALGARVE</small>
-        </div>
-      </a>
-
-      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu" aria-expanded="false">☰</button>
-
-      <nav class="nav-links" id="navLinks">
-        <a href="#inicio">INÍCIO</a>
-        <a href="#sobre">SOBRE NÓS</a>
-        <a href="#valores">VALORES</a>
-        <a href="#galeria">GALERIA</a>
-        <a href="#contactos">CONTACTOS</a>
-        <a class="nav-cta" href="#candidatura">CANDIDATAR-ME</a>
-      </nav>
+<section id="instituicao">
+  <div class="container about-grid">
+    <div class="about-photo" role="img" aria-label="Imagem ilustrativa de equipa"></div>
+    <div class="about-copy">
+      <div class="section-head">
+        <span>Quem somos</span>
+        <h2>Uma instituição unida por um propósito.</h2>
+      </div>
+      <h3>Compromisso, dedicação e espírito de equipa.</h3>
+      <p>Os Bombeiros Voluntários do Algarve são uma comunidade fictícia de simulação e roleplay, criada para proporcionar experiências organizadas e imersivas.</p>
+      <p>Promovemos a cooperação, a disciplina, a aprendizagem e o respeito entre todos os membros.</p>
+      <a href="#recrutamento" class="btn btn-dark">Fazer parte da equipa</a>
     </div>
-  </header>
+  </div>
+</section>
 
-  <main>
-    <section class="hero" id="inicio">
-      <div class="container">
-        <div class="hero-content">
-          <div class="eyebrow">SERVIR COM HONRA</div>
-          <h1>PRONTOS PARA<br><span>PROTEGER.</span></h1>
-          <p>
-            A coragem não se mede pela ausência de medo, mas pela vontade de ajudar.
-            Descobre a nossa missão e faz parte de uma equipa dedicada à proteção
-            e ao serviço da comunidade.
-          </p>
-          <div class="hero-actions">
-            <a class="btn" href="#candidatura">JUNTAR-ME À EQUIPA →</a>
-            <a class="btn btn-outline" href="#sobre">CONHECER A CORPORAÇÃO</a>
-          </div>
-        </div>
-      </div>
-    </section>
+<section class="values" id="valores">
+  <div class="container">
+    <div class="section-head center">
+      <span>O que nos representa</span>
+      <h2>Os nossos valores</h2>
+      <p>Princípios que orientam a nossa comunidade e a forma como trabalhamos em conjunto.</p>
+    </div>
+    <div class="card-grid">
+      <article class="info-card">
+        <div class="card-icon">★</div>
+        <h3>Dedicação</h3>
+        <p>Participação ativa e compromisso com as atividades da comunidade.</p>
+      </article>
+      <article class="info-card">
+        <div class="card-icon">◆</div>
+        <h3>Disciplina</h3>
+        <p>Respeito pelas regras, pela organização e pelas responsabilidades assumidas.</p>
+      </article>
+      <article class="info-card">
+        <div class="card-icon">✚</div>
+        <h3>Espírito de equipa</h3>
+        <p>Cooperação, entreajuda e respeito por todos os elementos.</p>
+      </article>
+    </div>
+  </div>
+</section>
 
-    <div class="stats">
-      <div class="container stats-grid">
-        <div class="stat">
-          <strong>24/7</strong>
-          <span>Disponibilidade</span>
-        </div>
-        <div class="stat">
-          <strong>UNIÃO</strong>
-          <span>Espírito de equipa</span>
-        </div>
-        <div class="stat">
-          <strong>MISSÃO</strong>
-          <span>Servir a comunidade</span>
-        </div>
+<div class="stats">
+  <div class="container stats-grid">
+    <div class="stat"><strong>União</strong><span>Trabalhar em conjunto</span></div>
+    <div class="stat"><strong>Respeito</strong><span>Uma comunidade para todos</span></div>
+    <div class="stat"><strong>Compromisso</strong><span>Dedicação à simulação</span></div>
+  </div>
+</div>
+
+<section class="recruitment" id="recrutamento">
+  <div class="container recruit-grid">
+    <div>
+      <div class="section-head">
+        <span>Recrutamento</span>
+        <h2>O próximo elemento podes ser tu.</h2>
+        <p>Estamos à procura de pessoas motivadas para integrar a nossa comunidade de simulação.</p>
       </div>
+      <ul class="check-list">
+        <li>Vontade de aprender e participar.</li>
+        <li>Respeito pelas regras e pelos restantes membros.</li>
+        <li>Disponibilidade para atividades e formações.</li>
+        <li>Espírito de equipa e responsabilidade.</li>
+      </ul>
+      <a href="#candidatura" class="btn btn-red">Iniciar candidatura</a>
+    </div>
+    <div class="recruit-image" role="img" aria-label="Imagem ilustrativa de recrutamento"></div>
+  </div>
+</section>
+
+<section class="application-section" id="candidatura">
+  <div class="container">
+    <div class="section-head center">
+      <span>Inscrições abertas</span>
+      <h2>Formulário de candidatura</h2>
+      <p>Preenche os campos seguintes com informação correta. A candidatura ficará registada neste navegador.</p>
     </div>
 
-    <section id="sobre">
-      <div class="container about-grid">
-        <div class="about-image reveal" role="img" aria-label="Imagem ilustrativa de uma operação de emergência"></div>
-
-        <div class="reveal">
-          <div class="section-label">QUEM SOMOS</div>
-          <h2 class="section-title">UMA EQUIPA.<br><span>UMA MISSÃO.</span></h2>
-          <p class="section-text">
-            Os Bombeiros Voluntários do Algarve representam uma equipa unida
-            por um objetivo comum: ajudar, proteger e servir.
-          </p>
-          <br>
-          <p class="section-text">
-            Através do trabalho em equipa, da disciplina e da dedicação,
-            procuramos construir uma comunidade de simulação organizada,
-            responsável e próxima dos valores dos bombeiros.
-          </p>
-          <div class="about-highlight">
-            A nossa prioridade é promover um ambiente de respeito, responsabilidade
-            e profissionalismo, onde cada elemento tem um papel importante.
+    <div class="form-wrap">
+      <div class="success" id="successMessage"></div>
+      <form id="applicationForm">
+        <div class="form-grid">
+          <div class="field">
+            <label for="nome">Nome *</label>
+            <input id="nome" name="nome" required maxlength="70" placeholder="O teu nome">
+          </div>
+          <div class="field">
+            <label for="idade">Idade *</label>
+            <input id="idade" name="idade" type="number" min="13" max="99" required placeholder="A tua idade">
+          </div>
+          <div class="field">
+            <label for="discord">Utilizador Discord *</label>
+            <input id="discord" name="discord" required maxlength="80" placeholder="exemplo">
+          </div>
+          <div class="field">
+            <label for="roblox">Utilizador Roblox *</label>
+            <input id="roblox" name="roblox" required maxlength="80" placeholder="Utilizador Roblox">
+          </div>
+          <div class="field">
+            <label for="disponibilidade">Disponibilidade *</label>
+            <select id="disponibilidade" name="disponibilidade" required>
+              <option value="">Selecionar</option>
+              <option>Durante a semana</option>
+              <option>Fins de semana</option>
+              <option>Todos os dias</option>
+              <option>Horário variável</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="area">Área pretendida *</label>
+            <select id="area" name="area" required>
+              <option value="">Selecionar</option>
+              <option>Operacional</option>
+              <option>Comando</option>
+              <option>Formação</option>
+              <option>Administrativa</option>
+              <option>Outra</option>
+            </select>
+          </div>
+          <div class="field full">
+            <label for="experiencia">Experiência anterior</label>
+            <textarea id="experiencia" name="experiencia" maxlength="1200" placeholder="Conta-nos se já participaste noutras comunidades..."></textarea>
+          </div>
+          <div class="field full">
+            <label for="motivacao">Porque queres integrar os BVA? *</label>
+            <textarea id="motivacao" name="motivacao" required maxlength="1500" placeholder="Explica a tua motivação..."></textarea>
           </div>
         </div>
+        <p class="form-note">* Campos obrigatórios. Não introduzas palavras-passe nem dados pessoais sensíveis.</p>
+        <button class="btn btn-red" type="submit">Enviar candidatura</button>
+      </form>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <h3>Bombeiros Voluntários do Algarve</h3>
+        <p>Comunidade fictícia dedicada à simulação, ao roleplay e ao espírito de equipa.</p>
       </div>
-    </section>
+      <div>
+        <h3>Navegação</h3>
+        <a href="#inicio">Início</a>
+        <a href="#instituicao">Instituição</a>
+        <a href="#valores">Valores</a>
+        <a href="#recrutamento">Recrutamento</a>
+      </div>
+      <div>
+        <h3>Recrutamento</h3>
+        <a href="#candidatura">Formulário de candidatura</a>
+        <a href="#admin">Área administrativa</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © <span id="year"></span> Bombeiros Voluntários do Algarve. Comunidade de simulação e roleplay. Não representa uma corporação real.
+    </div>
+  </div>
+</footer>
 
-    <section class="values" id="valores">
-      <div class="container">
-        <div class="section-label">O QUE NOS DEFINE</div>
-        <h2 class="section-title">OS NOSSOS <span>VALORES.</span></h2>
-        <p class="section-text">Os princípios que orientam cada elemento da nossa equipa.</p>
+<section class="admin-area" id="admin">
+  <div class="container">
+    <div class="section-head center">
+      <span>Área reservada</span>
+      <h2>Recursos Humanos</h2>
+      <p>Gestão demonstrativa das candidaturas registadas neste navegador.</p>
+    </div>
 
-        <div class="values-grid">
-          <article class="value-card reveal">
-            <div class="value-icon">★</div>
-            <h3>Dedicação</h3>
-            <p>Compromisso com a missão, responsabilidade e vontade de contribuir para a equipa.</p>
-          </article>
+    <div class="admin-login" id="adminLogin">
+      <h2>Acesso administrativo</h2>
+      <p>Introduz a palavra-passe local configurada no código.</p>
+      <div class="field">
+        <label for="adminPassword">Palavra-passe</label>
+        <input type="password" id="adminPassword" placeholder="Palavra-passe">
+      </div>
+      <button class="btn btn-dark" onclick="loginAdmin()">Entrar</button>
+      <p id="loginError" style="color:#c62828;margin-top:12px"></p>
+      <div class="admin-warning">Demonstração local: esta palavra-passe não constitui segurança real para um painel publicado na Internet.</div>
+    </div>
 
-          <article class="value-card reveal">
-            <div class="value-icon">◆</div>
-            <h3>Disciplina</h3>
-            <p>Respeito pelas regras, pela hierarquia e pelos procedimentos definidos.</p>
-          </article>
-
-          <article class="value-card reveal">
-            <div class="value-icon">✚</div>
-            <h3>Espírito de equipa</h3>
-            <p>Cooperação, entreajuda e confiança entre todos os elementos da corporação.</p>
-          </article>
+    <div class="admin-panel hidden" id="adminPanel">
+      <h2>Painel de candidaturas</h2>
+      <p id="applicationCount" style="color:#697586;font-size:13px"></p>
+      <div class="admin-toolbar">
+        <input type="search" id="searchApplications" placeholder="Pesquisar candidaturas..." oninput="renderApplications()">
+        <div class="admin-actions">
+          <button class="btn btn-dark" onclick="exportCSV()">Exportar CSV</button>
+          <button class="btn btn-light" onclick="logoutAdmin()">Terminar sessão</button>
         </div>
       </div>
-    </section>
-
-    <section id="galeria">
-      <div class="container">
-        <div class="section-label">O NOSSO DIA A DIA</div>
-        <h2 class="section-title">GALERIA <span>OPERACIONAL.</span></h2>
-        <p class="section-text">Alguns momentos ilustrativos do universo dos bombeiros.</p>
-
-        <div class="gallery-grid">
-          <div class="gallery-item reveal">
-            <img src="https://images.unsplash.com/photo-1599708153386-62bf5f6f3b5e?auto=format&fit=crop&w=1000&q=85" alt="Veículo de emergência" loading="lazy">
-            <div class="gallery-caption">PRONTIDÃO E PREPARAÇÃO</div>
-          </div>
-          <div class="gallery-item reveal">
-            <img src="https://images.unsplash.com/photo-1587745416684-47953f16f02f?auto=format&fit=crop&w=800&q=85" alt="Equipamento de proteção" loading="lazy">
-            <div class="gallery-caption">EQUIPAMENTO</div>
-          </div>
-          <div class="gallery-item reveal">
-            <img src="https://images.unsplash.com/photo-1519501025264-65ba15a82390?auto=format&fit=crop&w=800&q=85" alt="Cidade" loading="lazy">
-            <div class="gallery-caption">COMUNIDADE</div>
-          </div>
-          <div class="gallery-item reveal">
-            <img src="https://images.unsplash.com/photo-1516937941344-00b4e0337589?auto=format&fit=crop&w=800&q=85" alt="Instalações" loading="lazy">
-            <div class="gallery-caption">PREPARAÇÃO</div>
-          <
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Referência</th>
+              <th>Nome</th>
+              <th>Área</th>
+              <th>Data</th>
+              <th>Estado</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody id="applicationsTable"></tbody>
+        <
