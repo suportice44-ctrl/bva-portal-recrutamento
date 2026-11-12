@@ -92,6 +92,7 @@ app.post("/api/candidaturas", async (req, res) => {
     idade: clean(body.idade, 20),
     discord: clean(body.discord, 100),
     disponibilidade: clean(body.disponibilidade, 500),
+    areas_atividade: clean(body.areas_atividade, 1000),
     experiencia: clean(body.experiencia, 100),
     funcao_pretendida: clean(body.funcao_pretendida, 100),
     experiencia_detalhe: clean(body.experiencia_detalhe, 2000),
@@ -183,7 +184,6 @@ app.get("/api/admin/candidaturas", adminAuth, async (req, res) => {
     }
 
     const data = await response.json();
-
     return res.json(data);
 
   } catch (error) {
@@ -295,4 +295,4 @@ app.get("/api/health", (req, res) => {
 app.listen(PORT, () => {
   console.log(`Portal BVA ativo na porta ${PORT}`);
 });
-    
+  
