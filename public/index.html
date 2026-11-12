@@ -2,336 +2,801 @@
 <!DOCTYPE html>
 <html lang="pt-PT">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#101c2b">
-<meta name="description" content="Portal institucional dos Bombeiros Voluntários do Algarve — comunidade fictícia de simulação e roleplay.">
-<title>Bombeiros Voluntários do Algarve | Portal Institucional</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#101419">
+  <meta name="description" content="Bombeiros Voluntários do Algarve — Proteção, coragem e dedicação.">
+  <title>Bombeiros Voluntários do Algarve</title>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-<style>
-:root {
-  --navy:#101c2b;
-  --navy2:#192b3e;
-  --red:#bd2932;
-  --red-dark:#98212a;
-  --gold:#d4b477;
-  --white:#fff;
-  --light:#f3f5f7;
-  --text:#293746;
-  --muted:#74808d;
-  --border:#e1e6eb;
-  --width:1180px;
-  --shadow:0 15px 45px rgba(16,28,43,.10);
-}
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;scroll-padding-top:90px}
-body{font-family:"DM Sans",sans-serif;color:var(--text);line-height:1.7;background:white}
-a{text-decoration:none;color:inherit}
-button,input,select,textarea{font:inherit}
-img{display:block;width:100%;object-fit:cover}
-.container{width:min(var(--width),calc(100% - 40px));margin:auto}
-.topbar{background:#080e15;color:#c4ced8;font-size:10px;padding:8px 0;letter-spacing:.5px}
-.topbar-inner{display:flex;justify-content:space-between;gap:15px}
-.topbar strong{color:white}
-header{position:sticky;top:0;z-index:100;background:rgba(16,28,43,.98);border-bottom:1px solid rgba(255,255,255,.09)}
-.nav{min-height:82px;display:flex;align-items:center;justify-content:space-between;gap:20px}
-.brand{display:flex;align-items:center;gap:12px;color:white;flex-shrink:0}
-.brand-mark{width:49px;height:49px;border:2px solid white;border-radius:50%;display:grid;place-items:center;background:var(--red);font-family:Manrope;font-weight:800;font-size:14px}
-.brand-name{font-family:Manrope;font-weight:800;font-size:11px;line-height:1.35}
-.brand-name small{display:block;color:var(--gold);font-size:9px;letter-spacing:2px}
-.nav-links{display:flex;align-items:center;gap:18px;list-style:none}
-.nav-links a{color:#e1e6eb;font-size:10px;font-weight:700;transition:.2s}
-.nav-links a:hover{color:var(--gold)}
-.nav-links .nav-cta{background:var(--red);padding:11px 15px;border-radius:3px;color:white}
-.menu-toggle{display:none;background:transparent;color:white;border:1px solid #718091;padding:8px 12px;border-radius:3px}
-.hero{
-  min-height:650px;display:flex;align-items:center;color:white;
-  background:linear-gradient(90deg,rgba(5,13,22,.96),rgba(5,13,22,.76) 58%,rgba(5,13,22,.35)),
-  url("https://commons.wikimedia.org/wiki/Special:FilePath/12-09-2017%20Bombeiros%20de%20Faro%20Cruz-Lusa%2C%20Rua%20Comandante%20Francisco%20Manuel%2C%20Faro%20%282%29.JPG") center/cover no-repeat;
-}
-.hero-content{max-width:760px;padding:100px 0}
-.eyebrow,.section-label{font-size:10px;font-weight:800;letter-spacing:2.5px;text-transform:uppercase;color:var(--red)}
-.hero .eyebrow{color:var(--gold);margin-bottom:20px}
-.hero h1{font-family:Manrope;font-size:clamp(43px,7vw,76px);line-height:1.08;letter-spacing:-2px;margin-bottom:23px}
-.hero h1 span{color:var(--gold)}
-.hero p{max-width:620px;color:#d2dbe3;font-size:14px;margin-bottom:30px}
-.actions{display:flex;flex-wrap:wrap;gap:12px}
-.btn{display:inline-flex;align-items:center;justify-content:center;min-height:47px;padding:12px 21px;font-size:10px;font-weight:800;letter-spacing:.8px;text-transform:uppercase;border-radius:3px;transition:.2s}
-.btn-red{background:var(--red);color:white}
-.btn-red:hover{background:var(--red-dark);transform:translateY(-2px)}
-.btn-outline{border:1px solid #ffffffa6;color:white}
-.btn-outline:hover{background:white;color:var(--navy)}
-.disclosure{background:var(--red);color:white;padding:19px 0}
-.disclosure-inner{display:flex;justify-content:space-between;align-items:center;gap:20px}
-.disclosure strong{font-family:Manrope;font-size:15px}
-.disclosure p{font-size:11px;max-width:650px}
-.section{padding:85px 0}
-.section-heading{margin-bottom:38px}
-.section-label{margin-bottom:12px}
-.section-title{font-family:Manrope;font-size:clamp(29px,4vw,43px);line-height:1.2;letter-spacing:-1px;color:var(--navy);margin-bottom:15px}
-.section-desc{max-width:700px;color:var(--muted);font-size:13px}
-.about-grid{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:55px}
-.about-photo{min-height:430px;background:url("https://commons.wikimedia.org/wiki/Special:FilePath/Associa%C3%A7%C3%A3o%20Humanit%C3%A1ria%20de%20Bombeiros%20Volunt%C3%A1rios%20de%20Faro%20-%20Cruz%20Lusa%2002.jpg") center/cover no-repeat;box-shadow:var(--shadow)}
-.about-copy p{font-size:13px;color:var(--muted);margin-bottom:15px}
-.facts{display:grid;grid-template-columns:1fr 1fr;gap:17px;margin-top:25px}
-.fact{border-left:3px solid var(--red);padding-left:13px}
-.fact strong{display:block;font-size:12px;color:var(--navy)}
-.fact span{font-size:10px;color:var(--muted)}
-.dark{background:var(--navy);color:white}
-.dark .section-title{color:white}
-.dark .section-desc{color:#b6c2ce}
-.dark .section-label{color:var(--gold)}
-.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}
-.card{padding:25px;border:1px solid var(--border);background:white;transition:.2s}
-.card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
-.dark .card{background:#ffffff08;border-color:#ffffff20}
-.card-number{font-family:Manrope;font-weight:800;color:var(--red);font-size:22px}
-.dark .card-number{color:var(--gold)}
-.card h3{font-family:Manrope;font-size:15px;color:var(--navy);margin:13px 0 8px}
-.dark .card h3{color:white}
-.card p{font-size:11px;color:var(--muted)}
-.dark .card p{color:#b6c2ce}
-.areas{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.area{padding:24px;border:1px solid var(--border);background:white}
-.area h3{font-family:Manrope;color:var(--navy);font-size:15px;margin:10px 0}
-.area p{font-size:11px;color:var(--muted)}
-.area .num{color:var(--red);font-size:22px;font-weight:800}
-.soft{background:var(--light)}
-.structure{display:grid;grid-template-columns:1fr 1fr;gap:45px;align-items:center}
-.structure-panel{background:var(--navy);color:white;padding:30px;box-shadow:var(--shadow)}
-.structure-panel .eyebrow{color:var(--gold)}
-.structure-panel h3{font-family:Manrope;font-size:25px;margin:12px 0 20px}
-.rank{padding:13px 15px;margin-top:9px;background:#ffffff0c;border-left:3px solid var(--red)}
-.rank strong{display:block;font-size:12px}
-.rank small{color:#b6c2ce;font-size:10px}
-.structure-copy p{color:var(--muted);font-size:13px;margin-bottom:14px}
-.gallery{display:grid;grid-template-columns:1.4fr 1fr 1fr;grid-template-rows:210px 210px;gap:12px}
-.gallery figure{position:relative;overflow:hidden;background:var(--navy2)}
-.gallery figure:first-child{grid-row:span 2}
-.gallery img{height:100%;transition:transform .3s}
-.gallery figure:hover img{transform:scale(1.05)}
-.gallery figcaption{position:absolute;bottom:0;left:0;right:0;padding:30px 13px 12px;color:white;font-size:10px;font-weight:700;background:linear-gradient(transparent,#000c)}
-.gallery-note{font-size:10px;color:var(--muted);margin-top:13px}
-.recruitment{background:linear-gradient(#091522ed,#091522ed),url("https://commons.wikimedia.org/wiki/Special:FilePath/12-09-2017%20Fire%20Tender%2C%20Bombeiros%20de%20Faro%20Cruz-Lusa%2C%20Rua%20Comandante%20Francisco%20Manuel%2C%20Faro%20%281%29.JPG") center/cover;color:white}
-.recruitment .section-title{color:white}
-.recruitment .section-label{color:var(--gold)}
-.recruitment .section-desc{color:#bdc7d0}
-.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:35px}
-.step{padding:22px;background:#ffffff0c;border-top:2px solid var(--red)}
-.step .num{font-size:25px;color:var(--gold);font-weight:800}
-.step h3{font-size:13px;margin:10px 0}
-.step p{font-size:11px;color:#bdc7d0}
-.faq{max-width:850px;display:grid;gap:10px}
-.faq details{padding:17px 20px;border:1px solid var(--border)}
-.faq summary{font-size:12px;font-weight:800;color:var(--navy);cursor:pointer}
-.faq details p{padding-top:12px;font-size:12px;color:var(--muted)}
-.application-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:25px;align-items:start}
-.application-info{background:var(--navy);color:white;padding:30px}
-.application-info .section-label{color:var(--gold)}
-.application-info h3{font-family:Manrope;font-size:27px;line-height:1.25;margin:10px 0 15px}
-.application-info p{font-size:12px;color:#bdc7d0;margin-bottom:18px}
-.application-info ul{list-style:none;display:grid;gap:10px}
-.application-info li{font-size:11px;color:#e0e7ed}
-.application-info li:before{content:"✓";color:var(--gold);margin-right:9px}
-.application-form{background:white;border:1px solid var(--border);padding:30px;box-shadow:var(--shadow)}
-.form-heading{border-bottom:1px solid var(--border);padding-bottom:16px;margin-bottom:20px}
-.form-heading h3{font-family:Manrope;color:var(--navy);font-size:20px}
-.form-heading p{font-size:11px;color:var(--muted)}
-.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 14px}
-.field{display:flex;flex-direction:column;gap:6px;margin-bottom:14px}
-.field.full{grid-column:1/-1}
-.field label{font-size:11px;font-weight:800;color:var(--navy)}
-.field input,.field select,.field textarea{width:100%;padding:11px;min-height:44px;border:1px solid #dce2e8;border-radius:3px;background:#fbfcfd;color:var(--text);font-size:12px;outline:none}
-.field textarea{min-height:110px;resize:vertical}
-.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--red)}
-.submit{width:100%;min-height:48px;border:0;border-radius:3px;background:var(--red);color:white;font-size:11px;font-weight:800;letter-spacing:.8px;text-transform:uppercase;cursor:pointer}
-.submit:hover{background:var(--red-dark)}
-#formMessage{font-size:12px;margin-top:12px}
-.form-disclaimer{margin-top:16px;padding:12px;background:#fff8e9;border-left:3px solid var(--gold);font-size:10px;color:#78613a}
-footer{background:#080e15;color:white;padding:50px 0 20px}
-.footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:35px;padding-bottom:30px}
-footer h4{font-size:11px;letter-spacing:1px;text-transform:uppercase;margin-bottom:14px}
-footer p,footer a{font-size:11px;color:#9eabb8}
-.footer-about p{max-width:360px;margin-top:13px}
-.footer-links{list-style:none;display:grid;gap:8px}
-.footer-links a:hover{color:white}
-.footer-bottom{border-top:1px solid #ffffff1a;padding-top:18px;display:flex;justify-content:space-between;gap:15px;color:#84919e;font-size:10px}
-@media(max-width:950px){
- .nav-links{gap:10px}.nav-links a{font-size:9px}
- .cards,.steps{grid-template-columns:repeat(2,1fr)}
-}
-@media(max-width:760px){
- .menu-toggle{display:block}
- .nav{min-height:72px}
- .nav-links{display:none;position:absolute;top:72px;left:0;right:0;padding:14px 22px 20px;background:var(--navy);flex-direction:column;align-items:stretch;gap:0}
- .nav-links.open{display:flex}
- .nav-links a{display:block;padding:10px 0;font-size:12px}
- .nav-links .nav-cta{text-align:center;margin-top:8px}
- .hero{min-height:540px}
- .hero h1{font-size:46px}
- .disclosure-inner{align-items:flex-start;flex-direction:column;gap:7px}
- .section{padding:65px 0}
- .about-grid,.structure,.application-grid{grid-template-columns:1fr;gap:28px}
- .about-photo{min-height:310px}
- .areas{grid-template-columns:repeat(2,1fr)}
- .gallery{grid-template-columns:1fr 1fr;grid-template-rows:210px 160px 160px}
- .gallery figure:first-child{grid-column:span 2;grid-row:auto}
- .footer-grid{grid-template-columns:1fr 1fr}
- .footer-about{grid-column:1/-1}
-}
-@media(max-width:480px){
- .container{width:calc(100% - 30px)}
- .topbar-inner{font-size:9px}
- .hero h1{font-size:39px}
- .hero .actions{flex-direction:column;align-items:stretch}
- .cards,.areas,.steps,.facts,.form-grid{grid-template-columns:1fr}
- .gallery{grid-template-columns:1fr;grid-template-rows:220px 180px 180px 180px 180px}
- .gallery figure:first-child{grid-column:auto}
- .application-form,.application-info,.structure-panel{padding:22px 17px}
- .footer-grid{grid-template-columns:1fr}
- .footer-about{grid-column:auto}
- .footer-bottom{flex-direction:column}
-}
-</style>
+  <style>
+    :root {
+      --bg: #101419;
+      --panel: #1d252d;
+      --red: #c92332;
+      --gold: #d8ad65;
+      --white: #fff;
+      --muted: #aab3bc;
+      --border: rgba(255,255,255,.1);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+
+    body {
+      font-family: Inter, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--white);
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    button, input, textarea, select { font: inherit; }
+
+    .container {
+      width: min(1180px, calc(100% - 40px));
+      margin: auto;
+    }
+
+    .topbar {
+      background: #090d11;
+      border-bottom: 1px solid var(--border);
+      padding: 10px 0;
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .topbar .container {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(16,20,25,.96);
+      backdrop-filter: blur(15px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .navbar {
+      height: 82px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-logo {
+      width: 53px;
+      height: 53px;
+      display: grid;
+      place-items: center;
+      border: 2px solid var(--gold);
+      border-radius: 50%;
+      background: #202830;
+      color: var(--gold);
+      font-family: "Barlow Condensed", sans-serif;
+      font-weight: 800;
+      font-size: 23px;
+    }
+
+    .brand-name strong {
+      display: block;
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: 21px;
+    }
+
+    .brand-name small {
+      display: block;
+      color: var(--gold);
+      font-size: 9px;
+      letter-spacing: 2px;
+      margin-top: 3px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 27px;
+    }
+
+    .nav-links a {
+      font-size: 12px;
+      font-weight: 600;
+      color: #d3d9df;
+      transition: .2s;
+    }
+
+    .nav-links a:hover { color: var(--gold); }
+
+    .btn {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      background: var(--red);
+      color: white;
+      border: 1px solid var(--red);
+      border-radius: 3px;
+      padding: 14px 22px;
+      font-size: 12px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: .25s;
+    }
+
+    .btn:hover {
+      background: #ed3544;
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border-color: rgba(255,255,255,.5);
+    }
+
+    .btn-outline:hover {
+      background: white;
+      color: #111;
+    }
+
+    .menu-toggle {
+      display: none;
+      background: transparent;
+      border: 1px solid var(--border);
+      color: white;
+      padding: 9px 13px;
+      font-size: 22px;
+      cursor: pointer;
+    }
+
+    .hero {
+      min-height: 680px;
+      display: flex;
+      align-items: center;
+      position: relative;
+      background:
+        linear-gradient(90deg,rgba(7,11,15,.96),rgba(7,11,15,.72),rgba(7,11,15,.2)),
+        url("https://images.unsplash.com/photo-1519501025264-65ba15a82390?auto=format&fit=crop&w=2000&q=85") center/cover;
+    }
+
+    .hero:after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: 5px;
+      background: linear-gradient(90deg,var(--red) 0 35%,var(--gold) 35% 65%,transparent 65%);
+    }
+
+    .hero-content {
+      max-width: 720px;
+      padding: 100px 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    .eyebrow {
+      color: var(--gold);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 3px;
+      margin-bottom: 25px;
+    }
+
+    .hero h1 {
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: clamp(55px,8vw,100px);
+      line-height: .92;
+      text-transform: uppercase;
+    }
+
+    .hero h1 span { color: #ed3544; }
+
+    .hero p {
+      color: #c2c9d0;
+      font-size: 14px;
+      line-height: 1.9;
+      max-width: 520px;
+      margin: 27px 0 32px;
+    }
+
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 13px; }
+
+    .stats {
+      background: #171e25;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+    }
+
+    .stat {
+      text-align: center;
+      padding: 30px 15px;
+      border-right: 1px solid var(--border);
+    }
+
+    .stat:last-child { border: 0; }
+
+    .stat strong {
+      display: block;
+      color: var(--gold);
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: 35px;
+    }
+
+    .stat span {
+      color: var(--muted);
+      font-size: 10px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    section { padding: 100px 0; }
+
+    .section-label {
+      color: #ed3544;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 3px;
+      margin-bottom: 15px;
+    }
+
+    .section-title {
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: clamp(38px,5vw,58px);
+      line-height: 1;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .section-title span { color: var(--gold); }
+
+    .section-text {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.9;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 60px;
+    }
+
+    .about-image {
+      min-height: 430px;
+      background:
+        linear-gradient(0deg,rgba(0,0,0,.35),transparent),
+        url("https://images.unsplash.com/photo-1583468982228-19f19164aee5?auto=format&fit=crop&w=1100&q=85") center/cover;
+      border: 1px solid var(--border);
+    }
+
+    .about-highlight {
+      margin-top: 25px;
+      padding: 18px;
+      border-left: 3px solid var(--red);
+      background: var(--panel);
+      color: #d7dde3;
+      font-size: 12px;
+      line-height: 1.8;
+    }
+
+    .values { background: #171e25; }
+
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 18px;
+      margin-top: 45px;
+    }
+
+    .value-card {
+      padding: 30px;
+      background: #202a33;
+      border: 1px solid var(--border);
+      transition: .3s;
+    }
+
+    .value-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--gold);
+    }
+
+    .value-icon {
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      background: rgba(201,35,50,.15);
+      color: #ed3544;
+      font-size: 23px;
+      margin-bottom: 22px;
+    }
+
+    .value-card h3 {
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: 25px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .value-card p {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.8;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr 1fr;
+      grid-template-rows: 220px 220px;
+      gap: 12px;
+      margin-top: 40px;
+    }
+
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      background: #252d35;
+    }
+
+    .gallery-item:first-child { grid-row: span 2; }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .5s;
+    }
+
+    .gallery-item:hover img { transform: scale(1.06); }
+
+    .gallery-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      padding: 22px;
+      background: linear-gradient(transparent,rgba(0,0,0,.85));
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .recruitment {
+      background:
+        linear-gradient(90deg,rgba(10,14,18,.97),rgba(10,14,18,.85)),
+        url("https://images.unsplash.com/photo-1516937941344-00b4e0337589?auto=format&fit=crop&w=1800&q=85") center/cover;
+    }
+
+    .recruitment-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 55px;
+      align-items: start;
+    }
+
+    .requirements {
+      display: grid;
+      gap: 17px;
+      margin-top: 30px;
+    }
+
+    .requirement {
+      display: flex;
+      gap: 13px;
+      color: #d4dbe0;
+      font-size: 12px;
+      line-height: 1.7;
+    }
+
+    .requirement b { color: var(--gold); }
+
+    .form-card {
+      background: #f7f8f9;
+      color: #151b21;
+      padding: 35px;
+      border-radius: 4px;
+      box-shadow: 0 25px 80px rgba(0,0,0,.3);
+    }
+
+    .form-card h3 {
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: 34px;
+      text-transform: uppercase;
+    }
+
+    .form-card > p {
+      font-size: 11px;
+      color: #69737c;
+      margin: 8px 0 25px;
+      line-height: 1.7;
+    }
+
+    .form-group { margin-bottom: 16px; }
+
+    .form-group label {
+      display: block;
+      font-size: 10px;
+      font-weight: 800;
+      margin-bottom: 8px;
+      color: #333c44;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 13px 14px;
+      background: white;
+      border: 1px solid #dce1e5;
+      border-radius: 3px;
+      outline: none;
+      color: #151b21;
+      font-size: 12px;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      border-color: var(--red);
+      box-shadow: 0 0 0 3px rgba(201,35,50,.08);
+    }
+
+    .form-group textarea { min-height: 85px; resize: vertical; }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 13px;
+    }
+
+    .form-submit { width: 100%; border: 0; margin-top: 5px; }
+
+    .form-message {
+      display: none;
+      padding: 13px;
+      margin-top: 15px;
+      font-size: 12px;
+      line-height: 1.6;
+      border-radius: 3px;
+    }
+
+    .form-message.success {
+      display: block;
+      background: #e1f5e9;
+      color: #176b3a;
+    }
+
+    .form-message.error {
+      display: block;
+      background: #ffe5e5;
+      color: #a31919;
+    }
+
+    .form-note {
+      font-size: 10px;
+      color: #78818a;
+      line-height: 1.7;
+      margin-top: 13px;
+    }
+
+    .contact { background: #171e25; }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 18px;
+      margin-top: 40px;
+    }
+
+    .contact-card {
+      padding: 28px;
+      background: #202a33;
+      border: 1px solid var(--border);
+    }
+
+    .contact-card span { color: var(--gold); font-size: 22px; }
+
+    .contact-card h3 {
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: 23px;
+      margin: 17px 0 8px;
+      text-transform: uppercase;
+    }
+
+    .contact-card p {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.8;
+      overflow-wrap: anywhere;
+    }
+
+    footer {
+      background: #090d11;
+      padding: 45px 0 22px;
+    }
+
+    .footer-main {
+      display: flex;
+      justify-content: space-between;
+      gap: 35px;
+      padding-bottom: 30px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .footer-description {
+      max-width: 350px;
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.9;
+      margin-top: 15px;
+    }
+
+    .footer-links h4 {
+      font-size: 11px;
+      margin-bottom: 15px;
+    }
+
+    .footer-links a {
+      display: block;
+      color: var(--muted);
+      font-size: 11px;
+      margin-bottom: 11px;
+    }
+
+    .footer-links a:hover { color: var(--gold); }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      padding-top: 22px;
+      color: #69727a;
+      font-size: 10px;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media(max-width: 850px) {
+      .nav-links { gap: 14px; }
+      .nav-links a { font-size: 10px; }
+      .about-grid, .recruitment-grid { gap: 30px; }
+    }
+
+    @media(max-width: 700px) {
+      .topbar { display: none; }
+      .navbar { height: 72px; }
+      .menu-toggle { display: block; }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 72px;
+        left: 0;
+        right: 0;
+        padding: 20px;
+        background: #11171d;
+        border-bottom: 1px solid var(--border);
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+      }
+
+      .nav-links.open { display: flex; }
+
+      .nav-links a {
+        padding: 14px 5px;
+        font-size: 13px;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .nav-links .nav-cta {
+        margin-top: 14px;
+        text-align: center;
+      }
+
+      .hero { min-height: 590px; }
+
+      .hero h1 { font-size: 65px; }
+      .hero p { font-size: 13px; }
+
+      section { padding: 70px 0; }
+
+      .stats-grid { grid-template-columns: 1fr; }
+      .stat { border-right: 0; border-bottom: 1px solid var(--border); }
+
+      .about-grid, .recruitment-grid { grid-template-columns: 1fr; }
+      .about-image { min-height: 300px; }
+
+      .values-grid, .contact-grid { grid-template-columns: 1fr; }
+
+      .gallery-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 200px 160px 160px;
+      }
+
+      .gallery-item:first-child { grid-column: span 2; grid-row: auto; }
+
+      .form-card { padding: 23px; }
+      .form-row { grid-template-columns: 1fr; }
+
+      .footer-main { flex-direction: column; }
+      .footer-bottom { flex-direction: column; }
+    }
+
+    @media(prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition-duration: .01ms !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
+  </style>
 </head>
 
 <body>
-
-<div class="topbar">
-  <div class="container topbar-inner">
-    <span><strong>BVA</strong> — Bombeiros Voluntários do Algarve</span>
-    <span>Portal institucional da comunidade</span>
+  <div class="topbar">
+    <div class="container">
+      <span>BOMBEIROS VOLUNTÁRIOS DO ALGARVE</span>
+      <span>PROTEÇÃO · CORAGEM · DEDICAÇÃO</span>
+    </div>
   </div>
-</div>
 
-<header>
-  <div class="container nav">
-    <a href="#inicio" class="brand">
-      <span class="brand-mark">BVA</span>
-      <span class="brand-name">BOMBEIROS VOLUNTÁRIOS<small>DO ALGARVE</small></span>
-    </a>
-    <button class="menu-toggle" id="menuToggle" type="button" aria-expanded="false">Menu ☰</button>
-    <ul class="nav-links" id="navLinks">
-      <li><a href="#inicio">Início</a></li>
-      <li><a href="#institucional">Institucional</a></li>
-      <li><a href="#missao">Missão</a></li>
-      <li><a href="#atividades">Atividades</a></li>
-      <li><a href="#estrutura">Organização</a></li>
-      <li><a href="#galeria">Galeria</a></li>
-      <li><a href="#recrutamento">Recrutamento</a></li>
-      <li><a class="nav-cta" href="#candidatura">Candidatar-me</a></li>
-    </ul>
-  </div>
-</header>
+  <header>
+    <div class="container navbar">
+      <a class="brand" href="#inicio" aria-label="Página inicial">
+        <div class="brand-logo">BVA</div>
+        <div class="brand-name">
+          <strong>BOMBEIROS VOLUNTÁRIOS</strong>
+          <small>DO ALGARVE</small>
+        </div>
+      </a>
 
-<main>
-<section class="hero" id="inicio">
-  <div class="container">
-    <div class="hero-content">
-      <div class="eyebrow">Bombeiros Voluntários do Algarve</div>
-      <h1>Servir.<br>Proteger.<br><span>Fazer a diferença.</span></h1>
-      <p>Uma comunidade de simulação dedicada ao universo dos bombeiros, à organização operacional, ao espírito de equipa e à representação do serviço de proteção e socorro.</p>
-      <div class="actions">
-        <a class="btn btn-red" href="#institucional">Conhecer a BVA</a>
-        <a class="btn btn-outline" href="#candidatura">Juntar-me à equipa</a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu" aria-expanded="false">☰</button>
+
+      <nav class="nav-links" id="navLinks">
+        <a href="#inicio">INÍCIO</a>
+        <a href="#sobre">SOBRE NÓS</a>
+        <a href="#valores">VALORES</a>
+        <a href="#galeria">GALERIA</a>
+        <a href="#contactos">CONTACTOS</a>
+        <a class="nav-cta" href="#candidatura">CANDIDATAR-ME</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="inicio">
+      <div class="container">
+        <div class="hero-content">
+          <div class="eyebrow">SERVIR COM HONRA</div>
+          <h1>PRONTOS PARA<br><span>PROTEGER.</span></h1>
+          <p>
+            A coragem não se mede pela ausência de medo, mas pela vontade de ajudar.
+            Descobre a nossa missão e faz parte de uma equipa dedicada à proteção
+            e ao serviço da comunidade.
+          </p>
+          <div class="hero-actions">
+            <a class="btn" href="#candidatura">JUNTAR-ME À EQUIPA →</a>
+            <a class="btn btn-outline" href="#sobre">CONHECER A CORPORAÇÃO</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="stats">
+      <div class="container stats-grid">
+        <div class="stat">
+          <strong>24/7</strong>
+          <span>Disponibilidade</span>
+        </div>
+        <div class="stat">
+          <strong>UNIÃO</strong>
+          <span>Espírito de equipa</span>
+        </div>
+        <div class="stat">
+          <strong>MISSÃO</strong>
+          <span>Servir a comunidade</span>
+        </div>
       </div>
     </div>
-  </div>
-</section>
 
-<section class="disclosure">
-  <div class="container disclosure-inner">
-    <strong>Uma missão. Uma equipa. Um compromisso.</strong>
-    <p>Projeto fictício de simulação e roleplay. Não representa uma corporação real nem presta serviços de emergência.</p>
-  </div>
-</section>
+    <section id="sobre">
+      <div class="container about-grid">
+        <div class="about-image reveal" role="img" aria-label="Imagem ilustrativa de uma operação de emergência"></div>
 
-<section class="section" id="institucional">
-  <div class="container about-grid">
-    <div class="about-photo" role="img" aria-label="Fotografia de referência dos Bombeiros de Faro"></div>
-    <div class="about-copy">
-      <div class="section-label">Quem somos</div>
-      <h2 class="section-title">Uma identidade construída em equipa.</h2>
-      <p>Os Bombeiros Voluntários do Algarve são uma comunidade fictícia de simulação e roleplay, criada para representar o funcionamento organizacional de uma estrutura de bombeiros.</p>
-      <p>Através de atividades organizadas, formação simulada, exercícios e operações fictícias, procuramos proporcionar uma experiência envolvente, responsável e colaborativa.</p>
-      <p>A nossa identidade assenta no respeito, na disciplina, na dedicação e na entreajuda entre todos os participantes.</p>
-      <div class="facts">
-        <div class="fact"><strong>Espírito de equipa</strong><span>Cooperação e respeito</span></div>
-        <div class="fact"><strong>Organização</strong><span>Estrutura e responsabilidade</span></div>
-        <div class="fact"><strong>Formação</strong><span>Aprendizagem simulada</span></div>
-        <div class="fact"><strong>Comunidade</strong><span>Participação e compromisso</span></div>
+        <div class="reveal">
+          <div class="section-label">QUEM SOMOS</div>
+          <h2 class="section-title">UMA EQUIPA.<br><span>UMA MISSÃO.</span></h2>
+          <p class="section-text">
+            Os Bombeiros Voluntários do Algarve representam uma equipa unida
+            por um objetivo comum: ajudar, proteger e servir.
+          </p>
+          <br>
+          <p class="section-text">
+            Através do trabalho em equipa, da disciplina e da dedicação,
+            procuramos construir uma comunidade de simulação organizada,
+            responsável e próxima dos valores dos bombeiros.
+          </p>
+          <div class="about-highlight">
+            A nossa prioridade é promover um ambiente de respeito, responsabilidade
+            e profissionalismo, onde cada elemento tem um papel importante.
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-<section class="section dark" id="missao">
-  <div class="container">
-    <div class="section-heading">
-      <div class="section-label">A nossa identidade</div>
-      <h2 class="section-title">Os princípios que nos representam.</h2>
-      <p class="section-desc">Uma equipa construída sobre princípios de responsabilidade, colaboração e respeito.</p>
-    </div>
-    <div class="cards">
-      <article class="card"><span class="card-number">01 /</span><h3>Disciplina</h3><p>Respeitar regras, procedimentos e a organização interna da comunidade.</p></article>
-      <article class="card"><span class="card-number">02 /</span><h3>Compromisso</h3><p>Participar ativamente e assumir responsabilidades dentro da equipa.</p></article>
-      <article class="card"><span class="card-number">03 /</span><h3>Entreajuda</h3><p>Trabalhar em conjunto, apoiar os colegas e promover um ambiente saudável.</p></article>
-      <article class="card"><span class="card-number">04 /</span><h3>Respeito</h3><p>Tratar todos os membros com profissionalismo e consideração.</p></article>
-    </div>
-  </div>
-</section>
+    <section class="values" id="valores">
+      <div class="container">
+        <div class="section-label">O QUE NOS DEFINE</div>
+        <h2 class="section-title">OS NOSSOS <span>VALORES.</span></h2>
+        <p class="section-text">Os princípios que orientam cada elemento da nossa equipa.</p>
 
-<section class="section" id="atividades">
-  <div class="container">
-    <div class="section-heading">
-      <div class="section-label">Atividade operacional simulada</div>
-      <h2 class="section-title">As nossas áreas de atividade.</h2>
-      <p class="section-desc">Diferentes áreas de participação que permitem desenvolver uma experiência de roleplay organizada e diversificada.</p>
-    </div>
-    <div class="areas">
-      <article class="area"><span class="num">01</span><h3>Incêndios urbanos</h3><p>Representação simulada de ocorrências em edifícios e trabalho de equipa.</p></article>
-      <article class="area"><span class="num">02</span><h3>Incêndios rurais</h3><p>Cenários fictícios em espaços naturais e coordenação de meios.</p></article>
-      <article class="area"><span class="num">03</span><h3>Emergência pré-hospitalar</h3><p>Simulação de assistência e transporte de vítimas em roleplay.</p></article>
-      <article class="area"><span class="num">04</span><h3>Acidentes e salvamento</h3><p>Cenários fictícios de acidentes e operações de salvamento.</p></article>
-      <article class="area"><span class="num">05</span><h3>Prevenção e formação</h3><p>Atividades educativas e sessões de formação no contexto da simulação.</p></article>
-      <article class="area"><span class="num">06</span><h3>Comando e coordenação</h3><p>Organização de equipas e coordenação de operações fictícias.</p></article>
-    </div>
-  </div>
-</section>
+        <div class="values-grid">
+          <article class="value-card reveal">
+            <div class="value-icon">★</div>
+            <h3>Dedicação</h3>
+            <p>Compromisso com a missão, responsabilidade e vontade de contribuir para a equipa.</p>
+          </article>
 
-<section class="section soft" id="estrutura">
-  <div class="container structure">
-    <div class="structure-panel">
-      <div class="eyebrow">Organização interna</div>
-      <h3>Estrutura hierárquica</h3>
-      <div class="rank"><strong>Comando</strong><small>Direção e coordenação geral</small></div>
-      <div class="rank"><strong>Comando Operacional</strong><small>Coordenação das atividades simuladas</small></div>
-      <div class="rank"><strong>Chefias</strong><small>Organização das equipas e turnos</small></div>
-      <div class="rank"><strong>Operacionais</strong><small>Participação nas atividades da comunidade</small></div>
-      <div class="rank"><strong>Recrutas</strong><small>Integração e acompanhamento inicial</small></div>
-    </div>
-    <div class="structure-copy">
-      <div class="section-label">Organização e comando</div>
-      <h2 class="section-title">Uma estrutura clara e organizada.</h2>
-      <p>A organização interna permite distribuir responsabilidades, coordenar atividades e garantir que todos os participantes conhecem as suas funções.</p>
-      <p>As funções e categorias apresentadas pertencem exclusivamente à estrutura fictícia da comunidade BVA.</p>
-      <p>O crescimento dentro da comunidade depende da participação, responsabilidade, respeito pelas regras e dedicação demonstrada.</p>
-    </div>
-  </div>
-</section>
+          <article class="value-card reveal">
+            <div class="value-icon">◆</div>
+            <h3>Disciplina</h3>
+            <p>Respeito pelas regras, pela hierarquia e pelos procedimentos definidos.</p>
+          </article>
 
-<section class="section" id="galeria">
-  <div class="container">
-    <div class="section-heading">
-      <div class="section-label">Galeria fotográfica</div>
-      <h2 class="section-title">O universo dos bombeiros portugueses.</h2>
-      <p class="section-desc">Imagens de referência de corporações portuguesas, utilizadas apenas para ilustrar o ambiente visual do projeto.</p>
-    </div>
-    <div class="gallery">
-      <figure>
-        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/12-09-2017%20Bombeiros%20de%20Faro%20Cruz-Lusa%2C%20Rua%20Comandante%20Francisco%20Manuel%2C%20Faro%20%282%29.JPG" alt="Bombeiros de Faro" loading="lazy">
-        
+          <article class="value-card reveal">
+            <div class="value-icon">✚</div>
+            <h3>Espírito de equipa</h3>
+            <p>Cooperação, entreajuda e confiança entre todos os elementos da corporação.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="galeria">
+      <div class="container">
+        <div class="section-label">O NOSSO DIA A DIA</div>
+        <h2 class="section-title">GALERIA <span>OPERACIONAL.</span></h2>
+        <p class="section-text">Alguns momentos ilustrativos do universo dos bombeiros.</p>
+
+        <div class="gallery-grid">
+          <div class="gallery-item reveal">
+            <img src="https://images.unsplash.com/photo-1599708153386-62bf5f6f3b5e?auto=format&fit=crop&w=1000&q=85" alt="Veículo de emergência" loading="lazy">
+            <div class="gallery-caption">PRONTIDÃO E PREPARAÇÃO</div>
+          </div>
+          <div class="gallery-item reveal">
+            <img src="https://images.unsplash.com/photo-1587745416684-47953f16f02f?auto=format&fit=crop&w=800&q=85" alt="Equipamento de proteção" loading="lazy">
+            <div class="gallery-caption">EQUIPAMENTO</div>
+          </div>
+          <div class="gallery-item reveal">
+            <img src="https://images.unsplash.com/photo-1519501025264-65ba15a82390?auto=format&fit=crop&w=800&q=85" alt="Cidade" loading="lazy">
+            <div class="gallery-caption">COMUNIDADE</div>
+          </div>
+          <div class="gallery-item reveal">
+            <img src="https://images.unsplash.com/photo-1516937941344-00b4e0337589?auto=format&fit=crop&w=800&q=85" alt="Instalações" loading="lazy">
+            <div class="gallery-caption">PREPARAÇÃO</div>
+          <
