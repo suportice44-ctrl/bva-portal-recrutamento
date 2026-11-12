@@ -547,7 +547,7 @@ footer {
 
 <section class="hero">
   <div class="container">
-    <span class="kicker">RECRUTAMENTO OFICIAL · BVA</span>
+    <span class="kicker">RECRUTAMENTO · BVA</span>
     <h2>Junta-te à nossa equipa.</h2>
     <p>Preenche a candidatura com atenção. O processo está dividido em quatro etapas para tornar a tua inscrição simples e organizada.</p>
   </div>
@@ -579,7 +579,6 @@ footer {
 
     <form id="applicationForm" novalidate>
 
-      <!-- ETAPA 1 -->
       <section class="form-step active">
         <div class="section-title">
           <span>ETAPA 01</span>
@@ -605,7 +604,6 @@ footer {
         </div>
       </section>
 
-      <!-- ETAPA 2 -->
       <section class="form-step">
         <div class="section-title">
           <span>ETAPA 02</span>
@@ -662,7 +660,6 @@ footer {
         </div>
       </section>
 
-      <!-- ETAPA 3 -->
       <section class="form-step">
         <div class="section-title">
           <span>ETAPA 03</span>
@@ -693,7 +690,6 @@ footer {
         </div>
       </section>
 
-      <!-- ETAPA 4 -->
       <section class="form-step">
         <div class="section-title">
           <span>ETAPA 04</span>
@@ -773,8 +769,8 @@ footer {
   const previousButton = document.getElementById("previousButton");
   const nextButton = document.getElementById("nextButton");
   const submitButton = document.getElementById("submitButton");
-  const formError = document.getElementById("formError");
 
+  const formError = document.getElementById("formError");
   const progressCard = document.getElementById("progressCard");
   const formCard = document.getElementById("formCard");
   const successScreen = document.getElementById("successScreen");
@@ -828,4 +824,7 @@ footer {
     nextButton.style.display =
       index === formSteps.length - 1 ? "none" : "inline-block";
 
-    sub
+    submitButton.style.display =
+      index === formSteps.length - 1 ? "inline-block" : "none";
+
+    clear
