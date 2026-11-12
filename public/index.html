@@ -2,792 +2,351 @@
 <!DOCTYPE html>
 <html lang="pt-PT">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#111820">
-  <meta name="description" content="Portal de recrutamento da comunidade BVA — Simulação RP no Discord.">
-  <title>Recrutamento | BVA — Simulação RP</title>
-
-  <style>
-    :root {
-      --dark: #111820;
-      --dark2: #1b2732;
-      --red: #bd252b;
-      --red-dark: #991c22;
-      --light: #f3f5f7;
-      --white: #fff;
-      --muted: #687582;
-      --border: #e0e5e9;
-      --green: #16834b;
-      --shadow: 0 12px 35px rgba(16,24,32,.08);
-    }
-
-    * { box-sizing: border-box; }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      color: var(--dark);
-      background: var(--light);
-      line-height: 1.6;
-    }
-
-    button, input, textarea, select { font: inherit; }
-    a { color: inherit; text-decoration: none; }
-
-    .simulation-notice {
-      background: #fff0c2;
-      color: #624b08;
-      text-align: center;
-      padding: 9px 15px;
-      font-size: 12px;
-      font-weight: 700;
-    }
-
-    header {
-      background: var(--dark);
-      color: white;
-    }
-
-    .navbar {
-      max-width: 1200px;
-      margin: auto;
-      padding: 17px 24px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 25px;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-weight: 900;
-      letter-spacing: 1px;
-      font-size: 19px;
-    }
-
-    .brand-mark {
-      width: 46px;
-      height: 46px;
-      display: grid;
-      place-items: center;
-      background: var(--red);
-      border-radius: 5px;
-      font-size: 14px;
-      letter-spacing: 0;
-    }
-
-    .brand small {
-      display: block;
-      color: #b9c2ca;
-      font-size: 9px;
-      letter-spacing: 2px;
-      font-weight: 700;
-    }
-
-    nav {
-      display: flex;
-      align-items: center;
-      gap: 27px;
-      font-size: 13px;
-      font-weight: 700;
-      color: #e0e5e9;
-    }
-
-    nav a:hover { color: white; }
-
-    .nav-cta {
-      background: var(--red);
-      color: white;
-      padding: 11px 17px;
-      border-radius: 4px;
-    }
-
-    .hero {
-      min-height: 570px;
-      display: flex;
-      align-items: center;
-      color: white;
-      background:
-        linear-gradient(90deg, rgba(8,14,20,.94) 0%, rgba(8,14,20,.76) 48%, rgba(8,14,20,.25) 100%),
-        url("https://upload.wikimedia.org/wikipedia/commons/9/9d/Lisbon44.jpg")
-        center 48% / cover no-repeat;
-    }
-
-    .hero-inner {
-      width: 100%;
-      max-width: 1200px;
-      margin: auto;
-      padding: 85px 24px;
-    }
-
-    .eyebrow {
-      color: #e15b60;
-      text-transform: uppercase;
-      letter-spacing: 2.5px;
-      font-size: 11px;
-      font-weight: 900;
-    }
-
-    .hero h1 {
-      max-width: 730px;
-      font-size: clamp(38px, 6vw, 66px);
-      line-height: 1.04;
-      margin: 18px 0;
-      letter-spacing: -1.5px;
-    }
-
-    .hero p {
-      max-width: 590px;
-      color: #e0e5e9;
-      font-size: 17px;
-      margin: 0 0 30px;
-    }
-
-    .button {
-      display: inline-block;
-      border: 0;
-      border-radius: 4px;
-      padding: 14px 22px;
-      background: var(--red);
-      color: white;
-      font-weight: 800;
-      cursor: pointer;
-      transition: background .2s, transform .2s;
-    }
-
-    .button:hover {
-      background: var(--red-dark);
-      transform: translateY(-1px);
-    }
-
-    .button-outline {
-      display: inline-block;
-      border: 1px solid #ffffffa0;
-      border-radius: 4px;
-      padding: 13px 21px;
-      margin-left: 9px;
-      color: white;
-      font-weight: 700;
-    }
-
-    .button-outline:hover { background: #ffffff18; }
-
-    .section {
-      max-width: 1200px;
-      margin: auto;
-      padding: 78px 24px;
-    }
-
-    .section-heading {
-      max-width: 700px;
-      margin-bottom: 35px;
-    }
-
-    .section-heading h2 {
-      font-size: clamp(28px, 4vw, 40px);
-      line-height: 1.15;
-      margin: 10px 0 13px;
-    }
-
-    .section-heading p {
-      color: var(--muted);
-      margin: 0;
-    }
-
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 45px;
-      align-items: center;
-    }
-
-    .about-photo {
-      min-height: 330px;
-      border-radius: 5px;
-      background:
-        linear-gradient(0deg, rgba(10,15,20,.18), rgba(10,15,20,.02)),
-        url("https://upload.wikimedia.org/wikipedia/commons/9/9d/Lisbon44.jpg")
-        center / cover no-repeat;
-      box-shadow: var(--shadow);
-    }
-
-    .about-copy h2 {
-      font-size: clamp(27px, 4vw, 38px);
-      line-height: 1.15;
-      margin: 10px 0 16px;
-    }
-
-    .about-copy p {
-      color: var(--muted);
-      margin-bottom: 14px;
-    }
-
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-    }
-
-    .info-card {
-      background: white;
-      border: 1px solid var(--border);
-      border-radius: 5px;
-      padding: 28px;
-      box-shadow: var(--shadow);
-    }
-
-    .card-number {
-      color: var(--red);
-      font-size: 12px;
-      font-weight: 900;
-      letter-spacing: 1.5px;
-    }
-
-    .info-card h3 {
-      margin: 13px 0 9px;
-      font-size: 19px;
-    }
-
-    .info-card p {
-      color: var(--muted);
-      font-size: 14px;
-      margin: 0;
-    }
-
-    .process-section { background: #e9edf0; }
-
-    .process-inner {
-      max-width: 1200px;
-      margin: auto;
-      padding: 75px 24px;
-    }
-
-    .process-inner .section-heading { margin-bottom: 30px; }
-
-    .process-card {
-      background: white;
-      padding: 25px;
-      border-radius: 5px;
-      border-top: 3px solid var(--red);
-    }
-
-    .process-card strong {
-      display: block;
-      font-size: 16px;
-      margin: 9px 0 5px;
-    }
-
-    .process-card p {
-      color: var(--muted);
-      font-size: 13px;
-      margin: 0;
-    }
-
-    .recruitment-banner {
-      background: var(--dark2);
-      color: white;
-    }
-
-    .banner-inner {
-      max-width: 1200px;
-      margin: auto;
-      padding: 43px 24px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 25px;
-    }
-
-    .banner-inner h2 { margin: 0 0 7px; }
-    .banner-inner p { margin: 0; color: #c5ced6; }
-
-    .form-section { padding-top: 75px; }
-
-    .form-container {
-      max-width: 870px;
-      margin: auto;
-      background: white;
-      border: 1px solid var(--border);
-      border-radius: 7px;
-      padding: 34px;
-      box-shadow: var(--shadow);
-    }
-
-    .form-top {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 15px;
-      margin-bottom: 18px;
-    }
-
-    .form-top h2 {
-      margin: 0;
-      font-size: 22px;
-    }
-
-    .step-label {
-      color: var(--muted);
-      font-size: 12px;
-      font-weight: 800;
-    }
-
-    .progress {
-      height: 7px;
-      background: #e9edf0;
-      border-radius: 20px;
-      overflow: hidden;
-      margin-bottom: 32px;
-    }
-
-    .progress-bar {
-      width: 20%;
-      height: 100%;
-      background: var(--red);
-      transition: width .25s;
-    }
-
-    .step { display: none; }
-    .step.active { display: block; }
-
-    .step h3 {
-      font-size: 23px;
-      margin: 0 0 5px;
-    }
-
-    .step-description {
-      color: var(--muted);
-      font-size: 14px;
-      margin: 0 0 25px;
-    }
-
-    .field { margin-bottom: 20px; }
-
-    label {
-      display: block;
-      font-size: 13px;
-      font-weight: 800;
-      margin-bottom: 8px;
-    }
-
-    .required { color: var(--red); }
-
-    input, textarea, select {
-      width: 100%;
-      border: 1px solid #ccd4db;
-      border-radius: 4px;
-      padding: 13px;
-      background: white;
-      color: var(--dark);
-      outline: none;
-    }
-
-    input:focus, textarea:focus, select:focus {
-      border-color: var(--red);
-      box-shadow: 0 0 0 3px #bd252b16;
-    }
-
-    textarea {
-      min-height: 115px;
-      resize: vertical;
-    }
-
-    .hint {
-      color: var(--muted);
-      font-size: 11px;
-      margin-top: 6px;
-    }
-
-    .radio-option {
-      display: flex;
-      gap: 11px;
-      align-items: flex-start;
-      padding: 13px;
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      margin-bottom: 9px;
-      cursor: pointer;
-      font-size: 13px;
-      font-weight: 500;
-    }
-
-    .radio-option input {
-      width: auto;
-      margin-top: 3px;
-      accent-color: var(--red);
-    }
-
-    .form-buttons {
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      margin-top: 28px;
-      padding-top: 22px;
-      border-top: 1px solid var(--border);
-    }
-
-    .back-button {
-      background: #e9edf0;
-      color: var(--dark);
-    }
-
-    .back-button:hover { background: #dce2e7; }
-
-    .declaration {
-      display: flex;
-      align-items: flex-start;
-      gap: 11px;
-      font-weight: 500;
-      font-size: 13px;
-      margin: 22px 0;
-    }
-
-    .declaration input {
-      width: auto;
-      margin-top: 4px;
-      accent-color: var(--red);
-    }
-
-    .success {
-      display: none;
-      text-align: center;
-      padding: 38px 10px;
-    }
-
-    .success-icon {
-      width: 65px;
-      height: 65px;
-      margin: 0 auto 18px;
-      border-radius: 50%;
-      display: grid;
-      place-items: center;
-      background: #e2f5e9;
-      color: var(--green);
-      font-size: 30px;
-      font-weight: 900;
-    }
-
-    .success h2 { margin-bottom: 8px; }
-    .success p { color: var(--muted); }
-
-    .error-message {
-      display: none;
-      color: #a91f1f;
-      background: #fff0f0;
-      padding: 13px;
-      border-radius: 4px;
-      font-size: 13px;
-      margin-top: 15px;
-    }
-
-    .faq-section { background: #e9edf0; }
-
-    .faq-inner {
-      max-width: 1200px;
-      margin: auto;
-      padding: 75px 24px;
-    }
-
-    .faq-list {
-      display: grid;
-      gap: 12px;
-      max-width: 850px;
-    }
-
-    details {
-      background: white;
-      padding: 19px 21px;
-      border: 1px solid var(--border);
-      border-radius: 5px;
-    }
-
-    summary {
-      cursor: pointer;
-      font-weight: 800;
-      font-size: 14px;
-    }
-
-    details p {
-      color: var(--muted);
-      font-size: 13px;
-      margin-bottom: 0;
-    }
-
-    footer {
-      background: #0b1117;
-      color: white;
-      padding: 40px 24px 25px;
-    }
-
-    .footer-inner {
-      max-width: 1200px;
-      margin: auto;
-      display: flex;
-      justify-content: space-between;
-      gap: 30px;
-      flex-wrap: wrap;
-    }
-
-    footer p {
-      color: #aeb8c1;
-      font-size: 12px;
-      max-width: 620px;
-    }
-
-    .footer-bottom {
-      max-width: 1200px;
-      margin: 25px auto 0;
-      padding-top: 18px;
-      border-top: 1px solid #ffffff20;
-      color: #8d99a3;
-      font-size: 11px;
-    }
-
-    @media (max-width: 760px) {
-      .navbar { flex-wrap: wrap; }
-      nav {
-        width: 100%;
-        justify-content: space-between;
-        gap: 10px;
-        font-size: 11px;
-      }
-      .hero { min-height: 470px; }
-      .hero-inner { padding: 65px 22px; }
-      .about-grid { grid-template-columns: 1fr; gap: 25px; }
-      .about-photo { min-height: 240px; }
-      .cards { grid-template-columns: 1fr; }
-      .banner-inner {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-      .form-container { padding: 23px 17px; }
-      .form-top {
-        align-items: flex-start;
-        flex-direction: column;
-      }
-      .button-outline {
-        margin: 12px 0 0;
-      }
-    }
-
-    @media (max-width: 390px) {
-      nav { flex-wrap: wrap; }
-      .form-buttons .button { padding: 12px 15px; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#111820">
+<meta name="description" content="Portal de recrutamento BVA — comunidade de simulação RP no Discord.">
+<title>Recrutamento | BVA</title>
+
+<style>
+:root {
+  --dark:#111820;
+  --dark2:#202c37;
+  --red:#bd252b;
+  --red2:#941b22;
+  --light:#f2f4f6;
+  --muted:#697580;
+  --border:#e0e5e9;
+  --white:#fff;
+  --green:#16834b;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;color:var(--dark);background:white;line-height:1.6}
+a{text-decoration:none;color:inherit}
+button,input,select,textarea{font:inherit}
+.container{width:min(1160px,92%);margin:auto}
+.notice{background:#fff0c2;color:#624b08;text-align:center;padding:9px 12px;font-size:11px;font-weight:bold}
+header{background:var(--dark);color:white;position:sticky;top:0;z-index:20}
+.navbar{height:76px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{display:flex;align-items:center;gap:12px;font-size:18px;font-weight:900;letter-spacing:1px}
+.brand-mark{width:45px;height:45px;background:var(--red);display:grid;place-items:center;border-radius:4px;font-size:14px}
+.brand small{display:block;color:#b9c2ca;font-size:9px;letter-spacing:2px}
+nav{display:flex;align-items:center;gap:24px;font-size:12px;font-weight:bold}
+nav a:hover{color:#ff858a}
+.btn{display:inline-block;background:var(--red);color:white;padding:13px 21px;border:0;border-radius:3px;font-size:12px;font-weight:800;letter-spacing:.5px;cursor:pointer}
+.btn:hover{background:var(--red2)}
+.btn-outline{background:transparent;border:1px solid #ffffffa8;margin-left:8px}
+.hero{min-height:570px;position:relative;display:flex;align-items:center;background:#151e27;color:white;overflow:hidden}
+.hero>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#0b1119ed 0%,#0b1119b8 52%,#0b111955 100%)}
+.hero-content{position:relative;z-index:2;padding:85px 0}
+.eyebrow{color:#e15b60;text-transform:uppercase;font-size:11px;font-weight:900;letter-spacing:2.5px}
+.hero h1{font-size:clamp(39px,6vw,68px);line-height:1.04;letter-spacing:-1.5px;margin:18px 0;max-width:720px}
+.hero p{color:#e0e5e9;max-width:590px;font-size:17px;margin-bottom:28px}
+.section{padding:78px 0}
+.light{background:var(--light)}
+.heading{max-width:720px;margin-bottom:34px}
+.heading h2,.about h2{font-size:clamp(28px,4vw,40px);line-height:1.15;margin:10px 0 14px}
+.heading p,.muted{color:var(--muted)}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.split img{width:100%;height:370px;object-fit:cover;border-radius:4px}
+.about p{color:var(--muted)}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:21px}
+.card{background:white;border:1px solid var(--border);box-shadow:0 9px 28px #1118200c}
+.card img{width:100%;height:205px;object-fit:cover}
+.card-body{padding:23px}
+.card h3{margin:0 0 8px;font-size:19px}
+.card p{margin:0;color:var(--muted);font-size:14px}
+.process-card{background:white;border-top:3px solid var(--red);padding:24px}
+.process-card strong{font-size:18px;display:block;margin:8px 0}
+.process-card p{font-size:13px;color:var(--muted);margin:0}
+.number{font-size:12px;color:var(--red);font-weight:900;letter-spacing:1px}
+.gallery{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:13px}
+.gallery img{width:100%;height:225px;object-fit:cover}
+.gallery img:first-child{height:463px;grid-row:span 2}
+.banner{background:var(--dark2);color:white;padding:48px 0}
+.banner-inner{display:flex;align-items:center;justify-content:space-between;gap:25px}
+.banner h2{margin:0 0 6px;font-size:29px}
+.banner p{color:#c5ced6;margin:0}
+.form-wrap{max-width:870px;margin:auto;background:white;border:1px solid var(--border);border-radius:5px;padding:32px;box-shadow:0 10px 35px #1118200d}
+.form-top{display:flex;justify-content:space-between;align-items:center;gap:15px;margin-bottom:18px}
+.form-top h3{margin:0;font-size:22px}
+.step-label{font-size:12px;font-weight:bold;color:var(--muted)}
+.progress{height:7px;background:#e9edf0;border-radius:20px;overflow:hidden;margin-bottom:30px}
+.progress-bar{height:100%;width:20%;background:var(--red);transition:width .2s}
+.step{display:none}
+.step.active{display:block}
+.step h3{font-size:23px;margin:0 0 5px}
+.step-description{font-size:14px;color:var(--muted);margin:0 0 25px}
+.field{margin-bottom:19px}
+label{display:block;font-size:13px;font-weight:800;margin-bottom:7px}
+.required{color:var(--red)}
+input,select,textarea{width:100%;padding:13px;border:1px solid #ccd4db;border-radius:3px;background:white;color:var(--dark)}
+input:focus,select:focus,textarea:focus{outline:2px solid #bd252b30;border-color:var(--red)}
+textarea{min-height:115px;resize:vertical}
+.radio-option{display:flex;align-items:flex-start;gap:10px;padding:13px;border:1px solid var(--border);margin-bottom:9px;font-size:13px;font-weight:500;cursor:pointer}
+.radio-option input{width:auto;margin-top:4px;accent-color:var(--red)}
+.form-buttons{display:flex;justify-content:space-between;gap:12px;margin-top:28px;padding-top:22px;border-top:1px solid var(--border)}
+.back-button{background:#e9edf0;color:var(--dark)}
+.back-button:hover{background:#dce2e7}
+.declaration{display:flex;align-items:flex-start;gap:10px;font-size:13px;font-weight:500;margin:20px 0}
+.declaration input{width:auto;margin-top:4px}
+.success{display:none;text-align:center;padding:35px 10px}
+.success-icon{width:62px;height:62px;border-radius:50%;display:grid;place-items:center;margin:0 auto 15px;background:#e2f5e9;color:var(--green);font-size:29px}
+.success p{color:var(--muted)}
+.error-message{display:none;background:#fff0f0;color:#a91f1f;padding:13px;margin-top:15px;font-size:13px}
+.faq-list{max-width:850px;display:grid;gap:12px}
+details{background:white;border:1px solid var(--border);padding:18px 20px}
+summary{font-weight:800;cursor:pointer;font-size:14px}
+details p{color:var(--muted);font-size:13px;margin-bottom:0}
+footer{background:#0b1117;color:white;padding:43px 0 20px}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:30px}
+footer h3{font-size:13px}
+footer p,footer a{color:#aeb8c1;font-size:12px}
+.footer-bottom{border-top:1px solid #ffffff20;margin-top:25px;padding-top:17px;color:#89959f;font-size:11px}
+@media(max-width:760px){
+ .navbar{height:auto;min-height:70px;flex-wrap:wrap;padding:12px 0}
+ nav{width:100%;justify-content:space-between;gap:8px;font-size:10px;padding-bottom:8px}
+ .hero{min-height:480px}
+ .hero-content{padding:65px 0}
+ .split{grid-template-columns:1fr;gap:25px}
+ .split img{height:250px}
+ .cards{grid-template-columns:1fr}
+ .gallery{grid-template-columns:1fr 1fr}
+ .gallery img,.gallery img:first-child{height:190px;grid-row:auto}
+ .banner-inner{display:block}
+ .banner .btn{margin-top:18px}
+ .form-wrap{padding:22px 16px}
+ .form-top{align-items:flex-start;flex-direction:column}
+ .footer-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:420px){
+ nav{flex-wrap:wrap}
+ .gallery{grid-template-columns:1fr}
+ .gallery img,.gallery img:first-child{height:220px}
+ .footer-grid{grid-template-columns:1fr}
+ .btn-outline{margin:12px 0 0}
+}
+</style>
 </head>
 
 <body>
-  <div class="simulation-notice">
-    AVISO: Este é um projeto de simulação RP no Discord. Não representa uma corporação real nem presta serviços de emergência.
+<div class="notice">PORTAL DE RECRUTAMENTO · SIMULAÇÃO RP NO DISCORD — NÃO É UM SERVIÇO DE EMERGÊNCIA REAL</div>
+
+<header>
+ <div class="container navbar">
+  <a class="brand" href="#">
+   <span class="brand-mark">BVA</span>
+   <span>BVA <small>RECRUTAMENTO</small></span>
+  </a>
+  <nav>
+   <a href="#sobre">A organização</a>
+   <a href="#areas">Áreas</a>
+   <a href="#processo">Processo</a>
+   <a href="#faq">FAQ</a>
+   <a class="btn" href="#candidatura">CANDIDATAR-ME</a>
+  </nav>
+ </div>
+</header>
+
+<main>
+<section class="hero">
+ <img src="https://upload.wikimedia.org/wikipedia/commons/9/9d/Lisbon44.jpg" alt="Viatura de bombeiros, imagem ilustrativa">
+ <div class="container hero-content">
+  <div class="eyebrow">Recrutamento aberto · Comunidade Discord</div>
+  <h1>O teu compromisso.<br>A nossa equipa.</h1>
+  <p>Faz parte de uma comunidade de simulação RP onde a cooperação, a responsabilidade e o espírito de equipa fazem a diferença.</p>
+  <a class="btn" href="#candidatura">INICIAR CANDIDATURA →</a>
+  <a class="btn btn-outline" href="#sobre">CONHECER A COMUNIDADE</a>
+ </div>
+</section>
+
+<section class="section" id="sobre">
+ <div class="container split">
+  <div>
+   <div class="eyebrow">Quem somos</div>
+   <div class="about">
+    <h2>Uma comunidade construída em equipa.</h2>
+    <p>A BVA é um projeto de simulação e roleplay desenvolvido no Discord. O nosso objetivo é proporcionar uma experiência organizada, participativa e divertida a todos os membros.</p>
+    <p>Valorizamos o respeito mútuo, a comunicação, a cooperação e a vontade de evoluir em conjunto.</p>
+    <a class="btn" href="#processo">SABER COMO FUNCIONA</a>
+   </div>
+  </div>
+  <img src="https://loremflickr.com/1000/750/firefighters,team?lock=41" alt="Equipa de bombeiros, fotografia ilustrativa">
+ </div>
+</section>
+
+<section class="section light" id="areas">
+ <div class="container">
+  <div class="heading">
+   <div class="eyebrow">As nossas áreas</div>
+   <h2>Descobre o ambiente da BVA.</h2>
+   <p>Conhece algumas das áreas representadas na nossa comunidade de simulação.</p>
+  </div>
+  <div class="cards">
+   <article class="card">
+    <img src="https://loremflickr.com/900/600/firetruck?lock=42" alt="Viatura de bombeiros ilustrativa">
+    <div class="card-body"><h3>Meios e viaturas</h3><p>Representação de veículos e equipamentos no universo da simulação RP.</p></div>
+   </article>
+   <article class="card">
+    <img src="https://loremflickr.com/900/600/firefighter,training?lock=43" alt="Formação ilustrativa">
+    <div class="card-body"><h3>Formação</h3><p>Aprendizagem das regras e dos procedimentos definidos pela comunidade.</p></div>
+   </article>
+   <article class="card">
+    <img src="https://loremflickr.com/900/600/firefighters?lock=44" alt="Equipa em atividade ilustrativa">
+    <div class="card-body"><h3>Espírito de equipa</h3><p>Cooperação, comunicação e respeito entre todos os participantes.</p></div>
+   </article>
+  </div>
+ </div>
+</section>
+
+<section class="section" id="processo">
+ <div class="container">
+  <div class="heading">
+   <div class="eyebrow">Recrutamento</div>
+   <h2>Como funciona o processo?</h2>
+   <p>Três etapas para conhecermos melhor cada candidato.</p>
+  </div>
+  <div class="cards">
+   <article class="process-card"><span class="number">ETAPA 01</span><strong>Submissão</strong><p>Preenche o formulário com atenção e responde às perguntas.</p></article>
+   <article class="process-card"><span class="number">ETAPA 02</span><strong>Análise</strong><p>A equipa responsável analisa a candidatura submetida.</p></article>
+   <article class="process-card"><span class="number">ETAPA 03</span><strong>Decisão</strong><p>O resultado será comunicado pelos canais da comunidade.</p></article>
+  </div>
+ </div>
+</section>
+
+<section class="section light">
+ <div class="container">
+  <div class="heading">
+   <div class="eyebrow">Galeria</div>
+   <h2>O universo da nossa simulação.</h2>
+   <p>Fotografias ilustrativas relacionadas com o universo dos bombeiros.</p>
+  </div>
+  <div class="gallery">
+   <img src="https://loremflickr.com/900/1100/firefighter?lock=45" alt="Bombeiro, imagem ilustrativa">
+   <img src="https://loremflickr.com/700/500/fireengine?lock=46" alt="Veículo de bombeiros">
+   <img src="https://loremflickr.com/700/500/firefighters,team?lock=47" alt="Equipa de bombeiros">
+   <img src="https://loremflickr.com/700/500/firestation?lock=48" alt="Quartel ilustrativo">
+   <img src="https://loremflickr.com/700/500/firetruck,emergency?lock=49" alt="Veículo de emergência">
+  </div>
+ </div>
+</section>
+
+<section class="banner">
+ <div class="container banner-inner">
+  <div><h2>Estás preparado para participar?</h2><p>O próximo passo começa com a tua candidatura à comunidade RP.</p></div>
+  <a class="btn" href="#candidatura">CANDIDATAR-ME AGORA →</a>
+ </div>
+</section>
+
+<section class="section" id="candidatura">
+ <div class="container">
+  <div class="heading">
+   <div class="eyebrow">Recrutamento BVA · Simulação RP</div>
+   <h2>Formulário de candidatura.</h2>
+   <p>Preenche as cinco etapas. Os campos assinalados com * são obrigatórios.</p>
   </div>
 
-  <header>
-    <div class="navbar">
-      <a class="brand" href="#">
-        <span class="brand-mark">BVA</span>
-        <span>BVA <small>SIMULAÇÃO RP</small></span>
-      </a>
+  <div class="form-wrap">
+   <form id="applicationForm">
+    <div id="formContent">
+     <div class="form-top">
+      <h3>Nova candidatura</h3>
+      <span class="step-label" id="stepLabel">ETAPA 1 DE 5</span>
+     </div>
+     <div class="progress"><div class="progress-bar" id="progressBar"></div></div>
 
-      <nav aria-label="Navegação principal">
-        <a href="#sobre">Sobre nós</a>
-        <a href="#processo">Processo</a>
-        <a href="#faq">Perguntas frequentes</a>
-        <a class="nav-cta" href="#candidatura">Candidatar-me</a>
-      </nav>
+     <div class="step active">
+      <h3>01. Identificação</h3>
+      <p class="step-description">Começa por preencher os teus dados na comunidade.</p>
+      <div class="field"><label for="nome">Nome / Identidade RP <span class="required">*</span></label><input id="nome" name="nome" maxlength="100" required placeholder="A tua identificação"></div>
+      <div class="field"><label for="discord">Nome de utilizador Discord <span class="required">*</span></label><input id="discord" name="discord" maxlength="100" required placeholder="O teu utilizador Discord"></div>
+      <div class="field"><label for="idade">Faixa etária <span class="required">*</span></label>
+       <select id="idade" name="idade" required>
+        <option value="">Seleciona uma opção</option><option>Menos de 16</option><option>16–17</option><option>18 ou mais</option><option>Prefiro não indicar</option>
+       </select>
+      </div>
+      <div class="field"><label for="disponibilidade">Disponibilidade <span class="required">*</span></label>
+       <select id="disponibilidade" name="disponibilidade" required>
+        <option value="">Seleciona uma opção</option><option>Dias úteis — manhã</option><option>Dias úteis — tarde</option><option>Dias úteis — noite</option><option>Fins de semana</option><option>Horários variados</option>
+       </select>
+      </div>
+     </div>
+
+     <div class="step">
+      <h3>02. Perfil e experiência</h3>
+      <p class="step-description">Queremos conhecer o teu percurso e a função que gostarias de desempenhar na simulação.</p>
+      <div class="field"><label for="experiencia">Tens experiência em roleplay? <span class="required">*</span></label>
+       <select id="experiencia" name="experiencia" required>
+        <option value="">Seleciona uma opção</option><option>Sim, tenho bastante experiência</option><option>Sim, tenho alguma experiência</option><option>Não, será a minha primeira experiência</option>
+       </select>
+      </div>
+      <div class="field"><label for="funcao_pretendida">Função pretendida <span class="required">*</span></label>
+       <select id="funcao_pretendida" name="funcao_pretendida" required>
+        <option value="">Seleciona uma opção</option><option>Bombeiro (roleplay)</option><option>Comando (roleplay)</option><option>Formação (roleplay)</option><option>Estou disponível para aprender</option>
+       </select>
+      </div>
+      <div class="field"><label for="experiencia_detalhe">Descreve a tua experiência (opcional)</label><textarea id="experiencia_detalhe" name="experiencia_detalhe" maxlength="2000" placeholder="Podes explicar um pouco da tua experiência..."></textarea></div>
+     </div>
+
+     <div class="step">
+      <h3>03. Motivação e compromisso</h3>
+      <p class="step-description">Conta-nos o que te motiva e o que podes trazer à comunidade.</p>
+      <div class="field"><label for="motivacao">Porque queres fazer parte da BVA? <span class="required">*</span></label><textarea id="motivacao" name="motivacao" required maxlength="2000"></textarea></div>
+      <div class="field"><label for="qualidades">Quais são as tuas principais qualidades? <span class="required">*</span></label><textarea id="qualidades" name="qualidades" required maxlength="1500"></textarea></div>
+      <div class="field"><label for="compromisso">Como pretendes contribuir para a comunidade? <span class="required">*</span></label><textarea id="compromisso" name="compromisso" required maxlength="1500"></textarea></div>
+     </div>
+
+     <div class="step">
+      <h3>04. Conhecimentos gerais</h3>
+      <p class="step-description">Escolhe a resposta que consideras mais adequada em cada situação.</p>
+      <div class="field">
+       <label>1. O que significa trabalhar em equipa? <span class="required">*</span></label>
+       <label class="radio-option"><input type="radio" name="q1" value="Cooperar e comunicar com os restantes membros" required> Cooperar e comunicar com os restantes membros.</label>
+       <label class="radio-option"><input type="radio" name="q1" value="Fazer tudo sozinho"> Fazer tudo sozinho.</label>
+       <label class="radio-option"><input type="radio" name="q1" value="Ignorar as orientações"> Ignorar as orientações.</label>
+      </div>
+      <div class="field">
+       <label>2. Como deves agir perante uma orientação da moderação? <span class="required">*</span></label>
+       <label class="radio-option"><input type="radio" name="q2" value="Respeitar as regras e esclarecer dúvidas" required> Respeitar as regras e esclarecer dúvidas.</label>
+       <label class="radio-option"><input type="radio" name="q2" value="Ignorar a orientação"> Ignorar a orientação.</label>
+       <label class="radio-option"><input type="radio" name="q2" value="Criar conflitos"> Criar conflitos.</label>
+      </div>
+      <div class="field">
+       <label>3. Qual é a prioridade numa atividade de simulação? <span class="required">*</span></label>
+       <label class="radio-option"><input type="radio" name="q3" value="Respeitar as regras e manter uma experiência segura" required> Respeitar as regras e manter uma experiência segura.</label>
+       <label class="radio-option"><input type="radio" name="q3" value="Competir com os outros membros"> Competir com os outros membros.</label>
+       <label class="radio-option"><input type="radio" name="q3" value="Ignorar os procedimentos"> Ignorar os procedimentos.</label>
+      </div>
+     </div>
+
+     <div class="step">
+      <h3>05. Situações de roleplay</h3>
+      <p class="step-description">Queremos perceber como pensas e como lidas com situações dentro da comunidade.</p>
+      <div class="field"><label for="situacao_pratica">Durante uma atividade RP existe confusão entre participantes. Como ajudarias a resolver a situação dentro das regras da comunidade? <span class="required">*</span></label><textarea id="situacao_pratica" name="situacao_pratica" required maxlength="2000"></textarea></div>
+      <div class="field"><label for="conflito">Se tiveres um desacordo com outro membro, como procedes? <span class="required">*</span></label><textarea id="conflito" name="conflito" required maxlength="2000"></textarea></div>
+      <label class="declaration"><input type="checkbox" id="declaracao" required> Confirmo que as respostas são verdadeiras e compreendo que esta candidatura se destina exclusivamente a uma comunidade de simulação RP no Discord. *</label>
+      <p class="muted" style="font-size:11px">Não incluas palavras-passe, documentos de identificação, moradas ou outros dados pessoais sensíveis.</p>
+     </div>
+
+     <div class="form-buttons">
+      <button type="button" class="btn back-button" id="backButton" style="display:none">← ANTERIOR</button>
+      <button type="button" class="btn" id="nextButton">SEGUINTE →</button>
+      <button type="submit" class="btn" id="submitButton" style="display:none">SUBMETER CANDIDATURA →</button>
+     </div>
     </div>
-  </header>
 
-  <main>
-    <section class="hero">
-      <div class="hero-inner">
-        <span class="eyebrow">Recrutamento aberto · Comunidade Discord</span>
-        <h1>O teu compromisso.<br>A nossa equipa.</h1>
-        <p>
-          Faz parte de uma comunidade de simulação RP onde a cooperação,
-          a responsabilidade e o espírito de equipa fazem a diferença.
-        </p>
-        <a class="button" href="#candidatura">INICIAR CANDIDATURA</a>
-        <a class="button-outline" href="#sobre">CONHECER A COMUNIDADE</a>
-      </div>
-    </section>
+    <div class="success" id="successMessage">
+     <div class="success-icon">✓</div>
+     <h2>Candidatura recebida!</h2>
+     <p>A tua candidatura foi submetida com sucesso e ficará disponível para análise pela equipa responsável.</p>
+    </div>
+    <div class="error-message" id="errorMessage"></div>
+   </form>
+  </div>
+ </div>
+</section>
 
-    <section class="section" id="sobre">
-      <div class="about-grid">
-        <div class="about-photo" role="img" aria-label="Veículo de bombeiros numa fotografia ilustrativa"></div>
-        <div class="about-copy">
-          <span class="eyebrow">Quem somos</span>
-          <h2>Uma comunidade construída em equipa.</h2>
-          <p>
-            A BVA é um projeto de simulação e roleplay desenvolvido
-            no Discord. O nosso objetivo é proporcionar uma experiência
-            organizada, participativa e divertida a todos os membros.
-          </p>
-          <p>
-            Valorizamos a disciplina dentro do jogo, o respeito mútuo,
-            a comunicação e a vontade de evoluir em conjunto.
-          </p>
-          <a class="button" href="#processo">SABER COMO FUNCIONA</a>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="section-heading">
-        <span class="eyebrow">Os nossos princípios</span>
-        <h2>O que valorizamos nos candidatos.</h2>
-        <p>Procuramos membros que queiram contribuir para uma comunidade positiva e bem organizada.</p>
-      </div>
-
-      <div class="cards">
-        <article class="info-card">
-          <span class="card-number">01 / EQUIPA</span>
-          <h3>Espírito de equipa</h3>
-          <p>Comunicação, entreajuda e respeito por todos os participantes da comunidade.</p>
-        </article>
-
-        <article class="info-card">
-          <span class="card-number">02 / EVOLUÇÃO</span>
-          <h3>Vontade de aprender</h3>
-          <p>Não precisas de experiência anterior. A motivação e a disponibilidade são importantes.</p>
-        </article>
-
-        <article class="info-card">
-          <span class="card-number">03 / CONFIANÇA</span>
-          <h3>Responsabilidade</h3>
-          <p>Respeito pelas regras, compromisso com a equipa e participação adequada.</p>
-        </article>
-      </div>
-    </section>
-
-    <section class="process-section" id="processo">
-      <div class="process-inner">
-        <div class="section-heading">
-          <span class="eyebrow">Como funciona</span>
-          <h2>O processo de candidatura.</h2>
-          <p>Um processo simples, dividido em etapas para conhecermos melhor cada candidato.</p>
-        </div>
-
-        <div class="cards">
-          <article class="process-card">
-            <span class="card-number">ETAPA 01</span>
-            <strong>Submissão</strong>
-            <p>Preenche o formulário com os teus dados e respostas.</p>
-          </article>
-
-          <article class="process-card">
-            <span class="card-number">ETAPA 02</span>
-            <strong>Análise</strong>
-            <p>A equipa responsável analisa a candidatura submetida.</p>
-          </article>
-
-          <article class="process-card">
-            <span class="card-number">ETAPA 03</span>
-            <strong>Decisão</strong>
-            <p>O estado da candidatura é atualizado no processo de recrutamento.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="recruitment-banner">
-      <div class="banner-inner">
-        <div>
-          <h2>Estás preparado para participar?</h2>
-          <p>O próximo passo começa com a tua candidatura à comunidade RP.</p>
-        </div>
-        <a class="button" href="#candidatura">CANDIDATAR-ME AGORA</a>
-      </div>
-    </section>
-
-    <section class="section form-section" id="candidatura">
-      <div class="section-heading">
-        <span class="eyebrow">Recrutamento BVA · Simulação RP</span>
-        <h2>Formulário de candidatura.</h2>
-        <p>
-          Preenche todas as etapas com atenção. Os campos assinalados
-          com <span class="required">*</span> são obrigatórios.
-        </p>
-      </div>
-
-      <div class="form-container">
-        <form id="applicationForm">
-          <div class="form-top">
-            <h2>Nova candidatura</h2>
-            <span class="step-label" id="stepLabel">ETAPA 1 DE 5</span>
-          </div>
-
-          <div class="progress">
-            <div class="progress-bar" id="progressBar"></div>
-          </div>
-
-          <div class="step active">
-            <h3>01. Identificação</h3>
-            <p class="step-description">Começa por preencher os teus dados de identificação na comunidade.</p>
-
-            <div class="field">
-              <label for="nome">Nome / Identidade RP <span class="required">*</span></label>
-              <input id="nome" name="nome" maxlength="100" required placeholder="A tua identificação">
-            </div>
-
-            <div class="field">
-              <label for="discord">Nome de utilizador Discord <span class="required">*</span></label>
-              <input id="discord" name="discord" maxlength="100" required placeholder="O teu utilizador Discord">
-            </div>
-
-            <div class="field">
-              <label for="idade">Faixa etária <span class="required">*</span></label>
-              <select id="idade" name="idade" required>
-                <option value="">Seleciona uma opção</option>
-                <option>Menos de 16</option>
-                <option>16–17</option>
-                <option>18 ou mais</option>
-                <option>Prefiro não indicar</option>
-              </select>
-            </div>
-
-            <div class="field">
-              <label for="disponibilidade">Disponibilidade <span class="required">*</span></label>
-              <select id="disponibilidade" name="disponibilidade" required>
-                <option value="">Seleciona uma opção</option>
-                <option>Dias úteis — manhã</option>
-                <option>Dias úteis — tarde</option>
-                <option>Dias úteis — noite</option>
-                <option>Fins de semana</option>
-                <option>Horários variados</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="step">
-            <h3>02. Perfil e experiência</h3>
-            <p class="step-description">Queremos conhecer o teu percurso e a função que gostarias de desempenhar na simulação.</p>
-
-            <div class="field">
-              <label for="experiencia">Tens experiência em roleplay? <span class="required">*</span></label>
-              <select id="experiencia" name="experiencia" required>
-                <option value="">Seleciona uma opção</option>
-                <option>Sim, tenho bastante experiência</option>
-                <option>Sim, tenho alguma experiência</option>
-                <option>Não, será a minha primeira experiência</option>
-              </select>
-            </div>
-
-            <div class="field">
-              <label for="funcao_pretendida">Função pretendida <span class="required">*</span></label>
-              <select id="funcao_pretendida" name="funcao_pretendida" required>
-                <option value="">Seleciona uma opção</option>
-                <option>Bombeiro (roleplay)</option>
-                <option>Comando (roleplay)</option>
-                <option>Formação (roleplay)</option>
-                <option>Estou disponível para aprender</option>
-              </select>
-            </div>
-
-            <div class="field">
-              <label for="experiencia_detalhe">Descreve a tua e
+<section class="section light" id="faq">
+ <div c
