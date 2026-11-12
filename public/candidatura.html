@@ -547,7 +547,7 @@ footer {
 
 <section class="hero">
   <div class="container">
-    <span class="kicker">RECRUTAMENTO · BVA</span>
+    <span class="kicker">RECRUTAMENTO OFICIAL · BVA</span>
     <h2>Junta-te à nossa equipa.</h2>
     <p>Preenche a candidatura com atenção. O processo está dividido em quatro etapas para tornar a tua inscrição simples e organizada.</p>
   </div>
@@ -758,73 +758,67 @@ footer {
 (function() {
   "use strict";
 
-  const form = document.getElementById("applicationForm");
-  const formSteps = Array.from(document.querySelectorAll(".form-step"));
-  const progressSteps = Array.from(document.querySelectorAll(".steps .step"));
+  function iniciarFormulario() {
+    const form = document.getElementById("applicationForm");
+    const formSteps = Array.from(document.querySelectorAll(".form-step"));
+    const progressSteps = Array.from(document.querySelectorAll(".steps .step"));
 
-  const progressFill = document.getElementById("progressFill");
-  const progressTitle = document.getElementById("progressTitle");
-  const progressText = document.getElementById("progressText");
+    const progressFill = document.getElementById("progressFill");
+    const progressTitle = document.getElementById("progressTitle");
+    const progressText = document.getElementById("progressText");
 
-  const previousButton = document.getElementById("previousButton");
-  const nextButton = document.getElementById("nextButton");
-  const submitButton = document.getElementById("submitButton");
+    const previousButton = document.getElementById("previousButton");
+    const nextButton = document.getElementById("nextButton");
+    const submitButton = document.getElementById("submitButton");
 
-  const formError = document.getElementById("formError");
-  const progressCard = document.getElementById("progressCard");
-  const formCard = document.getElementById("formCard");
-  const successScreen = document.getElementById("successScreen");
+    const formError = document.getElementById("formError");
+    const progressCard = document.getElementById("progressCard");
+    const formCard = document.getElementById("formCard");
+    const successScreen = document.getElementById("successScreen");
 
-  const stepTitles = [
-    "Dados pessoais",
-    "Disponibilidade e atividade",
-    "Perfil e motivação",
-    "Questionário final"
-  ];
+    if (!form || !nextButton || !previousButton || !submitButton) {
+      console.error("Não foi possível encontrar os elementos do formulário.");
+      return;
+    }
 
-  let currentStep = 0;
-  let submitting = false;
+    const stepTitles = [
+      "Dados pessoais",
+      "Disponibilidade e atividade",
+      "Perfil e motivação",
+      "Questionário final"
+    ];
 
-  function showError(message) {
-    formError.textContent = message;
-    formError.style.display = "block";
+    let currentStep = 0;
+    let submitting = false;
 
-    formError.scrollIntoView({
-      behavior: "smooth",
-      block: "center"
-    });
-  }
+    function showError(message) {
+      formError.textContent = message;
+      formError.style.display = "block";
+      formError.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+      });
+    }
 
-  function clearError() {
-    formError.textContent = "";
-    formError.style.display = "none";
-  }
+    function clearError() {
+      formError.textContent = "";
+      formError.style.display = "none";
+    }
 
-  function showStep(index) {
-    if (index < 0 || index >= formSteps.length) return;
+    function showStep(index) {
+      if (index < 0 || index >= formSteps.length) return;
 
-    currentStep = index;
+      currentStep = index;
 
-    formSteps.forEach(function(step, i) {
-      step.classList.toggle("active", i === index);
-    });
+      formSteps.forEach(function(step, i) {
+        step.classList.toggle("active", i === index);
+      });
 
-    progressSteps.forEach(function(step, i) {
-      step.classList.toggle("active", i === index);
-      step.classList.toggle("completed", i < index);
-    });
+      progressSteps.forEach(function(step, i) {
+        step.classList.toggle("active", i === index);
+        step.classList.toggle("completed", i < index);
+      });
 
-    progressFill.style.width = ((index + 1) * 25) + "%";
-    progressTitle.textContent = stepTitles[index];
-    progressText.textContent = "Etapa " + (index + 1) + " de 4";
-
-    previousButton.style.visibility =
-      index === 0 ? "hidden" : "visible";
-
-    nextButton.style.display =
-      index === formSteps.length - 1 ? "none" : "inline-block";
-
-    submitButton.style.display =
-      index === formSteps.length - 1 ? "inline-block" : "none";
-
-    clear
+      progressFill.style.width = ((index + 1) * 25) + "%";
+      progressTitle.textContent = stepTitles[index];
+      progressText.textContent = "Etapa " + (index +
