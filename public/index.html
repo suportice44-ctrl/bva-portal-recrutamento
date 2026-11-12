@@ -1,103 +1,443 @@
 
 <!DOCTYPE html>
-<html lang="pt-PT">
+<html lang="pt">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Portal de candidaturas da comunidade de simulação Bombeiros Voluntários do Algarve.">
   <title>Recrutamento | Bombeiros Voluntários do Algarve</title>
-  <link rel="stylesheet" href="/style.css">
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f2f4f7;
+      color: #202b3c;
+    }
+    header {
+      background: linear-gradient(120deg,#101d32,#233b59);
+      color: white;
+      padding: 35px 20px;
+      border-bottom: 5px solid #c62828;
+    }
+    .header-inner, main {
+      max-width: 950px;
+      margin: auto;
+    }
+    .brand {
+      color: #ff7777;
+      font-size: 12px;
+      font-weight: bold;
+      letter-spacing: 2px;
+    }
+    header h1 { font-size: 30px; margin: 12px 0; }
+    header p { color: #d4deeb; line-height: 1.6; }
+    main { padding: 28px 16px 60px; }
+    .notice {
+      background: #fff4e5;
+      border: 1px solid #edcf9e;
+      border-radius: 9px;
+      padding: 14px;
+      line-height: 1.5;
+      margin-bottom: 22px;
+      font-size: 13px;
+    }
+    .progress {
+      background: white;
+      border-radius: 10px;
+      padding: 17px;
+      margin-bottom: 20px;
+      border: 1px solid #e0e5ec;
+    }
+    .progress-track {
+      height: 7px;
+      background: #e7ebf0;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-top: 12px;
+    }
+    .progress-fill {
+      width: 20%;
+      height: 100%;
+      background: #bd2929;
+      transition: width .2s;
+    }
+    .section {
+      background: white;
+      border: 1px solid #e0e5ec;
+      border-radius: 12px;
+      padding: 25px;
+      margin-bottom: 20px;
+    }
+    .section h2 {
+      margin: 0 0 8px;
+      font-size: 20px;
+      color: #172a43;
+    }
+    .section-intro {
+      color: #68778b;
+      font-size: 14px;
+      margin-bottom: 23px;
+      line-height: 1.5;
+    }
+    .field { margin-bottom: 19px; }
+    label, .question {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 8px;
+      font-size: 14px;
+    }
+    .hint {
+      display: block;
+      color: #718096;
+      font-size: 12px;
+      margin-top: 6px;
+      font-weight: normal;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #cbd3df;
+      border-radius: 7px;
+      font: inherit;
+      background: white;
+      color: #202b3c;
+    }
+    textarea { min-height: 105px; resize: vertical; }
+    input:focus, select:focus, textarea:focus {
+      outline: 2px solid #d99b9b;
+      border-color: #bd2929;
+    }
+    .radio-option {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      padding: 10px;
+      border: 1px solid #e0e5ec;
+      border-radius: 7px;
+      margin: 7px 0;
+      font-weight: normal;
+      cursor: pointer;
+    }
+    .radio-option input {
+      width: auto;
+      margin-top: 3px;
+    }
+    .buttons {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 20px;
+    }
+    button {
+      border: 0;
+      border-radius: 7px;
+      padding: 13px 20px;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    .next, .submit {
+      background: #bd2929;
+      color: white;
+      margin-left: auto;
+    }
+    .back { background: #e5eaf0; color: #26374d; }
+    button:disabled { opacity: .6; cursor: wait; }
+    .hidden { display: none; }
+    .success {
+      background: #e8f6ed;
+      border: 1px solid #b6dfc4;
+      color: #176335;
+      padding: 20px;
+      border-radius: 9px;
+      line-height: 1.6;
+    }
+    .error {
+      color: #a51e1e;
+      background: #fff0f0;
+      padding: 12px;
+      border-radius: 7px;
+      margin-top: 15px;
+    }
+    footer {
+      text-align: center;
+      padding: 25px;
+      color: #718096;
+      font-size: 12px;
+    }
+    @media(max-width:600px) {
+      header h1 { font-size: 24px; }
+      .section { padding: 18px; }
+    }
+  </style>
 </head>
 <body>
-  <header class="topbar">
-    <a class="brand" href="#">
-      <span class="crest">BVA</span>
-      <span>
-        <strong>BOMBEIROS VOLUNTÁRIOS</strong>
-        <small>DO ALGARVE · SIMULAÇÃO</small>
-      </span>
-    </a>
-    <a class="navlink" href="#candidatura">Candidatar-me</a>
-  </header>
 
-  <main>
-    <section class="hero">
-      <div class="hero-content">
-        <p class="eyebrow">RECRUTAMENTO · INGRESSO NA COMUNIDADE</p>
-        <h1>O próximo passo<br><em>começa aqui.</em></h1>
-        <p class="intro">
-          Faz parte de uma equipa dedicada à cooperação, ao rigor e ao espírito
-          de entreajuda numa experiência de simulação no Discord.
-        </p>
-        <a class="primary" href="#candidatura">Iniciar candidatura →</a>
+<header>
+  <div class="header-inner">
+    <div class="brand">BVA · PORTAL DE RECRUTAMENTO</div>
+    <h1>Processo de Candidatura</h1>
+    <p>Apresenta a tua candidatura para integrar a comunidade de simulação dos Bombeiros Voluntários do Algarve.</p>
+  </div>
+</header>
+
+<main>
+  <div class="notice">
+    <strong>AVISO IMPORTANTE</strong><br>
+    Este portal pertence exclusivamente a uma comunidade de roleplay no Discord.
+    Não representa uma corporação real, não realiza recrutamento profissional
+    e não presta serviços de emergência.
+  </div>
+
+  <div class="progress">
+    <strong id="stepLabel">Secção 1 de 5 — Identificação</strong>
+    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+  </div>
+
+  <form id="applicationForm">
+
+    <section class="section step">
+      <h2>01 — Identificação do candidato</h2>
+      <p class="section-intro">Preenche os dados relativos à tua identidade dentro da comunidade.</p>
+
+      <div class="field">
+        <label for="nome">Nome ou identificação no roleplay *</label>
+        <input id="nome" name="nome" maxlength="100" required>
       </div>
-      <div class="hero-mark">
-        <div class="ring">BVA</div>
-        <span>PRONTIDÃO · DISCIPLINA · SERVIÇO</span>
+
+      <div class="field">
+        <label for="discord">Nome de utilizador do Discord *</label>
+        <input id="discord" name="discord" maxlength="100" required>
+      </div>
+
+      <div class="field">
+        <label for="idade">Faixa etária *</label>
+        <select id="idade" name="idade" required>
+          <option value="">Selecionar</option>
+          <option>Menos de 16</option>
+          <option>16–17</option>
+          <option>18 ou mais</option>
+          <option>Prefiro não indicar</option>
+        </select>
+        <span class="hint">Esta informação serve apenas para adequar a experiência da comunidade. Não indiques a tua data de nascimento.</span>
+      </div>
+
+      <div class="field">
+        <label for="fuso">Disponibilidade habitual *</label>
+        <select id="fuso" name="disponibilidade" required>
+          <option value="">Selecionar</option>
+          <option>Dias úteis — manhã</option>
+          <option>Dias úteis — tarde</option>
+          <option>Dias úteis — noite</option>
+          <option>Fins de semana</option>
+          <option>Horários variados</option>
+        </select>
       </div>
     </section>
 
-    <section class="values">
-      <article>
-        <b>01</b>
-        <h3>Compromisso</h3>
-        <p>Participação responsável e respeito pelas regras da comunidade.</p>
-      </article>
-      <article>
-        <b>02</b>
-        <h3>Espírito de equipa</h3>
-        <p>Comunicação, cooperação e apoio entre todos os membros.</p>
-      </article>
-      <article>
-        <b>03</b>
-        <h3>Aprendizagem</h3>
-        <p>Vontade de aprender os procedimentos da nossa simulação.</p>
-      </article>
-    </section>
+    <section class="section step hidden">
+      <h2>02 — Perfil e experiência</h2>
+      <p class="section-intro">Queremos conhecer o teu percurso em comunidades de simulação.</p>
 
-    <section class="application" id="candidatura">
-      <div class="section-heading">
-        <p class="eyebrow">FORMULÁRIO DE INGRESSO</p>
-        <h2>Apresenta a tua candidatura</h2>
-        <p>Preenche os campos com atenção. A equipa de recrutamento irá analisar a tua inscrição.</p>
+      <div class="field">
+        <label for="experiencia">Já participaste em comunidades de bombeiros RP? *</label>
+        <select id="experiencia" name="experiencia" required>
+          <option value="">Selecionar</option>
+          <option>Sim, tenho bastante experiência</option>
+          <option>Sim, tenho alguma experiência</option>
+          <option>Não, será a minha primeira experiência</option>
+        </select>
       </div>
 
-      <form id="applicationForm">
-        <div class="form-grid">
-          <label>Nome ou identificação na comunidade
-            <input name="nome" maxlength="100" required placeholder="Como te identificas no servidor">
-          </label>
-          <label>Idade
-            <input name="idade" type="number" min="13" max="99" required placeholder="Idade">
-          </label>
-          <label class="full">Nome de utilizador do Discord
-            <input name="discord" maxlength="100" required placeholder="Exemplo: utilizador">
-          </label>
-          <label class="full">Disponibilidade
-            <textarea name="disponibilidade" rows="3" maxlength="500" required placeholder="Em que dias e horários costumas estar disponível?"></textarea>
-          </label>
-          <label class="full">Porque queres entrar na comunidade?
-            <textarea name="motivacao" rows="5" maxlength="2000" required placeholder="Fala um pouco sobre a tua motivação..."></textarea>
-          </label>
-        </div>
+      <div class="field">
+        <label for="funcao">Que função gostarias de desempenhar? *</label>
+        <select id="funcao" name="funcao_pretendida" required>
+          <option value="">Selecionar</option>
+          <option>Bombeiro (roleplay)</option>
+          <option>Comando (roleplay)</option>
+          <option>Formação (roleplay)</option>
+          <option>Estou disponível para aprender</option>
+        </select>
+      </div>
 
-        <p class="notice">
-          Esta candidatura destina-se exclusivamente a uma comunidade de
-          simulação/roleplay no Discord. Não representa uma candidatura a um
-          corpo de bombeiros real.
-        </p>
-
-        <button class="primary submit" type="submit">Enviar candidatura →</button>
-        <p id="formMessage" role="status" aria-live="polite"></p>
-      </form>
+      <div class="field">
+        <label for="experienciaDetalhe">Descreve brevemente a tua experiência.</label>
+        <textarea id="experienciaDetalhe" name="experiencia_detalhe" maxlength="1500"></textarea>
+      </div>
     </section>
-  </main>
 
-  <footer>
-    <span>BOMBEIROS VOLUNTÁRIOS DO ALGARVE</span>
-    <span>COMUNIDADE DE SIMULAÇÃO · DISCORD</span>
-  </footer>
+    <section class="section step hidden">
+      <h2>03 — Motivação e compromisso</h2>
+      <p class="section-intro">Explica o que te leva a querer participar nesta comunidade.</p>
 
-  <script src="/app.js"></script>
+      <div class="field">
+        <label for="motivacao">Porque queres integrar os Bombeiros Voluntários do Algarve RP? *</label>
+        <textarea id="motivacao" name="motivacao" maxlength="2000" required></textarea>
+      </div>
+
+      <div class="field">
+        <label for="qualidades">Quais são as tuas principais qualidades para o trabalho em equipa? *</label>
+        <textarea id="qualidades" name="qualidades" maxlength="1200" required></textarea>
+      </div>
+
+      <div class="field">
+        <label for="compromisso">Como pretendes contribuir para a comunidade? *</label>
+        <textarea id="compromisso" name="compromisso" maxlength="1200" required></textarea>
+      </div>
+    </section>
+
+    <section class="section step hidden">
+      <h2>04 — Avaliação de conhecimentos</h2>
+      <p class="section-intro">Responde com base no teu bom senso e na tua compreensão do roleplay.</p>
+
+      <div class="field">
+        <span class="question">1. Durante uma atividade RP, um colega não respeita as regras da comunidade. O que fazes? *</span>
+        <label class="radio-option"><input type="radio" name="q1" value="Chamo a atenção com respeito e informo a moderação se necessário." required> Chamo a atenção com respeito e informo a moderação se necessário.</label>
+        <label class="radio-option"><input type="radio" name="q1" value="Ignoro sempre a situação."> Ignoro sempre a situação.</label>
+        <label class="radio-option"><input type="radio" name="q1" value="Inicio uma discussão pública."> Inicio uma discussão pública.</label>
+      </div>
+
+      <div class="field">
+        <span class="question">2. Qual é a atitude mais importante numa equipa? *</span>
+        <label class="radio-option"><input type="radio" name="q2" value="Trabalhar em conjunto e comunicar." required> Trabalhar em conjunto e comunicar.</label>
+        <label class="radio-option"><input type="radio" name="q2" value="Fazer sempre tudo sozinho."> Fazer sempre tudo sozinho.</label>
+        <label class="radio-option"><input type="radio" name="q2" value="Ignorar as orientações da equipa."> Ignorar as orientações da equipa.</label>
+      </div>
+
+      <div class="field">
+        <span class="question">3. Se não souberes como proceder numa situação simulada, o que fazes? *</span>
+        <label class="radio-option"><input type="radio" name="q3" value="Peço orientação a alguém responsável." required> Peço orientação a alguém responsável.</label>
+        <label class="radio-option"><input type="radio" name="q3" value="Invento procedimentos sem perguntar."> Invento procedimentos sem perguntar.</label>
+        <label class="radio-option"><input type="radio" name="q3" value="Abandono a atividade sem avisar."> Abandono a atividade sem avisar.</label>
+      </div>
+    </section>
+
+    <section class="section step hidden">
+      <h2>05 — Situações práticas e declaração</h2>
+      <p class="section-intro">Avaliaremos a tua capacidade de comunicação, responsabilidade e respeito pelas regras do roleplay.</p>
+
+      <div class="field">
+        <label for="situacao">Cenário: durante uma ocorrência fictícia, recebes instruções contraditórias de dois participantes. Como procedes? *</label>
+        <textarea id="situacao" name="situacao_pratica" maxlength="1800" required></textarea>
+      </div>
+
+      <div class="field">
+        <label for="conflito">Cenário: um colega começa a discutir durante uma sessão RP. Como tentas resolver a situação? *</label>
+        <textarea id="conflito" name="conflito" maxlength="1200" required></textarea>
+      </div>
+
+      <div class="field">
+        <label class="radio-option">
+          <input type="checkbox" id="declaracao" required>
+          Confirmo que as respostas são minhas e que aceito respeitar as regras da comunidade de simulação.
+        </label>
+      </div>
+    </section>
+
+    <div class="buttons">
+      <button type="button" class="back hidden" id="back">Anterior</button>
+      <button type="button" class="next" id="next">Seguinte</button>
+      <button type="submit" class="submit hidden" id="submit">Enviar candidatura</button>
+    </div>
+
+    <div id="feedback" aria-live="polite"></div>
+  </form>
+</main>
+
+<footer>
+  Bombeiros Voluntários do Algarve · Comunidade de simulação Discord<br>
+  Este projeto não está associado a qualquer corporação ou entidade oficial.
+</footer>
+
+<script>
+  const form = document.getElementById("applicationForm");
+  const steps = [...document.querySelectorAll(".step")];
+  const next = document.getElementById("next");
+  const back = document.getElementById("back");
+  const submit = document.getElementById("submit");
+  const feedback = document.getElementById("feedback");
+  const fill = document.getElementById("progressFill");
+  const label = document.getElementById("stepLabel");
+
+  let current = 0;
+
+  const names = [
+    "Identificação",
+    "Perfil e experiência",
+    "Motivação e compromisso",
+    "Avaliação de conhecimentos",
+    "Situações práticas e declaração"
+  ];
+
+  function showStep(index) {
+    steps.forEach((step, i) => step.classList.toggle("hidden", i !== index));
+    current = index;
+    back.classList.toggle("hidden", index === 0);
+    next.classList.toggle("hidden", index === steps.length - 1);
+    submit.classList.toggle("hidden", index !== steps.length - 1);
+    fill.style.width = ((index + 1) / steps.length * 100) + "%";
+    label.textContent = `Secção ${index + 1} de ${steps.length} — ${names[index]}`;
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  function validateStep() {
+    const fields = [...steps[current].querySelectorAll("input, select, textarea")];
+    for (const field of fields) {
+      if (!field.checkValidity()) {
+        field.reportValidity();
+        return false;
+      }
+    }
+    return true;
+  }
+
+  next.addEventListener("click", () => {
+    if (validateStep()) showStep(current + 1);
+  });
+
+  back.addEventListener("click", () => showStep(current - 1));
+
+  form.addEventListener("submit", async event => {
+    event.preventDefault();
+
+    if (!validateStep()) return;
+
+    submit.disabled = true;
+    submit.textContent = "A enviar...";
+    feedback.textContent = "";
+
+    const data = Object.fromEntries(new FormData(form).entries());
+
+    try {
+      const response = await fetch("/api/candidaturas", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.error || "Não foi possível enviar a candidatura.");
+      }
+
+      form.innerHTML = `
+        <div class="success">
+          <h2>Candidatura recebida!</h2>
+          <p>A tua candidatura foi submetida com sucesso e ficará pendente de análise pela equipa responsável da comunidade.</p>
+          <p>Obrigado pelo teu interesse em participar no nosso projeto de simulação.</p>
+        </div>`;
+    } catch (error) {
+      feedback.className = "error";
+      feedback.textContent = error.message;
+      submit.disabled = false;
+      submit.textContent = "Enviar candidatura";
+    }
+  });
+
+  showStep(0);
+</script>
 </body>
-      </html>
-      
+  </html>
+          
