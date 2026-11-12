@@ -1,0 +1,103 @@
+
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recrutamento | Bombeiros Voluntários do Algarve</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#">
+      <span class="crest">BVA</span>
+      <span>
+        <strong>BOMBEIROS VOLUNTÁRIOS</strong>
+        <small>DO ALGARVE · SIMULAÇÃO</small>
+      </span>
+    </a>
+    <a class="navlink" href="#candidatura">Candidatar-me</a>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-content">
+        <p class="eyebrow">RECRUTAMENTO · INGRESSO NA COMUNIDADE</p>
+        <h1>O próximo passo<br><em>começa aqui.</em></h1>
+        <p class="intro">
+          Faz parte de uma equipa dedicada à cooperação, ao rigor e ao espírito
+          de entreajuda numa experiência de simulação no Discord.
+        </p>
+        <a class="primary" href="#candidatura">Iniciar candidatura →</a>
+      </div>
+      <div class="hero-mark">
+        <div class="ring">BVA</div>
+        <span>PRONTIDÃO · DISCIPLINA · SERVIÇO</span>
+      </div>
+    </section>
+
+    <section class="values">
+      <article>
+        <b>01</b>
+        <h3>Compromisso</h3>
+        <p>Participação responsável e respeito pelas regras da comunidade.</p>
+      </article>
+      <article>
+        <b>02</b>
+        <h3>Espírito de equipa</h3>
+        <p>Comunicação, cooperação e apoio entre todos os membros.</p>
+      </article>
+      <article>
+        <b>03</b>
+        <h3>Aprendizagem</h3>
+        <p>Vontade de aprender os procedimentos da nossa simulação.</p>
+      </article>
+    </section>
+
+    <section class="application" id="candidatura">
+      <div class="section-heading">
+        <p class="eyebrow">FORMULÁRIO DE INGRESSO</p>
+        <h2>Apresenta a tua candidatura</h2>
+        <p>Preenche os campos com atenção. A equipa de recrutamento irá analisar a tua inscrição.</p>
+      </div>
+
+      <form id="applicationForm">
+        <div class="form-grid">
+          <label>Nome ou identificação na comunidade
+            <input name="nome" maxlength="100" required placeholder="Como te identificas no servidor">
+          </label>
+          <label>Idade
+            <input name="idade" type="number" min="13" max="99" required placeholder="Idade">
+          </label>
+          <label class="full">Nome de utilizador do Discord
+            <input name="discord" maxlength="100" required placeholder="Exemplo: utilizador">
+          </label>
+          <label class="full">Disponibilidade
+            <textarea name="disponibilidade" rows="3" maxlength="500" required placeholder="Em que dias e horários costumas estar disponível?"></textarea>
+          </label>
+          <label class="full">Porque queres entrar na comunidade?
+            <textarea name="motivacao" rows="5" maxlength="2000" required placeholder="Fala um pouco sobre a tua motivação..."></textarea>
+          </label>
+        </div>
+
+        <p class="notice">
+          Esta candidatura destina-se exclusivamente a uma comunidade de
+          simulação/roleplay no Discord. Não representa uma candidatura a um
+          corpo de bombeiros real.
+        </p>
+
+        <button class="primary submit" type="submit">Enviar candidatura →</button>
+        <p id="formMessage" role="status" aria-live="polite"></p>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <span>BOMBEIROS VOLUNTÁRIOS DO ALGARVE</span>
+    <span>COMUNIDADE DE SIMULAÇÃO · DISCORD</span>
+  </footer>
+
+  <script src="/app.js"></script>
+</body>
+      </html>
+      
