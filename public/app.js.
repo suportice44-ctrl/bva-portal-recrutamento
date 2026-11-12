@@ -3,41 +3,79 @@ document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("applicationForm");
   const message = document.getElementById("formMessage");
 
-  // Verificar se o formulário existe
-  if (!form) {
-    console.error("Erro: formulário applicationForm não encontrado.");
+  if (!form || !message) {
+    console.error("Formulário ou mensagem não encontrados.");
     return;
   }
 
-  if (!message) {
-    console.error("Erro: elemento formMessage não encontrado.");
-    return;
+  const submitButton = form.querySelector(
+    'button[type="submit"], input[type="submit"]'
+  );
+
+  let sending = false;
+
+  function showMessage(text, type) {
+    message.textContent = text;
+
+    const colors = {
+      success: "#15803d",
+      error: "#dc2626",
+      info: "#2563eb"
+    };
+
+    message.style.color = colors[type] || colors.info;
+    message.setAttribute("role", "status");
+    message.setAttribute("aria-live", "polite");
   }
 
-  form.addEventListener("submit", async (event) => {
+  function getFormData() {
+    const data = {};
+
+    for (const [key, value] of new FormData(form).entries()) {
+      if (typeof value === "string") {
+        data[key] = value.trim();
+      }
+    }
+
+    return data;
+  }
+
+  form.addEventListener("submit", async event => {
     event.preventDefault();
 
-    if (!form.reportValidity()) return;
+    if (sending) return;
 
-    const submitButton = form.querySelector(
-      'button[type="submit"], input[type="submit"]'
-    );
+    if (!form.reportValidity()) {
+      showMessage(
+        "Verifica os campos obrigatórios antes de enviar.",
+        "error"
+      );
+      return;
+    }
+
+    const data = getFormData();
+
+    sending = true;
 
     const originalText = submitButton
-      ? submitButton.textContent
+      ? (
+          submitButton.tagName === "INPUT"
+            ? submitButton.value
+            : submitButton.textContent
+        )
       : "";
-
-    message.textContent = "A enviar candidatura...";
-    message.style.color = "#2563eb";
 
     if (submitButton) {
       submitButton.disabled = true;
-      submitButton.textContent = "A enviar...";
+
+      if (submitButton.tagName === "INPUT") {
+        submitButton.value = "A enviar...";
+      } else {
+        submitButton.textContent = "A enviar...";
+      }
     }
 
-    const data = Object.fromEntries(
-      new FormData(form).entries()
-    );
+    showMessage("A enviar a tua candidatura...", "info");
 
     try {
       const response = await fetch("/api/candidaturas", {
@@ -52,28 +90,39 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (!response.ok) {
         throw new Error(
-          result.error || `Erro do servidor (${response.status})`
+          result.error ||
+          `Não foi possível enviar a candidatura (${response.status}).`
         );
       }
 
-      message.textContent =
-        "Candidatura enviada com sucesso! Obrigado pelo teu interesse nos BVA.";
-
-      message.style.color = "#15803d";
       form.reset();
+
+      showMessage(
+        "Candidatura enviada com sucesso! Obrigado pelo teu interesse nos BVA.",
+        "success"
+      );
 
     } catch (error) {
       console.error("Erro ao enviar candidatura:", error);
 
-      message.textContent =
-        "Não foi possível enviar a candidatura. Tenta novamente mais tarde.";
-
-      message.style.color = "#dc2626";
+      showMessage(
+        error.message ||
+        "Não foi possível enviar a candidatura. Tenta novamente mais tarde.",
+        "error"
+      );
 
     } finally {
+      sending = false;
+
       if (submitButton) {
         submitButton.disabled = false;
-        submitButton.textContent = originalText || "Enviar candidatura";
+
+        if (submitButton.tagName === "INPUT") {
+          submitButton.value = originalText || "Enviar candidatura";
+        } else {
+          submitButton.textContent =
+            originalText || "Enviar candidatura";
+        }
       }
     }
   });
