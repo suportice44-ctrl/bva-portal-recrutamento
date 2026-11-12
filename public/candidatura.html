@@ -5,6 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#102238">
+<meta name="description" content="Formulário de recrutamento dos Bombeiros Voluntários do Algarve.">
 <title>Recrutamento | Bombeiros Voluntários do Algarve</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
@@ -233,8 +234,14 @@ main {
 }
 
 @keyframes appear {
-  from { opacity:0; transform:translateY(5px); }
-  to { opacity:1; transform:translateY(0); }
+  from {
+    opacity:0;
+    transform:translateY(5px);
+  }
+  to {
+    opacity:1;
+    transform:translateY(0);
+  }
 }
 
 .section-title {
@@ -410,9 +417,6 @@ main {
   font-weight:800;
   letter-spacing:.5px;
   cursor:pointer;
-  text-decoration:none;
-  display:inline-block;
-  text-align:center;
 }
 
 .btn-secondary {
@@ -483,19 +487,42 @@ footer {
 }
 
 @media(max-width:650px) {
-  .header-content { align-items:flex-start; }
-  .brand h1 { font-size:11px; }
-  .back-link { font-size:9px; padding:9px; }
+  .header-content {
+    align-items:flex-start;
+  }
+
+  .brand h1 {
+    font-size:11px;
+  }
+
+  .back-link {
+    font-size:9px;
+    padding:9px;
+  }
+
   .grid,
-  .choice-group { grid-template-columns:1fr; }
-  .field.full { grid-column:auto; }
-  .form-card { padding:21px; }
-  .steps { gap:5px; }
+  .choice-group {
+    grid-template-columns:1fr;
+  }
+
+  .field.full {
+    grid-column:auto;
+  }
+
+  .form-card {
+    padding:21px;
+  }
+
+  .steps {
+    gap:5px;
+  }
+
   .step {
     flex-direction:column;
     text-align:center;
     font-size:9px;
   }
+
   .navigation .btn {
     flex:1;
     padding:12px 8px;
@@ -549,11 +576,10 @@ footer {
   </div>
 
   <div class="form-card" id="formCard">
-    <div id="formError" class="form-error" role="alert" aria-live="polite"></div>
+    <div id="formError" class="form-error" role="alert"></div>
 
     <form id="applicationForm" novalidate>
 
-      <!-- ETAPA 1 -->
       <section class="form-step active">
         <div class="section-title">
           <span>ETAPA 01</span>
@@ -579,7 +605,6 @@ footer {
         </div>
       </section>
 
-      <!-- ETAPA 2 -->
       <section class="form-step">
         <div class="section-title">
           <span>ETAPA 02</span>
@@ -636,7 +661,6 @@ footer {
         </div>
       </section>
 
-      <!-- ETAPA 3 -->
       <section class="form-step">
         <div class="section-title">
           <span>ETAPA 03</span>
@@ -667,7 +691,6 @@ footer {
         </div>
       </section>
 
-      <!-- ETAPA 4 -->
       <section class="form-step">
         <div class="section-title">
           <span>ETAPA 04</span>
@@ -736,7 +759,7 @@ footer {
 (function () {
   "use strict";
 
-  document.addEventListener("DOMContentLoaded", function () {
+  function iniciarFormulario() {
     const form = document.getElementById("applicationForm");
     const formSteps = Array.from(document.querySelectorAll(".form-step"));
     const progressSteps = Array.from(document.querySelectorAll(".steps .step"));
@@ -765,24 +788,18 @@ footer {
     let submitting = false;
 
     if (
-      !form ||
-      !progressFill ||
-      !progressTitle ||
-      !progressText ||
-      !previousButton ||
-      !nextButton ||
-      !submitButton ||
-      !formError ||
-      formSteps.length !== 4
+      !form || !previousButton || !nextButton ||
+      !submitButton || formSteps.length !== 4 ||
+      !progressFill || !progressTitle || !progressText ||
+      !formError || !formCard || !successScreen
     ) {
-      console.error("Erro: não foi possível encontrar todos os elementos do formulário.");
+      console.error("Não foi possível iniciar o formulário.");
       return;
     }
 
     function showError(message) {
       formError.textContent = message;
       formError.style.display = "block";
-
       formError.scrollIntoView({
         behavior: "smooth",
         block: "center"
@@ -803,4 +820,5 @@ footer {
         step.classList.toggle("active", i === index);
       });
 
-      progressSteps.forEach(fu
+      progressSteps.forEach(function (step, i) {
+        step.classList.toggle("active", i =
