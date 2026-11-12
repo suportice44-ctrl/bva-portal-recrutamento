@@ -1,111 +1,310 @@
 
-
 <!DOCTYPE html>
 <html lang="pt-PT">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Administração | BVA Recrutamento</title>
-  <style>
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #0b1220;
-      color: #e8edf5;
-    }
-    header {
-      padding: 28px 6%;
-      background: #111c30;
-      border-bottom: 1px solid #26364f;
-    }
-    header small { color: #ef6464; letter-spacing: 2px; }
-    header h1 { margin: 10px 0 5px; }
-    header p { color: #9eabc0; margin: 0; }
-    main { width: min(1100px, 92%); margin: 30px auto; }
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 12px;
-      margin-bottom: 25px;
-    }
-    .stat, .application {
-      background: #121e32;
-      border: 1px solid #26364f;
-      border-radius: 12px;
-      padding: 18px;
-    }
-    .stat span { color: #9eabc0; font-size: 13px; }
-    .stat strong { display: block; font-size: 27px; margin-top: 8px; }
-    .toolbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 12px;
-      flex-wrap: wrap;
-      margin-bottom: 18px;
-    }
-    button, select {
-      background: #d94747;
-      color: white;
-      border: 0;
-      padding: 11px 16px;
-      border-radius: 8px;
-      cursor: pointer;
-      font-size: 14px;
-    }
-    select {
-      background: #1c2b43;
-      border: 1px solid #344963;
-    }
-    .application { margin-bottom: 18px; }
-    .app-head {
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      flex-wrap: wrap;
-      align-items: center;
-      border-bottom: 1px solid #26364f;
-      padding-bottom: 13px;
-      margin-bottom: 15px;
-    }
-    .app-head h2 { margin: 0; font-size: 19px; }
-    .date { color: #9eabc0; font-size: 12px; }
-    .section { margin-top: 20px; }
-    .section h3 {
-      color: #ef7777;
-      font-size: 13px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      border-bottom: 1px solid #26364f;
-      padding-bottom: 8px;
-    }
-    .answer {
-      background: #0c1729;
-      border-radius: 8px;
-      padding: 12px;
-      margin: 9px 0;
-      overflow-wrap: anywhere;
-    }
-    .answer b {
-      display: block;
-      color: #9eabc0;
-      font-size: 12px;
-      margin-bottom: 6px;
-    }
-    .answer p { margin: 0; white-space: pre-wrap; line-height: 1.5; }
-    .status { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
-    .status label { color: #9eabc0; font-size: 13px; }
-    #message { color: #efaaaa; margin: 12px 0; }
-    .empty { text-align: center; color: #9eabc0; padding: 35px; }
-    @media(max-width:600px) {
-      header { padding: 22px 5%; }
-      main { width: 94%; }
-      .application { padding: 14px; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0b1220">
+<title>Administração | BVA Recrutamento</title>
+
+<style>
+:root {
+  --bg: #0b1220;
+  --panel: #121e32;
+  --panel2: #0c1729;
+  --border: #26364f;
+  --text: #e8edf5;
+  --muted: #9eabc0;
+  --red: #d94747;
+  --red-dark: #b92f38;
+  --green: #239b69;
+  --blue: #3478d4;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+header {
+  padding: 30px 6%;
+  background: #111c30;
+  border-bottom: 1px solid var(--border);
+}
+
+header small {
+  color: #ef6464;
+  letter-spacing: 2px;
+  font-weight: bold;
+}
+
+header h1 {
+  margin: 12px 0 6px;
+  font-size: 28px;
+}
+
+header p {
+  color: var(--muted);
+  margin: 0;
+}
+
+main {
+  width: min(1200px, 94%);
+  margin: 30px auto;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(145px, 1fr));
+  gap: 13px;
+  margin-bottom: 28px;
+}
+
+.stat {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 19px;
+}
+
+.stat span {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.stat strong {
+  display: block;
+  font-size: 29px;
+  margin-top: 9px;
+}
+
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 18px;
+}
+
+.toolbar h2 {
+  margin: 0;
+  font-size: 22px;
+}
+
+.controls {
+  display: grid;
+  grid-template-columns: minmax(200px, 1fr) 190px;
+  gap: 10px;
+  margin-bottom: 22px;
+}
+
+input, select, textarea {
+  width: 100%;
+  background: #1c2b43;
+  color: white;
+  border: 1px solid #344963;
+  border-radius: 8px;
+  padding: 12px;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+}
+
+input::placeholder, textarea::placeholder {
+  color: #9eabc0;
+}
+
+button {
+  background: var(--red);
+  color: white;
+  border: 0;
+  padding: 11px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  transition: .2s;
+}
+
+button:hover { background: var(--red-dark); }
+button:disabled { opacity: .6; cursor: not-allowed; }
+
+button.secondary {
+  background: #263b58;
+}
+
+button.secondary:hover {
+  background: #344d70;
+}
+
+button.export {
+  background: var(--green);
+}
+
+button.export:hover {
+  background: #187b53;
+}
+
+.application {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 13px;
+  padding: 21px;
+  margin-bottom: 18px;
+}
+
+.app-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 15px;
+}
+
+.app-head h2 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.date {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.section {
+  margin-top: 21px;
+}
+
+.section h3 {
+  color: #ef7777;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 9px;
+}
+
+.answers {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 10px;
+}
+
+.answer {
+  background: var(--panel2);
+  border-radius: 8px;
+  padding: 12px;
+  overflow-wrap: anywhere;
+}
+
+.answer b {
+  display: block;
+  color: var(--muted);
+  font-size: 12px;
+  margin-bottom: 7px;
+}
+
+.answer p {
+  margin: 0;
+  line-height: 1.55;
+  white-space: pre-wrap;
+}
+
+.status-area {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 22px;
+  padding-top: 17px;
+  border-top: 1px solid var(--border);
+}
+
+.status-area label {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.status-area select {
+  width: auto;
+  min-width: 150px;
+}
+
+.notes {
+  margin-top: 20px;
+  background: var(--panel2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px;
+}
+
+.notes h3 {
+  margin: 0 0 12px;
+  font-size: 14px;
+  color: #ef7777;
+}
+
+.notes textarea {
+  min-height: 100px;
+  resize: vertical;
+  line-height: 1.5;
+}
+
+.notes-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.note-message {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+#message {
+  color: #efaaaa;
+  margin: 12px 0;
+  min-height: 20px;
+}
+
+.empty {
+  text-align: center;
+  color: var(--muted);
+  padding: 45px 15px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+
+.results {
+  color: var(--muted);
+  font-size: 13px;
+  margin: 0 0 14px;
+}
+
+@media(max-width:650px) {
+  header { padding: 23px 5%; }
+  main { width: 94%; margin-top: 20px; }
+  .application { padding: 15px; }
+  .controls { grid-template-columns: 1fr; }
+  .status-area select { width: 100%; }
+  .status-area { align-items: stretch; }
+  .toolbar { align-items: stretch; }
+  .toolbar button { flex: 1; }
+}
+</style>
 </head>
+
 <body>
+
 <header>
   <small>BVA · SIMULAÇÃO DISCORD</small>
   <h1>Painel de Recrutamento</h1>
@@ -113,31 +312,76 @@
 </header>
 
 <main>
-  <div class="stats">
+
+  <section class="stats">
     <div class="stat"><span>Total</span><strong id="total">0</strong></div>
     <div class="stat"><span>Recebidas</span><strong id="recebidas">0</strong></div>
     <div class="stat"><span>Em análise</span><strong id="analise">0</strong></div>
     <div class="stat"><span>Aceites</span><strong id="aceites">0</strong></div>
     <div class="stat"><span>Recusadas</span><strong id="recusadas">0</strong></div>
-  </div>
+  </section>
 
   <div class="toolbar">
     <h2>Candidaturas</h2>
-    <button id="refresh">Atualizar lista</button>
+    <div style="display:flex;gap:9px;flex-wrap:wrap">
+      <button class="secondary" id="refresh">Atualizar lista</button>
+      <button class="export" id="export">Exportar CSV</button>
+    </div>
+  </div>
+
+  <div class="controls">
+    <input
+      id="search"
+      type="search"
+      placeholder="Pesquisar por nome ou Discord..."
+      autocomplete="off"
+    >
+
+    <select id="filter">
+      <option value="">Todos os estados</option>
+      <option value="Recebida">Recebidas</option>
+      <option value="Em análise">Em análise</option>
+      <option value="Aceite">Aceites</option>
+      <option value="Recusada">Recusadas</option>
+    </select>
   </div>
 
   <p id="message" role="status"></p>
+  <p class="results" id="results"></p>
+
   <div id="applications">
     <div class="empty">A carregar candidaturas...</div>
   </div>
+
 </main>
 
 <script>
 const container = document.getElementById("applications");
 const message = document.getElementById("message");
+const search = document.getElementById("search");
+const filter = document.getElementById("filter");
+const results = document.getElementById("results");
+
+let currentApplications = [];
+
+const ESTADOS = [
+  "Recebida",
+  "Em análise",
+  "Aceite",
+  "Recusada"
+];
+
+function safeText(value) {
+  if (value === null || value === undefined || value === "") {
+    return "";
+  }
+
+  return String(value);
+}
 
 function addAnswer(parent, label, value) {
-  if (value === null || value === undefined || value === "") return;
+  const text = safeText(value);
+  if (!text) return;
 
   const box = document.createElement("div");
   box.className = "answer";
@@ -146,7 +390,7 @@ function addAnswer(parent, label, value) {
   title.textContent = label;
 
   const content = document.createElement("p");
-  content.textContent = value;
+  content.textContent = text;
 
   box.append(title, content);
   parent.appendChild(box);
@@ -160,28 +404,59 @@ function addSection(parent, title, fields, item) {
   heading.textContent = title;
   section.appendChild(heading);
 
+  const answers = document.createElement("div");
+  answers.className = "answers";
+
   let count = 0;
 
   for (const [key, label] of fields) {
-    if (item[key] !== null && item[key] !== undefined && item[key] !== "") {
-      addAnswer(section, label, item[key]);
+    if (safeText(item[key])) {
+      addAnswer(answers, label, item[key]);
       count++;
     }
   }
 
-  if (count) parent.appendChild(section);
+  if (count) {
+    section.appendChild(answers);
+    parent.appendChild(section);
+  }
 }
 
 function updateStats(items) {
   document.getElementById("total").textContent = items.length;
+
   document.getElementById("recebidas").textContent =
     items.filter(x => x.estado === "Recebida").length;
+
   document.getElementById("analise").textContent =
     items.filter(x => x.estado === "Em análise").length;
+
   document.getElementById("aceites").textContent =
     items.filter(x => x.estado === "Aceite").length;
+
   document.getElementById("recusadas").textContent =
     items.filter(x => x.estado === "Recusada").length;
+}
+
+async function updateApplication(id, changes) {
+  const response = await fetch(
+    "/api/admin/candidaturas/" + encodeURIComponent(id),
+    {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(changes)
+    }
+  );
+
+  const result = await response.json().catch(() => ({}));
+
+  if (!response.ok) {
+    throw new Error(result.error || "Não foi possível guardar.");
+  }
+
+  return result;
 }
 
 function createApplication(item) {
@@ -201,16 +476,17 @@ function createApplication(item) {
     ? new Date(item.data_criacao)
     : null;
 
-  date.textContent = parsedDate && !Number.isNaN(parsedDate.getTime())
-    ? parsedDate.toLocaleString("pt-PT")
-    : "Data indisponível";
+  date.textContent =
+    parsedDate && !Number.isNaN(parsedDate.getTime())
+      ? parsedDate.toLocaleString("pt-PT")
+      : "Data indisponível";
 
   head.append(title, date);
   card.appendChild(head);
 
   addSection(card, "01 · Identificação", [
     ["nome", "Nome"],
-    ["idade", "Faixa etária"],
+    ["idade", "Idade"],
     ["discord", "Discord"],
     ["disponibilidade", "Disponibilidade"]
   ], item);
@@ -238,58 +514,138 @@ function createApplication(item) {
     ["conflito", "Gestão de conflitos"]
   ], item);
 
-  const footer = document.createElement("div");
-  footer.className = "section status";
+  // Estado da candidatura
+  const statusArea = document.createElement("div");
+  statusArea.className = "status-area";
 
   const label = document.createElement("label");
   label.textContent = "Estado da candidatura:";
 
   const select = document.createElement("select");
 
-  ["Recebida", "Em análise", "Aceite", "Recusada"].forEach(state => {
+  ESTADOS.forEach(state => {
     const option = document.createElement("option");
     option.value = state;
     option.textContent = state;
     select.appendChild(option);
   });
 
-  select.value = item.estado || "Recebida";
+  select.value = ESTADOS.includes(item.estado)
+    ? item.estado
+    : "Recebida";
 
   select.addEventListener("change", async () => {
+    const previous = item.estado || "Recebida";
     select.disabled = true;
     message.textContent = "A atualizar estado...";
 
     try {
-      const response = await fetch(
-        "/api/admin/candidaturas/" + encodeURIComponent(item.id),
-        {
-          method: "PATCH",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ estado: select.value })
-        }
-      );
-
-      if (!response.ok) throw new Error();
+      await updateApplication(item.id, {
+        estado: select.value
+      });
 
       item.estado = select.value;
+      updateStats(currentApplications);
       message.textContent = "Estado atualizado com sucesso.";
-      updateStats(window.currentApplications || []);
-    } catch {
-      message.textContent = "Não foi possível atualizar o estado.";
-      select.value = item.estado || "Recebida";
+    } catch (error) {
+      select.value = previous;
+      message.textContent = error.message;
     } finally {
       select.disabled = false;
     }
   });
 
-  footer.append(label, select);
-  card.appendChild(footer);
+  statusArea.append(label, select);
+  card.appendChild(statusArea);
+
+  // Notas internas
+  const notes = document.createElement("section");
+  notes.className = "notes";
+
+  const notesTitle = document.createElement("h3");
+  notesTitle.textContent = "Notas internas · Recursos Humanos";
+
+  const textarea = document.createElement("textarea");
+  textarea.maxLength = 5000;
+  textarea.placeholder =
+    "Escreve aqui observações privadas sobre esta candidatura...";
+
+  textarea.value = item.notas_internas || "";
+
+  const actions = document.createElement("div");
+  actions.className = "notes-actions";
+
+  const saveButton = document.createElement("button");
+  saveButton.textContent = "Guardar notas";
+
+  const noteMessage = document.createElement("span");
+  noteMessage.className = "note-message";
+
+  saveButton.addEventListener("click", async () => {
+    saveButton.disabled = true;
+    noteMessage.textContent = "A guardar notas...";
+
+    try {
+      await updateApplication(item.id, {
+        notas_internas: textarea.value
+      });
+
+      item.notas_internas = textarea.value;
+      noteMessage.textContent = "Notas guardadas com sucesso.";
+    } catch (error) {
+      noteMessage.textContent = error.message;
+    } finally {
+      saveButton.disabled = false;
+    }
+  });
+
+  actions.append(saveButton, noteMessage);
+  notes.append(notesTitle, textarea, actions);
+  card.appendChild(notes);
 
   return card;
 }
 
+function renderApplications() {
+  const query = search.value.trim().toLocaleLowerCase("pt-PT");
+  const selectedState = filter.value;
+
+  const filtered = currentApplications.filter(item => {
+    const name = safeText(item.nome).toLocaleLowerCase("pt-PT");
+    const discord = safeText(item.discord).toLocaleLowerCase("pt-PT");
+
+    const matchesSearch =
+      name.includes(query) || discord.includes(query);
+
+    const matchesState =
+      !selectedState || item.estado === selectedState;
+
+    return matchesSearch && matchesState;
+  });
+
+  container.replaceChildren();
+
+  results.textContent =
+    `A mostrar ${filtered.length} de ${currentApplications.length} candidaturas.`;
+
+  if (!filtered.length) {
+    const empty = document.createElement("div");
+    empty.className = "empty";
+    empty.textContent = currentApplications.length
+      ? "Não foram encontradas candidaturas com estes critérios."
+      : "Ainda não existem candidaturas.";
+
+    container.appendChild(empty);
+    return;
+  }
+
+  filtered.forEach(item => {
+    container.appendChild(createApplication(item));
+  });
+}
+
 async function loadApplications() {
-  message.textContent = "A carregar...";
+  message.textContent = "A carregar candidaturas...";
   container.replaceChildren();
 
   try {
@@ -297,33 +653,117 @@ async function loadApplications() {
       cache: "no-store"
     });
 
-    if (!response.ok) throw new Error();
-
-    const items = await response.json();
-    window.currentApplications = items;
-
-    updateStats(items);
-
-    if (!items.length) {
-      const empty = document.createElement("div");
-      empty.className = "empty";
-      empty.textContent = "Ainda não existem candidaturas.";
-      container.appendChild(empty);
-    } else {
-      items.forEach(item => {
-        container.appendChild(createApplication(item));
-      });
+    if (!response.ok) {
+      throw new Error(
+        response.status === 401
+          ? "Autenticação necessária. Atualiza a página e entra novamente."
+          : "Erro ao carregar candidaturas."
+      );
     }
 
+    const items = await response.json();
+
+    if (!Array.isArray(items)) {
+      throw new Error("Resposta inválida do servidor.");
+    }
+
+    currentApplications = items;
+
+    updateStats(items);
+    renderApplications();
+
     message.textContent = "";
-  } catch {
-    message.textContent =
-      "Erro ao carregar candidaturas. Atualiza a página ou tenta novamente.";
+
+  } catch (error) {
+    message.textContent = error.message;
+    container.replaceChildren();
+
+    const empty = document.createElement("div");
+    empty.className = "empty";
+    empty.textContent = "Não foi possível carregar as candidaturas.";
+
+    container.appendChild(empty);
   }
 }
 
-document.getElementById("refresh").addEventListener("click", loadApplications);
+function exportCSV() {
+  if (!currentApplications.length) {
+    message.textContent = "Não existem candidaturas para exportar.";
+    return;
+  }
+
+  const fields = [
+    ["id", "ID"],
+    ["data_criacao", "Data"],
+    ["nome", "Nome"],
+    ["idade", "Idade"],
+    ["discord", "Discord"],
+    ["disponibilidade", "Disponibilidade"],
+    ["experiencia", "Experiência"],
+    ["funcao_pretendida", "Função pretendida"],
+    ["experiencia_detalhe", "Detalhes da experiência"],
+    ["motivacao", "Motivação"],
+    ["qualidades", "Qualidades"],
+    ["compromisso", "Compromisso"],
+    ["q1", "Pergunta 1"],
+    ["q2", "Pergunta 2"],
+    ["q3", "Pergunta 3"],
+    ["situacao_pratica", "Situação prática"],
+    ["conflito", "Conflito"],
+    ["estado", "Estado"],
+    ["notas_internas", "Notas internas"]
+  ];
+
+  function escapeCSV(value) {
+    let text = safeText(value);
+
+    // Evita que folhas de cálculo interpretem texto como fórmula.
+    if (/^[=+\-@\t\r]/.test(text)) {
+      text = "'" + text;
+    }
+
+    return '"' + text.replace(/"/g, '""') + '"';
+  }
+
+  const rows = [
+    fields.map(field => escapeCSV(field[1])).join(";"),
+    ...currentApplications.map(item =>
+      fields.map(([key]) => escapeCSV(item[key])).join(";")
+    )
+  ];
+
+  const csv = "\uFEFF" + rows.join("\r\n");
+  const blob = new Blob([csv], {
+    type: "text/csv;charset=utf-8;"
+  });
+
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+
+  link.href = url;
+  link.download = "BVA_candidaturas.csv";
+
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+
+  URL.revokeObjectURL(url);
+
+  message.textContent = "Exportação CSV concluída.";
+}
+
+document.getElementById("refresh")
+  .addEventListener("click", loadApplications);
+
+document.getElementById("export")
+  .addEventListener("click", exportCSV);
+
+search.addEventListener("input", renderApplications);
+filter.addEventListener("change", renderApplications);
+
 loadApplications();
 </script>
+
 </body>
-</html>
+        </html>
+  
