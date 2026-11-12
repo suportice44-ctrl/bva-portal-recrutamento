@@ -3,767 +3,443 @@
 <html lang="pt-PT">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#0b1220">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#102238">
 <title>Administração | BVA Recrutamento</title>
-
 <style>
 :root {
-  --bg: #0b1220;
-  --panel: #121e32;
-  --panel2: #0c1729;
-  --border: #26364f;
-  --text: #e8edf5;
-  --muted: #9eabc0;
-  --red: #d94747;
-  --red-dark: #b92f38;
-  --green: #239b69;
-  --blue: #3478d4;
+  --navy:#102238;
+  --navy2:#19334f;
+  --red:#bd292e;
+  --bg:#f3f5f8;
+  --white:#fff;
+  --text:#263445;
+  --muted:#718096;
+  --border:#e1e6ed;
 }
-
-* { box-sizing: border-box; }
-
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: var(--bg);
-  color: var(--text);
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);font-family:Arial,sans-serif;color:var(--text)}
+header{background:var(--navy);color:white;padding:24px 5%;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+header h1{margin:0;font-size:22px}
+header p{margin:6px 0 0;color:#c8d3df;font-size:13px}
+main{max-width:1250px;margin:30px auto;padding:0 18px}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0}
+input,select,textarea{font:inherit;padding:11px;border:1px solid var(--border);border-radius:7px;background:white;color:var(--text);width:100%}
+.toolbar input{flex:1;min-width:200px}
+.toolbar select{width:auto;min-width:160px}
+button{border:0;border-radius:7px;padding:11px 16px;background:var(--navy);color:white;font-weight:bold;cursor:pointer}
+button:hover{opacity:.9}
+button.red{background:var(--red)}
+button.light{background:#e8edf3;color:var(--navy)}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.stat{background:white;border:1px solid var(--border);border-radius:10px;padding:19px}
+.stat span{font-size:13px;color:var(--muted)}
+.stat strong{display:block;font-size:28px;margin-top:8px;color:var(--navy)}
+.panel{background:white;border:1px solid var(--border);border-radius:10px;margin-top:22px;overflow:hidden}
+.panel-head{padding:18px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.panel-head h2{font-size:17px;margin:0}
+.table-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;min-width:700px}
+th,td{text-align:left;padding:14px;border-bottom:1px solid var(--border);font-size:13px}
+th{background:#f8fafc;color:#526174}
+tr:last-child td{border-bottom:0}
+tbody tr:hover{background:#fafbfd}
+.status{display:inline-block;padding:5px 9px;border-radius:20px;background:#edf1f5;color:#435368;font-size:12px}
+.status.Recebida{background:#e8efff;color:#3159a5}
+.status.Em-análise{background:#fff2d8;color:#8a5a00}
+.status.Aceite{background:#e0f5e9;color:#247346}
+.status.Recusada{background:#fde8e8;color:#a52a2a}
+.link-button{background:none;color:#bd292e;padding:5px;text-decoration:underline}
+.empty,.loading{padding:35px;text-align:center;color:var(--muted)}
+.details{display:none;padding:22px;border-top:1px solid var(--border);background:#fbfcfe}
+.details.open{display:block}
+.details h3{margin:0 0 18px;color:var(--navy)}
+.detail-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.detail-item{background:white;border:1px solid var(--border);padding:13px;border-radius:8px;min-width:0}
+.detail-item.full{grid-column:1/-1}
+.detail-item label{display:block;font-size:11px;color:var(--muted);font-weight:bold;text-transform:uppercase;margin-bottom:7px}
+.detail-item p{margin:0;white-space:pre-wrap;overflow-wrap:anywhere;font-size:14px;line-height:1.5}
+.detail-item textarea{min-height:100px;resize:vertical}
+.actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:16px}
+.error{color:#b42318;background:#feeceb;padding:12px;border-radius:7px;margin:15px 0;display:none}
+.success{color:#176b3a;background:#e6f5eb;padding:12px;border-radius:7px;margin:15px 0;display:none}
+@media(max-width:750px){
+ .stats{grid-template-columns:repeat(2,1fr)}
+ .detail-grid{grid-template-columns:1fr}
+ .detail-item.full{grid-column:auto}
 }
-
-header {
-  padding: 30px 6%;
-  background: #111c30;
-  border-bottom: 1px solid var(--border);
-}
-
-header small {
-  color: #ef6464;
-  letter-spacing: 2px;
-  font-weight: bold;
-}
-
-header h1 {
-  margin: 12px 0 6px;
-  font-size: 28px;
-}
-
-header p {
-  color: var(--muted);
-  margin: 0;
-}
-
-main {
-  width: min(1200px, 94%);
-  margin: 30px auto;
-}
-
-.stats {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(145px, 1fr));
-  gap: 13px;
-  margin-bottom: 28px;
-}
-
-.stat {
-  background: var(--panel);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 19px;
-}
-
-.stat span {
-  color: var(--muted);
-  font-size: 13px;
-}
-
-.stat strong {
-  display: block;
-  font-size: 29px;
-  margin-top: 9px;
-}
-
-.toolbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 15px;
-  margin-bottom: 18px;
-}
-
-.toolbar h2 {
-  margin: 0;
-  font-size: 22px;
-}
-
-.controls {
-  display: grid;
-  grid-template-columns: minmax(200px, 1fr) 190px;
-  gap: 10px;
-  margin-bottom: 22px;
-}
-
-input, select, textarea {
-  width: 100%;
-  background: #1c2b43;
-  color: white;
-  border: 1px solid #344963;
-  border-radius: 8px;
-  padding: 12px;
-  font-family: Arial, sans-serif;
-  font-size: 14px;
-}
-
-input::placeholder, textarea::placeholder {
-  color: #9eabc0;
-}
-
-button {
-  background: var(--red);
-  color: white;
-  border: 0;
-  padding: 11px 16px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 14px;
-  font-weight: bold;
-  transition: .2s;
-}
-
-button:hover { background: var(--red-dark); }
-button:disabled { opacity: .6; cursor: not-allowed; }
-
-button.secondary {
-  background: #263b58;
-}
-
-button.secondary:hover {
-  background: #344d70;
-}
-
-button.export {
-  background: var(--green);
-}
-
-button.export:hover {
-  background: #187b53;
-}
-
-.application {
-  background: var(--panel);
-  border: 1px solid var(--border);
-  border-radius: 13px;
-  padding: 21px;
-  margin-bottom: 18px;
-}
-
-.app-head {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 14px;
-  flex-wrap: wrap;
-  border-bottom: 1px solid var(--border);
-  padding-bottom: 15px;
-}
-
-.app-head h2 {
-  margin: 0;
-  font-size: 20px;
-}
-
-.date {
-  color: var(--muted);
-  font-size: 12px;
-}
-
-.section {
-  margin-top: 21px;
-}
-
-.section h3 {
-  color: #ef7777;
-  font-size: 12px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  border-bottom: 1px solid var(--border);
-  padding-bottom: 9px;
-}
-
-.answers {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-  gap: 10px;
-}
-
-.answer {
-  background: var(--panel2);
-  border-radius: 8px;
-  padding: 12px;
-  overflow-wrap: anywhere;
-}
-
-.answer b {
-  display: block;
-  color: var(--muted);
-  font-size: 12px;
-  margin-bottom: 7px;
-}
-
-.answer p {
-  margin: 0;
-  line-height: 1.55;
-  white-space: pre-wrap;
-}
-
-.status-area {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-top: 22px;
-  padding-top: 17px;
-  border-top: 1px solid var(--border);
-}
-
-.status-area label {
-  color: var(--muted);
-  font-size: 13px;
-}
-
-.status-area select {
-  width: auto;
-  min-width: 150px;
-}
-
-.notes {
-  margin-top: 20px;
-  background: var(--panel2);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 16px;
-}
-
-.notes h3 {
-  margin: 0 0 12px;
-  font-size: 14px;
-  color: #ef7777;
-}
-
-.notes textarea {
-  min-height: 100px;
-  resize: vertical;
-  line-height: 1.5;
-}
-
-.notes-actions {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 10px;
-}
-
-.note-message {
-  color: var(--muted);
-  font-size: 12px;
-}
-
-#message {
-  color: #efaaaa;
-  margin: 12px 0;
-  min-height: 20px;
-}
-
-.empty {
-  text-align: center;
-  color: var(--muted);
-  padding: 45px 15px;
-  background: var(--panel);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-}
-
-.results {
-  color: var(--muted);
-  font-size: 13px;
-  margin: 0 0 14px;
-}
-
-@media(max-width:650px) {
-  header { padding: 23px 5%; }
-  main { width: 94%; margin-top: 20px; }
-  .application { padding: 15px; }
-  .controls { grid-template-columns: 1fr; }
-  .status-area select { width: 100%; }
-  .status-area { align-items: stretch; }
-  .toolbar { align-items: stretch; }
-  .toolbar button { flex: 1; }
+@media(max-width:420px){
+ .stats{grid-template-columns:1fr 1fr;gap:8px}
+ .stat{padding:13px}
+ .stat strong{font-size:23px}
 }
 </style>
 </head>
-
 <body>
 
 <header>
-  <small>BVA · SIMULAÇÃO DISCORD</small>
-  <h1>Painel de Recrutamento</h1>
-  <p>Gestão interna das candidaturas recebidas</p>
+  <div>
+    <h1>BVA | Administração</h1>
+    <p>Painel de gestão de recrutamento</p>
+  </div>
+  <button class="red" id="refreshButton">Atualizar dados</button>
 </header>
 
 <main>
-
   <section class="stats">
-    <div class="stat"><span>Total</span><strong id="total">0</strong></div>
-    <div class="stat"><span>Recebidas</span><strong id="recebidas">0</strong></div>
-    <div class="stat"><span>Em análise</span><strong id="analise">0</strong></div>
-    <div class="stat"><span>Aceites</span><strong id="aceites">0</strong></div>
-    <div class="stat"><span>Recusadas</span><strong id="recusadas">0</strong></div>
+    <div class="stat"><span>Total de candidaturas</span><strong id="total">0</strong></div>
+    <div class="stat"><span>Recebidas</span><strong id="received">0</strong></div>
+    <div class="stat"><span>Em análise</span><strong id="analysis">0</strong></div>
+    <div class="stat"><span>Aceites</span><strong id="accepted">0</strong></div>
   </section>
 
   <div class="toolbar">
-    <h2>Candidaturas</h2>
-    <div style="display:flex;gap:9px;flex-wrap:wrap">
-      <button class="secondary" id="refresh">Atualizar lista</button>
-      <button class="export" id="export">Exportar CSV</button>
-    </div>
-  </div>
-
-  <div class="controls">
-    <input
-      id="search"
-      type="search"
-      placeholder="Pesquisar por nome ou Discord..."
-      autocomplete="off"
-    >
-
+    <input id="search" type="search" placeholder="Pesquisar por nome, Discord ou função...">
     <select id="filter">
       <option value="">Todos os estados</option>
-      <option value="Recebida">Recebidas</option>
+      <option value="Recebida">Recebida</option>
       <option value="Em análise">Em análise</option>
-      <option value="Aceite">Aceites</option>
-      <option value="Recusada">Recusadas</option>
+      <option value="Aceite">Aceite</option>
+      <option value="Recusada">Recusada</option>
     </select>
+    <button id="exportButton" class="light">Exportar CSV</button>
   </div>
 
-  <p id="message" role="status"></p>
-  <p class="results" id="results"></p>
+  <div id="error" class="error"></div>
+  <div id="success" class="success"></div>
 
-  <div id="applications">
-    <div class="empty">A carregar candidaturas...</div>
-  </div>
+  <section class="panel">
+    <div class="panel-head">
+      <h2>Lista de candidaturas</h2>
+      <span id="count">0 resultados</span>
+    </div>
 
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Candidato</th>
+            <th>Discord</th>
+            <th>Função pretendida</th>
+            <th>Data</th>
+            <th>Estado</th>
+            <th>Detalhes</th>
+          </tr>
+        </thead>
+        <tbody id="applications">
+          <tr><td colspan="6" class="loading">A carregar candidaturas...</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div id="details" class="details"></div>
+  </section>
 </main>
 
 <script>
-const container = document.getElementById("applications");
-const message = document.getElementById("message");
-const search = document.getElementById("search");
-const filter = document.getElementById("filter");
-const results = document.getElementById("results");
+const API = "/api/admin/candidaturas";
+let applications = [];
+let selectedId = null;
 
-let currentApplications = [];
+const $ = id => document.getElementById(id);
 
-const ESTADOS = [
-  "Recebida",
-  "Em análise",
-  "Aceite",
-  "Recusada"
-];
+function escapeHTML(value) {
+  return String(value ?? "").replace(/[&<>"']/g, char => ({
+    "&":"&amp;",
+    "<":"&lt;",
+    ">":"&gt;",
+    '"':"&quot;",
+    "'":"&#39;"
+  })[char]);
+}
 
-function safeText(value) {
-  if (value === null || value === undefined || value === "") {
-    return "";
+function showError(message) {
+  $("error").textContent = message;
+  $("error").style.display = "block";
+  $("success").style.display = "none";
+}
+
+function showSuccess(message) {
+  $("success").textContent = message;
+  $("success").style.display = "block";
+  $("error").style.display = "none";
+}
+
+function clearMessages() {
+  $("error").style.display = "none";
+  $("success").style.display = "none";
+}
+
+function statusClass(status) {
+  return String(status || "Recebida").replace(/\s+/g, "-");
+}
+
+function formatDate(value) {
+  if (!value) return "—";
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return escapeHTML(value);
+  return date.toLocaleString("pt-PT");
+}
+
+function updateStats() {
+  $("total").textContent = applications.length;
+  $("received").textContent =
+    applications.filter(a => a.estado === "Recebida").length;
+  $("analysis").textContent =
+    applications.filter(a => a.estado === "Em análise").length;
+  $("accepted").textContent =
+    applications.filter(a => a.estado === "Aceite").length;
+}
+
+function filteredApplications() {
+  const term = $("search").value.trim().toLowerCase();
+  const status = $("filter").value;
+
+  return applications.filter(a => {
+    const searchable = [
+      a.nome, a.discord, a.funcao_pretendida,
+      a.id, a.disponibilidade, a.areas_atividade
+    ].join(" ").toLowerCase();
+
+    return (!term || searchable.includes(term)) &&
+      (!status || a.estado === status);
+  });
+}
+
+function renderApplications() {
+  const list = filteredApplications();
+  $("count").textContent = `${list.length} resultados`;
+
+  if (!list.length) {
+    $("applications").innerHTML =
+      '<tr><td colspan="6" class="empty">Não foram encontradas candidaturas.</td></tr>';
+    $("details").classList.remove("open");
+    return;
   }
 
-  return String(value);
+  $("applications").innerHTML = list.map(a => `
+    <tr>
+      <td><strong>${escapeHTML(a.nome)}</strong></td>
+      <td>${escapeHTML(a.discord)}</td>
+      <td>${escapeHTML(a.funcao_pretendida)}</td>
+      <td>${formatDate(a.data_criacao)}</td>
+      <td><span class="status ${statusClass(a.estado)}">${escapeHTML(a.estado || "Recebida")}</span></td>
+      <td><button class="link-button" data-open="${escapeHTML(a.id)}">Ver candidatura</button></td>
+    </tr>
+  `).join("");
+
+  document.querySelectorAll("[data-open]").forEach(button => {
+    button.addEventListener("click", () => {
+      openDetails(button.dataset.open);
+    });
+  });
 }
 
-function addAnswer(parent, label, value) {
-  const text = safeText(value);
-  if (!text) return;
-
-  const box = document.createElement("div");
-  box.className = "answer";
-
-  const title = document.createElement("b");
-  title.textContent = label;
-
-  const content = document.createElement("p");
-  content.textContent = text;
-
-  box.append(title, content);
-  parent.appendChild(box);
+function field(label, value, full = false) {
+  return `
+    <div class="detail-item ${full ? "full" : ""}">
+      <label>${escapeHTML(label)}</label>
+      <p>${escapeHTML(value || "Não indicado")}</p>
+    </div>
+  `;
 }
 
-function addSection(parent, title, fields, item) {
-  const section = document.createElement("section");
-  section.className = "section";
+function openDetails(id) {
+  const a = applications.find(item => String(item.id) === String(id));
+  if (!a) return;
 
-  const heading = document.createElement("h3");
-  heading.textContent = title;
-  section.appendChild(heading);
+  selectedId = a.id;
 
-  const answers = document.createElement("div");
-  answers.className = "answers";
+  $("details").innerHTML = `
+    <h3>Detalhes da candidatura — ${escapeHTML(a.nome)}</h3>
 
-  let count = 0;
+    <div class="detail-grid">
+      ${field("Nome", a.nome)}
+      ${field("Idade", a.idade)}
+      ${field("Discord", a.discord)}
+      ${field("Função pretendida", a.funcao_pretendida)}
+      ${field("Disponibilidade", a.disponibilidade)}
+      ${field("Áreas de atividade", a.areas_atividade, true)}
+      ${field("Experiência", a.experiencia)}
+      ${field("Detalhes da experiência", a.experiencia_detalhe, true)}
+      ${field("Motivação", a.motivacao, true)}
+      ${field("Qualidades", a.qualidades, true)}
+      ${field("Compromisso", a.compromisso, true)}
+      ${field("Questão 1", a.q1, true)}
+      ${field("Questão 2", a.q2, true)}
+      ${field("Questão 3", a.q3, true)}
+      ${field("Situação prática", a.situacao_pratica, true)}
+      ${field("Gestão de conflitos", a.conflito, true)}
+      ${field("Data de candidatura", formatDate(a.data_criacao))}
+    </div>
 
-  for (const [key, label] of fields) {
-    if (safeText(item[key])) {
-      addAnswer(answers, label, item[key]);
-      count++;
-    }
-  }
+    <div style="margin-top:22px">
+      <label for="newStatus"><strong>Estado da candidatura</strong></label>
+      <select id="newStatus" style="margin-top:8px;max-width:300px">
+        ${["Recebida","Em análise","Aceite","Recusada"].map(s =>
+          `<option value="${s}" ${a.estado === s ? "selected" : ""}>${s}</option>`
+        ).join("")}
+      </select>
+    </div>
 
-  if (count) {
-    section.appendChild(answers);
-    parent.appendChild(section);
-  }
+    <div style="margin-top:18px">
+      <label for="internalNotes"><strong>Notas internas</strong></label>
+      <textarea id="internalNotes" placeholder="Escrever notas para a equipa...">${escapeHTML(a.notas_internas || "")}</textarea>
+    </div>
+
+    <div class="actions">
+      <button id="saveStatus">Guardar estado</button>
+      <button id="saveNotes" class="light">Guardar notas</button>
+      <button id="closeDetails" class="light">Fechar detalhes</button>
+    </div>
+  `;
+
+  $("details").classList.add("open");
+  $("saveStatus").addEventListener("click", saveStatus);
+  $("saveNotes").addEventListener("click", saveNotes);
+  $("closeDetails").addEventListener("click", () => {
+    $("details").classList.remove("open");
+    selectedId = null;
+  });
+
+  $("details").scrollIntoView({ behavior:"smooth", block:"start" });
 }
 
-function updateStats(items) {
-  document.getElementById("total").textContent = items.length;
+async function updateApplication(data) {
+  if (selectedId === null) return;
 
-  document.getElementById("recebidas").textContent =
-    items.filter(x => x.estado === "Recebida").length;
-
-  document.getElementById("analise").textContent =
-    items.filter(x => x.estado === "Em análise").length;
-
-  document.getElementById("aceites").textContent =
-    items.filter(x => x.estado === "Aceite").length;
-
-  document.getElementById("recusadas").textContent =
-    items.filter(x => x.estado === "Recusada").length;
-}
-
-async function updateApplication(id, changes) {
   const response = await fetch(
-    "/api/admin/candidaturas/" + encodeURIComponent(id),
+    `${API}/${encodeURIComponent(selectedId)}`,
     {
       method: "PATCH",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(changes)
+      headers: { "Content-Type":"application/json" },
+      body: JSON.stringify(data)
     }
   );
 
   const result = await response.json().catch(() => ({}));
 
   if (!response.ok) {
-    throw new Error(result.error || "Não foi possível guardar.");
+    throw new Error(result.error || "Não foi possível guardar as alterações.");
   }
 
   return result;
 }
 
-function createApplication(item) {
-  const card = document.createElement("article");
-  card.className = "application";
+async function saveStatus() {
+  clearMessages();
 
-  const head = document.createElement("div");
-  head.className = "app-head";
+  try {
+    const estado = $("newStatus").value;
+    await updateApplication({ estado });
 
-  const title = document.createElement("h2");
-  title.textContent = item.nome || "Candidato sem nome";
+    const item = applications.find(a => String(a.id) === String(selectedId));
+    if (item) item.estado = estado;
 
-  const date = document.createElement("span");
-  date.className = "date";
-
-  const parsedDate = item.data_criacao
-    ? new Date(item.data_criacao)
-    : null;
-
-  date.textContent =
-    parsedDate && !Number.isNaN(parsedDate.getTime())
-      ? parsedDate.toLocaleString("pt-PT")
-      : "Data indisponível";
-
-  head.append(title, date);
-  card.appendChild(head);
-
-  addSection(card, "01 · Identificação", [
-    ["nome", "Nome"],
-    ["idade", "Idade"],
-    ["discord", "Discord"],
-    ["disponibilidade", "Disponibilidade"]
-  ], item);
-
-  addSection(card, "02 · Perfil e experiência", [
-    ["experiencia", "Experiência anterior"],
-    ["funcao_pretendida", "Função pretendida"],
-    ["experiencia_detalhe", "Detalhes da experiência"]
-  ], item);
-
-  addSection(card, "03 · Motivação e compromisso", [
-    ["motivacao", "Motivação"],
-    ["qualidades", "Qualidades"],
-    ["compromisso", "Compromisso"]
-  ], item);
-
-  addSection(card, "04 · Conhecimentos", [
-    ["q1", "Pergunta 1"],
-    ["q2", "Pergunta 2"],
-    ["q3", "Pergunta 3"]
-  ], item);
-
-  addSection(card, "05 · Situações práticas", [
-    ["situacao_pratica", "Situação prática"],
-    ["conflito", "Gestão de conflitos"]
-  ], item);
-
-  // Estado da candidatura
-  const statusArea = document.createElement("div");
-  statusArea.className = "status-area";
-
-  const label = document.createElement("label");
-  label.textContent = "Estado da candidatura:";
-
-  const select = document.createElement("select");
-
-  ESTADOS.forEach(state => {
-    const option = document.createElement("option");
-    option.value = state;
-    option.textContent = state;
-    select.appendChild(option);
-  });
-
-  select.value = ESTADOS.includes(item.estado)
-    ? item.estado
-    : "Recebida";
-
-  select.addEventListener("change", async () => {
-    const previous = item.estado || "Recebida";
-    select.disabled = true;
-    message.textContent = "A atualizar estado...";
-
-    try {
-      await updateApplication(item.id, {
-        estado: select.value
-      });
-
-      item.estado = select.value;
-      updateStats(currentApplications);
-      message.textContent = "Estado atualizado com sucesso.";
-    } catch (error) {
-      select.value = previous;
-      message.textContent = error.message;
-    } finally {
-      select.disabled = false;
-    }
-  });
-
-  statusArea.append(label, select);
-  card.appendChild(statusArea);
-
-  // Notas internas
-  const notes = document.createElement("section");
-  notes.className = "notes";
-
-  const notesTitle = document.createElement("h3");
-  notesTitle.textContent = "Notas internas · Recursos Humanos";
-
-  const textarea = document.createElement("textarea");
-  textarea.maxLength = 5000;
-  textarea.placeholder =
-    "Escreve aqui observações privadas sobre esta candidatura...";
-
-  textarea.value = item.notas_internas || "";
-
-  const actions = document.createElement("div");
-  actions.className = "notes-actions";
-
-  const saveButton = document.createElement("button");
-  saveButton.textContent = "Guardar notas";
-
-  const noteMessage = document.createElement("span");
-  noteMessage.className = "note-message";
-
-  saveButton.addEventListener("click", async () => {
-    saveButton.disabled = true;
-    noteMessage.textContent = "A guardar notas...";
-
-    try {
-      await updateApplication(item.id, {
-        notas_internas: textarea.value
-      });
-
-      item.notas_internas = textarea.value;
-      noteMessage.textContent = "Notas guardadas com sucesso.";
-    } catch (error) {
-      noteMessage.textContent = error.message;
-    } finally {
-      saveButton.disabled = false;
-    }
-  });
-
-  actions.append(saveButton, noteMessage);
-  notes.append(notesTitle, textarea, actions);
-  card.appendChild(notes);
-
-  return card;
+    updateStats();
+    renderApplications();
+    openDetails(selectedId);
+    showSuccess("Estado atualizado com sucesso.");
+  } catch (error) {
+    showError(error.message);
+  }
 }
 
-function renderApplications() {
-  const query = search.value.trim().toLocaleLowerCase("pt-PT");
-  const selectedState = filter.value;
+async function saveNotes() {
+  clearMessages();
 
-  const filtered = currentApplications.filter(item => {
-    const name = safeText(item.nome).toLocaleLowerCase("pt-PT");
-    const discord = safeText(item.discord).toLocaleLowerCase("pt-PT");
+  try {
+    const notas_internas = $("internalNotes").value;
+    await updateApplication({ notas_internas });
 
-    const matchesSearch =
-      name.includes(query) || discord.includes(query);
+    const item = applications.find(a => String(a.id) === String(selectedId));
+    if (item) item.notas_internas = notas_internas;
 
-    const matchesState =
-      !selectedState || item.estado === selectedState;
-
-    return matchesSearch && matchesState;
-  });
-
-  container.replaceChildren();
-
-  results.textContent =
-    `A mostrar ${filtered.length} de ${currentApplications.length} candidaturas.`;
-
-  if (!filtered.length) {
-    const empty = document.createElement("div");
-    empty.className = "empty";
-    empty.textContent = currentApplications.length
-      ? "Não foram encontradas candidaturas com estes critérios."
-      : "Ainda não existem candidaturas.";
-
-    container.appendChild(empty);
-    return;
+    showSuccess("Notas internas guardadas com sucesso.");
+  } catch (error) {
+    showError(error.message);
   }
-
-  filtered.forEach(item => {
-    container.appendChild(createApplication(item));
-  });
 }
 
 async function loadApplications() {
-  message.textContent = "A carregar candidaturas...";
-  container.replaceChildren();
+  clearMessages();
+  $("applications").innerHTML =
+    '<tr><td colspan="6" class="loading">A carregar candidaturas...</td></tr>';
 
   try {
-    const response = await fetch("/api/admin/candidaturas", {
+    const response = await fetch(API, {
+      headers: { "Accept":"application/json" },
       cache: "no-store"
     });
 
     if (!response.ok) {
-      throw new Error(
-        response.status === 401
-          ? "Autenticação necessária. Atualiza a página e entra novamente."
-          : "Erro ao carregar candidaturas."
-      );
+      if (response.status === 401) {
+        throw new Error("Sessão não autenticada. Atualiza a página e inicia sessão novamente.");
+      }
+      throw new Error("Não foi possível carregar as candidaturas.");
     }
 
-    const items = await response.json();
+    const data = await response.json();
 
-    if (!Array.isArray(items)) {
-      throw new Error("Resposta inválida do servidor.");
+    if (!Array.isArray(data)) {
+      throw new Error("A resposta do servidor não é válida.");
     }
 
-    currentApplications = items;
-
-    updateStats(items);
+    applications = data;
+    updateStats();
     renderApplications();
 
-    message.textContent = "";
-
   } catch (error) {
-    message.textContent = error.message;
-    container.replaceChildren();
-
-    const empty = document.createElement("div");
-    empty.className = "empty";
-    empty.textContent = "Não foi possível carregar as candidaturas.";
-
-    container.appendChild(empty);
+    showError(error.message);
+    $("applications").innerHTML =
+      '<tr><td colspan="6" class="empty">Erro ao carregar os dados.</td></tr>';
   }
 }
 
 function exportCSV() {
-  if (!currentApplications.length) {
-    message.textContent = "Não existem candidaturas para exportar.";
+  const list = filteredApplications();
+
+  if (!list.length) {
+    showError("Não existem candidaturas para exportar.");
     return;
   }
 
-  const fields = [
-    ["id", "ID"],
-    ["data_criacao", "Data"],
-    ["nome", "Nome"],
-    ["idade", "Idade"],
-    ["discord", "Discord"],
-    ["disponibilidade", "Disponibilidade"],
-    ["experiencia", "Experiência"],
-    ["funcao_pretendida", "Função pretendida"],
-    ["experiencia_detalhe", "Detalhes da experiência"],
-    ["motivacao", "Motivação"],
-    ["qualidades", "Qualidades"],
-    ["compromisso", "Compromisso"],
-    ["q1", "Pergunta 1"],
-    ["q2", "Pergunta 2"],
-    ["q3", "Pergunta 3"],
-    ["situacao_pratica", "Situação prática"],
-    ["conflito", "Conflito"],
-    ["estado", "Estado"],
-    ["notas_internas", "Notas internas"]
+  const columns = [
+    "id","nome","idade","discord","disponibilidade",
+    "areas_atividade","experiencia","funcao_pretendida",
+    "experiencia_detalhe","motivacao","qualidades",
+    "compromisso","q1","q2","q3","situacao_pratica",
+    "conflito","estado","notas_internas","data_criacao"
   ];
 
-  function escapeCSV(value) {
-    let text = safeText(value);
+  const csvCell = value =>
+    '"' + String(value ?? "").replace(/"/g, '""') + '"';
 
-    // Evita que folhas de cálculo interpretem texto como fórmula.
-    if (/^[=+\-@\t\r]/.test(text)) {
-      text = "'" + text;
-    }
-
-    return '"' + text.replace(/"/g, '""') + '"';
-  }
-
-  const rows = [
-    fields.map(field => escapeCSV(field[1])).join(";"),
-    ...currentApplications.map(item =>
-      fields.map(([key]) => escapeCSV(item[key])).join(";")
+  const csv = [
+    columns.join(";"),
+    ...list.map(item =>
+      columns.map(column => csvCell(item[column])).join(";")
     )
-  ];
+  ].join("\r\n");
 
-  const csv = "\uFEFF" + rows.join("\r\n");
-  const blob = new Blob([csv], {
-    type: "text/csv;charset=utf-8;"
+  const blob = new Blob(["\uFEFF" + csv], {
+    type:"text/csv;charset=utf-8;"
   });
 
   const url = URL.createObjectURL(blob);
   const link = document.createElement("a");
-
   link.href = url;
-  link.download = "BVA_candidaturas.csv";
-
-  document.body.appendChild(link);
+  link.download = "candidaturas-bva.csv";
   link.click();
-  link.remove();
-
   URL.revokeObjectURL(url);
-
-  message.textContent = "Exportação CSV concluída.";
 }
 
-document.getElementById("refresh")
-  .addEventListener("click", loadApplications);
-
-document.getElementById("export")
-  .addEventListener("click", exportCSV);
-
-search.addEventListener("input", renderApplications);
-filter.addEventListener("change", renderApplications);
+$("refreshButton").addEventListener("click", loadApplications);
+$("search").addEventListener("input", renderApplications);
+$("filter").addEventListener("change", renderApplications);
+$("exportButton").addEventListener("click", exportCSV);
 
 loadApplications();
 </script>
-
 </body>
-        </html>
+  </html>
   
