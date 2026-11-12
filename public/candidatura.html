@@ -788,13 +788,19 @@ footer {
     let submitting = false;
 
     if (
-      !form || !previousButton || !nextButton ||
-      !submitButton || formSteps.length !== 4 ||
+      !form || formSteps.length !== 4 ||
+      progressSteps.length !== 4 ||
       !progressFill || !progressTitle || !progressText ||
-      !formError || !formCard || !successScreen
+      !previousButton || !nextButton || !submitButton ||
+      !formError || !progressCard || !formCard || !successScreen
     ) {
-      console.error("Não foi possível iniciar o formulário.");
+      console.error("Erro: elementos do formulário em falta.");
       return;
+    }
+
+    function clearError() {
+      formError.textContent = "";
+      formError.style.display = "none";
     }
 
     function showError(message) {
@@ -806,19 +812,14 @@ footer {
       });
     }
 
-    function clearError() {
-      formError.textContent = "";
-      formError.style.display = "none";
-    }
-
     function showStep(index) {
       if (index < 0 || index >= formSteps.length) return;
 
       currentStep = index;
+      clearError();
 
       formSteps.forEach(function (step, i) {
         step.classList.toggle("active", i === index);
       });
 
-      progressSteps.forEach(function (step, i) {
-        step.classList.toggle("active", i =
+      progressStep
