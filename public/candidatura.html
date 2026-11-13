@@ -14,464 +14,399 @@
 
 <style>
 :root {
-  --navy: #102238;
-  --navy-light: #18344f;
-  --red: #c62828;
-  --background: #f2f5f8;
-  --text: #1d2935;
-  --muted: #718096;
-  --border: #dce3e9;
-  --white: #ffffff;
-  --success: #16794a;
+  --navy:#102238;
+  --navy-light:#18344f;
+  --red:#c62828;
+  --background:#f2f5f8;
+  --text:#1d2935;
+  --muted:#718096;
+  --border:#dce3e9;
+  --white:#fff;
+  --success:#16794a;
 }
 
-* {
-  box-sizing: border-box;
-}
+* { box-sizing:border-box; }
 
 body {
-  margin: 0;
-  min-height: 100vh;
-  background: var(--background);
-  color: var(--text);
-  font-family: 'Montserrat', sans-serif;
+  margin:0;
+  min-height:100vh;
+  background:var(--background);
+  color:var(--text);
+  font-family:'Montserrat',sans-serif;
 }
 
 header {
-  background: var(--navy);
-  color: white;
-  padding: 25px 20px;
-  border-bottom: 5px solid var(--red);
+  background:var(--navy);
+  color:white;
+  padding:25px 20px;
+  border-bottom:5px solid var(--red);
 }
 
 .header-content {
-  max-width: 1000px;
-  margin: auto;
-  display: flex;
-  align-items: center;
-  gap: 18px;
+  max-width:1000px;
+  margin:auto;
+  display:flex;
+  align-items:center;
+  gap:18px;
 }
 
 .logo {
-  width: 58px;
-  height: 58px;
-  border: 2px solid rgba(255,255,255,.7);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 19px;
-  font-weight: 800;
-  flex-shrink: 0;
+  width:58px;
+  height:58px;
+  border:2px solid rgba(255,255,255,.7);
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:19px;
+  font-weight:800;
+  flex-shrink:0;
 }
 
 .header-title h1 {
-  margin: 0;
-  font-size: 19px;
-  font-weight: 800;
-  letter-spacing: .5px;
+  margin:0;
+  font-size:19px;
+  font-weight:800;
+  letter-spacing:.5px;
 }
 
 .header-title p {
-  margin: 6px 0 0;
-  color: #c7d4e0;
-  font-size: 11px;
-  letter-spacing: 1.5px;
+  margin:6px 0 0;
+  color:#c7d4e0;
+  font-size:11px;
+  letter-spacing:1.5px;
 }
 
 main {
-  width: min(920px, calc(100% - 30px));
-  margin: 40px auto;
+  width:min(920px,calc(100% - 30px));
+  margin:40px auto;
 }
 
 .intro {
-  text-align: center;
-  margin-bottom: 30px;
+  text-align:center;
+  margin-bottom:30px;
 }
 
 .intro h2 {
-  color: var(--navy);
-  font-size: 27px;
-  margin: 0 0 12px;
-  font-weight: 800;
+  color:var(--navy);
+  font-size:27px;
+  margin:0 0 12px;
+  font-weight:800;
 }
 
 .intro p {
-  color: var(--muted);
-  font-size: 13px;
-  line-height: 1.7;
-  max-width: 650px;
-  margin: auto;
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.7;
+  max-width:650px;
+  margin:auto;
 }
 
 .progress-card,
-.form-card {
-  background: white;
-  border-radius: 13px;
-  box-shadow: 0 8px 30px rgba(16,34,56,.07);
+.form-card,
+.success-screen {
+  background:white;
+  border-radius:13px;
+  box-shadow:0 8px 30px rgba(16,34,56,.07);
 }
 
 .progress-card {
-  padding: 22px 25px;
-  margin-bottom: 20px;
+  padding:22px 25px;
+  margin-bottom:20px;
 }
 
 .progress-top {
-  display: flex;
-  justify-content: space-between;
-  gap: 10px;
-  align-items: center;
-  margin-bottom: 14px;
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  align-items:center;
+  margin-bottom:14px;
 }
 
 .progress-top strong {
-  color: var(--navy);
-  font-size: 13px;
+  color:var(--navy);
+  font-size:13px;
 }
 
 .progress-top span {
-  color: var(--muted);
-  font-size: 12px;
+  color:var(--muted);
+  font-size:12px;
 }
 
 .progress-track {
-  width: 100%;
-  height: 8px;
-  background: #e8edf2;
-  border-radius: 20px;
-  overflow: hidden;
+  width:100%;
+  height:8px;
+  background:#e8edf2;
+  border-radius:20px;
+  overflow:hidden;
 }
 
 #progressFill {
-  width: 25%;
-  height: 100%;
-  background: var(--red);
-  border-radius: 20px;
-  transition: width .25s ease;
+  width:25%;
+  height:100%;
+  background:var(--red);
+  border-radius:20px;
+  transition:width .25s ease;
 }
 
 .steps {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 8px;
-  margin-top: 20px;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:8px;
+  margin-top:20px;
 }
 
 .step-indicator {
-  text-align: center;
-  color: #9aa7b3;
-  font-size: 10px;
-  font-weight: 700;
+  text-align:center;
+  color:#9aa7b3;
+  font-size:10px;
+  font-weight:700;
 }
 
 .step-indicator span {
-  width: 28px;
-  height: 28px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  background: #e9eef3;
-  margin: 0 auto 7px;
-  font-size: 11px;
+  width:28px;
+  height:28px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:50%;
+  background:#e9eef3;
+  margin:0 auto 7px;
+  font-size:11px;
 }
 
-.step-indicator.active {
-  color: var(--red);
-}
+.step-indicator.active { color:var(--red); }
 
 .step-indicator.active span,
 .step-indicator.completed span {
-  background: var(--red);
-  color: white;
+  background:var(--red);
+  color:white;
 }
 
-.step-indicator.completed {
-  color: var(--navy);
-}
+.step-indicator.completed { color:var(--navy); }
 
-.form-card {
-  padding: 32px;
-}
+.form-card { padding:32px; }
 
-.form-step {
-  display: none;
-}
+.form-step { display:none; }
 
 .form-step.active {
-  display: block;
-  animation: appear .2s ease;
+  display:block;
+  animation:appear .2s ease;
 }
 
 @keyframes appear {
-  from { opacity: 0; transform: translateY(5px); }
-  to { opacity: 1; transform: translateY(0); }
+  from { opacity:0; transform:translateY(5px); }
+  to { opacity:1; transform:translateY(0); }
 }
 
-.section-heading {
-  margin-bottom: 27px;
-}
+.section-heading { margin-bottom:27px; }
 
 .section-heading h3 {
-  color: var(--navy);
-  font-size: 20px;
-  margin: 0 0 8px;
+  color:var(--navy);
+  font-size:20px;
+  margin:0 0 8px;
 }
 
 .section-heading p {
-  color: var(--muted);
-  font-size: 12px;
-  line-height: 1.6;
-  margin: 0;
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.6;
+  margin:0;
 }
 
-.field {
-  margin-bottom: 21px;
-}
+.field { margin-bottom:21px; }
 
 .field label,
 .field-label {
-  display: block;
-  font-size: 12px;
-  font-weight: 700;
-  color: var(--navy);
-  margin-bottom: 9px;
+  display:block;
+  font-size:12px;
+  font-weight:700;
+  color:var(--navy);
+  margin-bottom:9px;
 }
 
-.required {
-  color: var(--red);
+.required { color:var(--red); }
+
+input, select, textarea {
+  width:100%;
+  padding:13px 14px;
+  border:1px solid var(--border);
+  border-radius:7px;
+  background:#fff;
+  font-family:inherit;
+  font-size:13px;
+  color:var(--text);
+  outline:none;
+  transition:border .2s,box-shadow .2s;
 }
 
-input,
-select,
-textarea {
-  width: 100%;
-  padding: 13px 14px;
-  border: 1px solid var(--border);
-  border-radius: 7px;
-  background: #fff;
-  font-family: inherit;
-  font-size: 13px;
-  color: var(--text);
-  outline: none;
-  transition: border .2s, box-shadow .2s;
-}
-
-input:focus,
-select:focus,
-textarea:focus {
-  border-color: var(--navy-light);
-  box-shadow: 0 0 0 3px rgba(24,52,79,.09);
+input:focus, select:focus, textarea:focus {
+  border-color:var(--navy-light);
+  box-shadow:0 0 0 3px rgba(24,52,79,.09);
 }
 
 textarea {
-  resize: vertical;
-  min-height: 105px;
-  line-height: 1.6;
-}
-
-.field small {
-  display: block;
-  margin-top: 7px;
-  color: var(--muted);
-  font-size: 10px;
-  line-height: 1.5;
+  resize:vertical;
+  min-height:105px;
+  line-height:1.6;
 }
 
 .grid-two {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 18px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:18px;
 }
 
 .choice-list {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
 }
 
 .choice {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  border: 1px solid var(--border);
-  padding: 13px;
-  border-radius: 7px;
-  cursor: pointer;
-  font-size: 12px;
-  line-height: 1.5;
-  transition: .2s;
+  display:flex;
+  align-items:flex-start;
+  gap:10px;
+  border:1px solid var(--border);
+  padding:13px;
+  border-radius:7px;
+  cursor:pointer;
+  font-size:12px;
+  line-height:1.5;
+  transition:.2s;
 }
 
 .choice:hover {
-  border-color: var(--navy-light);
-  background: #f8fafc;
+  border-color:var(--navy-light);
+  background:#f8fafc;
 }
 
 .choice input {
-  width: 16px;
-  height: 16px;
-  margin: 1px 0 0;
-  flex-shrink: 0;
-  accent-color: var(--red);
+  width:16px;
+  height:16px;
+  margin:1px 0 0;
+  flex-shrink:0;
+  accent-color:var(--red);
 }
 
 .form-error {
-  display: none;
-  background: #fff0f0;
-  border: 1px solid #efcaca;
-  color: #a51e1e;
-  padding: 12px 14px;
-  border-radius: 7px;
-  font-size: 12px;
-  line-height: 1.5;
-  margin-bottom: 20px;
+  display:none;
+  background:#fff0f0;
+  border:1px solid #efcaca;
+  color:#a51e1e;
+  padding:12px 14px;
+  border-radius:7px;
+  font-size:12px;
+  line-height:1.5;
+  margin-bottom:20px;
 }
 
-.form-error.visible {
-  display: block;
-}
+.form-error.visible { display:block; }
 
 .navigation {
-  display: flex;
-  justify-content: space-between;
-  gap: 12px;
-  margin-top: 30px;
-  padding-top: 22px;
-  border-top: 1px solid #edf0f3;
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  margin-top:30px;
+  padding-top:22px;
+  border-top:1px solid #edf0f3;
 }
 
 .btn {
-  border: none;
-  border-radius: 7px;
-  padding: 14px 24px;
-  font-family: inherit;
-  font-size: 12px;
-  font-weight: 800;
-  cursor: pointer;
-  transition: .2s;
+  border:none;
+  border-radius:7px;
+  padding:14px 24px;
+  font-family:inherit;
+  font-size:12px;
+  font-weight:800;
+  cursor:pointer;
+  transition:.2s;
 }
 
 .btn:disabled {
-  opacity: .6;
-  cursor: not-allowed;
+  opacity:.6;
+  cursor:not-allowed;
 }
 
 .btn-previous {
-  background: #edf1f5;
-  color: var(--navy);
+  background:#edf1f5;
+  color:var(--navy);
 }
 
-.btn-previous:hover {
-  background: #dfe6ed;
+.btn-previous:hover { background:#dfe6ed; }
+
+.btn-next, .btn-submit {
+  background:var(--red);
+  color:white;
+  margin-left:auto;
 }
 
-.btn-next,
-.btn-submit {
-  background: var(--red);
-  color: white;
-  margin-left: auto;
-}
-
-.btn-next:hover,
-.btn-submit:hover {
-  background: #a91f1f;
-}
+.btn-next:hover, .btn-submit:hover { background:#a91f1f; }
 
 .notice {
-  margin-top: 20px;
-  padding: 14px;
-  border-radius: 7px;
-  background: #f2f6fa;
-  color: #536477;
-  font-size: 11px;
-  line-height: 1.6;
+  margin-top:20px;
+  padding:14px;
+  border-radius:7px;
+  background:#f2f6fa;
+  color:#536477;
+  font-size:11px;
+  line-height:1.6;
 }
 
 .success-screen {
-  display: none;
-  background: white;
-  border-radius: 13px;
-  box-shadow: 0 8px 30px rgba(16,34,56,.07);
-  padding: 50px 30px;
-  text-align: center;
+  display:none;
+  padding:50px 30px;
+  text-align:center;
 }
 
 .success-icon {
-  width: 65px;
-  height: 65px;
-  border-radius: 50%;
-  background: #e3f5eb;
-  color: var(--success);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 30px;
-  margin: 0 auto 20px;
+  width:65px;
+  height:65px;
+  border-radius:50%;
+  background:#e3f5eb;
+  color:var(--success);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:30px;
+  margin:0 auto 20px;
 }
 
 .success-screen h2 {
-  color: var(--navy);
-  font-size: 23px;
+  color:var(--navy);
+  font-size:23px;
 }
 
 .success-screen p {
-  color: var(--muted);
-  font-size: 13px;
-  line-height: 1.7;
-  max-width: 550px;
-  margin: auto;
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.7;
+  max-width:550px;
+  margin:auto;
 }
 
 footer {
-  text-align: center;
-  padding: 25px 15px;
-  color: #8794a1;
-  font-size: 10px;
+  text-align:center;
+  padding:25px 15px;
+  color:#8794a1;
+  font-size:10px;
 }
 
-@media (max-width: 600px) {
-  main {
-    margin: 25px auto;
-  }
+[hidden] { display:none !important; }
 
-  .intro h2 {
-    font-size: 22px;
+@media(max-width:600px) {
+  main { margin:25px auto; }
+  .intro h2 { font-size:22px; }
+  .form-card { padding:22px 17px; }
+  .progress-card { padding:18px; }
+  .grid-two, .choice-list {
+    grid-template-columns:1fr;
+    gap:9px;
   }
-
-  .form-card {
-    padding: 22px 17px;
-  }
-
-  .progress-card {
-    padding: 18px;
-  }
-
-  .grid-two,
-  .choice-list {
-    grid-template-columns: 1fr;
-    gap: 0;
-  }
-
-  .choice-list {
-    gap: 9px;
-  }
-
-  .step-indicator {
-    font-size: 9px;
-  }
-
-  .navigation {
-    flex-wrap: wrap;
-  }
-
-  .btn {
-    padding: 13px 17px;
-  }
-
-  .header-title h1 {
-    font-size: 15px;
-  }
+  .step-indicator { font-size:9px; }
+  .navigation { flex-wrap:wrap; }
+  .btn { padding:13px 17px; }
+  .header-title h1 { font-size:15px; }
 }
 </style>
 </head>
@@ -491,10 +426,7 @@ footer {
 <main>
   <section class="intro">
     <h2>Formulário de Recrutamento</h2>
-    <p>
-      Bem-vindo ao processo de recrutamento dos Bombeiros Voluntários do Algarve.
-      Preenche todos os campos obrigatórios com atenção.
-    </p>
+    <p>Bem-vindo ao processo de recrutamento dos Bombeiros Voluntários do Algarve. Preenche todos os campos obrigatórios com atenção.</p>
   </section>
 
   <section class="progress-card" id="progressCard">
@@ -502,37 +434,25 @@ footer {
       <strong id="progressTitle">Dados pessoais</strong>
       <span id="progressText">Passo 1 de 4</span>
     </div>
-
     <div class="progress-track">
       <div id="progressFill"></div>
     </div>
-
     <div class="steps">
-      <div class="step-indicator active" data-indicator="0">
-        <span>1</span>Dados pessoais
-      </div>
-      <div class="step-indicator" data-indicator="1">
-        <span>2</span>Informações
-      </div>
-      <div class="step-indicator" data-indicator="2">
-        <span>3</span>Motivação
-      </div>
-      <div class="step-indicator" data-indicator="3">
-        <span>4</span>Avaliação
-      </div>
+      <div class="step-indicator active" data-indicator="0"><span>1</span>Dados pessoais</div>
+      <div class="step-indicator" data-indicator="1"><span>2</span>Informações</div>
+      <div class="step-indicator" data-indicator="2"><span>3</span>Motivação</div>
+      <div class="step-indicator" data-indicator="3"><span>4</span>Avaliação</div>
     </div>
   </section>
 
   <section class="form-card" id="formCard">
     <form id="applicationForm" novalidate>
-
       <div class="form-error" id="formError" role="alert"></div>
 
-      <!-- PASSO 1 -->
       <section class="form-step active" data-step="0">
         <div class="section-heading">
           <h3>01. Dados pessoais</h3>
-          <p>Começa por preencher os teus dados de identificação e contacto.</p>
+          <p>Preenche os teus dados de identificação e contacto.</p>
         </div>
 
         <div class="field">
@@ -545,7 +465,6 @@ footer {
             <label for="idade">Idade <span class="required">*</span></label>
             <input id="idade" name="idade" type="number" min="1" max="99" placeholder="Idade" required>
           </div>
-
           <div class="field">
             <label for="discord">Discord <span class="required">*</span></label>
             <input id="discord" name="discord" type="text" placeholder="Exemplo: utilizador" required>
@@ -566,7 +485,6 @@ footer {
         </div>
       </section>
 
-      <!-- PASSO 2 -->
       <section class="form-step" data-step="1">
         <div class="section-heading">
           <h3>02. Informações de recrutamento</h3>
@@ -576,30 +494,12 @@ footer {
         <div class="field">
           <span class="field-label">Áreas de atividade <span class="required">*</span></span>
           <div class="choice-list">
-            <label class="choice">
-              <input type="checkbox" name="areas_atividade" value="Combate a incêndios">
-              Combate a incêndios
-            </label>
-            <label class="choice">
-              <input type="checkbox" name="areas_atividade" value="Emergência pré-hospitalar">
-              Emergência pré-hospitalar
-            </label>
-            <label class="choice">
-              <input type="checkbox" name="areas_atividade" value="Salvamento e desencarceramento">
-              Salvamento e desencarceramento
-            </label>
-            <label class="choice">
-              <input type="checkbox" name="areas_atividade" value="Proteção e socorro">
-              Proteção e socorro
-            </label>
-            <label class="choice">
-              <input type="checkbox" name="areas_atividade" value="Logística">
-              Logística
-            </label>
-            <label class="choice">
-              <input type="checkbox" name="areas_atividade" value="Comunicações">
-              Comunicações
-            </label>
+            <label class="choice"><input type="checkbox" name="areas_atividade" value="Combate a incêndios">Combate a incêndios</label>
+            <label class="choice"><input type="checkbox" name="areas_atividade" value="Emergência pré-hospitalar">Emergência pré-hospitalar</label>
+            <label class="choice"><input type="checkbox" name="areas_atividade" value="Salvamento e desencarceramento">Salvamento e desencarceramento</label>
+            <label class="choice"><input type="checkbox" name="areas_atividade" value="Proteção e socorro">Proteção e socorro</label>
+            <label class="choice"><input type="checkbox" name="areas_atividade" value="Logística">Logística</label>
+            <label class="choice"><input type="checkbox" name="areas_atividade" value="Comunicações">Comunicações</label>
           </div>
         </div>
 
@@ -626,11 +526,10 @@ footer {
         </div>
       </section>
 
-      <!-- PASSO 3 -->
       <section class="form-step" data-step="2">
         <div class="section-heading">
           <h3>03. Motivação e perfil</h3>
-          <p>Queremos conhecer melhor as tuas capacidades e a tua motivação.</p>
+          <p>Queremos conhecer melhor as tuas capacidades e motivação.</p>
         </div>
 
         <div class="field">
@@ -654,7 +553,6 @@ footer {
         </div>
       </section>
 
-      <!-- PASSO 4 -->
       <section class="form-step" data-step="3">
         <div class="section-heading">
           <h3>04. Avaliação final</h3>
@@ -687,44 +585,31 @@ footer {
         </div>
 
         <div class="notice">
-          Ao submeteres a candidatura, confirmas que as informações fornecidas são verdadeiras
-          e que estás disponível para participar no processo de recrutamento.
+          Ao submeteres a candidatura, confirmas que as informações fornecidas são verdadeiras e que estás disponível para participar no processo de recrutamento.
         </div>
       </section>
 
       <div class="navigation">
-        <button type="button" class="btn btn-previous" id="previousButton" hidden>
-          ANTERIOR
-        </button>
-
-        <button type="button" class="btn btn-next" id="nextButton">
-          SEGUINTE
-        </button>
-
-        <button type="submit" class="btn btn-submit" id="submitButton" hidden>
-          SUBMETER CANDIDATURA
-        </button>
+        <button type="button" class="btn btn-previous" id="previousButton" hidden>ANTERIOR</button>
+        <button type="button" class="btn btn-next" id="nextButton">SEGUINTE</button>
+        <button type="submit" class="btn btn-submit" id="submitButton" hidden>SUBMETER CANDIDATURA</button>
       </div>
-
     </form>
   </section>
 
-  <section class="success-screen" id="successScreen">
+  <section class="success-screen" id="successScreen" aria-live="polite">
     <div class="success-icon">✓</div>
     <h2>Candidatura submetida!</h2>
-    <p>
-      A tua candidatura foi recebida com sucesso.
-      Obrigado pelo teu interesse nos Bombeiros Voluntários do Algarve.
-    </p>
+    <p>A tua candidatura foi recebida com sucesso. Obrigado pelo teu interesse nos Bombeiros Voluntários do Algarve.</p>
   </section>
 </main>
 
 <footer>
-  Bombeiros Voluntários do Algarve · Recrutamento
+  Bombeiros Voluntários do Algarve · Projeto de simulação e roleplay · Recrutamento
 </footer>
 
 <script>
-(() => {
+(function () {
   "use strict";
 
   const form = document.getElementById("applicationForm");
@@ -769,18 +654,18 @@ footer {
 
     currentStep = index;
 
-    steps.forEach((step, i) => {
+    steps.forEach(function (step, i) {
       step.classList.toggle("active", i === currentStep);
     });
 
-    indicators.forEach((indicator, i) => {
+    indicators.forEach(function (indicator, i) {
       indicator.classList.toggle("active", i === currentStep);
       indicator.classList.toggle("completed", i < currentStep);
     });
 
     progressTitle.textContent = titles[currentStep];
-    progressText.textContent = `Passo ${currentStep + 1} de ${steps.length}`;
-    progressFill.style.width = `${((currentStep + 1) / steps.length) * 100}%`;
+    progressText.textContent = "Passo " + (currentStep + 1) + " de " + steps.length;
+    progressFill.style.width = ((currentStep + 1) / steps.length * 100) + "%";
 
     previousButton.hidden = currentStep === 0;
     nextButton.hidden = currentStep === steps.length - 1;
@@ -820,4 +705,44 @@ footer {
     }
 
     if (currentStep === 1) {
-      const selectedA
+      const selectedAreas = steps[currentStep].querySelectorAll(
+        'input[name="areas_atividade"]:checked'
+      );
+
+      if (selectedAreas.length === 0) {
+        showError("Seleciona pelo menos uma área de atividade.");
+        steps[currentStep]
+          .querySelector('input[name="areas_atividade"]')
+          .focus();
+        return false;
+      }
+    }
+
+    return true;
+  }
+
+  nextButton.addEventListener("click", function () {
+    if (!validateCurrentStep()) return;
+    showStep(currentStep + 1);
+  });
+
+  previousButton.addEventListener("click", function () {
+    showStep(currentStep - 1);
+  });
+
+  form.addEventListener("submit", async function (event) {
+    event.preventDefault();
+
+    if (submitting) return;
+    if (!validateCurrentStep()) return;
+
+    submitting = true;
+    submitButton.disabled = true;
+    submitButton.textContent = "A SUBMETER...";
+
+    clearError();
+
+    const formData = new FormData(form);
+    const data = {};
+
+    for (const [key, value] of f
