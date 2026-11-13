@@ -1,28 +1,23 @@
-
-
+ 
 <!DOCTYPE html>
 <html lang="pt-PT">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#102238">
-<meta name="description" content="Formulário de recrutamento dos Bombeiros Voluntários do Algarve.">
+<meta name="description" content="Formulário de recrutamento dos Bombeiros Voluntários do Algarve - comunidade de simulação.">
 <title>Recrutamento | Bombeiros Voluntários do Algarve</title>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
 :root {
   --navy: #102238;
-  --navy-light: #18344f;
-  --red: #c62828;
-  --background: #f2f5f8;
-  --text: #1d2935;
-  --muted: #718096;
-  --border: #dce3e9;
-  --success: #16794a;
+  --navy2: #183650;
+  --red: #c83232;
+  --light: #f3f5f8;
+  --text: #263445;
+  --muted: #687789;
+  --border: #dce2e9;
+  --white: #ffffff;
 }
 
 * {
@@ -31,168 +26,107 @@
 
 body {
   margin: 0;
-  min-height: 100vh;
-  background: var(--background);
+  font-family: Arial, Helvetica, sans-serif;
+  background: var(--light);
   color: var(--text);
-  font-family: 'Montserrat', sans-serif;
 }
 
 header {
   background: var(--navy);
   color: white;
-  padding: 25px 20px;
-  border-bottom: 5px solid var(--red);
+  padding: 25px 18px;
+  text-align: center;
 }
 
-.header-content {
-  max-width: 1000px;
-  margin: auto;
-  display: flex;
-  align-items: center;
-  gap: 18px;
-}
-
-.logo {
-  width: 58px;
-  height: 58px;
-  border: 2px solid rgba(255,255,255,.7);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 19px;
-  font-weight: 800;
-  flex-shrink: 0;
-}
-
-.header-title h1 {
+header h1 {
   margin: 0;
-  font-size: 19px;
-  font-weight: 800;
-  letter-spacing: .5px;
+  font-size: 23px;
+  letter-spacing: 1px;
 }
 
-.header-title p {
-  margin: 6px 0 0;
-  color: #c7d4e0;
-  font-size: 11px;
-  letter-spacing: 1.5px;
+header p {
+  margin: 8px 0 0;
+  color: #d5dfeb;
+  font-size: 13px;
 }
 
-main {
-  width: min(920px, calc(100% - 30px));
-  margin: 40px auto;
+.container {
+  width: min(850px, calc(100% - 28px));
+  margin: 30px auto;
+}
+
+.card {
+  background: white;
+  border-radius: 14px;
+  padding: 28px;
+  box-shadow: 0 5px 25px rgba(16,34,56,.08);
 }
 
 .intro {
-  text-align: center;
-  margin-bottom: 30px;
+  margin-bottom: 25px;
 }
 
 .intro h2 {
   color: var(--navy);
-  font-size: 27px;
-  margin: 0 0 12px;
-  font-weight: 800;
+  margin: 0 0 8px;
 }
 
 .intro p {
   color: var(--muted);
-  font-size: 13px;
-  line-height: 1.7;
-  max-width: 650px;
-  margin: auto;
+  line-height: 1.6;
+  margin: 0;
 }
 
-.progress-card,
-.form-card,
-.success-screen {
-  background: white;
-  border-radius: 13px;
-  box-shadow: 0 8px 30px rgba(16,34,56,.07);
-}
-
-.progress-card {
-  padding: 22px 25px;
-  margin-bottom: 20px;
-}
-
-.progress-top {
+.progress-info {
   display: flex;
   justify-content: space-between;
   gap: 10px;
-  align-items: center;
-  margin-bottom: 14px;
-}
-
-.progress-top strong {
-  color: var(--navy);
+  margin-bottom: 9px;
   font-size: 13px;
-}
-
-.progress-top span {
-  color: var(--muted);
-  font-size: 12px;
+  font-weight: bold;
+  color: var(--navy);
 }
 
 .progress-track {
-  width: 100%;
   height: 8px;
   background: #e8edf2;
   border-radius: 20px;
   overflow: hidden;
+  margin-bottom: 25px;
 }
 
-#progressFill {
-  width: 25%;
+.progress-fill {
   height: 100%;
+  width: 25%;
   background: var(--red);
-  border-radius: 20px;
   transition: width .2s ease;
 }
 
 .steps {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 8px;
-  margin-top: 20px;
-}
-
-.step-indicator {
-  text-align: center;
-  color: #9aa7b3;
-  font-size: 10px;
-  font-weight: 700;
-}
-
-.step-indicator span {
-  width: 28px;
-  height: 28px;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  background: #e9eef3;
-  margin: 0 auto 7px;
-  font-size: 11px;
+  gap: 8px;
+  margin-bottom: 28px;
 }
 
-.step-indicator.active {
-  color: var(--red);
+.step-number {
+  flex: 1;
+  text-align: center;
+  padding: 11px 4px;
+  border-radius: 8px;
+  background: #edf1f5;
+  color: #718092;
+  font-size: 12px;
+  font-weight: bold;
 }
 
-.step-indicator.active span,
-.step-indicator.completed span {
-  background: var(--red);
+.step-number.active {
+  background: var(--navy);
   color: white;
 }
 
-.step-indicator.completed {
-  color: var(--navy);
-}
-
-.form-card {
-  padding: 32px;
+.step-number.done {
+  background: #dce9e3;
+  color: #236342;
 }
 
 .form-step {
@@ -203,34 +137,30 @@ main {
   display: block;
 }
 
-.section-heading {
-  margin-bottom: 27px;
-}
-
-.section-heading h3 {
+.form-step h3 {
   color: var(--navy);
+  margin: 0 0 7px;
   font-size: 20px;
-  margin: 0 0 8px;
 }
 
-.section-heading p {
+.step-description {
   color: var(--muted);
-  font-size: 12px;
-  line-height: 1.6;
-  margin: 0;
+  font-size: 14px;
+  margin: 0 0 23px;
+  line-height: 1.5;
 }
 
 .field {
-  margin-bottom: 21px;
+  margin-bottom: 19px;
 }
 
-.field label,
+label,
 .field-label {
   display: block;
-  font-size: 12px;
-  font-weight: 700;
+  font-weight: bold;
+  font-size: 14px;
+  margin-bottom: 8px;
   color: var(--navy);
-  margin-bottom: 9px;
 }
 
 .required {
@@ -243,10 +173,10 @@ textarea {
   width: 100%;
   padding: 13px 14px;
   border: 1px solid var(--border);
-  border-radius: 7px;
-  background: #fff;
-  font-family: inherit;
-  font-size: 13px;
+  border-radius: 8px;
+  font: inherit;
+  font-size: 14px;
+  background: white;
   color: var(--text);
   outline: none;
 }
@@ -254,90 +184,66 @@ textarea {
 input:focus,
 select:focus,
 textarea:focus {
-  border-color: var(--navy-light);
-  box-shadow: 0 0 0 3px rgba(24,52,79,.09);
+  border-color: var(--navy2);
+  box-shadow: 0 0 0 3px rgba(24,54,80,.09);
 }
 
 textarea {
-  resize: vertical;
   min-height: 105px;
-  line-height: 1.6;
+  resize: vertical;
 }
 
-.grid-two {
+.option-list {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 18px;
-}
-
-.choice-list {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
   gap: 10px;
 }
 
-.choice {
+.option {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 10px;
   border: 1px solid var(--border);
-  padding: 13px;
-  border-radius: 7px;
+  padding: 12px;
+  border-radius: 8px;
   cursor: pointer;
-  font-size: 12px;
-  line-height: 1.5;
+  font-size: 14px;
+  font-weight: normal;
+  margin: 0;
 }
 
-.choice input {
-  width: 16px;
-  height: 16px;
-  margin: 1px 0 0;
-  flex-shrink: 0;
+.option input {
+  width: auto;
+  margin: 0;
   accent-color: var(--red);
-}
-
-.form-error {
-  display: none;
-  background: #fff0f0;
-  border: 1px solid #efcaca;
-  color: #a51e1e;
-  padding: 12px 14px;
-  border-radius: 7px;
-  font-size: 12px;
-  line-height: 1.5;
-  margin-bottom: 20px;
-}
-
-.form-error.visible {
-  display: block;
 }
 
 .navigation {
   display: flex;
   justify-content: space-between;
   gap: 12px;
-  margin-top: 30px;
-  padding-top: 22px;
-  border-top: 1px solid #edf0f3;
+  margin-top: 28px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
 }
 
-.btn {
-  border: none;
-  border-radius: 7px;
-  padding: 14px 24px;
-  font-family: inherit;
-  font-size: 12px;
-  font-weight: 800;
+button {
+  border: 0;
+  border-radius: 8px;
+  padding: 13px 23px;
+  font-size: 14px;
+  font-weight: bold;
   cursor: pointer;
+  transition: .15s ease;
 }
 
-.btn:disabled {
+button:disabled {
   opacity: .6;
-  cursor: not-allowed;
+  cursor: wait;
 }
 
-.btn-previous {
-  background: #edf1f5;
+.btn-back {
+  background: #e9edf2;
   color: var(--navy);
 }
 
@@ -350,98 +256,74 @@ textarea {
 
 .btn-next:hover,
 .btn-submit:hover {
-  background: #a91f1f;
+  background: #a92525;
 }
 
-.notice {
-  margin-top: 20px;
-  padding: 14px;
-  border-radius: 7px;
-  background: #f2f6fa;
-  color: #536477;
-  font-size: 11px;
-  line-height: 1.6;
+.btn-back:hover {
+  background: #dce2e9;
+}
+
+.message {
+  display: none;
+  padding: 13px;
+  border-radius: 8px;
+  margin-top: 17px;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.message.error {
+  display: block;
+  background: #fff0f0;
+  color: #a32121;
+  border: 1px solid #f0caca;
+}
+
+.message.success {
+  display: block;
+  background: #eaf7ef;
+  color: #21633b;
+  border: 1px solid #c7e7d1;
 }
 
 .success-screen {
   display: none;
-  padding: 50px 30px;
   text-align: center;
-}
-
-.success-icon {
-  width: 65px;
-  height: 65px;
-  border-radius: 50%;
-  background: #e3f5eb;
-  color: var(--success);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 30px;
-  margin: 0 auto 20px;
+  padding: 35px 10px;
 }
 
 .success-screen h2 {
-  color: var(--navy);
-  font-size: 23px;
+  color: #236342;
 }
 
 .success-screen p {
   color: var(--muted);
-  font-size: 13px;
-  line-height: 1.7;
-  max-width: 550px;
-  margin: auto;
+  line-height: 1.6;
 }
 
 footer {
   text-align: center;
-  padding: 25px 15px;
-  color: #8794a1;
-  font-size: 10px;
+  padding: 20px;
+  color: var(--muted);
+  font-size: 12px;
 }
 
-[hidden] {
-  display: none !important;
-}
-
-@media (max-width: 600px) {
-  main {
-    margin: 25px auto;
+@media(max-width: 550px) {
+  .card {
+    padding: 19px;
   }
 
-  .intro h2 {
-    font-size: 22px;
+  header h1 {
+    font-size: 19px;
   }
 
-  .form-card {
-    padding: 22px 17px;
+  .step-number {
+    font-size: 10px;
+    padding: 10px 2px;
   }
 
-  .progress-card {
-    padding: 18px;
-  }
-
-  .grid-two,
-  .choice-list {
-    grid-template-columns: 1fr;
-  }
-
-  .step-indicator {
-    font-size: 9px;
-  }
-
-  .navigation {
-    flex-wrap: wrap;
-  }
-
-  .btn {
-    padding: 13px 17px;
-  }
-
-  .header-title h1 {
-    font-size: 15px;
+  button {
+    padding: 13px 16px;
   }
 }
 </style>
@@ -450,222 +332,221 @@ footer {
 <body>
 
 <header>
-  <div class="header-content">
-    <div class="logo">BVA</div>
-    <div class="header-title">
-      <h1>BOMBEIROS VOLUNTÁRIOS DO ALGARVE</h1>
-      <p>RECRUTAMENTO · CANDIDATURAS</p>
-    </div>
-  </div>
+  <h1>BOMBEIROS VOLUNTÁRIOS DO ALGARVE</h1>
+  <p>Portal de recrutamento · Comunidade de simulação</p>
 </header>
 
-<main>
-  <section class="intro">
-    <h2>Formulário de Recrutamento</h2>
-    <p>
-      Bem-vindo ao processo de recrutamento dos Bombeiros Voluntários do Algarve.
-      Preenche todos os campos obrigatórios com atenção.
-    </p>
-  </section>
+<main class="container">
+  <div class="card">
 
-  <section class="progress-card" id="progressCard">
-    <div class="progress-top">
-      <strong id="progressTitle">Dados pessoais</strong>
-      <span id="progressText">Passo 1 de 4</span>
-    </div>
-
-    <div class="progress-track">
-      <div id="progressFill"></div>
-    </div>
-
-    <div class="steps">
-      <div class="step-indicator active"><span>1</span>Dados pessoais</div>
-      <div class="step-indicator"><span>2</span>Informações</div>
-      <div class="step-indicator"><span>3</span>Motivação</div>
-      <div class="step-indicator"><span>4</span>Avaliação</div>
-    </div>
-  </section>
-
-  <section class="form-card" id="formCard">
-    <form id="applicationForm" novalidate>
-
-      <div class="form-error" id="formError" role="alert"></div>
-
-      <!-- PASSO 1 -->
-      <section class="form-step active">
-        <div class="section-heading">
-          <h3>01. Dados pessoais</h3>
-          <p>Preenche os teus dados de identificação e contacto.</p>
-        </div>
-
-        <div class="field">
-          <label for="nome">Nome completo <span class="required">*</span></label>
-          <input id="nome" name="nome" type="text" placeholder="O teu nome completo" required>
-        </div>
-
-        <div class="grid-two">
-          <div class="field">
-            <label for="idade">Idade <span class="required">*</span></label>
-            <input id="idade" name="idade" type="number" min="1" max="99" placeholder="Idade" required>
-          </div>
-
-          <div class="field">
-            <label for="discord">Discord <span class="required">*</span></label>
-            <input id="discord" name="discord" type="text" placeholder="Exemplo: utilizador" required>
-          </div>
-        </div>
-
-        <div class="field">
-          <label for="disponibilidade">Disponibilidade <span class="required">*</span></label>
-          <select id="disponibilidade" name="disponibilidade" required>
-            <option value="">Seleciona uma opção</option>
-            <option value="Manhã">Manhã</option>
-            <option value="Tarde">Tarde</option>
-            <option value="Noite">Noite</option>
-            <option value="Manhã e tarde">Manhã e tarde</option>
-            <option value="Tarde e noite">Tarde e noite</option>
-            <option value="Disponibilidade flexível">Disponibilidade flexível</option>
-          </select>
-        </div>
-      </section>
-
-      <!-- PASSO 2 -->
-      <section class="form-step">
-        <div class="section-heading">
-          <h3>02. Informações de recrutamento</h3>
-          <p>Indica as áreas em que tens interesse e a tua experiência.</p>
-        </div>
-
-        <div class="field">
-          <span class="field-label">Áreas de atividade <span class="required">*</span></span>
-          <div class="choice-list">
-            <label class="choice"><input type="checkbox" name="areas_atividade" value="Combate a incêndios">Combate a incêndios</label>
-            <label class="choice"><input type="checkbox" name="areas_atividade" value="Emergência pré-hospitalar">Emergência pré-hospitalar</label>
-            <label class="choice"><input type="checkbox" name="areas_atividade" value="Salvamento e desencarceramento">Salvamento e desencarceramento</label>
-            <label class="choice"><input type="checkbox" name="areas_atividade" value="Proteção e socorro">Proteção e socorro</label>
-            <label class="choice"><input type="checkbox" name="areas_atividade" value="Logística">Logística</label>
-            <label class="choice"><input type="checkbox" name="areas_atividade" value="Comunicações">Comunicações</label>
-          </div>
-        </div>
-
-        <div class="field">
-          <label for="experiencia">Tens experiência anterior? <span class="required">*</span></label>
-          <select id="experiencia" name="experiencia" required>
-            <option value="">Seleciona uma opção</option>
-            <option value="Sim">Sim</option>
-            <option value="Não">Não</option>
-            <option value="Alguma experiência">Tenho alguma experiência</option>
-          </select>
-        </div>
-
-        <div class="field">
-          <label for="funcao_pretendida">Função pretendida <span class="required">*</span></label>
-          <select id="funcao_pretendida" name="funcao_pretendida" required>
-            <option value="">Seleciona uma opção</option>
-            <option value="Bombeiro">Bombeiro</option>
-            <option value="Tripulante de ambulância">Tripulante de ambulância</option>
-            <option value="Operador de comunicações">Operador de comunicações</option>
-            <option value="Apoio logístico">Apoio logístico</option>
-            <option value="Outra">Outra / A definir</option>
-          </select>
-        </div>
-      </section>
-
-      <!-- PASSO 3 -->
-      <section class="form-step">
-        <div class="section-heading">
-          <h3>03. Motivação e perfil</h3>
-          <p>Queremos conhecer melhor as tuas capacidades e motivação.</p>
-        </div>
-
-        <div class="field">
-          <label for="experiencia_detalhe">Descreve a tua experiência anterior</label>
-          <textarea id="experiencia_detalhe" name="experiencia_detalhe" placeholder="Se não tens experiência, podes deixar este campo em branco."></textarea>
-        </div>
-
-        <div class="field">
-          <label for="motivacao">Porque queres fazer parte dos Bombeiros Voluntários do Algarve? <span class="required">*</span></label>
-          <textarea id="motivacao" name="motivacao" required placeholder="Explica a tua motivação..."></textarea>
-        </div>
-
-        <div class="field">
-          <label for="qualidades">Quais consideras serem as tuas principais qualidades? <span class="required">*</span></label>
-          <textarea id="qualidades" name="qualidades" required placeholder="Exemplo: responsabilidade, trabalho em equipa..."></textarea>
-        </div>
-
-        <div class="field">
-          <label for="compromisso">Como demonstrarias compromisso com a corporação? <span class="required">*</span></label>
-          <textarea id="compromisso" name="compromisso" required placeholder="Escreve a tua resposta..."></textarea>
-        </div>
-      </section>
-
-      <!-- PASSO 4 -->
-      <section class="form-step">
-        <div class="section-heading">
-          <h3>04. Avaliação final</h3>
-          <p>Responde às seguintes situações com sinceridade e clareza.</p>
-        </div>
-
-        <div class="field">
-          <label for="q1">1. O que significa trabalhar em equipa? <span class="required">*</span></label>
-          <textarea id="q1" name="q1" required placeholder="A tua resposta..."></textarea>
-        </div>
-
-        <div class="field">
-          <label for="q2">2. Como reagirias perante uma situação de pressão? <span class="required">*</span></label>
-          <textarea id="q2" name="q2" required placeholder="A tua resposta..."></textarea>
-        </div>
-
-        <div class="field">
-          <label for="q3">3. Porque é importante respeitar a hierarquia? <span class="required">*</span></label>
-          <textarea id="q3" name="q3" required placeholder="A tua resposta..."></textarea>
-        </div>
-
-        <div class="field">
-          <label for="situacao_pratica">4. Um colega não cumpre uma orientação. Como agias? <span class="required">*</span></label>
-          <textarea id="situacao_pratica" name="situacao_pratica" required placeholder="Descreve como resolverias a situação..."></textarea>
-        </div>
-
-        <div class="field">
-          <label for="conflito">5. Como resolverias um conflito com outro elemento da corporação? <span class="required">*</span></label>
-          <textarea id="conflito" name="conflito" required placeholder="A tua resposta..."></textarea>
-        </div>
-
-        <div class="notice">
-          Ao submeteres a candidatura, confirmas que as informações fornecidas são verdadeiras
-          e que estás disponível para participar no processo de recrutamento.
-        </div>
-      </section>
-
-      <div class="navigation">
-        <button type="button" class="btn btn-previous" id="previousButton" hidden>
-          ANTERIOR
-        </button>
-
-        <button type="button" class="btn btn-next" id="nextButton">
-          SEGUINTE
-        </button>
-
-        <button type="submit" class="btn btn-submit" id="submitButton" hidden>
-          SUBMETER CANDIDATURA
-        </button>
+    <div id="formContent">
+      <div class="intro">
+        <h2>Formulário de Recrutamento</h2>
+        <p>
+          Preenche os campos com atenção. Esta candidatura destina-se
+          à comunidade de simulação dos Bombeiros Voluntários do Algarve.
+        </p>
       </div>
 
-    </form>
-  </section>
+      <div class="progress-info">
+        <span id="stepLabel">Etapa 1 de 4</span>
+        <span id="progressPercent">25%</span>
+      </div>
 
-  <section class="success-screen" id="successScreen">
-    <div class="success-icon">✓</div>
-    <h2>Candidatura submetida!</h2>
-    <p>
-      A tua candidatura foi recebida com sucesso.
-      Obrigado pelo teu interesse nos Bombeiros Voluntários do Algarve.
-    </p>
-  </section>
+      <div class="progress-track">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+
+      <div class="steps">
+        <div class="step-number active" id="indicator0">1. Dados</div>
+        <div class="step-number" id="indicator1">2. Atividade</div>
+        <div class="step-number" id="indicator2">3. Experiência</div>
+        <div class="step-number" id="indicator3">4. Questões</div>
+      </div>
+
+      <form id="applicationForm" novalidate>
+
+        <!-- ETAPA 1 -->
+        <section class="form-step active">
+          <h3>Dados pessoais</h3>
+          <p class="step-description">Começa por preencher os teus dados de identificação.</p>
+
+          <div class="field">
+            <label for="nome">Nome completo <span class="required">*</span></label>
+            <input id="nome" name="nome" type="text" autocomplete="name" required>
+          </div>
+
+          <div class="field">
+            <label for="idade">Idade <span class="required">*</span></label>
+            <input id="idade" name="idade" type="number" min="1" max="99" required>
+          </div>
+
+          <div class="field">
+            <label for="discord">Nome de utilizador Discord <span class="required">*</span></label>
+            <input id="discord" name="discord" type="text" placeholder="Exemplo: utilizador123" required>
+          </div>
+        </section>
+
+        <!-- ETAPA 2 -->
+        <section class="form-step">
+          <h3>Disponibilidade e atividade</h3>
+          <p class="step-description">Indica quando estás disponível e as áreas em que gostarias de participar.</p>
+
+          <div class="field">
+            <label for="disponibilidade">Disponibilidade <span class="required">*</span></label>
+            <select id="disponibilidade" name="disponibilidade" required>
+              <option value="">Seleciona uma opção</option>
+              <option value="Durante a semana">Durante a semana</option>
+              <option value="Fins de semana">Fins de semana</option>
+              <option value="Todos os dias">Todos os dias</option>
+              <option value="Horário variável">Horário variável</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <span class="field-label">Áreas de atividade <span class="required">*</span></span>
+            <div class="option-list">
+              <label class="option">
+                <input type="checkbox" name="areas_atividade" value="Combate a incêndios">
+                Combate a incêndios
+              </label>
+              <label class="option">
+                <input type="checkbox" name="areas_atividade" value="Emergência pré-hospitalar">
+                Emergência pré-hospitalar
+              </label>
+              <label class="option">
+                <input type="checkbox" name="areas_atividade" value="Salvamento">
+                Salvamento
+              </label>
+              <label class="option">
+                <input type="checkbox" name="areas_atividade" value="Comando e coordenação">
+                Comando e coordenação
+              </label>
+              <label class="option">
+                <input type="checkbox" name="areas_atividade" value="Logística">
+                Logística
+              </label>
+              <label class="option">
+                <input type="checkbox" name="areas_atividade" value="Formação">
+                Formação
+              </label>
+            </div>
+          </div>
+        </section>
+
+        <!-- ETAPA 3 -->
+        <section class="form-step">
+          <h3>Experiência e motivação</h3>
+          <p class="step-description">Queremos conhecer a tua experiência e perceber o teu interesse na comunidade.</p>
+
+          <div class="field">
+            <label for="experiencia">Tens experiência anterior? <span class="required">*</span></label>
+            <select id="experiencia" name="experiencia" required>
+              <option value="">Seleciona uma opção</option>
+              <option value="Sim">Sim</option>
+              <option value="Não">Não</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="experiencia_detalhe">Se respondeste sim, descreve a tua experiência</label>
+            <textarea id="experiencia_detalhe" name="experiencia_detalhe"></textarea>
+          </div>
+
+          <div class="field">
+            <label for="funcao_pretendida">Função pretendida <span class="required">*</span></label>
+            <select id="funcao_pretendida" name="funcao_pretendida" required>
+              <option value="">Seleciona uma opção</option>
+              <option value="Bombeiro">Bombeiro</option>
+              <option value="Tripulante de ambulância">Tripulante de ambulância</option>
+              <option value="Operador">Operador</option>
+              <option value="Outra">Outra / Indiferente</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="motivacao">Porque queres fazer parte desta comunidade? <span class="required">*</span></label>
+            <textarea id="motivacao" name="motivacao" required></textarea>
+          </div>
+
+          <div class="field">
+            <label for="qualidades">Quais consideras serem as tuas principais qualidades? <span class="required">*</span></label>
+            <textarea id="qualidades" name="qualidades" required></textarea>
+          </div>
+
+          <div class="field">
+            <label for="compromisso">Estás disposto a respeitar as regras e orientações da comunidade? <span class="required">*</span></label>
+            <select id="compromisso" name="compromisso" required>
+              <option value="">Seleciona uma opção</option>
+              <option value="Sim">Sim</option>
+              <option value="Não">Não</option>
+            </select>
+          </div>
+        </section>
+
+        <!-- ETAPA 4 -->
+        <section class="form-step">
+          <h3>Questões finais</h3>
+          <p class="step-description">Responde às últimas questões para concluir a candidatura.</p>
+
+          <div class="field">
+            <label for="q1">1. O que significa para ti trabalhar em equipa? <span class="required">*</span></label>
+            <textarea id="q1" name="q1" required></textarea>
+          </div>
+
+          <div class="field">
+            <label for="q2">2. Como reagirias perante uma ordem de um superior? <span class="required">*</span></label>
+            <textarea id="q2" name="q2" required></textarea>
+          </div>
+
+          <div class="field">
+            <label for="q3">3. Porque devemos selecionar a tua candidatura? <span class="required">*</span></label>
+            <textarea id="q3" name="q3" required></textarea>
+          </div>
+
+          <div class="field">
+            <label for="situacao_pratica">4. Como agrias perante uma situação inesperada durante uma simulação? <span class="required">*</span></label>
+            <textarea id="situacao_pratica" name="situacao_pratica" required></textarea>
+          </div>
+
+          <div class="field">
+            <label for="conflito">5. Como resolverias um conflito com outro membro da comunidade? <span class="required">*</span></label>
+            <textarea id="conflito" name="conflito" required></textarea>
+          </div>
+        </section>
+
+        <div id="formMessage" class="message" role="alert"></div>
+
+        <div class="navigation">
+          <button type="button" class="btn-back" id="previousButton" style="visibility:hidden">
+            ANTERIOR
+          </button>
+
+          <button type="button" class="btn-next" id="nextButton">
+            SEGUINTE
+          </button>
+
+          <button type="submit" class="btn-submit" id="submitButton" style="display:none">
+            ENVIAR CANDIDATURA
+          </button>
+        </div>
+
+      </form>
+    </div>
+
+    <div class="success-screen" id="successScreen">
+      <h2>Candidatura enviada!</h2>
+      <p>
+        A tua candidatura foi recebida com sucesso.
+        Obrigado pelo teu interesse em fazer parte da comunidade.
+      </p>
+    </div>
+
+  </div>
 </main>
 
 <footer>
-  Bombeiros Voluntários do Algarve · Recrutamento
+  Bombeiros Voluntários do Algarve · Comunidade de simulação
 </footer>
 
 <script>
@@ -674,66 +555,60 @@ footer {
 
   function iniciarFormulario() {
     const form = document.getElementById("applicationForm");
-    const passos = Array.from(document.querySelectorAll(".form-step"));
-    const indicadores = Array.from(document.querySelectorAll(".step-indicator"));
 
-    const seguinte = document.getElementById("nextButton");
-    const anterior = document.getElementById("previousButton");
-    const submeter = document.getElementById("submitButton");
-
-    const erro = document.getElementById("formError");
-    const progresso = document.getElementById("progressFill");
-    const titulo = document.getElementById("progressTitle");
-    const texto = document.getElementById("progressText");
-
-    if (!form || !seguinte || !anterior || !submeter || passos.length !== 4) {
-      console.error("Não foi possível inicializar o formulário.");
+    if (!form || form.dataset.initialized === "true") {
       return;
     }
 
-    const titulos = [
-      "Dados pessoais",
-      "Informações de recrutamento",
-      "Motivação e perfil",
-      "Avaliação final"
-    ];
+    form.dataset.initialized = "true";
 
-    let passoAtual = 0;
-    let aSubmeter = false;
+    const steps = Array.from(document.querySelectorAll(".form-step"));
+    const nextButton = document.getElementById("nextButton");
+    const previousButton = document.getElementById("previousButton");
+    const submitButton = document.getElementById("submitButton");
+    const message = document.getElementById("formMessage");
+    const progressFill = document.getElementById("progressFill");
+    const progressPercent = document.getElementById("progressPercent");
+    const stepLabel = document.getElementById("stepLabel");
 
-    function mostrarErro(mensagem) {
-      erro.textContent = mensagem;
-      erro.classList.add("visible");
+    let currentStep = 0;
+    let sending = false;
+
+    function showMessage(text, type) {
+      message.textContent = text;
+      message.className = "message " + type;
     }
 
-    function limparErro() {
-      erro.textContent = "";
-      erro.classList.remove("visible");
+    function clearMessage() {
+      message.textContent = "";
+      message.className = "message";
     }
 
-    function mostrarPasso(numero) {
-      if (numero < 0 || numero >= passos.length) return;
+    function showStep(index) {
+      currentStep = Math.max(0, Math.min(index, steps.length - 1));
 
-      passoAtual = numero;
-
-      passos.forEach(function (passo, indice) {
-        passo.classList.toggle("active", indice === passoAtual);
+      steps.forEach(function (step, i) {
+        step.classList.toggle("active", i === currentStep);
       });
 
-      indicadores.forEach(function (indicador, indice) {
-        indicador.classList.toggle("active", indice === passoAtual);
-        indicador.classList.toggle("completed", indice < passoAtual);
-      });
+      for (let i = 0; i < steps.length; i++) {
+        const indicator = document.getElementById("indicator" + i);
 
-      titulo.textContent = titulos[passoAtual];
-      texto.textContent = "Passo " + (passoAtual + 1) + " de " + passos.length;
-      progresso.style.width = ((passoAtual + 1) / passos.length * 100) + "%";
+        indicator.classList.toggle("active", i === currentStep);
+        indicator.classList.toggle("done", i < currentStep);
+      }
 
-      anterior.hidden = passoAtual === 0;
-      seguinte.hidden = passoAtual === passos.length - 1;
-      submeter.hidden = passoAtual !== passos.length - 1;
+      const percent = Math.round(((currentStep + 1) / steps.length) * 100);
 
-      limparErro();
+      progressFill.style.width = percent + "%";
+      progressPercent.textContent = percent + "%";
+      stepLabel.textContent = "Etapa " + (currentStep + 1) + " de " + steps.length;
+
+      previousButton.style.visibility = currentStep === 0 ? "hidden" : "visible";
+      nextButton.style.display = currentStep === steps.length - 1 ? "none" : "block";
+      submitButton.style.display = currentStep === steps.length - 1 ? "block" : "none";
+
+      clearMessage();
 
       window.scrollTo({
         top: 0,
@@ -741,38 +616,30 @@ footer {
       });
     }
 
-    function validarPasso() {
-      limparErro();
-
-      const campos = passos[passoAtual].querySelectorAll(
-        "input[required], select[required], textarea[required]"
+    function validateCurrentStep() {
+      const currentFields = steps[currentStep].querySelectorAll(
+        "input:not([type='checkbox']), select, textarea"
       );
 
-      for (const campo of campos) {
-        if (!campo.value.trim()) {
-          mostrarErro("Preenche todos os campos obrigatórios antes de continuar.");
-          campo.focus();
+      for (const field of currentFields) {
+        if (!field.checkValidity()) {
+          showMessage("Por favor, preenche corretamente o campo: " +
+            (field.labels && field.labels.length
+              ? field.labels[0].textContent.replace("*", "").trim()
+              : field.name), "error");
+
+          field.focus();
           return false;
-        }
-
-        if (campo.type === "number") {
-          const idade = Number(campo.value);
-
-          if (!Number.isFinite(idade) || idade < 1 || idade > 99) {
-            mostrarErro("Introduz uma idade válida.");
-            campo.focus();
-            return false;
-          }
         }
       }
 
-      if (passoAtual === 1) {
-        const areas = passos[passoAtual].querySelectorAll(
+      if (currentStep === 1) {
+        const selectedAreas = form.querySelectorAll(
           'input[name="areas_atividade"]:checked'
         );
 
-        if (areas.length === 0) {
-          mostrarErro("Seleciona pelo menos uma área de atividade.");
+        if (selectedAreas.length === 0) {
+          showMessage("Seleciona pelo menos uma área de atividade.", "error");
           return false;
         }
       }
@@ -780,34 +647,98 @@ footer {
       return true;
     }
 
-    seguinte.addEventListener("click", function (evento) {
-      evento.preventDefault();
+    nextButton.addEventListener("click", function () {
+      if (!validateCurrentStep()) {
+        return;
+      }
 
-      if (validarPasso()) {
-        mostrarPasso(passoAtual + 1);
+      showStep(currentStep + 1);
+    });
+
+    previousButton.addEventListener("click", function () {
+      if (currentStep > 0) {
+        showStep(currentStep - 1);
       }
     });
 
-    anterior.addEventListener("click", function (evento) {
-      evento.preventDefault();
-      mostrarPasso(passoAtual - 1);
-    });
+    form.addEventListener("submit", async function (event) {
+      event.preventDefault();
 
-    form.addEventListener("submit", async function (evento) {
-      evento.preventDefault();
+      if (sending) {
+        return;
+      }
 
-      if (aSubmeter) return;
+      if (!validateCurrentStep()) {
+        return;
+      }
 
-      if (!validarPasso()) return;
+      const selectedAreas = Array.from(
+        form.querySelectorAll('input[name="areas_atividade"]:checked')
+      ).map(function (checkbox) {
+        return checkbox.value;
+      });
 
-      aSubmeter = true;
-      submeter.disabled = true;
-      submeter.textContent = "A SUBMETER...";
-      limparErro();
+      const data = Object.fromEntries(new FormData(form).entries());
+
+      data.areas_atividade = selectedAreas.join(", ");
+
+      sending = true;
+      submitButton.disabled = true;
+      submitButton.textContent = "A ENVIAR...";
+      clearMessage();
 
       try {
-        const dados = Object.fromEntries(
-          new FormData(form).entries()
+        const response = await fetch("/api/candidaturas", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(data)
+        });
+
+        let result;
+
+        try {
+          result = await response.json();
+        } catch {
+          throw new Error("O servidor devolveu uma resposta inválida.");
+        }
+
+        if (!response.ok || !result.ok) {
+          throw new Error(result.message || result.error || "Não foi possível enviar a candidatura.");
+        }
+
+        document.getElementById("formContent").style.display = "none";
+        document.getElementById("successScreen").style.display = "block";
+
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth"
+        });
+
+      } catch (error) {
+        showMessage(
+          error.message || "Ocorreu um erro ao enviar. Tenta novamente.",
+          "error"
         );
 
-        dados.areas_atividade = 
+        sending = false;
+        submitButton.disabled = false;
+        submitButton.textContent = "ENVIAR CANDIDATURA";
+      }
+    });
+
+    showStep(0);
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", iniciarFormulario);
+  } else {
+    iniciarFormulario();
+  }
+})();
+</script>
+
+</body>
+  </html>
+                  
