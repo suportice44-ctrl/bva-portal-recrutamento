@@ -21,7 +21,6 @@
   --text: #1d2935;
   --muted: #718096;
   --border: #dce3e9;
-  --white: #ffffff;
   --success: #16794a;
 }
 
@@ -148,7 +147,7 @@ main {
   height: 100%;
   background: var(--red);
   border-radius: 20px;
-  transition: width .25s ease;
+  transition: width .2s ease;
 }
 
 .steps {
@@ -195,18 +194,13 @@ main {
   padding: 32px;
 }
 
+/* Navegação simples por passos */
 .form-step {
   display: none;
 }
 
 .form-step.active {
   display: block;
-  animation: appear .2s ease;
-}
-
-@keyframes appear {
-  from { opacity: 0; transform: translateY(5px); }
-  to { opacity: 1; transform: translateY(0); }
 }
 
 .section-heading {
@@ -255,7 +249,6 @@ textarea {
   font-size: 13px;
   color: var(--text);
   outline: none;
-  transition: border .2s, box-shadow .2s;
 }
 
 input:focus,
@@ -269,14 +262,6 @@ textarea {
   resize: vertical;
   min-height: 105px;
   line-height: 1.6;
-}
-
-.field small {
-  display: block;
-  margin-top: 7px;
-  color: var(--muted);
-  font-size: 10px;
-  line-height: 1.5;
 }
 
 .grid-two {
@@ -301,12 +286,6 @@ textarea {
   cursor: pointer;
   font-size: 12px;
   line-height: 1.5;
-  transition: .2s;
-}
-
-.choice:hover {
-  border-color: var(--navy-light);
-  background: #f8fafc;
 }
 
 .choice input {
@@ -350,7 +329,6 @@ textarea {
   font-size: 12px;
   font-weight: 800;
   cursor: pointer;
-  transition: .2s;
 }
 
 .btn:disabled {
@@ -361,10 +339,6 @@ textarea {
 .btn-previous {
   background: #edf1f5;
   color: var(--navy);
-}
-
-.btn-previous:hover {
-  background: #dfe6ed;
 }
 
 .btn-next,
@@ -426,6 +400,10 @@ footer {
   padding: 25px 15px;
   color: #8794a1;
   font-size: 10px;
+}
+
+[hidden] {
+  display: none !important;
 }
 
 @media (max-width: 600px) {
@@ -501,16 +479,16 @@ footer {
     </div>
 
     <div class="steps">
-      <div class="step-indicator active" data-indicator="0">
+      <div class="step-indicator active">
         <span>1</span>Dados pessoais
       </div>
-      <div class="step-indicator" data-indicator="1">
+      <div class="step-indicator">
         <span>2</span>Informações
       </div>
-      <div class="step-indicator" data-indicator="2">
+      <div class="step-indicator">
         <span>3</span>Motivação
       </div>
-      <div class="step-indicator" data-indicator="3">
+      <div class="step-indicator">
         <span>4</span>Avaliação
       </div>
     </div>
@@ -521,10 +499,11 @@ footer {
 
       <div class="form-error" id="formError" role="alert"></div>
 
-      <section class="form-step active" data-step="0">
+      <!-- PASSO 1 -->
+      <section class="form-step active">
         <div class="section-heading">
           <h3>01. Dados pessoais</h3>
-          <p>Começa por preencher os teus dados de identificação e contacto.</p>
+          <p>Preenche os teus dados de identificação e contacto.</p>
         </div>
 
         <div class="field">
@@ -558,7 +537,8 @@ footer {
         </div>
       </section>
 
-      <section class="form-step" data-step="1">
+      <!-- PASSO 2 -->
+      <section class="form-step">
         <div class="section-heading">
           <h3>02. Informações de recrutamento</h3>
           <p>Indica as áreas em que tens interesse e a tua experiência.</p>
@@ -617,10 +597,11 @@ footer {
         </div>
       </section>
 
-      <section class="form-step" data-step="2">
+      <!-- PASSO 3 -->
+      <section class="form-step">
         <div class="section-heading">
           <h3>03. Motivação e perfil</h3>
-          <p>Queremos conhecer melhor as tuas capacidades e a tua motivação.</p>
+          <p>Queremos conhecer melhor as tuas capacidades e motivação.</p>
         </div>
 
         <div class="field">
@@ -644,7 +625,8 @@ footer {
         </div>
       </section>
 
-      <section class="form-step" data-step="3">
+      <!-- PASSO 4 -->
+      <section class="form-step">
         <div class="section-heading">
           <h3>04. Avaliação final</h3>
           <p>Responde às seguintes situações com sinceridade e clareza.</p>
@@ -713,110 +695,131 @@ footer {
 </footer>
 
 <script>
-(() => {
-  "use strict";
-
+document.addEventListener("DOMContentLoaded", function () {
   const form = document.getElementById("applicationForm");
-  const steps = Array.from(document.querySelectorAll(".form-step"));
-  const indicators = Array.from(document.querySelectorAll(".step-indicator"));
+  const passos = Array.from(document.querySelectorAll(".form-step"));
+  const indicadores = Array.from(document.querySelectorAll(".step-indicator"));
 
-  const nextButton = document.getElementById("nextButton");
-  const previousButton = document.getElementById("previousButton");
-  const submitButton = document.getElementById("submitButton");
+  const seguinte = document.getElementById("nextButton");
+  const anterior = document.getElementById("previousButton");
+  const submeter = document.getElementById("submitButton");
 
-  const progressFill = document.getElementById("progressFill");
-  const progressTitle = document.getElementById("progressTitle");
-  const progressText = document.getElementById("progressText");
+  const erro = document.getElementById("formError");
+  const progresso = document.getElementById("progressFill");
+  const titulo = document.getElementById("progressTitle");
+  const texto = document.getElementById("progressText");
 
-  const errorBox = document.getElementById("formError");
-  const formCard = document.getElementById("formCard");
-  const progressCard = document.getElementById("progressCard");
-  const successScreen = document.getElementById("successScreen");
-
-  const titles = [
+  const titulos = [
     "Dados pessoais",
     "Informações de recrutamento",
     "Motivação e perfil",
     "Avaliação final"
   ];
 
-  let currentStep = 0;
-  let submitting = false;
+  let passoAtual = 0;
+  let aSubmeter = false;
 
-  function showError(message) {
-    errorBox.textContent = message;
-    errorBox.classList.add("visible");
+  function mostrarErro(mensagem) {
+    erro.textContent = mensagem;
+    erro.classList.add("visible");
   }
 
-  function clearError() {
-    errorBox.textContent = "";
-    errorBox.classList.remove("visible");
+  function limparErro() {
+    erro.textContent = "";
+    erro.classList.remove("visible");
   }
 
-  function showStep(index) {
-    if (index < 0 || index >= steps.length) return;
+  function mostrarPasso(numero) {
+    if (numero < 0 || numero >= passos.length) return;
 
-    currentStep = index;
+    passoAtual = numero;
 
-    steps.forEach((step, i) => {
-      step.classList.toggle("active", i === currentStep);
+    passos.forEach(function (passo, indice) {
+      passo.classList.toggle("active", indice === passoAtual);
     });
 
-    indicators.forEach((indicator, i) => {
-      indicator.classList.toggle("active", i === currentStep);
-      indicator.classList.toggle("completed", i < currentStep);
+    indicadores.forEach(function (indicador, indice) {
+      indicador.classList.toggle("active", indice === passoAtual);
+      indicador.classList.toggle("completed", indice < passoAtual);
     });
 
-    progressTitle.textContent = titles[currentStep];
-    progressText.textContent =
-      `Passo ${currentStep + 1} de ${steps.length}`;
+    titulo.textContent = titulos[passoAtual];
+    texto.textContent = "Passo " + (passoAtual + 1) + " de " + passos.length;
+    progresso.style.width = ((passoAtual + 1) / passos.length * 100) + "%";
 
-    progressFill.style.width =
-      `${((currentStep + 1) / steps.length) * 100}%`;
+    anterior.hidden = passoAtual === 0;
+    seguinte.hidden = passoAtual === passos.length - 1;
+    submeter.hidden = passoAtual !== passos.length - 1;
 
-    previousButton.hidden = currentStep === 0;
-    nextButton.hidden = currentStep === steps.length - 1;
-    submitButton.hidden = currentStep !== steps.length - 1;
-
-    clearError();
+    limparErro();
 
     window.scrollTo({
-      top: progressCard.getBoundingClientRect().top + window.scrollY - 20,
+      top: 0,
       behavior: "smooth"
     });
   }
 
-  function validateCurrentStep() {
-    clearError();
+  function validarPasso() {
+    limparErro();
 
-    const currentFields = steps[currentStep].querySelectorAll(
+    const campos = passos[passoAtual].querySelectorAll(
       "input[required], select[required], textarea[required]"
     );
 
-    for (const field of currentFields) {
-      if (!field.value.trim()) {
-        showError(
-          "Por favor, preenche todos os campos obrigatórios antes de continuar."
-        );
-        field.focus();
+    for (const campo of campos) {
+      if (!campo.value.trim()) {
+        mostrarErro("Preenche todos os campos obrigatórios antes de continuar.");
+        campo.focus();
         return false;
       }
 
-      if (field.type === "number") {
-        const number = Number(field.value);
+      if (campo.type === "number") {
+        const idade = Number(campo.value);
 
-        if (!Number.isFinite(number) || number < 1 || number > 99) {
-          showError("Introduz uma idade válida.");
-          field.focus();
+        if (!Number.isFinite(idade) || idade < 1 || idade > 99) {
+          mostrarErro("Introduz uma idade válida.");
+          campo.focus();
           return false;
         }
       }
     }
 
-    if (currentStep === 1) {
-      const selectedAreas = steps[currentStep].querySelectorAll(
+    if (passoAtual === 1) {
+      const areasSelecionadas = passos[passoAtual].querySelectorAll(
         'input[name="areas_atividade"]:checked'
       );
 
-      if (selectedAreas.length === 0) {
-        showError("Seleciona pelo men
+      if (areasSelecionadas.length === 0) {
+        mostrarErro("Seleciona pelo menos uma área de atividade.");
+        return false;
+      }
+    }
+
+    return true;
+  }
+
+  seguinte.addEventListener("click", function () {
+    if (!validarPasso()) return;
+    mostrarPasso(passoAtual + 1);
+  });
+
+  anterior.addEventListener("click", function () {
+    mostrarPasso(passoAtual - 1);
+  });
+
+  form.addEventListener("submit", async function (evento) {
+    evento.preventDefault();
+
+    if (aSubmeter) return;
+    if (!validarPasso()) return;
+
+    aSubmeter = true;
+    submeter.disabled = true;
+    submeter.textContent = "A SUBMETER...";
+    limparErro();
+
+    const dados = Object.fromEntries(new FormData(form).entries());
+
+    dados.areas_atividade = Array.from(
+      form.querySelectorAll('input[name="areas_atividade"]:checked')
+    ).map(functio
