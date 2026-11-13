@@ -10,221 +10,188 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
 :root {
   --navy: #102238;
-  --navy-light: #1c3a57;
-  --red: #c5222c;
-  --red-dark: #a91822;
-  --text: #293747;
-  --muted: #687787;
-  --border: #dfe5eb;
-  --green: #247b4b;
+  --navy-light: #18344f;
+  --red: #c62828;
+  --background: #f2f5f8;
+  --text: #1d2935;
+  --muted: #718096;
+  --border: #dce3e9;
+  --white: #ffffff;
+  --success: #16794a;
 }
 
 * {
   box-sizing: border-box;
-  margin: 0;
-  padding: 0;
 }
 
 body {
-  font-family: Roboto, Arial, sans-serif;
+  margin: 0;
+  min-height: 100vh;
+  background: var(--background);
   color: var(--text);
-  background: #f3f5f8;
-  line-height: 1.6;
-}
-
-.container {
-  width: min(950px, 92%);
-  margin: auto;
+  font-family: 'Montserrat', sans-serif;
 }
 
 header {
   background: var(--navy);
   color: white;
-  padding: 20px 0;
-  border-bottom: 4px solid var(--red);
+  padding: 25px 20px;
+  border-bottom: 5px solid var(--red);
 }
 
 .header-content {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 15px;
-}
-
-.brand {
+  max-width: 1000px;
+  margin: auto;
   display: flex;
   align-items: center;
-  gap: 13px;
-  color: white;
-  text-decoration: none;
+  gap: 18px;
 }
 
-.crest {
-  width: 53px;
-  height: 60px;
-  background: var(--red);
-  color: white;
-  display: grid;
-  place-items: center;
+.logo {
+  width: 58px;
+  height: 58px;
+  border: 2px solid rgba(255,255,255,.7);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 19px;
   font-weight: 800;
-  clip-path: polygon(0 0,100% 0,100% 75%,50% 100%,0 75%);
+  flex-shrink: 0;
 }
 
-.brand h1 {
-  font-family: Montserrat, sans-serif;
-  font-size: 14px;
-  line-height: 1.3;
+.header-title h1 {
+  margin: 0;
+  font-size: 19px;
+  font-weight: 800;
+  letter-spacing: .5px;
 }
 
-.brand p {
-  font-size: 9px;
-  letter-spacing: 1.5px;
-  color: #bdc9d6;
-  margin-top: 4px;
-}
-
-.back-link {
-  color: white;
-  border: 1px solid #ffffff55;
-  padding: 10px 14px;
-  border-radius: 3px;
+.header-title p {
+  margin: 6px 0 0;
+  color: #c7d4e0;
   font-size: 11px;
-  font-weight: 700;
-  text-decoration: none;
-}
-
-.back-link:hover {
-  background: white;
-  color: var(--navy);
-}
-
-.hero {
-  background: linear-gradient(110deg, var(--navy), var(--navy-light));
-  color: white;
-  padding: 55px 0 65px;
-}
-
-.kicker {
-  color: #ff9298;
-  font-size: 10px;
-  font-weight: 800;
-  letter-spacing: 2px;
-}
-
-.hero h2 {
-  font-family: Montserrat, sans-serif;
-  font-size: clamp(28px, 5vw, 43px);
-  line-height: 1.2;
-  margin: 12px 0;
-}
-
-.hero p {
-  max-width: 650px;
-  color: #d1dce7;
-  font-size: 14px;
+  letter-spacing: 1.5px;
 }
 
 main {
-  padding: 45px 0 75px;
+  width: min(920px, calc(100% - 30px));
+  margin: 40px auto;
+}
+
+.intro {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.intro h2 {
+  color: var(--navy);
+  font-size: 27px;
+  margin: 0 0 12px;
+  font-weight: 800;
+}
+
+.intro p {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.7;
+  max-width: 650px;
+  margin: auto;
 }
 
 .progress-card,
-.form-card,
-.success-screen {
+.form-card {
   background: white;
-  border: 1px solid var(--border);
-  border-radius: 5px;
+  border-radius: 13px;
+  box-shadow: 0 8px 30px rgba(16,34,56,.07);
 }
 
 .progress-card {
-  padding: 25px;
-  margin-bottom: 22px;
+  padding: 22px 25px;
+  margin-bottom: 20px;
 }
 
 .progress-top {
   display: flex;
   justify-content: space-between;
-  align-items: center;
   gap: 10px;
+  align-items: center;
   margin-bottom: 14px;
 }
 
 .progress-top strong {
-  font-family: Montserrat, sans-serif;
   color: var(--navy);
   font-size: 13px;
 }
 
 .progress-top span {
-  font-size: 11px;
   color: var(--muted);
+  font-size: 12px;
 }
 
 .progress-track {
-  height: 7px;
-  background: #e9edf1;
+  width: 100%;
+  height: 8px;
+  background: #e8edf2;
   border-radius: 20px;
   overflow: hidden;
 }
 
-.progress-fill {
+#progressFill {
   width: 25%;
   height: 100%;
   background: var(--red);
-  transition: width .3s;
+  border-radius: 20px;
+  transition: width .25s ease;
 }
 
 .steps {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 10px;
+  gap: 8px;
   margin-top: 20px;
 }
 
-.step {
-  display: flex;
-  align-items: center;
-  gap: 8px;
+.step-indicator {
+  text-align: center;
+  color: #9aa7b3;
   font-size: 10px;
   font-weight: 700;
-  color: #8793a0;
 }
 
-.step-number {
-  width: 27px;
-  height: 27px;
+.step-indicator span {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border-radius: 50%;
-  background: #e9edf1;
-  display: grid;
-  place-items: center;
-  flex-shrink: 0;
+  background: #e9eef3;
+  margin: 0 auto 7px;
+  font-size: 11px;
 }
 
-.step.active {
+.step-indicator.active {
   color: var(--red);
 }
 
-.step.active .step-number {
+.step-indicator.active span,
+.step-indicator.completed span {
   background: var(--red);
   color: white;
 }
 
-.step.completed {
-  color: var(--green);
-}
-
-.step.completed .step-number {
-  background: #e4f2e9;
-  color: var(--green);
+.step-indicator.completed {
+  color: var(--navy);
 }
 
 .form-card {
-  padding: 35px;
+  padding: 32px;
 }
 
 .form-step {
@@ -233,208 +200,156 @@ main {
 
 .form-step.active {
   display: block;
-  animation: appear .25s ease;
+  animation: appear .2s ease;
 }
 
 @keyframes appear {
-  from {
-    opacity: 0;
-    transform: translateY(5px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-.section-title {
-  margin-bottom: 25px;
-  padding-bottom: 17px;
-  border-bottom: 1px solid var(--border);
+.section-heading {
+  margin-bottom: 27px;
 }
 
-.section-title span {
-  color: var(--red);
-  font-size: 10px;
-  font-weight: 800;
-  letter-spacing: 1.5px;
-}
-
-.section-title h3 {
-  font-family: Montserrat, sans-serif;
+.section-heading h3 {
   color: var(--navy);
-  font-size: 24px;
-  margin: 5px 0;
+  font-size: 20px;
+  margin: 0 0 8px;
 }
 
-.section-title p {
+.section-heading p {
   color: var(--muted);
   font-size: 12px;
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
+  line-height: 1.6;
+  margin: 0;
 }
 
 .field {
-  display: flex;
-  flex-direction: column;
-  gap: 7px;
-}
-
-.field.full {
-  grid-column: 1 / -1;
+  margin-bottom: 21px;
 }
 
 .field label,
-.group-label {
-  color: var(--navy);
+.field-label {
+  display: block;
   font-size: 12px;
-  font-weight: 800;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 9px;
 }
 
 .required {
   color: var(--red);
 }
 
-.field input,
-.field select,
-.field textarea {
+input,
+select,
+textarea {
   width: 100%;
-  padding: 13px;
+  padding: 13px 14px;
   border: 1px solid var(--border);
-  border-radius: 3px;
-  outline: none;
-  font: 13px Roboto, sans-serif;
-  background: white;
+  border-radius: 7px;
+  background: #fff;
+  font-family: inherit;
+  font-size: 13px;
   color: var(--text);
+  outline: none;
+  transition: border .2s, box-shadow .2s;
 }
 
-.field input:focus,
-.field select:focus,
-.field textarea:focus {
-  border-color: var(--red);
-  box-shadow: 0 0 0 2px #c5222c15;
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--navy-light);
+  box-shadow: 0 0 0 3px rgba(24,52,79,.09);
 }
 
-.field textarea {
-  min-height: 115px;
+textarea {
   resize: vertical;
+  min-height: 105px;
+  line-height: 1.6;
 }
 
-.choice-group {
+.field small {
+  display: block;
+  margin-top: 7px;
+  color: var(--muted);
+  font-size: 10px;
+  line-height: 1.5;
+}
+
+.grid-two {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+.choice-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 10px;
 }
 
 .choice {
-  position: relative;
-}
-
-.choice input {
-  position: absolute;
-  opacity: 0;
-  width: 1px;
-  height: 1px;
-}
-
-.choice label {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 10px;
-  padding: 13px;
-  min-height: 49px;
   border: 1px solid var(--border);
-  border-radius: 3px;
+  padding: 13px;
+  border-radius: 7px;
   cursor: pointer;
   font-size: 12px;
-  color: var(--text);
+  line-height: 1.5;
   transition: .2s;
 }
 
-.choice label:before {
-  content: "";
+.choice:hover {
+  border-color: var(--navy-light);
+  background: #f8fafc;
+}
+
+.choice input {
   width: 16px;
   height: 16px;
+  margin: 1px 0 0;
   flex-shrink: 0;
-  border: 1px solid #b8c3ce;
-  border-radius: 3px;
-}
-
-.choice input:checked + label {
-  border-color: var(--red);
-  background: #fff5f5;
-  color: var(--red-dark);
-  font-weight: 700;
-}
-
-.choice input:checked + label:before {
-  background: var(--red);
-  border-color: var(--red);
-  box-shadow: inset 0 0 0 3px white;
-}
-
-.choice input:focus-visible + label {
-  outline: 2px solid var(--red);
-  outline-offset: 2px;
-}
-
-.field-group {
-  display: flex;
-  flex-direction: column;
-  gap: 11px;
-  margin-bottom: 22px;
-}
-
-.help {
-  color: var(--muted);
-  font-size: 11px;
+  accent-color: var(--red);
 }
 
 .form-error {
   display: none;
   background: #fff0f0;
-  color: #a51e25;
-  border: 1px solid #f0c6c8;
-  padding: 12px;
+  border: 1px solid #efcaca;
+  color: #a51e1e;
+  padding: 12px 14px;
+  border-radius: 7px;
   font-size: 12px;
-  margin-bottom: 18px;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+.form-error.visible {
+  display: block;
 }
 
 .navigation {
   display: flex;
   justify-content: space-between;
   gap: 12px;
-  margin-top: 32px;
+  margin-top: 30px;
   padding-top: 22px;
-  border-top: 1px solid var(--border);
+  border-top: 1px solid #edf0f3;
 }
 
 .btn {
-  padding: 13px 22px;
-  border: 0;
-  border-radius: 3px;
-  font-size: 11px;
+  border: none;
+  border-radius: 7px;
+  padding: 14px 24px;
+  font-family: inherit;
+  font-size: 12px;
   font-weight: 800;
-  letter-spacing: .5px;
   cursor: pointer;
-}
-
-.btn-secondary {
-  background: #e9edf1;
-  color: var(--navy);
-}
-
-.btn-primary {
-  background: var(--red);
-  color: white;
-}
-
-.btn-primary:hover {
-  background: var(--red-dark);
+  transition: .2s;
 }
 
 .btn:disabled {
@@ -442,18 +357,43 @@ main {
   cursor: not-allowed;
 }
 
+.btn-previous {
+  background: #edf1f5;
+  color: var(--navy);
+}
+
+.btn-previous:hover {
+  background: #dfe6ed;
+}
+
+.btn-next,
+.btn-submit {
+  background: var(--red);
+  color: white;
+  margin-left: auto;
+}
+
+.btn-next:hover,
+.btn-submit:hover {
+  background: #a91f1f;
+}
+
 .notice {
-  background: #f4f6f8;
-  padding: 15px;
-  font-size: 11px;
-  color: var(--muted);
   margin-top: 20px;
-  border-left: 3px solid var(--red);
+  padding: 14px;
+  border-radius: 7px;
+  background: #f2f6fa;
+  color: #536477;
+  font-size: 11px;
+  line-height: 1.6;
 }
 
 .success-screen {
   display: none;
-  padding: 45px 25px;
+  background: white;
+  border-radius: 13px;
+  box-shadow: 0 8px 30px rgba(16,34,56,.07);
+  padding: 50px 30px;
   text-align: center;
 }
 
@@ -461,75 +401,76 @@ main {
   width: 65px;
   height: 65px;
   border-radius: 50%;
-  background: #e4f2e9;
-  color: var(--green);
-  display: grid;
-  place-items: center;
+  background: #e3f5eb;
+  color: var(--success);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-size: 30px;
   margin: 0 auto 20px;
 }
 
-.success-screen h3 {
-  font-family: Montserrat, sans-serif;
+.success-screen h2 {
   color: var(--navy);
-  font-size: 25px;
-  margin-bottom: 10px;
+  font-size: 23px;
 }
 
 .success-screen p {
   color: var(--muted);
   font-size: 13px;
-  margin-bottom: 25px;
+  line-height: 1.7;
+  max-width: 550px;
+  margin: auto;
 }
 
 footer {
-  background: #0a1726;
-  color: #aab8c6;
-  padding: 25px 0;
   text-align: center;
+  padding: 25px 15px;
+  color: #8794a1;
   font-size: 10px;
 }
 
-@media (max-width: 650px) {
-  .header-content {
-    align-items: flex-start;
+@media (max-width: 600px) {
+  main {
+    margin: 25px auto;
   }
 
-  .brand h1 {
-    font-size: 11px;
-  }
-
-  .back-link {
-    font-size: 9px;
-    padding: 9px;
-  }
-
-  .grid,
-  .choice-group {
-    grid-template-columns: 1fr;
-  }
-
-  .field.full {
-    grid-column: auto;
+  .intro h2 {
+    font-size: 22px;
   }
 
   .form-card {
-    padding: 21px;
+    padding: 22px 17px;
   }
 
-  .steps {
-    gap: 5px;
+  .progress-card {
+    padding: 18px;
   }
 
-  .step {
-    flex-direction: column;
-    text-align: center;
+  .grid-two,
+  .choice-list {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .choice-list {
+    gap: 9px;
+  }
+
+  .step-indicator {
     font-size: 9px;
   }
 
-  .navigation .btn {
-    flex: 1;
-    padding: 12px 8px;
+  .navigation {
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    padding: 13px 17px;
+  }
+
+  .header-title h1 {
+    font-size: 15px;
   }
 }
 </style>
@@ -538,304 +479,345 @@ footer {
 <body>
 
 <header>
-  <div class="container header-content">
-    <a href="/" class="brand">
-      <div class="crest">BVA</div>
-      <div>
-        <h1>BOMBEIROS VOLUNTÁRIOS<br>DO ALGARVE</h1>
-        <p>PORTAL DE RECRUTAMENTO</p>
-      </div>
-    </a>
-    <a href="/" class="back-link">← VOLTAR AO SITE</a>
+  <div class="header-content">
+    <div class="logo">BVA</div>
+    <div class="header-title">
+      <h1>BOMBEIROS VOLUNTÁRIOS DO ALGARVE</h1>
+      <p>RECRUTAMENTO · CANDIDATURAS</p>
+    </div>
   </div>
 </header>
 
-<section class="hero">
-  <div class="container">
-    <span class="kicker">RECRUTAMENTO · BVA</span>
-    <h2>Junta-te à nossa equipa.</h2>
-    <p>Preenche a candidatura com atenção. O processo está dividido em quatro etapas para tornar a tua inscrição simples e organizada.</p>
-  </div>
-</section>
-
 <main>
-<div class="container">
+  <section class="intro">
+    <h2>Formulário de Recrutamento</h2>
+    <p>
+      Bem-vindo ao processo de recrutamento dos Bombeiros Voluntários do Algarve.
+      Preenche todos os campos obrigatórios com atenção.
+    </p>
+  </section>
 
-  <div class="progress-card" id="progressCard">
+  <section class="progress-card" id="progressCard">
     <div class="progress-top">
       <strong id="progressTitle">Dados pessoais</strong>
-      <span id="progressText">Etapa 1 de 4</span>
+      <span id="progressText">Passo 1 de 4</span>
     </div>
 
     <div class="progress-track">
-      <div class="progress-fill" id="progressFill"></div>
+      <div id="progressFill"></div>
     </div>
 
     <div class="steps">
-      <div class="step active"><span class="step-number">1</span><span>Dados pessoais</span></div>
-      <div class="step"><span class="step-number">2</span><span>Disponibilidade</span></div>
-      <div class="step"><span class="step-number">3</span><span>Perfil</span></div>
-      <div class="step"><span class="step-number">4</span><span>Questionário</span></div>
+      <div class="step-indicator active" data-indicator="0">
+        <span>1</span>Dados pessoais
+      </div>
+      <div class="step-indicator" data-indicator="1">
+        <span>2</span>Informações
+      </div>
+      <div class="step-indicator" data-indicator="2">
+        <span>3</span>Motivação
+      </div>
+      <div class="step-indicator" data-indicator="3">
+        <span>4</span>Avaliação
+      </div>
     </div>
-  </div>
+  </section>
 
-  <div class="form-card" id="formCard">
-    <div id="formError" class="form-error" role="alert"></div>
-
+  <section class="form-card" id="formCard">
     <form id="applicationForm" novalidate>
 
-      <!-- ETAPA 1 -->
-      <section class="form-step active">
-        <div class="section-title">
-          <span>ETAPA 01</span>
-          <h3>Dados pessoais</h3>
-          <p>Começa por preencher os teus dados de identificação.</p>
+      <div class="form-error" id="formError" role="alert"></div>
+
+      <!-- PASSO 1 -->
+      <section class="form-step active" data-step="0">
+        <div class="section-heading">
+          <h3>01. Dados pessoais</h3>
+          <p>Começa por preencher os teus dados de identificação e contacto.</p>
         </div>
 
-        <div class="grid">
-          <div class="field">
-            <label for="nome">Nome completo <span class="required">*</span></label>
-            <input id="nome" name="nome" type="text" maxlength="100" autocomplete="name" required>
-          </div>
+        <div class="field">
+          <label for="nome">Nome completo <span class="required">*</span></label>
+          <input id="nome" name="nome" type="text" placeholder="O teu nome completo" required>
+        </div>
 
+        <div class="grid-two">
           <div class="field">
             <label for="idade">Idade <span class="required">*</span></label>
-            <input id="idade" name="idade" type="number" min="13" max="99" required>
-          </div>
-
-          <div class="field full">
-            <label for="discord">Nome de utilizador Discord <span class="required">*</span></label>
-            <input id="discord" name="discord" type="text" maxlength="100" placeholder="Ex.: utilizador" required>
-          </div>
-        </div>
-      </section>
-
-      <!-- ETAPA 2 -->
-      <section class="form-step">
-        <div class="section-title">
-          <span>ETAPA 02</span>
-          <h3>Disponibilidade e atividade</h3>
-          <p>Indica quando podes participar e quais as áreas que mais te interessam.</p>
-        </div>
-
-        <div class="field-group">
-          <span class="group-label">Qual é a tua disponibilidade? <span class="required">*</span></span>
-
-          <div class="choice-group">
-            <div class="choice">
-              <input type="radio" id="disp1" name="disponibilidade" value="Durante a semana">
-              <label for="disp1">Durante a semana</label>
-            </div>
-
-            <div class="choice">
-              <input type="radio" id="disp2" name="disponibilidade" value="Fins de semana">
-              <label for="disp2">Fins de semana</label>
-            </div>
-
-            <div class="choice">
-              <input type="radio" id="disp3" name="disponibilidade" value="Todos os dias">
-              <label for="disp3">Todos os dias</label>
-            </div>
-
-            <div class="choice">
-              <input type="radio" id="disp4" name="disponibilidade" value="Disponibilidade variável">
-              <label for="disp4">Disponibilidade variável</label>
-            </div>
-          </div>
-        </div>
-
-        <div class="field-group">
-          <span class="group-label">Que áreas de atividade te interessam? <span class="required">*</span></span>
-          <p class="help">Podes selecionar várias opções.</p>
-
-          <div class="choice-group">
-            <div class="choice">
-              <input type="checkbox" id="area1" name="areas_atividade" value="Incêndios urbanos">
-              <label for="area1">Incêndios urbanos</label>
-            </div>
-
-            <div class="choice">
-              <input type="checkbox" id="area2" name="areas_atividade" value="Incêndios rurais">
-              <label for="area2">Incêndios rurais</label>
-            </div>
-
-            <div class="choice">
-              <input type="checkbox" id="area3" name="areas_atividade" value="Emergência pré-hospitalar">
-              <label for="area3">Emergência pré-hospitalar</label>
-            </div>
-
-            <div class="choice">
-              <input type="checkbox" id="area4" name="areas_atividade" value="Acidentes e salvamento">
-              <label for="area4">Acidentes e salvamento</label>
-            </div>
-
-            <div class="choice">
-              <input type="checkbox" id="area5" name="areas_atividade" value="Prevenção e formação">
-              <label for="area5">Prevenção e formação</label>
-            </div>
-
-            <div class="choice">
-              <input type="checkbox" id="area6" name="areas_atividade" value="Comando e coordenação">
-              <label for="area6">Comando e coordenação</label>
-            </div>
-          </div>
-        </div>
-
-        <div class="grid">
-          <div class="field">
-            <label for="experiencia">Tens experiência em roleplay? <span class="required">*</span></label>
-            <select id="experiencia" name="experiencia" required>
-              <option value="">Seleciona</option>
-              <option value="Sim">Sim</option>
-              <option value="Não">Não</option>
-              <option value="Alguma experiência">Alguma experiência</option>
-            </select>
+            <input id="idade" name="idade" type="number" min="1" max="99" placeholder="Idade" required>
           </div>
 
           <div class="field">
-            <label for="funcao_pretendida">Função pretendida <span class="required">*</span></label>
-            <select id="funcao_pretendida" name="funcao_pretendida" required>
-              <option value="">Seleciona</option>
-              <option value="Bombeiro">Bombeiro</option>
-              <option value="Comando">Comando</option>
-              <option value="Recursos Humanos">Recursos Humanos</option>
-              <option value="Outra">Outra</option>
-            </select>
+            <label for="discord">Discord <span class="required">*</span></label>
+            <input id="discord" name="discord" type="text" placeholder="Exemplo: utilizador" required>
           </div>
+        </div>
+
+        <div class="field">
+          <label for="disponibilidade">Disponibilidade <span class="required">*</span></label>
+          <select id="disponibilidade" name="disponibilidade" required>
+            <option value="">Seleciona uma opção</option>
+            <option value="Manhã">Manhã</option>
+            <option value="Tarde">Tarde</option>
+            <option value="Noite">Noite</option>
+            <option value="Manhã e tarde">Manhã e tarde</option>
+            <option value="Tarde e noite">Tarde e noite</option>
+            <option value="Disponibilidade flexível">Disponibilidade flexível</option>
+          </select>
         </div>
       </section>
 
-      <!-- ETAPA 3 -->
-      <section class="form-step">
-        <div class="section-title">
-          <span>ETAPA 03</span>
-          <h3>Perfil e motivação</h3>
-          <p>Queremos conhecer melhor o teu percurso e a tua motivação.</p>
+      <!-- PASSO 2 -->
+      <section class="form-step" data-step="1">
+        <div class="section-heading">
+          <h3>02. Informações de recrutamento</h3>
+          <p>Indica as áreas em que tens interesse e a tua experiência.</p>
         </div>
 
-        <div class="grid">
-          <div class="field full">
-            <label for="experiencia_detalhe">Descreve a tua experiência em roleplay</label>
-            <textarea id="experiencia_detalhe" name="experiencia_detalhe" maxlength="2000" placeholder="Podes indicar comunidades, funções ou experiências anteriores."></textarea>
+        <div class="field">
+          <span class="field-label">Áreas de atividade <span class="required">*</span></span>
+          <div class="choice-list">
+            <label class="choice">
+              <input type="checkbox" name="areas_atividade" value="Combate a incêndios">
+              Combate a incêndios
+            </label>
+            <label class="choice">
+              <input type="checkbox" name="areas_atividade" value="Emergência pré-hospitalar">
+              Emergência pré-hospitalar
+            </label>
+            <label class="choice">
+              <input type="checkbox" name="areas_atividade" value="Salvamento e desencarceramento">
+              Salvamento e desencarceramento
+            </label>
+            <label class="choice">
+              <input type="checkbox" name="areas_atividade" value="Proteção e socorro">
+              Proteção e socorro
+            </label>
+            <label class="choice">
+              <input type="checkbox" name="areas_atividade" value="Logística">
+              Logística
+            </label>
+            <label class="choice">
+              <input type="checkbox" name="areas_atividade" value="Comunicações">
+              Comunicações
+            </label>
           </div>
+        </div>
 
-          <div class="field full">
-            <label for="motivacao">Porque queres entrar nos BVA? <span class="required">*</span></label>
-            <textarea id="motivacao" name="motivacao" maxlength="2000" required></textarea>
-          </div>
+        <div class="field">
+          <label for="experiencia">Tens experiência anterior? <span class="required">*</span></label>
+          <select id="experiencia" name="experiencia" required>
+            <option value="">Seleciona uma opção</option>
+            <option value="Sim">Sim</option>
+            <option value="Não">Não</option>
+            <option value="Alguma experiência">Tenho alguma experiência</option>
+          </select>
+        </div>
 
-          <div class="field full">
-            <label for="qualidades">Quais são as tuas principais qualidades? <span class="required">*</span></label>
-            <textarea id="qualidades" name="qualidades" maxlength="1500" required></textarea>
-          </div>
-
-          <div class="field full">
-            <label for="compromisso">Como demonstras responsabilidade e compromisso? <span class="required">*</span></label>
-            <textarea id="compromisso" name="compromisso" maxlength="1500" required></textarea>
-          </div>
+        <div class="field">
+          <label for="funcao_pretendida">Função pretendida <span class="required">*</span></label>
+          <select id="funcao_pretendida" name="funcao_pretendida" required>
+            <option value="">Seleciona uma opção</option>
+            <option value="Bombeiro">Bombeiro</option>
+            <option value="Tripulante de ambulância">Tripulante de ambulância</option>
+            <option value="Operador de comunicações">Operador de comunicações</option>
+            <option value="Apoio logístico">Apoio logístico</option>
+            <option value="Outra">Outra / A definir</option>
+          </select>
         </div>
       </section>
 
-      <!-- ETAPA 4 -->
-      <section class="form-step">
-        <div class="section-title">
-          <span>ETAPA 04</span>
-          <h3>Questionário final</h3>
-          <p>Responde às últimas questões antes de submeteres a candidatura.</p>
+      <!-- PASSO 3 -->
+      <section class="form-step" data-step="2">
+        <div class="section-heading">
+          <h3>03. Motivação e perfil</h3>
+          <p>Queremos conhecer melhor as tuas capacidades e a tua motivação.</p>
         </div>
 
-        <div class="grid">
-          <div class="field full">
-            <label for="q1">1. O que significa para ti trabalhar em equipa? <span class="required">*</span></label>
-            <textarea id="q1" name="q1" maxlength="300" required></textarea>
-          </div>
+        <div class="field">
+          <label for="experiencia_detalhe">Descreve a tua experiência anterior</label>
+          <textarea id="experiencia_detalhe" name="experiencia_detalhe" placeholder="Se não tens experiência, podes deixar este campo em branco."></textarea>
+        </div>
 
-          <div class="field full">
-            <label for="q2">2. Como reagirias a uma orientação de um superior? <span class="required">*</span></label>
-            <textarea id="q2" name="q2" maxlength="300" required></textarea>
-          </div>
+        <div class="field">
+          <label for="motivacao">Porque queres fazer parte dos Bombeiros Voluntários do Algarve? <span class="required">*</span></label>
+          <textarea id="motivacao" name="motivacao" required placeholder="Explica a tua motivação..."></textarea>
+        </div>
 
-          <div class="field full">
-            <label for="q3">3. Porque devemos escolher a tua candidatura? <span class="required">*</span></label>
-            <textarea id="q3" name="q3" maxlength="300" required></textarea>
-          </div>
+        <div class="field">
+          <label for="qualidades">Quais consideras serem as tuas principais qualidades? <span class="required">*</span></label>
+          <textarea id="qualidades" name="qualidades" required placeholder="Exemplo: responsabilidade, trabalho em equipa..."></textarea>
+        </div>
 
-          <div class="field full">
-            <label for="situacao_pratica">4. Como agias perante uma situação inesperada durante uma atividade de simulação? <span class="required">*</span></label>
-            <textarea id="situacao_pratica" name="situacao_pratica" maxlength="2000" required></textarea>
-          </div>
+        <div class="field">
+          <label for="compromisso">Como demonstrarias compromisso com a corporação? <span class="required">*</span></label>
+          <textarea id="compromisso" name="compromisso" required placeholder="Escreve a tua resposta..."></textarea>
+        </div>
+      </section>
 
-          <div class="field full">
-            <label for="conflito">5. Como resolverias um conflito com outro elemento da instituição? <span class="required">*</span></label>
-            <textarea id="conflito" name="conflito" maxlength="2000" required></textarea>
-          </div>
+      <!-- PASSO 4 -->
+      <section class="form-step" data-step="3">
+        <div class="section-heading">
+          <h3>04. Avaliação final</h3>
+          <p>Responde às seguintes situações com sinceridade e clareza.</p>
+        </div>
+
+        <div class="field">
+          <label for="q1">1. O que significa trabalhar em equipa? <span class="required">*</span></label>
+          <textarea id="q1" name="q1" required placeholder="A tua resposta..."></textarea>
+        </div>
+
+        <div class="field">
+          <label for="q2">2. Como reagirias perante uma situação de pressão? <span class="required">*</span></label>
+          <textarea id="q2" name="q2" required placeholder="A tua resposta..."></textarea>
+        </div>
+
+        <div class="field">
+          <label for="q3">3. Porque é importante respeitar a hierarquia? <span class="required">*</span></label>
+          <textarea id="q3" name="q3" required placeholder="A tua resposta..."></textarea>
+        </div>
+
+        <div class="field">
+          <label for="situacao_pratica">4. Um colega não cumpre uma orientação. Como agias? <span class="required">*</span></label>
+          <textarea id="situacao_pratica" name="situacao_pratica" required placeholder="Descreve como resolverias a situação..."></textarea>
+        </div>
+
+        <div class="field">
+          <label for="conflito">5. Como resolverias um conflito com outro elemento da corporação? <span class="required">*</span></label>
+          <textarea id="conflito" name="conflito" required placeholder="A tua resposta..."></textarea>
         </div>
 
         <div class="notice">
-          Ao submeteres esta candidatura, confirmas que as informações fornecidas são verdadeiras e que aceitas as regras da comunidade de simulação BVA.
+          Ao submeteres a candidatura, confirmas que as informações fornecidas são verdadeiras
+          e que estás disponível para participar no processo de recrutamento.
         </div>
       </section>
 
       <div class="navigation">
-        <button type="button" id="previousButton" class="btn btn-secondary" style="visibility:hidden">
-          ← ANTERIOR
+        <button type="button" class="btn btn-previous" id="previousButton" hidden>
+          ANTERIOR
         </button>
 
-        <button type="button" id="nextButton" class="btn btn-primary">
-          SEGUINTE →
+        <button type="button" class="btn btn-next" id="nextButton">
+          SEGUINTE
         </button>
 
-        <button type="submit" id="submitButton" class="btn btn-primary" style="display:none">
+        <button type="submit" class="btn btn-submit" id="submitButton" hidden>
           SUBMETER CANDIDATURA
         </button>
       </div>
 
     </form>
-  </div>
+  </section>
 
-  <div class="success-screen" id="successScreen">
+  <section class="success-screen" id="successScreen">
     <div class="success-icon">✓</div>
-    <h3>Candidatura submetida!</h3>
-    <p>A tua candidatura foi recebida com sucesso. A equipa de Recursos Humanos irá analisá-la.</p>
-    <a href="/" class="btn btn-primary">VOLTAR AO SITE</a>
-  </div>
-
-</div>
+    <h2>Candidatura submetida!</h2>
+    <p>
+      A tua candidatura foi recebida com sucesso.
+      Obrigado pelo teu interesse nos Bombeiros Voluntários do Algarve.
+    </p>
+  </section>
 </main>
 
 <footer>
-  <div class="container">
-    BOMBEIROS VOLUNTÁRIOS DO ALGARVE · PROJETO DE SIMULAÇÃO E ROLEPLAY · 2026
-  </div>
+  Bombeiros Voluntários do Algarve · Recrutamento
 </footer>
 
 <script>
-(function () {
+(() => {
   "use strict";
 
   const form = document.getElementById("applicationForm");
-  const formSteps = Array.from(document.querySelectorAll(".form-step"));
-  const progressSteps = Array.from(document.querySelectorAll(".steps .step"));
+  const steps = Array.from(document.querySelectorAll(".form-step"));
+  const indicators = Array.from(document.querySelectorAll(".step-indicator"));
+
+  const nextButton = document.getElementById("nextButton");
+  const previousButton = document.getElementById("previousButton");
+  const submitButton = document.getElementById("submitButton");
 
   const progressFill = document.getElementById("progressFill");
   const progressTitle = document.getElementById("progressTitle");
   const progressText = document.getElementById("progressText");
 
-  const previousButton = document.getElementById("previousButton");
-  const nextButton = document.getElementById("nextButton");
-  const submitButton = document.getElementById("submitButton");
-
-  const formError = document.getElementById("formError");
-  const progressCard = document.getElementById("progressCard");
+  const errorBox = document.getElementById("formError");
   const formCard = document.getElementById("formCard");
+  const progressCard = document.getElementById("progressCard");
   const successScreen = document.getElementById("successScreen");
 
-  const stepTitles = [
+  const titles = [
     "Dados pessoais",
-    "Disponibilidade e atividade",
-    "Perfil e motivação",
-    "Questionário final"
+    "Informações de recrutamento",
+    "Motivação e perfil",
+    "Avaliação final"
   ];
 
   let currentStep = 0;
-  let 
+  let submitting = false;
+
+  function showError(message) {
+    errorBox.textContent = message;
+    errorBox.classList.add("visible");
+  }
+
+  function clearError() {
+    errorBox.textContent = "";
+    errorBox.classList.remove("visible");
+  }
+
+  function showStep(index) {
+    if (index < 0 || index >= steps.length) return;
+
+    currentStep = index;
+
+    steps.forEach((step, i) => {
+      step.classList.toggle("active", i === currentStep);
+    });
+
+    indicators.forEach((indicator, i) => {
+      indicator.classList.toggle("active", i === currentStep);
+      indicator.classList.toggle("completed", i < currentStep);
+    });
+
+    progressTitle.textContent = titles[currentStep];
+    progressText.textContent = `Passo ${currentStep + 1} de ${steps.length}`;
+    progressFill.style.width = `${((currentStep + 1) / steps.length) * 100}%`;
+
+    previousButton.hidden = currentStep === 0;
+    nextButton.hidden = currentStep === steps.length - 1;
+    submitButton.hidden = currentStep !== steps.length - 1;
+
+    clearError();
+
+    window.scrollTo({
+      top: progressCard.getBoundingClientRect().top + window.scrollY - 20,
+      behavior: "smooth"
+    });
+  }
+
+  function validateCurrentStep() {
+    clearError();
+
+    const currentFields = steps[currentStep].querySelectorAll(
+      "input[required], select[required], textarea[required]"
+    );
+
+    for (const field of currentFields) {
+      if (!field.value.trim()) {
+        showError("Por favor, preenche todos os campos obrigatórios antes de continuar.");
+        field.focus();
+        return false;
+      }
+
+      if (field.type === "number") {
+        const number = Number(field.value);
+
+        if (!Number.isFinite(number) || number < 1 || number > 99) {
+          showError("Introduz uma idade válida.");
+          field.focus();
+          return false;
+        }
+      }
+    }
+
+    if (currentStep === 1) {
+      const selectedA
