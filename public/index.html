@@ -482,7 +482,6 @@ header {
   margin-right:10px;
 }
 
-/* GALERIA INSTITUCIONAL */
 .gallery {
   display:grid;
   grid-template-columns:repeat(3,1fr);
@@ -674,16 +673,17 @@ footer a:hover {
       </div>
     </a>
 
-    <button class="menu-toggle" onclick="toggleMenu()" aria-label="Abrir menu" aria-expanded="false">☰</button>
+    <button class="menu-toggle" id="menuToggle" type="button"
+      aria-label="Abrir menu" aria-expanded="false" aria-controls="mainNav">☰</button>
 
     <nav class="nav" id="mainNav">
-      <a href="#inicio" onclick="closeMenu()">INÍCIO</a>
-      <a href="#instituicao" onclick="closeMenu()">INSTITUIÇÃO</a>
-      <a href="#estrutura" onclick="closeMenu()">ESTRUTURA</a>
-      <a href="#atividade" onclick="closeMenu()">ATIVIDADE</a>
-      <a href="#galeria" onclick="closeMenu()">GALERIA</a>
-      <a href="#recrutamento" onclick="closeMenu()">RECRUTAMENTO</a>
-      <a class="apply-link" href="candidatura.html">CANDIDATAR-ME</a>
+      <a href="#inicio">INÍCIO</a>
+      <a href="#instituicao">INSTITUIÇÃO</a>
+      <a href="#estrutura">ESTRUTURA</a>
+      <a href="#atividade">ATIVIDADE</a>
+      <a href="#galeria">GALERIA</a>
+      <a href="#recrutamento">RECRUTAMENTO</a>
+      <a class="apply-link" href="/candidatura.html">CANDIDATAR-ME</a>
     </nav>
   </div>
 </header>
@@ -733,12 +733,10 @@ footer a:hover {
       <strong>ESPÍRITO DE EQUIPA</strong>
       <span>Cooperação e entreajuda</span>
     </div>
-
     <div class="quick-item">
       <strong>FORMAÇÃO</strong>
       <span>Aprendizagem e evolução</span>
     </div>
-
     <div class="quick-item">
       <strong>COMPROMISSO</strong>
       <span>Responsabilidade e dedicação</span>
@@ -778,7 +776,7 @@ footer a:hover {
         <div class="card-body">
           <h3>Recursos Humanos</h3>
           <p>Área dedicada ao acompanhamento, recrutamento e organização dos elementos.</p>
-          <a href="candidatura.html" class="card-link">CANDIDATURAS →</a>
+          <a href="/candidatura.html" class="card-link">CANDIDATURAS →</a>
         </div>
       </article>
     </div>
@@ -809,23 +807,14 @@ footer a:hover {
     </div>
 
     <div class="gallery">
-      <img
-        src="https://correiodelagos.com/site/assets/files/10521/bombeiros_conduc_a_o_2.jpg"
-        alt="Bombeiros de Vila do Bispo durante uma formação de condução defensiva no Algarve"
-        loading="lazy"
-      >
+      <img src="https://correiodelagos.com/site/assets/files/10521/bombeiros_conduc_a_o_2.jpg"
+        alt="Bombeiros de Vila do Bispo durante uma formação de condução defensiva no Algarve" loading="lazy">
 
-      <img
-        src="https://cm-castromarim.pt/info/sites/cm-castromarim.pt/files/styles/focus_crop/public/noticias/imagem/treinamento_bombeiros_azinhal-18.jpg?itok=xdJ0vQhC"
-        alt="Bombeiros portugueses durante um treino operacional no Azinhal, Algarve"
-        loading="lazy"
-      >
+      <img src="https://cm-castromarim.pt/info/sites/cm-castromarim.pt/files/styles/focus_crop/public/noticias/imagem/treinamento_bombeiros_azinhal-18.jpg?itok=xdJ0vQhC"
+        alt="Bombeiros portugueses durante um treino operacional no Azinhal, Algarve" loading="lazy">
 
-      <img
-        src="https://www.bombeiros.pt/imagens_cbs/veiculos/0812-VFCI2.jpg"
-        alt="Viatura de combate a incêndios dos Bombeiros Voluntários de Aljezur"
-        loading="lazy"
-      >
+      <img src="https://www.bombeiros.pt/imagens_cbs/veiculos/0812-VFCI2.jpg"
+        alt="Viatura de combate a incêndios dos Bombeiros Voluntários de Aljezur" loading="lazy">
     </div>
   </div>
 </section>
@@ -847,7 +836,7 @@ footer a:hover {
         <li>Respeitar todos os elementos da instituição.</li>
       </ul>
 
-      <a href="candidatura.html" class="btn btn-red">INICIAR CANDIDATURA</a>
+      <a href="/candidatura.html" class="btn btn-red">INICIAR CANDIDATURA</a>
     </div>
 
     <div class="recruit-image" role="img" aria-label="Imagem ilustrativa de equipamento de bombeiros"></div>
@@ -876,7 +865,7 @@ footer a:hover {
       <div>
         <h3>RECRUTAMENTO</h3>
         <a href="#recrutamento">Informações</a>
-        <a href="candidatura.html">Apresentar candidatura</a>
+        <a href="/candidatura.html">Apresentar candidatura</a>
       </div>
     </div>
 
@@ -887,40 +876,42 @@ footer a:hover {
 </footer>
 
 <script>
-function toggleMenu() {
-  const nav = document.getElementById('mainNav');
-  const button = document.querySelector('.menu-toggle');
+(function () {
+  "use strict";
 
-  nav.classList.toggle('open');
+  const menu = document.getElementById("mainNav");
+  const toggle = document.getElementById("menuToggle");
 
-  if (button) {
-    button.setAttribute(
-      'aria-expanded',
-      nav.classList.contains('open') ? 'true' : 'false'
-    );
-  }
-}
+  if (!menu || !toggle) return;
 
-function closeMenu() {
-  const nav = document.getElementById('mainNav');
-  const button = document.querySelector('.menu-toggle');
-
-  if (nav) {
-    nav.classList.remove('open');
+  function closeMenu() {
+    menu.classList.remove("open");
+    toggle.setAttribute("aria-expanded", "false");
   }
 
-  if (button) {
-    button.setAttribute('aria-expanded', 'false');
-  }
-}
+  toggle.addEventListener("click", function () {
+    const isOpen = menu.classList.toggle("open");
+    toggle.setAttribute("aria-expanded", String(isOpen));
+  });
 
-window.addEventListener('resize', function() {
-  if (window.innerWidth > 950) {
-    closeMenu();
-  }
-});
+  menu.querySelectorAll("a").forEach(function (link) {
+    link.addEventListener("click", closeMenu);
+  });
+
+  window.addEventListener("resize", function () {
+    if (window.innerWidth > 950) {
+      closeMenu();
+    }
+  });
+
+  document.addEventListener("keydown", function (event) {
+    if (event.key === "Escape") {
+      closeMenu();
+    }
+  });
+})();
 </script>
 
 </body>
-  </html>
-  
+      </html>
+        
